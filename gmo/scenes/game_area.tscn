@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmf617rn6a8pm"]
+
+[ext_resource type="Texture2D" uid="uid://ckfplp2dp23fa" path="res://assets/test_area.webp" id="1_4eb3c"]
+[ext_resource type="PackedScene" uid="uid://jqidoyn47nxk" path="res://scenes/warden.tscn" id="2_gdmpp"]
+
+[sub_resource type="Curve" id="Curve_gdmpp"]
+_limits = [0.0, 3500.0, 0.0, 1.0]
+_data = [Vector2(0, 3500), 0.0, 0.0, 0, 0, Vector2(0.10000001, 3500), 0.0, 0.0, 0, 0, Vector2(0.5027027, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="GameArea" type="Node2D"]
+
+[node name="TestArea" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_4eb3c")
+
+[node name="Warden" parent="." instance=ExtResource("2_gdmpp")]
+dash_speed_curve = SubResource("Curve_gdmpp")
+speed = 1000.0
+
+[node name="Camera2D" type="Camera2D" parent="Warden"]
+zoom = Vector2(0.5, 0.5)
