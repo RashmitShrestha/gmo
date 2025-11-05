@@ -12,8 +12,14 @@ func _ready() -> void:
 	_idle_command = IdleCommand.new()
 	_move_command = MoveCommand.new()
 	_dash_command = DashCommand.new(dash_speed_curve)
+	
 
-
+func _input(event):
+	if Input.is_action_pressed("left_click"):
+		if event is InputEventMouseMotion:
+			print(event.position)
+		
+		
 func _process(_delta) -> void:
 	_calculate_direction()
 	if null == _curr_command:
