@@ -15,8 +15,11 @@ func execute(character: GameCharacter) -> Status:
 		character.add_child(_timer)
 		_timer.one_shot = true
 		_timer.start(_speed_curve.max_domain)
-		
+
 		_direction = character.direction
+
+		#emit signal for audio n FX
+		SignalBus.player_dashed.emit()
 	
 	if not _timer.is_stopped():
 		character.velocity = _direction * _speed_curve.sample(_speed_curve.max_domain - _timer.time_left)
