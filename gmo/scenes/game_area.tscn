@@ -1,12 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmf617rn6a8pm"]
+[gd_scene load_steps=8 format=3 uid="uid://dmf617rn6a8pm"]
 
 [ext_resource type="Texture2D" uid="uid://ckfplp2dp23fa" path="res://assets/test_area.webp" id="1_4eb3c"]
 [ext_resource type="PackedScene" uid="uid://jqidoyn47nxk" path="res://scenes/warden.tscn" id="2_gdmpp"]
+[ext_resource type="Script" uid="uid://bhbppojr8ikwe" path="res://scripts/commands/slice.gd" id="3_vlxm1"]
+[ext_resource type="Script" uid="uid://r0bl6vjeurgd" path="res://scripts/dummy.gd" id="4_3mx8n"]
 
 [sub_resource type="Curve" id="Curve_gdmpp"]
 _limits = [0.0, 3500.0, 0.0, 1.0]
 _data = [Vector2(0, 3500), 0.0, 0.0, 0, 0, Vector2(0.10000001, 3500), 0.0, 0.0, 0, 0, Vector2(0.5027027, 0), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="Curve" id="Curve_vlxm1"]
+_limits = [0.0, 4.874157, 0.0, 42.34]
+_data = [Vector2(0, 1.3691449), 0.0, -0.083023146, 0, 0, Vector2(42.34, 0.0547657), -0.032162115, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_vlxm1"]
+offsets = PackedFloat32Array(0, 0.34246576)
+colors = PackedColorArray(0.6784314, 0.72156864, 0.8509804, 0.90588236, 0.9098039, 0.9098039, 0.9098039, 0.84705883)
 
 [node name="GameArea" type="Node2D"]
 
@@ -20,3 +31,12 @@ speed = 1000.0
 
 [node name="Camera2D" type="Camera2D" parent="Warden"]
 zoom = Vector2(0.5, 0.5)
+
+[node name="Slice" type="Line2D" parent="."]
+unique_name_in_owner = true
+width_curve = SubResource("Curve_vlxm1")
+gradient = SubResource("Gradient_vlxm1")
+script = ExtResource("3_vlxm1")
+
+[node name="TestDummy" type="Node2D" parent="."]
+script = ExtResource("4_3mx8n")
