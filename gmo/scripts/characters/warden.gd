@@ -10,6 +10,8 @@ var _dash_command: DashCommand
 
 var vel_vec = Vector2.ZERO
 var curr_vel = 0
+var is_slicing = false
+
 
 func _ready() -> void:
 	_idle_command = IdleCommand.new()
@@ -20,18 +22,21 @@ func _ready() -> void:
 func _input(event):
 	if Input.is_action_pressed("left_click"):
 		if event is InputEventMouseMotion:
+			is_slicing = true
 			vel_vec = event.relative
 			curr_vel = abs(Vector2.ZERO.distance_to(vel_vec))
+			
 			# tweak to find the best number for "full velocity hits" 
-			if curr_vel > 25:
-				print("F") # fast
-			elif curr_vel > 7.5:
-				print("M") # medium
-			else: 
-				print("S") # slow
+			#if curr_vel > 25:
+				#print("F") # fast
+			#elif curr_vel > 7.5:
+				#print("M") # medium
+			#else: 
+				#print("S") # slow
 			
 			%Slice.slicing()
 	else:
+		is_slicing = false
 		%Slice.clear_points()
 		%Slice.points_queue = []
 		

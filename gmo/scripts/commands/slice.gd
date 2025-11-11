@@ -2,7 +2,7 @@ extends Line2D
 
 var points_queue : Array
 var max_points = 5 # limited trail
-# in Slice's inspector area 
+
 
 func slicing() -> void:
 	var pos = get_global_mouse_position()

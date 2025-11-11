@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmf617rn6a8pm"]
+[gd_scene load_steps=12 format=3 uid="uid://dmf617rn6a8pm"]
 
 [ext_resource type="Texture2D" uid="uid://ckfplp2dp23fa" path="res://assets/test_area.webp" id="1_4eb3c"]
 [ext_resource type="PackedScene" uid="uid://jqidoyn47nxk" path="res://scenes/warden.tscn" id="2_gdmpp"]
 [ext_resource type="Script" uid="uid://bhbppojr8ikwe" path="res://scripts/commands/slice.gd" id="3_vlxm1"]
 [ext_resource type="Script" uid="uid://r0bl6vjeurgd" path="res://scripts/dummy.gd" id="4_3mx8n"]
+[ext_resource type="Texture2D" uid="uid://b384wo4oyemvf" path="res://assets/testDummy.png" id="5_57wkv"]
 
 [sub_resource type="Curve" id="Curve_gdmpp"]
 _limits = [0.0, 3500.0, 0.0, 1.0]
@@ -17,7 +18,15 @@ point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_vlxm1"]
 offsets = PackedFloat32Array(0, 0.34246576)
-colors = PackedColorArray(0.6784314, 0.72156864, 0.8509804, 0.90588236, 0.9098039, 0.9098039, 0.9098039, 0.84705883)
+colors = PackedColorArray(0, 0.72156864, 0.8509804, 0.90588236, 0.9098039, 0.9098039, 0.9098039, 0.84705883)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]
+radius = 173.14156
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lamd3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lamd3"]
+radius = 81.30677
 
 [node name="GameArea" type="Node2D"]
 
@@ -26,6 +35,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("1_4eb3c")
 
 [node name="Warden" parent="." instance=ExtResource("2_gdmpp")]
+unique_name_in_owner = true
+position = Vector2(-1, -1)
+collision_layer = 2
+collision_mask = 13
 dash_speed_curve = SubResource("Curve_gdmpp")
 speed = 1000.0
 
@@ -34,9 +47,63 @@ zoom = Vector2(0.5, 0.5)
 
 [node name="Slice" type="Line2D" parent="."]
 unique_name_in_owner = true
+z_index = 5
 width_curve = SubResource("Curve_vlxm1")
 gradient = SubResource("Gradient_vlxm1")
 script = ExtResource("3_vlxm1")
 
-[node name="TestDummy" type="Node2D" parent="."]
+[node name="Dummy" type="CharacterBody2D" parent="."]
+z_index = 1
+collision_layer = 4
+collision_mask = 15
 script = ExtResource("4_3mx8n")
+metadata/_custom_type_script = "uid://bquw4773xgiaq"
+
+[node name="Sprite2D" type="Sprite2D" parent="Dummy"]
+position = Vector2(-1026, -354)
+texture = ExtResource("5_57wkv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dummy"]
+position = Vector2(-1021, -354)
+shape = SubResource("CircleShape2D_57wkv")
+
+[node name="DummyArea" type="Area2D" parent="Dummy"]
+unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_lamd3")
+position = Vector2(-244, -179)
+
+[node name="DummyCollision" type="CollisionShape2D" parent="Dummy/DummyArea"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-777.99994, -176)
+scale = Vector2(2.140625, 2.109375)
+shape = SubResource("CircleShape2D_lamd3")
+debug_color = Color(0.7863566, 0.18725446, 0.12266659, 0.41960785)
+
+[node name="Dummy2" type="CharacterBody2D" parent="."]
+z_index = 1
+position = Vector2(1692, -78)
+collision_layer = 4
+collision_mask = 15
+script = ExtResource("4_3mx8n")
+metadata/_custom_type_script = "uid://bquw4773xgiaq"
+
+[node name="Sprite2D" type="Sprite2D" parent="Dummy2"]
+position = Vector2(-1026, -354)
+texture = ExtResource("5_57wkv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dummy2"]
+position = Vector2(-1021, -354)
+shape = SubResource("CircleShape2D_57wkv")
+
+[node name="DummyArea" type="Area2D" parent="Dummy2"]
+material = SubResource("CanvasItemMaterial_lamd3")
+position = Vector2(-244, -179)
+
+[node name="DummyCollision" type="CollisionShape2D" parent="Dummy2/DummyArea"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-777.99994, -176)
+scale = Vector2(2.140625, 2.109375)
+shape = SubResource("CircleShape2D_lamd3")
+debug_color = Color(0.7863566, 0.18725446, 0.12266659, 0.41960785)
