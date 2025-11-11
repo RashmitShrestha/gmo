@@ -22,6 +22,7 @@ colors = PackedColorArray(0.6784314, 0.72156864, 0.8509804, 0.90588236, 0.909803
 [node name="GameArea" type="Node2D"]
 
 [node name="TestArea" type="Sprite2D" parent="."]
+position = Vector2(2430, 1470)
 scale = Vector2(3, 3)
 texture = ExtResource("1_4eb3c")
 
