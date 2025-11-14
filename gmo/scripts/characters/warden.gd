@@ -3,10 +3,13 @@ extends GameCharacter
 
 @export var dash_speed_curve: Curve
 
+@onready var animation_tree: AnimationTree = $AnimationTree
+
 var _curr_command: Command
 var _idle_command: IdleCommand
 var _move_command: MoveCommand
 var _dash_command: DashCommand
+var _damaged:bool = false
 
 var vel_vec = Vector2.ZERO
 var curr_vel = 0
@@ -14,6 +17,7 @@ var is_slicing = false
 
 
 func _ready() -> void:
+	animation_tree.active = true
 	_idle_command = IdleCommand.new()
 	_move_command = MoveCommand.new()
 	_dash_command = DashCommand.new(dash_speed_curve)
@@ -42,6 +46,7 @@ func _input(event):
 		
 		
 func _process(_delta) -> void:
+	update_animation_parameters()
 	_calculate_direction()
 	if null == _curr_command:
 		_choose_command()
@@ -65,3 +70,21 @@ func _choose_command():
 			_curr_command = _move_command
 	else:
 		_curr_command = _idle_command
+
+
+func update_animation_parameters():
+	if(velocity == Vector2.ZERO):
+		animation_tree["parameters/conditions/idle"] = true
+		animation_tree["parameters/conditions/is_moving"] = false
+	else: 
+		animation_tree["parameters/conditions/idle"] = false
+		animation_tree["parameters/conditions/is_moving"] = true
+		
+	if _damaged:
+		animation_tree["parameters/conditions/hurt"] = true
+		_damaged = false
+	else: 
+		animation_tree["parameters/conditions/hurt"] = false
+	
+	if direction != Vector2.ZERO:
+		animation_tree["parameters/Run/blend_position"] = direction

@@ -1,0 +1,26 @@
+[gd_resource type="AnimationNodeBlendSpace2D" load_steps=5 format=3 uid="uid://owlvc38kvh8n"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ebjda"]
+animation = &"running_front"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l5kmm"]
+animation = &"running_away"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_appjb"]
+animation = &"running_side"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7vuhp"]
+animation = &"running_side"
+
+[resource]
+blend_point_0/node = SubResource("AnimationNodeAnimation_ebjda")
+blend_point_0/pos = Vector2(0, 1.1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_l5kmm")
+blend_point_1/pos = Vector2(0, -1.1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_appjb")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_7vuhp")
+blend_point_3/pos = Vector2(-1, 0)
+min_space = Vector2(-1, -1.1)
+max_space = Vector2(1, 1.1)
+blend_mode = 1
