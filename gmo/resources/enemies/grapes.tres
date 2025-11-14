@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/enemy_stats.gd" id="1_grapes"]
+[ext_resource type="Resource" path="res://resources/enemies/grapes_split.tres" id="2_grapes_split"]
+
+[resource]
+script = ExtResource("1_grapes")
+enemy_name = "Grapes (Cluster)"
+description = "Cluster of grapes that splits into 3 individual grapes when destroyed."
+max_health = 20
+base_damage = 10.0
+is_boss = false
+movement_speed = 50.0
+target_priority = 2
+attack_type = 1
+attack_cooldown = 1.5
+attack_range = 35.0
+projectile_speed = 0.0
+projectile_count = 1
+machine_gun_burst = 1
+special_behavior = 1
+split_count = 3
+split_enemy_stats = ExtResource("2_grapes_split")
+aoe_radius = 0.0
+aoe_damage = 0.0
+modifier = 0
+modifier_speed_multiplier = 1.0
+modifier_effect_duration = 0.0
+drop_type = 1
+score_value = 30

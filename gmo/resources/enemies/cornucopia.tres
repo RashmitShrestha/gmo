@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/enemy_stats.gd" id="1_cornucopia"]
+
+[resource]
+script = ExtResource("1_cornucopia")
+enemy_name = "Cornucopia"
+description = "The final boss. Sentient fruit dragon created by Warden Gramsay. Deals massive damage."
+max_health = 100
+base_damage = 20.0
+is_boss = true
+movement_speed = 70.0
+target_priority = 1
+attack_type = 3
+attack_cooldown = 6.0
+attack_range = 400.0
+projectile_speed = 200.0
+projectile_count = 3
+machine_gun_burst = 1
+special_behavior = 5
+split_count = 0
+aoe_radius = 120.0
+aoe_damage = 30.0
+modifier = 0
+modifier_speed_multiplier = 1.0
+modifier_effect_duration = 0.0
+drop_type = 2
+score_value = 500

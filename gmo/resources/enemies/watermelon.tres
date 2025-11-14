@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/enemy_stats.gd" id="1_watermelon"]
+
+[resource]
+script = ExtResource("1_watermelon")
+enemy_name = "Watermelon"
+description = "Massive, slow-moving tank that takes tons of damage. High threat."
+max_health = 45
+base_damage = 1.0
+is_boss = false
+movement_speed = 25.0
+target_priority = 1
+attack_type = 2
+attack_cooldown = 3.0
+attack_range = 150.0
+projectile_speed = 100.0
+projectile_count = 1
+machine_gun_burst = 1
+special_behavior = 0
+split_count = 0
+aoe_radius = 100.0
+aoe_damage = 5.0
+modifier = 0
+modifier_speed_multiplier = 1.0
+modifier_effect_duration = 0.0
+drop_type = 2
+score_value = 80
