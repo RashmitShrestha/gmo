@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dmf617rn6a8pm"]
+[gd_scene load_steps=16 format=3 uid="uid://dmf617rn6a8pm"]
 
 [ext_resource type="Texture2D" uid="uid://ckfplp2dp23fa" path="res://assets/test_area.webp" id="1_4eb3c"]
 [ext_resource type="PackedScene" uid="uid://jqidoyn47nxk" path="res://scenes/warden.tscn" id="2_gdmpp"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dui38s68nj4ah" path="res://scenes/blueberry.tscn" id="4_lamd3"]
 [ext_resource type="Texture2D" uid="uid://b384wo4oyemvf" path="res://assets/testDummy.png" id="5_57wkv"]
 [ext_resource type="PackedScene" uid="uid://bpmfnh2gfepdb" path="res://scenes/watermelon.tscn" id="5_uy78w"]
+[ext_resource type="PackedScene" uid="uid://ctsmh36aqyq5t" path="res://scenes/strawberry.tscn" id="6_copoj"]
 [ext_resource type="Script" uid="uid://bquw4773xgiaq" path="res://scripts/characters/character.gd" id="6_x48u6"]
+[ext_resource type="PackedScene" uid="uid://c7ktnfe0qmnnc" path="res://scenes/pomegranate.tscn" id="7_copoj"]
 
 [sub_resource type="Curve" id="Curve_gdmpp"]
 _limits = [0.0, 3500.0, 0.0, 1.0]
@@ -59,7 +61,13 @@ script = ExtResource("3_vlxm1")
 [node name="Watermelon" parent="." instance=ExtResource("5_uy78w")]
 position = Vector2(1692, -78)
 
-[node name="Dummy3" type="CharacterBody2D" parent="."]
+[node name="Strawberry" parent="." instance=ExtResource("6_copoj")]
+position = Vector2(1692, -78)
+
+[node name="Pomegranate" parent="." instance=ExtResource("7_copoj")]
+position = Vector2(1692, -78)
+
+[node name="Dummy5" type="CharacterBody2D" parent="."]
 z_index = 1
 position = Vector2(1692, -78)
 collision_layer = 4
@@ -67,19 +75,19 @@ collision_mask = 15
 script = ExtResource("6_x48u6")
 metadata/_custom_type_script = "uid://bquw4773xgiaq"
 
-[node name="Sprite2D" type="Sprite2D" parent="Dummy3"]
+[node name="Sprite2D" type="Sprite2D" parent="Dummy5"]
 position = Vector2(-1026, -354)
 texture = ExtResource("5_57wkv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dummy3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dummy5"]
 position = Vector2(-1021, -354)
 shape = SubResource("CircleShape2D_57wkv")
 
-[node name="DummyArea" type="Area2D" parent="Dummy3"]
+[node name="DummyArea" type="Area2D" parent="Dummy5"]
 material = SubResource("CanvasItemMaterial_lamd3")
 position = Vector2(-244, -179)
 
-[node name="DummyCollision" type="CollisionShape2D" parent="Dummy3/DummyArea"]
+[node name="DummyCollision" type="CollisionShape2D" parent="Dummy5/DummyArea"]
 light_mask = 2
 visibility_layer = 2
 position = Vector2(-777.99994, -176)

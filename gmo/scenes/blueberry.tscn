@@ -7,12 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://dmamei3re10cf" path="res://assets/blueberry/blueberry_death.png" id="5_k05ik"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]
-radius = 30.870699
+radius = 53.009434
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lamd3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lamd3"]
-radius = 14.142297
+radius = 24.759125
 
 [sub_resource type="Animation" id="Animation_k05ik"]
 length = 0.001
@@ -289,7 +289,7 @@ metadata/_custom_type_script = "uid://bquw4773xgiaq"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1026, -354)
-scale = Vector2(3, 3)
+scale = Vector2(5, 5)
 texture = ExtResource("2_gjfxf")
 hframes = 2
 
