@@ -1,0 +1,71 @@
+[gd_resource type="Resource" script_class="WaveData" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/wave_data.gd" id="1_wave"]
+[ext_resource type="Resource" path="res://resources/enemies/blueberry.tres" id="2_blueberry"]
+[ext_resource type="Resource" path="res://resources/enemies/strawberry.tres" id="3_strawberry"]
+[ext_resource type="Resource" path="res://resources/enemies/grapes.tres" id="4_grapes"]
+[ext_resource type="Resource" path="res://resources/enemies/watermelon.tres" id="5_watermelon"]
+
+[sub_resource type="Resource" id="EnemyGroup_1"]
+script = ExtResource("res://scripts/resources/enemy_group.gd")
+group_name = "Opening Swarm"
+description = "Fast blueberries to start the pressure"
+enemy_stats = ExtResource("2_blueberry")
+count = 8
+spawn_pattern = 4
+spawn_delay = 0.0
+spawn_interval = 0.3
+force_modifier = 0
+modifier_chance = 0.0
+
+[sub_resource type="Resource" id="EnemyGroup_2"]
+script = ExtResource("res://scripts/resources/enemy_group.gd")
+group_name = "Mixed Assault"
+description = "Strawberries and grapes attacking together"
+enemy_stats = ExtResource("3_strawberry")
+count = 5
+spawn_pattern = 0
+spawn_delay = 1.0
+spawn_interval = 0.4
+force_modifier = 0
+modifier_chance = 0.0
+
+[sub_resource type="Resource" id="EnemyGroup_3"]
+script = ExtResource("res://scripts/resources/enemy_group.gd")
+group_name = "Splitting Grapes"
+description = "Grapes that split when defeated"
+enemy_stats = ExtResource("4_grapes")
+count = 4
+spawn_pattern = 1
+spawn_delay = 0.5
+spawn_interval = 0.5
+force_modifier = 0
+modifier_chance = 0.0
+
+[sub_resource type="Resource" id="EnemyGroup_4"]
+script = ExtResource("res://scripts/resources/enemy_group.gd")
+group_name = "Tank Watermelon"
+description = "A tough watermelon to finish the wave"
+enemy_stats = ExtResource("5_watermelon")
+count = 2
+spawn_pattern = 0
+spawn_delay = 0.0
+spawn_interval = 1.0
+force_modifier = 0
+modifier_chance = 0.0
+
+[resource]
+script = ExtResource("1_wave")
+wave_number = 5
+wave_name = "The Swarm"
+description = "Multiple enemy types with elemental modifiers. Watch for Grilled fruits - they're faster and burn you!"
+enemy_groups = Array[EnemyGroup]([SubResource("EnemyGroup_1"), SubResource("EnemyGroup_2"), SubResource("EnemyGroup_3"), SubResource("EnemyGroup_4")])
+spawn_delay_between_groups = 3.0
+modifier_spawn_chance = 0.3
+grilled_weight = 2.0
+frozen_weight = 1.0
+rotten_weight = 1.0
+wave_completion_bonus = 500
+is_final_wave = false
+spawn_boss_at_end = false
+wave_start_message = "Multiple fruit types incoming! Watch for burning enemies!"
