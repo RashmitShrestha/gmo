@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dmf617rn6a8pm"]
+[gd_scene load_steps=15 format=3 uid="uid://dmf617rn6a8pm"]
 
 [ext_resource type="Texture2D" uid="uid://ckfplp2dp23fa" path="res://assets/test_area.webp" id="1_4eb3c"]
 [ext_resource type="PackedScene" uid="uid://jqidoyn47nxk" path="res://scenes/warden.tscn" id="2_gdmpp"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://bpmfnh2gfepdb" path="res://scenes/watermelon.tscn" id="5_uy78w"]
 [ext_resource type="PackedScene" uid="uid://ctsmh36aqyq5t" path="res://scenes/strawberry.tscn" id="6_copoj"]
 [ext_resource type="Script" uid="uid://bquw4773xgiaq" path="res://scripts/characters/character.gd" id="6_x48u6"]
-[ext_resource type="PackedScene" uid="uid://c7ktnfe0qmnnc" path="res://scenes/pomegranate.tscn" id="7_copoj"]
 
 [sub_resource type="Curve" id="Curve_gdmpp"]
 _limits = [0.0, 3500.0, 0.0, 1.0]
@@ -62,9 +61,6 @@ script = ExtResource("3_vlxm1")
 position = Vector2(1692, -78)
 
 [node name="Strawberry" parent="." instance=ExtResource("6_copoj")]
-position = Vector2(1692, -78)
-
-[node name="Pomegranate" parent="." instance=ExtResource("7_copoj")]
 position = Vector2(1692, -78)
 
 [node name="Dummy5" type="CharacterBody2D" parent="."]
