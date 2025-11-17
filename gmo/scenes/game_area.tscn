@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dmf617rn6a8pm"]
+[gd_scene load_steps=17 format=3 uid="uid://dmf617rn6a8pm"]
 
 [ext_resource type="Texture2D" uid="uid://ckfplp2dp23fa" path="res://assets/test_area.webp" id="1_4eb3c"]
 [ext_resource type="PackedScene" uid="uid://jqidoyn47nxk" path="res://scenes/warden.tscn" id="2_gdmpp"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bpmfnh2gfepdb" path="res://scenes/watermelon.tscn" id="5_uy78w"]
 [ext_resource type="PackedScene" uid="uid://ctsmh36aqyq5t" path="res://scenes/strawberry.tscn" id="6_copoj"]
 [ext_resource type="Script" uid="uid://bquw4773xgiaq" path="res://scripts/characters/character.gd" id="6_x48u6"]
+[ext_resource type="Script" uid="uid://bkdpfqiiukrdd" path="res://scenes/main_camera.gd" id="9_copoj"]
+[ext_resource type="Texture2D" uid="uid://cd7hox8gw5afg" path="res://assets/Untitled 21.png" id="10_xt4jw"]
 
 [sub_resource type="Curve" id="Curve_gdmpp"]
 _limits = [0.0, 3500.0, 0.0, 1.0]
@@ -45,8 +47,11 @@ collision_mask = 13
 dash_speed_curve = SubResource("Curve_gdmpp")
 speed = 1000.0
 
-[node name="Camera2D" type="Camera2D" parent="Warden"]
+[node name="Camera2D" type="Camera2D" parent="Warden" node_paths=PackedStringArray("subject")]
+position = Vector2(14, -11)
 zoom = Vector2(0.5, 0.5)
+script = ExtResource("9_copoj")
+subject = NodePath("..")
 
 [node name="Slice" type="Line2D" parent="."]
 unique_name_in_owner = true
@@ -84,6 +89,34 @@ material = SubResource("CanvasItemMaterial_lamd3")
 position = Vector2(-244, -179)
 
 [node name="DummyCollision" type="CollisionShape2D" parent="Dummy5/DummyArea"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-777.99994, -176)
+scale = Vector2(2.140625, 2.109375)
+shape = SubResource("CircleShape2D_lamd3")
+debug_color = Color(0.7863566, 0.18725446, 0.12266659, 0.41960785)
+
+[node name="Dummy6" type="CharacterBody2D" parent="."]
+z_index = 1
+position = Vector2(1559, 267)
+collision_layer = 4
+collision_mask = 15
+script = ExtResource("6_x48u6")
+metadata/_custom_type_script = "uid://bquw4773xgiaq"
+
+[node name="Sprite2D" type="Sprite2D" parent="Dummy6"]
+position = Vector2(-1084, 34)
+texture = ExtResource("10_xt4jw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dummy6"]
+position = Vector2(-1021, -354)
+shape = SubResource("CircleShape2D_57wkv")
+
+[node name="DummyArea" type="Area2D" parent="Dummy6"]
+material = SubResource("CanvasItemMaterial_lamd3")
+position = Vector2(-244, -179)
+
+[node name="DummyCollision" type="CollisionShape2D" parent="Dummy6/DummyArea"]
 light_mask = 2
 visibility_layer = 2
 position = Vector2(-777.99994, -176)

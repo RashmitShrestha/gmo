@@ -289,7 +289,7 @@ metadata/_custom_type_script = "uid://bquw4773xgiaq"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1026, -354)
-scale = Vector2(5, 5)
+scale = Vector2(2, 2)
 texture = ExtResource("2_gjfxf")
 hframes = 2
 
