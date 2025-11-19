@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=3 uid="uid://dui38s68nj4ah"]
 
-[ext_resource type="Script" uid="uid://r0bl6vjeurgd" path="res://scripts/blueberry.gd" id="1_74cfi"]
+[ext_resource type="Script" uid="uid://r0bl6vjeurgd" path="res://scripts/characters/blueberry.gd" id="1_74cfi"]
 [ext_resource type="Texture2D" uid="uid://dju2tvcfsvkd6" path="res://assets/blueberry/blueberry_idle.png" id="2_gjfxf"]
 [ext_resource type="Texture2D" uid="uid://dfj50clo3ooc6" path="res://assets/blueberry/blueberry_attack.png" id="3_dw3cp"]
 [ext_resource type="Texture2D" uid="uid://cqiqbfrryny47" path="res://assets/blueberry/blueberry_hurt.png" id="4_dw3cp"]

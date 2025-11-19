@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dmf617rn6a8pm"]
+[gd_scene load_steps=16 format=3 uid="uid://dmf617rn6a8pm"]
 
 [ext_resource type="Texture2D" uid="uid://ckfplp2dp23fa" path="res://assets/test_area.webp" id="1_4eb3c"]
 [ext_resource type="PackedScene" uid="uid://jqidoyn47nxk" path="res://scenes/warden.tscn" id="2_gdmpp"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://ctsmh36aqyq5t" path="res://scenes/strawberry.tscn" id="6_copoj"]
 [ext_resource type="Script" uid="uid://bquw4773xgiaq" path="res://scripts/characters/character.gd" id="6_x48u6"]
 [ext_resource type="Script" uid="uid://bkdpfqiiukrdd" path="res://scenes/main_camera.gd" id="9_copoj"]
-[ext_resource type="Texture2D" uid="uid://cd7hox8gw5afg" path="res://assets/Untitled 21.png" id="10_xt4jw"]
 
 [sub_resource type="Curve" id="Curve_gdmpp"]
 _limits = [0.0, 3500.0, 0.0, 1.0]
@@ -106,7 +105,6 @@ metadata/_custom_type_script = "uid://bquw4773xgiaq"
 
 [node name="Sprite2D" type="Sprite2D" parent="Dummy6"]
 position = Vector2(-1084, 34)
-texture = ExtResource("10_xt4jw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dummy6"]
 position = Vector2(-1021, -354)
