@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=3 uid="uid://bpmfnh2gfepdb"]
 
-[ext_resource type="Script" uid="uid://bxvny668eguvv" path="res://scenes/watermelon.gd" id="1_vlmfl"]
+[ext_resource type="Script" uid="uid://bxvny668eguvv" path="res://scripts/characters/watermelon.gd" id="1_vlmfl"]
 [ext_resource type="Texture2D" uid="uid://d0rapm3oo8vmm" path="res://assets/watermelon/watermelon_idle.png" id="2_11m30"]
 [ext_resource type="Texture2D" uid="uid://y856jyyrjepn" path="res://assets/watermelon/watermelon_hurt.png" id="3_8mcj1"]
 [ext_resource type="Texture2D" uid="uid://dlfeanargsv3h" path="res://assets/watermelon/watermelon_attack.png" id="4_fj3qu"]

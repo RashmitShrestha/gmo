@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=3 uid="uid://ctsmh36aqyq5t"]
 
-[ext_resource type="Script" uid="uid://dysgo16t22eu1" path="res://scenes/strawberry.gd" id="1_h8us4"]
+[ext_resource type="Script" uid="uid://dysgo16t22eu1" path="res://scripts/characters/strawberry.gd" id="1_h8us4"]
 [ext_resource type="Texture2D" uid="uid://bx1ik1qy70hbg" path="res://assets/strawberry/strawberry_idle.png" id="2_rvm71"]
 [ext_resource type="Texture2D" uid="uid://dymfstb2qif5g" path="res://assets/strawberry/strawberry_attack.png" id="3_th2og"]
 [ext_resource type="Texture2D" uid="uid://d06gjxoa56j3h" path="res://assets/strawberry/strawberry_hurt.png" id="4_o3wpt"]

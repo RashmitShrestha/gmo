@@ -1,8 +1,9 @@
 class_name Blueberry
 extends GameCharacter
 
-var _damaged:bool = false
 var warden:Warden
+
+@export var animation_manager_component: BlueberryAnimationManagerComponent
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 
@@ -15,7 +16,7 @@ func _ready():
 
 
 func _process(_delta) -> void:
-	update_animation_parameters()
+	animation_manager_component.update(self)
 
 
 func _on_mouse_entered():
@@ -25,17 +26,6 @@ func _on_mouse_entered():
 
 func _on_damage_enemy(character:GameCharacter, slice_velocity:float):
 	if character == self:
-		_damaged = true
+		damaged = true
 		print(str(self) + " dmg: " + str(slice_velocity ))
-		
-
-func update_animation_parameters():
-	animation_tree["parameters/conditions/idle"] = true
-	
-	if _damaged:
-		animation_tree["parameters/conditions/hurt"] = true
-		_damaged = false
-	else: 
-		animation_tree["parameters/conditions/hurt"] = false
-		
 		

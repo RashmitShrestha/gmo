@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bpmfnh2gfepdb" path="res://scenes/watermelon.tscn" id="5_uy78w"]
 [ext_resource type="PackedScene" uid="uid://ctsmh36aqyq5t" path="res://scenes/strawberry.tscn" id="6_copoj"]
 [ext_resource type="Script" uid="uid://bquw4773xgiaq" path="res://scripts/characters/character.gd" id="6_x48u6"]
-[ext_resource type="Script" uid="uid://bkdpfqiiukrdd" path="res://scenes/main_camera.gd" id="9_copoj"]
+[ext_resource type="Script" uid="uid://bkdpfqiiukrdd" path="res://scripts/main_camera.gd" id="9_copoj"]
 
 [sub_resource type="Curve" id="Curve_gdmpp"]
 _limits = [0.0, 3500.0, 0.0, 1.0]

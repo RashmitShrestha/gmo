@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://c7ktnfe0qmnnc"]
 
-[ext_resource type="Script" uid="uid://chjc2gjv30lvf" path="res://scenes/pomegranate.gd" id="1_ho8ci"]
+[ext_resource type="Script" uid="uid://chjc2gjv30lvf" path="res://scripts/characters/pomegranate.gd" id="1_ho8ci"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]
 radius = 67.18631

@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://jqidoyn47nxk"]
+[gd_scene load_steps=72 format=3 uid="uid://jqidoyn47nxk"]
 
 [ext_resource type="Script" uid="uid://gs8ynx86xdf5" path="res://scripts/characters/warden.gd" id="1_wthw5"]
 [ext_resource type="Texture2D" uid="uid://clv2rjc18im1s" path="res://assets/warden/warden_idle.png" id="2_uvufd"]
@@ -8,8 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://bx3y5udfahkxf" path="res://assets/warden/warden_running_away.png" id="5_c0uae"]
 [ext_resource type="Texture2D" uid="uid://bui46ivr6364q" path="res://assets/warden/warden_running_forward.png" id="6_mjqe3"]
 [ext_resource type="AnimationNodeBlendSpace2D" uid="uid://owlvc38kvh8n" path="res://animations/warden_run_blend.tres" id="8_r53ma"]
-[ext_resource type="Script" uid="uid://c30b3jc4757if" path="res://scripts/components/player_components/player_input_component.gd" id="9_c0uae"]
-[ext_resource type="Script" uid="uid://c6j7pukqrqy81" path="res://scripts/components/player_components/player_command_manager_component.gd" id="10_mjqe3"]
+[ext_resource type="Script" uid="uid://c30b3jc4757if" path="res://scripts/components/character_components/player_components/player_input_component.gd" id="9_c0uae"]
+[ext_resource type="Script" uid="uid://c6j7pukqrqy81" path="res://scripts/components/character_components/player_components/player_command_manager_component.gd" id="10_mjqe3"]
+[ext_resource type="Script" uid="uid://cstfxpqorys6c" path="res://scripts/components/character_components/player_components/player_animation_manager_component.gd" id="11_mjqe3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cgkur"]
 size = Vector2(128, 128)
@@ -670,10 +671,11 @@ _data = {
 &"running_side": SubResource("Animation_cabxg")
 }
 
-[node name="Warden" type="CharacterBody2D" node_paths=PackedStringArray("command_manager_component", "input_component")]
+[node name="Warden" type="CharacterBody2D" node_paths=PackedStringArray("command_manager_component", "input_component", "animation_manager_component")]
 script = ExtResource("1_wthw5")
 command_manager_component = NodePath("CommandManagerComponent")
 input_component = NodePath("InputComponent")
+animation_manager_component = NodePath("AnimationManagerComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cgkur")
@@ -707,3 +709,6 @@ script = ExtResource("9_c0uae")
 
 [node name="CommandManagerComponent" type="Node" parent="."]
 script = ExtResource("10_mjqe3")
+
+[node name="AnimationManagerComponent" type="Node" parent="."]
+script = ExtResource("11_mjqe3")

@@ -2,8 +2,10 @@ class_name Warden
 extends GameCharacter
 
 @export var dash_speed_curve: Curve
+
 @export var command_manager_component: PlayerCommandManagerComponent
 @export var input_component: PlayerInputComponent
+@export var animation_manager_component: PlayerAnimationManagerComponent
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 
@@ -11,11 +13,10 @@ var curr_command: Command
 var idle_command: IdleCommand
 var move_command: MoveCommand
 var dash_command: DashCommand
-var _damaged:bool = false
 
-var vel_vec = Vector2.ZERO
-var curr_vel = 0
-var is_slicing = false
+var vel_vec := Vector2.ZERO
+var curr_vel: int = 0
+var is_slicing: bool = false
 
 func _ready() -> void:
 	animation_tree.active = true
@@ -30,21 +31,4 @@ func _input(event):
 
 func _process(_delta) -> void:
 	command_manager_component.update(self)
-
-
-func update_animation_parameters():
-	if (velocity == Vector2.ZERO):
-		animation_tree["parameters/conditions/idle"] = true
-		animation_tree["parameters/conditions/is_moving"] = false
-	else: 
-		animation_tree["parameters/conditions/idle"] = false
-		animation_tree["parameters/conditions/is_moving"] = true
-		
-	if _damaged:
-		animation_tree["parameters/conditions/hurt"] = true
-		_damaged = false
-	else: 
-		animation_tree["parameters/conditions/hurt"] = false
-	
-	if direction != Vector2.ZERO:
-		animation_tree["parameters/Run/blend_position"] = direction
+	animation_manager_component.update(self)
