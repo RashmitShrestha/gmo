@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="WaveData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/wave_data.gd" id="1_wave"]
+[ext_resource type="Resource" uid="uid://your_blueberry_uid" path="res://resources/enemies/blueberry.tres" id="2_blueberry"]
+
+[sub_resource type="Resource" id="EnemyGroup_1"]
+script = ExtResource("res://scripts/resources/enemy_group.gd")
+group_name = "Starter Group"
+description = "First simple wave - just a few basic enemies"
+enemy_stats = ExtResource("2_blueberry")
+count = 5
+spawn_pattern = 4
+spawn_delay = 0.0
+spawn_interval = 0.5
+force_modifier = 0
+modifier_chance = 0.0
+
+[resource]
+script = ExtResource("1_wave")
+wave_number = 1
+wave_name = "The Beginning"
+description = "A small group of blueberries approaches. Test your slashing skills!"
+enemy_groups = Array[EnemyGroup]([SubResource("EnemyGroup_1")])
+spawn_delay_between_groups = 2.0
+modifier_spawn_chance = 0.0
+grilled_weight = 1.0
+frozen_weight = 1.0
+rotten_weight = 1.0
+wave_completion_bonus = 100
+is_final_wave = false
+spawn_boss_at_end = false
+wave_start_message = "Here they come!"

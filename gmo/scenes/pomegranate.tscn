@@ -1,0 +1,131 @@
+[gd_scene load_steps=23 format=3 uid="uid://c7ktnfe0qmnnc"]
+
+[ext_resource type="Script" uid="uid://chjc2gjv30lvf" path="res://scenes/pomegranate.gd" id="1_ho8ci"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]
+radius = 67.18631
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lamd3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lamd3"]
+radius = 33.25247
+
+[sub_resource type="Animation" id="Animation_op1ya"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.5
+
+[sub_resource type="Animation" id="Animation_jp42o"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_yutdi"]
+resource_name = "attack"
+length = 0.2308
+step = 0.08
+
+[sub_resource type="Animation" id="Animation_uwi6s"]
+resource_name = "hurt"
+length = 0.45
+step = 0.05
+
+[sub_resource type="Animation" id="Animation_vyw0i"]
+resource_name = "death"
+length = 0.3846
+step = 0.08
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uwi6s"]
+_data = {
+&"RESET": SubResource("Animation_jp42o"),
+&"attack": SubResource("Animation_yutdi"),
+&"death": SubResource("Animation_vyw0i"),
+&"hurt": SubResource("Animation_uwi6s"),
+&"idle": SubResource("Animation_op1ya")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2vfmv"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_heb65"]
+animation = &"death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nwuib"]
+animation = &"hurt"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lbvov"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gajsn"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i1ks0"]
+advance_mode = 2
+advance_condition = &"hurt"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_clcpd"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x57yo"]
+advance_mode = 2
+advance_condition = &"is_attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w3m1c"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6dqvj"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b3h1e"]
+advance_mode = 2
+advance_condition = &"hurt"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wo5uk"]
+states/attack/node = SubResource("AnimationNodeAnimation_2vfmv")
+states/attack/position = Vector2(512.9501, 99.97188)
+states/death/node = SubResource("AnimationNodeAnimation_heb65")
+states/death/position = Vector2(674.10004, -2.6624756)
+states/hurt/node = SubResource("AnimationNodeAnimation_nwuib")
+states/hurt/position = Vector2(437.45004, -13.612488)
+states/idle/node = SubResource("AnimationNodeAnimation_lbvov")
+states/idle/position = Vector2(352.95004, 99.943756)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_gajsn"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_i1ks0"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_clcpd"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_x57yo"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_w3m1c"), "hurt", "attack", SubResource("AnimationNodeStateMachineTransition_6dqvj"), "attack", "hurt", SubResource("AnimationNodeStateMachineTransition_b3h1e")]
+graph_offset = Vector2(-54.59997, -77.25001)
+
+[node name="Pomegranate" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 4
+collision_mask = 15
+script = ExtResource("1_ho8ci")
+metadata/_custom_type_script = "uid://bquw4773xgiaq"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1024, -355)
+shape = SubResource("CircleShape2D_57wkv")
+
+[node name="DummyArea" type="Area2D" parent="."]
+material = SubResource("CanvasItemMaterial_lamd3")
+position = Vector2(-244, -179)
+
+[node name="DummyCollision" type="CollisionShape2D" parent="DummyArea"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-780, -176)
+scale = Vector2(2.140625, 2.109375)
+shape = SubResource("CircleShape2D_lamd3")
+debug_color = Color(0.7863566, 0.18725446, 0.12266659, 0.41960785)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_uwi6s")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_wo5uk")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/hurt = false
+parameters/conditions/idle = false
+parameters/conditions/is_attacking = false

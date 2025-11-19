@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/enemy_stats.gd" id="1_strawberry"]
+
+[resource]
+script = ExtResource("1_strawberry")
+enemy_name = "Strawberry"
+description = "Ranged fruit that shoots seeds at a slow rate. Keeps its distance."
+max_health = 7
+base_damage = 5.0
+is_boss = false
+movement_speed = 60.0
+target_priority = 2
+attack_type = 2
+attack_cooldown = 2.5
+attack_range = 200.0
+projectile_speed = 120.0
+projectile_count = 1
+machine_gun_burst = 1
+special_behavior = 0
+split_count = 0
+aoe_radius = 0.0
+aoe_damage = 0.0
+modifier = 0
+modifier_speed_multiplier = 1.0
+modifier_effect_duration = 0.0
+drop_type = 0
+score_value = 15

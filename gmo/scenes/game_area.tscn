@@ -739,6 +739,13 @@ texture = ExtResource("5_57wkv")
 
 [sub_resource type="TileSet" id="TileSet_lamd3"]
 sources/0 = SubResource("TileSetAtlasSource_57wkv")
+[ext_resource type="PackedScene" uid="uid://dui38s68nj4ah" path="res://scenes/blueberry.tscn" id="4_lamd3"]
+[ext_resource type="Texture2D" uid="uid://b384wo4oyemvf" path="res://assets/testDummy.png" id="5_57wkv"]
+[ext_resource type="PackedScene" uid="uid://bpmfnh2gfepdb" path="res://scenes/watermelon.tscn" id="5_uy78w"]
+[ext_resource type="PackedScene" uid="uid://ctsmh36aqyq5t" path="res://scenes/strawberry.tscn" id="6_copoj"]
+[ext_resource type="Script" uid="uid://bquw4773xgiaq" path="res://scripts/characters/character.gd" id="6_x48u6"]
+[ext_resource type="Script" uid="uid://bkdpfqiiukrdd" path="res://scenes/main_camera.gd" id="9_copoj"]
+[ext_resource type="Texture2D" uid="uid://cd7hox8gw5afg" path="res://assets/Untitled 21.png" id="10_xt4jw"]
 
 [sub_resource type="Curve" id="Curve_gdmpp"]
 _limits = [0.0, 3500.0, 0.0, 1.0]
@@ -752,7 +759,15 @@ point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_vlxm1"]
 offsets = PackedFloat32Array(0, 0.34246576)
-colors = PackedColorArray(0.6784314, 0.72156864, 0.8509804, 0.90588236, 0.9098039, 0.9098039, 0.9098039, 0.84705883)
+colors = PackedColorArray(0, 0.72156864, 0.8509804, 0.90588236, 0.9098039, 0.9098039, 0.9098039, 0.84705883)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]
+radius = 173.14156
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lamd3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lamd3"]
+radius = 81.30677
 
 [node name="GameArea" type="Node2D"]
 
@@ -772,17 +787,86 @@ scale = Vector2(3, 3)
 texture = ExtResource("1_4eb3c")
 
 [node name="Warden" parent="." instance=ExtResource("2_gdmpp")]
+unique_name_in_owner = true
+position = Vector2(-1, -1)
+collision_layer = 2
+collision_mask = 13
 dash_speed_curve = SubResource("Curve_gdmpp")
 speed = 1000.0
 
-[node name="Camera2D" type="Camera2D" parent="Warden"]
+[node name="Camera2D" type="Camera2D" parent="Warden" node_paths=PackedStringArray("subject")]
+position = Vector2(14, -11)
 zoom = Vector2(0.5, 0.5)
+script = ExtResource("9_copoj")
+subject = NodePath("..")
 
 [node name="Slice" type="Line2D" parent="."]
 unique_name_in_owner = true
+z_index = 5
 width_curve = SubResource("Curve_vlxm1")
 gradient = SubResource("Gradient_vlxm1")
 script = ExtResource("3_vlxm1")
 
-[node name="TestDummy" type="Node2D" parent="."]
-script = ExtResource("4_3mx8n")
+[node name="Blueberry" parent="." instance=ExtResource("4_lamd3")]
+
+[node name="Watermelon" parent="." instance=ExtResource("5_uy78w")]
+position = Vector2(1692, -78)
+
+[node name="Strawberry" parent="." instance=ExtResource("6_copoj")]
+position = Vector2(1692, -78)
+
+[node name="Dummy5" type="CharacterBody2D" parent="."]
+z_index = 1
+position = Vector2(1692, -78)
+collision_layer = 4
+collision_mask = 15
+script = ExtResource("6_x48u6")
+metadata/_custom_type_script = "uid://bquw4773xgiaq"
+
+[node name="Sprite2D" type="Sprite2D" parent="Dummy5"]
+position = Vector2(-1026, -354)
+texture = ExtResource("5_57wkv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dummy5"]
+position = Vector2(-1021, -354)
+shape = SubResource("CircleShape2D_57wkv")
+
+[node name="DummyArea" type="Area2D" parent="Dummy5"]
+material = SubResource("CanvasItemMaterial_lamd3")
+position = Vector2(-244, -179)
+
+[node name="DummyCollision" type="CollisionShape2D" parent="Dummy5/DummyArea"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-777.99994, -176)
+scale = Vector2(2.140625, 2.109375)
+shape = SubResource("CircleShape2D_lamd3")
+debug_color = Color(0.7863566, 0.18725446, 0.12266659, 0.41960785)
+
+[node name="Dummy6" type="CharacterBody2D" parent="."]
+z_index = 1
+position = Vector2(1559, 267)
+collision_layer = 4
+collision_mask = 15
+script = ExtResource("6_x48u6")
+metadata/_custom_type_script = "uid://bquw4773xgiaq"
+
+[node name="Sprite2D" type="Sprite2D" parent="Dummy6"]
+position = Vector2(-1084, 34)
+texture = ExtResource("10_xt4jw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dummy6"]
+position = Vector2(-1021, -354)
+shape = SubResource("CircleShape2D_57wkv")
+
+[node name="DummyArea" type="Area2D" parent="Dummy6"]
+material = SubResource("CanvasItemMaterial_lamd3")
+position = Vector2(-244, -179)
+
+[node name="DummyCollision" type="CollisionShape2D" parent="Dummy6/DummyArea"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-777.99994, -176)
+scale = Vector2(2.140625, 2.109375)
+shape = SubResource("CircleShape2D_lamd3")
+debug_color = Color(0.7863566, 0.18725446, 0.12266659, 0.41960785)

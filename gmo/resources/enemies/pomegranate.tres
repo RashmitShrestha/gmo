@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/enemy_stats.gd" id="1_pomegranate"]
+
+[resource]
+script = ExtResource("1_pomegranate")
+enemy_name = "Pomegranate"
+description = "Fires rapid bursts of seeds like a machine gun, then pauses to reload."
+max_health = 17
+base_damage = 1.0
+is_boss = false
+movement_speed = 45.0
+target_priority = 2
+attack_type = 5
+attack_cooldown = 5.0
+attack_range = 250.0
+projectile_speed = 180.0
+projectile_count = 1
+machine_gun_burst = 10
+special_behavior = 0
+split_count = 0
+aoe_radius = 0.0
+aoe_damage = 0.0
+modifier = 0
+modifier_speed_multiplier = 1.0
+modifier_effect_duration = 0.0
+drop_type = 1
+score_value = 40
