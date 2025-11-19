@@ -121,3 +121,4 @@ position = Vector2(-777.99994, -176)
 scale = Vector2(2.140625, 2.109375)
 shape = SubResource("CircleShape2D_lamd3")
 debug_color = Color(0.7863566, 0.18725446, 0.12266659, 0.41960785)
+
