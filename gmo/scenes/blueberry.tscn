@@ -1,10 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://dui38s68nj4ah"]
+[gd_scene load_steps=28 format=3 uid="uid://dui38s68nj4ah"]
 
 [ext_resource type="Script" uid="uid://r0bl6vjeurgd" path="res://scripts/characters/blueberry.gd" id="1_74cfi"]
 [ext_resource type="Texture2D" uid="uid://dju2tvcfsvkd6" path="res://assets/blueberry/blueberry_idle.png" id="2_gjfxf"]
 [ext_resource type="Texture2D" uid="uid://dfj50clo3ooc6" path="res://assets/blueberry/blueberry_attack.png" id="3_dw3cp"]
 [ext_resource type="Texture2D" uid="uid://cqiqbfrryny47" path="res://assets/blueberry/blueberry_hurt.png" id="4_dw3cp"]
 [ext_resource type="Texture2D" uid="uid://dmamei3re10cf" path="res://assets/blueberry/blueberry_death.png" id="5_k05ik"]
+[ext_resource type="Script" uid="uid://csopiplictw8j" path="res://scripts/components/character_components/fruit_components/blueberry_components/blueberry_animation_manager_component.gd" id="6_t03vd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]
 radius = 53.009434
@@ -280,11 +281,12 @@ states/idle/position = Vector2(352.52, 100.875)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_w0x03"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_d1l6q"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_gdgj5"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_1fcle"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_rea8b"), "hurt", "attack", SubResource("AnimationNodeStateMachineTransition_iu6qv"), "attack", "hurt", SubResource("AnimationNodeStateMachineTransition_xw55q")]
 graph_offset = Vector2(13.109772, -77.25007)
 
-[node name="Blueberry" type="CharacterBody2D"]
+[node name="Blueberry" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component")]
 z_index = 1
 collision_layer = 4
 collision_mask = 15
 script = ExtResource("1_74cfi")
+animation_manager_component = NodePath("AnimationManagerComponent")
 metadata/_custom_type_script = "uid://bquw4773xgiaq"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -321,3 +323,6 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/hurt = false
 parameters/conditions/idle = false
 parameters/conditions/is_attacking = false
+
+[node name="AnimationManagerComponent" type="Node" parent="."]
+script = ExtResource("6_t03vd")

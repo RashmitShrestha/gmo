@@ -5,8 +5,8 @@ extends AnimationManagerComponent
 func update(character: Blueberry) -> void:
 	character.animation_tree["parameters/conditions/idle"] = true
 	
-	if character._damaged:
+	if character.damaged:
 		character.animation_tree["parameters/conditions/hurt"] = true
-		character._damaged = false
+		character.damaged = false
 	else: 
 		character.animation_tree["parameters/conditions/hurt"] = false
