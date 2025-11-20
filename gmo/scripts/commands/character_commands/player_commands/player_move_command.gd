@@ -1,8 +1,8 @@
-class_name MoveCommand
+class_name PlayerMoveCommand
 extends Command
 
 
-func execute(character: GameCharacter) -> Status:
+func execute(character: Warden) -> Status:
 	character.velocity = character.direction * character.speed
 	if character.direction.x < 0:
 		character.sprite.flip_h = true

@@ -1,4 +1,4 @@
-@abstract class_name CommandManagerComponent
+@abstract class_name ReactiveComponent
 extends Node
 
 var _parent

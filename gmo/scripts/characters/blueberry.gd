@@ -1,31 +1,36 @@
 class_name Blueberry
 extends GameCharacter
 
-var warden:Warden
+
+@export var stun_time: float = 1.0
 
 @export var animation_manager_component: BlueberryAnimationManagerComponent
+@export var command_manager_component: BlueberryCommandManagerComponent
+@export var reactive_component: BlueberryReactiveComponent
+
+var warden: Warden
+
+var stunned: bool = false
+
+var curr_command: Command
+var default_command: BlueberryDefaultCommand
+var stun_command: BlueberryStunCommand
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 
 func _ready():
 	animation_tree.active = true
 	warden = %Warden
-	var area = $DummyArea
-	SignalBus.damage_enemy.connect(_on_damage_enemy)
-	area.connect("mouse_entered", _on_mouse_entered)
+	
+	default_command = BlueberryDefaultCommand.new(speed)
+	stun_command = BlueberryStunCommand.new(stun_time)
+
+
+func _physics_process(_delta) -> void:
+	reactive_component.update()
+	super(_delta)
 
 
 func _process(_delta) -> void:
-	animation_manager_component.update(self)
-
-
-func _on_mouse_entered():
-	if warden and warden.is_slicing:
-		SignalBus.damage_enemy.emit(self, warden.curr_vel)
-
-
-func _on_damage_enemy(character:GameCharacter, slice_velocity:float):
-	if character == self:
-		damaged = true
-		print(str(self) + " dmg: " + str(slice_velocity ))
-		
+	command_manager_component.update()
+	animation_manager_component.update()

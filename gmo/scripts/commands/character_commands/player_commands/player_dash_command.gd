@@ -1,4 +1,4 @@
-class_name DashCommand
+class_name PlayerDashCommand
 extends Command
 
 var _speed_curve: Curve
@@ -9,7 +9,7 @@ func _init(speed_curve: Curve) -> void:
 	_speed_curve = speed_curve
 
 
-func execute(character: GameCharacter) -> Status:
+func execute(character: Warden) -> Status:
 	if _timer == null:
 		_timer = Timer.new()
 		character.add_child(_timer)

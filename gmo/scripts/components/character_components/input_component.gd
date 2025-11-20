@@ -1,5 +1,9 @@
 @abstract class_name InputComponent
 extends Node
 
+var _parent
 
-@abstract func update(character, event: InputEvent) -> void
+func _ready() -> void:
+	_parent = get_parent()
+
+@abstract func update(event: InputEvent) -> void
