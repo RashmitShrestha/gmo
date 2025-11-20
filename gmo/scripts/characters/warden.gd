@@ -10,9 +10,9 @@ extends GameCharacter
 @onready var animation_tree: AnimationTree = $AnimationTree
 
 var curr_command: Command
-var idle_command: IdleCommand
-var move_command: MoveCommand
-var dash_command: DashCommand
+var idle_command: PlayerIdleCommand
+var move_command: PlayerMoveCommand
+var dash_command: PlayerDashCommand
 
 var vel_vec := Vector2.ZERO
 var curr_vel: int = 0
@@ -20,15 +20,15 @@ var is_slicing: bool = false
 
 func _ready() -> void:
 	animation_tree.active = true
-	idle_command = IdleCommand.new()
-	move_command = MoveCommand.new()
-	dash_command = DashCommand.new(dash_speed_curve)
+	idle_command = PlayerIdleCommand.new()
+	move_command = PlayerMoveCommand.new()
+	dash_command = PlayerDashCommand.new(dash_speed_curve)
 
 
 func _input(event):
-	input_component.update(self, event)
+	input_component.update(event)
 
 
 func _process(_delta) -> void:
-	command_manager_component.update(self)
-	animation_manager_component.update(self)
+	command_manager_component.update()
+	animation_manager_component.update()

@@ -2,11 +2,11 @@ class_name BlueberryAnimationManagerComponent
 extends AnimationManagerComponent
 
 
-func update(character: Blueberry) -> void:
-	character.animation_tree["parameters/conditions/idle"] = true
+func update() -> void:
+	_parent.animation_tree["parameters/conditions/idle"] = true
 	
-	if character.damaged:
-		character.animation_tree["parameters/conditions/hurt"] = true
-		character.damaged = false
+	if _parent.damaged:
+		_parent.animation_tree["parameters/conditions/hurt"] = true
+		_parent.damaged = false
 	else: 
-		character.animation_tree["parameters/conditions/hurt"] = false
+		_parent.animation_tree["parameters/conditions/hurt"] = false

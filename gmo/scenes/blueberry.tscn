@@ -6,14 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cqiqbfrryny47" path="res://assets/blueberry/blueberry_hurt.png" id="4_dw3cp"]
 [ext_resource type="Texture2D" uid="uid://dmamei3re10cf" path="res://assets/blueberry/blueberry_death.png" id="5_k05ik"]
 [ext_resource type="Script" uid="uid://csopiplictw8j" path="res://scripts/components/character_components/fruit_components/blueberry_components/blueberry_animation_manager_component.gd" id="6_t03vd"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]
-radius = 53.009434
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lamd3"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_lamd3"]
-radius = 24.759125
+[ext_resource type="Script" uid="uid://bq0uvpdkcpio8" path="res://scripts/components/character_components/fruit_components/blueberry_components/blueberry_command_manager_compnent.gd" id="7_duaux"]
+[ext_resource type="Script" uid="uid://b07x7fbfsatk3" path="res://scripts/components/character_components/fruit_components/blueberry_components/blueberry_reactive_component.gd" id="8_ylke1"]
 
 [sub_resource type="Animation" id="Animation_k05ik"]
 length = 0.001
@@ -281,36 +275,24 @@ states/idle/position = Vector2(352.52, 100.875)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_w0x03"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_d1l6q"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_gdgj5"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_1fcle"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_rea8b"), "hurt", "attack", SubResource("AnimationNodeStateMachineTransition_iu6qv"), "attack", "hurt", SubResource("AnimationNodeStateMachineTransition_xw55q")]
 graph_offset = Vector2(13.109772, -77.25007)
 
-[node name="Blueberry" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]
+radius = 30.0
+
+[node name="Blueberry" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component")]
 z_index = 1
 collision_layer = 4
 collision_mask = 15
 script = ExtResource("1_74cfi")
 animation_manager_component = NodePath("AnimationManagerComponent")
+command_manager_component = NodePath("CommandManagerComponent")
+reactive_component = NodePath("ReactiveComponent")
+speed = 100.0
 metadata/_custom_type_script = "uid://bquw4773xgiaq"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1026, -354)
 scale = Vector2(2, 2)
 texture = ExtResource("2_gjfxf")
 hframes = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1026, -353)
-shape = SubResource("CircleShape2D_57wkv")
-
-[node name="DummyArea" type="Area2D" parent="."]
-unique_name_in_owner = true
-material = SubResource("CanvasItemMaterial_lamd3")
-position = Vector2(-244, -179)
-
-[node name="DummyCollision" type="CollisionShape2D" parent="DummyArea"]
-light_mask = 2
-visibility_layer = 2
-position = Vector2(-782, -174)
-scale = Vector2(2.140625, 2.109375)
-shape = SubResource("CircleShape2D_lamd3")
-debug_color = Color(0.7863566, 0.18725446, 0.12266659, 0.41960785)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -324,5 +306,14 @@ parameters/conditions/hurt = false
 parameters/conditions/idle = false
 parameters/conditions/is_attacking = false
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_57wkv")
+
 [node name="AnimationManagerComponent" type="Node" parent="."]
 script = ExtResource("6_t03vd")
+
+[node name="CommandManagerComponent" type="Node" parent="."]
+script = ExtResource("7_duaux")
+
+[node name="ReactiveComponent" type="Node" parent="."]
+script = ExtResource("8_ylke1")

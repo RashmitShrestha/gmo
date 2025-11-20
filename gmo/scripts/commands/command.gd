@@ -6,4 +6,4 @@ enum Status {
 	ERROR,
 }
 
-@abstract func execute(_character: GameCharacter) -> Status
+@abstract func execute(_character) -> Status

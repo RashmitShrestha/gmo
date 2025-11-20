@@ -2,19 +2,19 @@ class_name PlayerAnimationManagerComponent
 extends AnimationManagerComponent
 
 
-func update(character) -> void:
-	if (character.velocity == Vector2.ZERO):
-		character.animation_tree["parameters/conditions/idle"] = true
-		character.animation_tree["parameters/conditions/is_moving"] = false
+func update() -> void:
+	if (_parent.velocity == Vector2.ZERO):
+		_parent.animation_tree["parameters/conditions/idle"] = true
+		_parent.animation_tree["parameters/conditions/is_moving"] = false
 	else: 
-		character.animation_tree["parameters/conditions/idle"] = false
-		character.animation_tree["parameters/conditions/is_moving"] = true
+		_parent.animation_tree["parameters/conditions/idle"] = false
+		_parent.animation_tree["parameters/conditions/is_moving"] = true
 		
-	if character.damaged:
-		character.animation_tree["parameters/conditions/hurt"] = true
-		character.damaged = false
+	if _parent.damaged:
+		_parent.animation_tree["parameters/conditions/hurt"] = true
+		_parent.damaged = false
 	else: 
-		character.animation_tree["parameters/conditions/hurt"] = false
+		_parent.animation_tree["parameters/conditions/hurt"] = false
 	
-	if character.direction != Vector2.ZERO:
-		character.animation_tree["parameters/Run/blend_position"] = character.direction
+	if _parent.direction != Vector2.ZERO:
+		_parent.animation_tree["parameters/Run/blend_position"] = _parent.direction

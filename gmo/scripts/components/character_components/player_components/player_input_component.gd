@@ -2,8 +2,8 @@ class_name PlayerInputComponent
 extends InputComponent
 
 
-func update(character: Warden, event: InputEvent) -> void:
-	character.direction = Vector2(
+func update(event: InputEvent) -> void:
+	_parent.direction = Vector2(
 		int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left")),
 		int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
 	).normalized()
