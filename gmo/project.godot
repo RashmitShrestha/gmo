@@ -6,8 +6,6 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-; comment to see if it works 
-
 config_version=5
 
 [application]
@@ -76,3 +74,4 @@ left_click={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+2d/snap/snap_2d_transforms_to_pixel=true
