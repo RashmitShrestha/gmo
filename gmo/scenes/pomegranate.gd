@@ -1,4 +1,4 @@
-class_name Pomegranate
+class_name Strawberry
 extends GameCharacter
 
 
@@ -13,8 +13,8 @@ var warden: Warden
 var stunned: bool = false
 
 var curr_command: Command
-var default_command: PomegranateDefaultCommand
-var stun_command: PomegranateStunCommand
+var default_command: StrawberryDefaultCommand
+var stun_command: BlueberryStunCommand
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 
@@ -22,8 +22,8 @@ func _ready():
 	animation_tree.active = true
 	warden = %Warden
 	
-	default_command = PomegranateDefaultCommand.new(speed)
-	stun_command = PomegranateStunCommand.new(stun_time)
+	default_command = StrawberryDefaultCommand.new(speed)
+	stun_command = StrawberryStunCommand.new(stun_time)
 
 
 func _physics_process(_delta) -> void:

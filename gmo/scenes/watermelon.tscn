@@ -1,18 +1,16 @@
-[gd_scene load_steps=27 format=3 uid="uid://bpmfnh2gfepdb"]
+[gd_scene load_steps=28 format=3 uid="uid://bpmfnh2gfepdb"]
 
 [ext_resource type="Script" uid="uid://bxvny668eguvv" path="res://scripts/characters/watermelon.gd" id="1_vlmfl"]
 [ext_resource type="Texture2D" uid="uid://d0rapm3oo8vmm" path="res://assets/watermelon/watermelon_idle.png" id="2_11m30"]
 [ext_resource type="Texture2D" uid="uid://y856jyyrjepn" path="res://assets/watermelon/watermelon_hurt.png" id="3_8mcj1"]
 [ext_resource type="Texture2D" uid="uid://dlfeanargsv3h" path="res://assets/watermelon/watermelon_attack.png" id="4_fj3qu"]
 [ext_resource type="Texture2D" uid="uid://byv07qqap6fn5" path="res://assets/watermelon/watermelon_death.png" id="5_fl2h7"]
+[ext_resource type="Script" uid="uid://bfiy7duu6tjkw" path="res://scripts/components/character_components/fruit_components/watermelon_components/watermelon_animation_manager_component.gd" id="6_8mcj1"]
+[ext_resource type="Script" uid="uid://ylcuyobhupph" path="res://scripts/components/character_components/fruit_components/watermelon_components/watermelon_command_manager_component.gd" id="7_fl2h7"]
+[ext_resource type="Script" uid="uid://d10od3vdq30et" path="res://scripts/components/character_components/fruit_components/watermelon_components/watermelon_reactive_component.gd" id="8_ko7bv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]
 radius = 125.035995
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lamd3"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_lamd3"]
-radius = 57.944458
 
 [sub_resource type="Animation" id="Animation_1bs3t"]
 length = 0.001
@@ -276,11 +274,14 @@ states/idle/position = Vector2(340.94998, 100.399994)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_rxi68"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_hnuyn"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_ecfly"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_smu78"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_rw55t"), "attack", "hurt", SubResource("AnimationNodeStateMachineTransition_m1fb4"), "hurt", "attack", SubResource("AnimationNodeStateMachineTransition_mxeyv")]
 graph_offset = Vector2(-95.55001, -92.70002)
 
-[node name="Watermelon" type="CharacterBody2D"]
+[node name="Watermelon" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component")]
 z_index = 1
 collision_layer = 4
 collision_mask = 15
 script = ExtResource("1_vlmfl")
+animation_manager_component = NodePath("AnimationManagerComponent")
+command_manager_component = NodePath("CommandManagerComponent")
+reactive_component = NodePath("ReactiveComponent")
 metadata/_custom_type_script = "uid://bquw4773xgiaq"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -293,18 +294,6 @@ hframes = 2
 position = Vector2(-1027, -369)
 shape = SubResource("CircleShape2D_57wkv")
 
-[node name="DummyArea" type="Area2D" parent="."]
-material = SubResource("CanvasItemMaterial_lamd3")
-position = Vector2(-244, -179)
-
-[node name="DummyCollision" type="CollisionShape2D" parent="DummyArea"]
-light_mask = 2
-visibility_layer = 2
-position = Vector2(-783, -189)
-scale = Vector2(2.140625, 2.109375)
-shape = SubResource("CircleShape2D_lamd3")
-debug_color = Color(0.7863566, 0.18725446, 0.12266659, 0.41960785)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_vlmfl")
@@ -316,3 +305,12 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/hurt = false
 parameters/conditions/idle = false
 parameters/conditions/is_attacking = false
+
+[node name="AnimationManagerComponent" type="Node" parent="."]
+script = ExtResource("6_8mcj1")
+
+[node name="CommandManagerComponent" type="Node" parent="."]
+script = ExtResource("7_fl2h7")
+
+[node name="ReactiveComponent" type="Node" parent="."]
+script = ExtResource("8_ko7bv")

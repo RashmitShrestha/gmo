@@ -1,41 +1,36 @@
 class_name Strawberry
 extends GameCharacter
 
-var _damaged:bool = false
-var warden:Warden
+
+@export var stun_time: float = 1.0
+
+@export var animation_manager_component: StrawberryAnimationManagerComponent
+@export var command_manager_component: StrawberryCommandManagerComponent
+@export var reactive_component: StrawberryReactiveComponent
+
+var warden: Warden
+
+var stunned: bool = false
+
+var curr_command: Command
+var default_command: StrawberryDefaultCommand
+var stun_command: StrawberryStunCommand
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 
 func _ready():
 	animation_tree.active = true
 	warden = %Warden
-	var area = $DummyArea
-	SignalBus.damage_enemy.connect(_on_damage_enemy)
-	area.connect("mouse_entered", _on_mouse_entered)
+	
+	default_command = StrawberryDefaultCommand.new(speed)
+	stun_command = StrawberryStunCommand.new(stun_time)
+
+
+func _physics_process(_delta) -> void:
+	reactive_component.update()
+	super(_delta)
 
 
 func _process(_delta) -> void:
-	update_animation_parameters()
-
-
-func _on_mouse_entered():
-	if warden and warden.is_slicing:
-		SignalBus.damage_enemy.emit(self, warden.curr_vel)
-
-
-func _on_damage_enemy(character:GameCharacter, slice_velocity:float):
-	if character == self:
-		_damaged = true
-		print(str(self) + " dmg: " + str(slice_velocity ))
-		
-
-func update_animation_parameters():
-	animation_tree["parameters/conditions/idle"] = true
-	
-	if _damaged:
-		animation_tree["parameters/conditions/hurt"] = true
-		_damaged = false
-	else: 
-		animation_tree["parameters/conditions/hurt"] = false
-		
-		
+	command_manager_component.update()
+	animation_manager_component.update()
