@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dmf617rn6a8pm"]
+[gd_scene load_steps=22 format=3 uid="uid://dmf617rn6a8pm"]
 
 [ext_resource type="Texture2D" uid="uid://ckfplp2dp23fa" path="res://assets/test_area.webp" id="1_4eb3c"]
 [ext_resource type="Texture2D" uid="uid://c6lubr8yhm1w4" path="res://assets/terrain/Background_Green_TileSet.png" id="1_xt4jw"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c7ktnfe0qmnnc" path="res://scenes/pomegranate.tscn" id="9_xt4jw"]
 [ext_resource type="PackedScene" uid="uid://s1it7mo56jx" path="res://scenes/banana.tscn" id="10_56tp0"]
 [ext_resource type="PackedScene" uid="uid://rpbrqr7066ew" path="res://scenes/grape.tscn" id="11_xo1cx"]
+[ext_resource type="PackedScene" uid="uid://cpisay5d7h55w" path="res://scenes/single_grape.tscn" id="12_d3ocr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_56tp0"]
 texture = ExtResource("1_xt4jw")
@@ -736,13 +737,13 @@ script = ExtResource("3_vlxm1")
 [node name="Blueberry" parent="." instance=ExtResource("4_lamd3")]
 
 [node name="Watermelon" parent="." instance=ExtResource("5_uy78w")]
-position = Vector2(1692, -78)
+position = Vector2(1535, -32)
 
 [node name="Strawberry" parent="." instance=ExtResource("6_copoj")]
-position = Vector2(1692, -78)
+position = Vector2(1222, -298)
 
 [node name="Pomegranate" parent="." instance=ExtResource("9_xt4jw")]
-position = Vector2(1692, -78)
+position = Vector2(1381, -165)
 
 [node name="Banana" parent="." instance=ExtResource("10_56tp0")]
 position = Vector2(1559, 267)
@@ -750,9 +751,11 @@ scale = Vector2(2, 2)
 
 [node name="Grape" parent="." instance=ExtResource("11_xo1cx")]
 position = Vector2(1248, 119)
-scale = Vector2(2, 2)
 
-[node name="Dummy8" type="CharacterBody2D" parent="."]
+[node name="SingleGrape" parent="." instance=ExtResource("12_d3ocr")]
+position = Vector2(1559, 267)
+
+[node name="Dummy9" type="CharacterBody2D" parent="."]
 z_index = 1
 position = Vector2(1559, 267)
 collision_layer = 4
@@ -760,18 +763,18 @@ collision_mask = 15
 script = ExtResource("6_x48u6")
 metadata/_custom_type_script = "uid://bquw4773xgiaq"
 
-[node name="Sprite2D" type="Sprite2D" parent="Dummy8"]
+[node name="Sprite2D" type="Sprite2D" parent="Dummy9"]
 position = Vector2(-1084, 34)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dummy8"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dummy9"]
 position = Vector2(-1021, -354)
 shape = SubResource("CircleShape2D_57wkv")
 
-[node name="DummyArea" type="Area2D" parent="Dummy8"]
+[node name="DummyArea" type="Area2D" parent="Dummy9"]
 material = SubResource("CanvasItemMaterial_lamd3")
 position = Vector2(-244, -179)
 
-[node name="DummyCollision" type="CollisionShape2D" parent="Dummy8/DummyArea"]
+[node name="DummyCollision" type="CollisionShape2D" parent="Dummy9/DummyArea"]
 light_mask = 2
 visibility_layer = 2
 position = Vector2(-777.99994, -176)
