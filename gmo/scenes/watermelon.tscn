@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://d10od3vdq30et" path="res://scripts/components/character_components/fruit_components/watermelon_components/watermelon_reactive_component.gd" id="8_ko7bv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]
-radius = 125.035995
+radius = 30.066593
 
 [sub_resource type="Animation" id="Animation_1bs3t"]
 length = 0.001
@@ -285,13 +285,11 @@ reactive_component = NodePath("ReactiveComponent")
 metadata/_custom_type_script = "uid://bquw4773xgiaq"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1026, -354)
 scale = Vector2(2, 2)
 texture = ExtResource("2_11m30")
 hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1027, -369)
 shape = SubResource("CircleShape2D_57wkv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
