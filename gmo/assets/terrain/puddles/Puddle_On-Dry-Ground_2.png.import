@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clv2rjc18im1s"
-path="res://.godot/imported/warden_idle.png-2ae53e88bf2e039dba24ee2be3f64e0b.ctex"
+uid="uid://bbvrqb3h03s0u"
+path="res://.godot/imported/Puddle_On-Dry-Ground_2.png-73ddb99722cb78f00776a11f3205f5dd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/warden/warden_idle.png"
-dest_files=["res://.godot/imported/warden_idle.png-2ae53e88bf2e039dba24ee2be3f64e0b.ctex"]
+source_file="res://assets/terrain/puddles/Puddle_On-Dry-Ground_2.png"
+dest_files=["res://.godot/imported/Puddle_On-Dry-Ground_2.png-73ddb99722cb78f00776a11f3205f5dd.ctex"]
 
 [params]
 
-compress/mode=3
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

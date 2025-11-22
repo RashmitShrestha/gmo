@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clv2rjc18im1s"
-path="res://.godot/imported/warden_idle.png-2ae53e88bf2e039dba24ee2be3f64e0b.ctex"
+uid="uid://dxcvj7yx6ogtt"
+path="res://.godot/imported/Bench_2_down_Overgrown_Green.png-a781767165976da16d3cc67d4025aa25.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/warden/warden_idle.png"
-dest_files=["res://.godot/imported/warden_idle.png-2ae53e88bf2e039dba24ee2be3f64e0b.ctex"]
+source_file="res://assets/background_assets/Bench_2_down_Overgrown_Green.png"
+dest_files=["res://.godot/imported/Bench_2_down_Overgrown_Green.png-a781767165976da16d3cc67d4025aa25.ctex"]
 
 [params]
 
@@ -37,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

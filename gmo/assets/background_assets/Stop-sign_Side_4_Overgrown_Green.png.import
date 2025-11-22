@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clv2rjc18im1s"
-path="res://.godot/imported/warden_idle.png-2ae53e88bf2e039dba24ee2be3f64e0b.ctex"
+uid="uid://cwfdqfdj4rc3j"
+path="res://.godot/imported/Stop-sign_Side_4_Overgrown_Green.png-2b400a480bb394dbc0fbd3274540b506.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/warden/warden_idle.png"
-dest_files=["res://.godot/imported/warden_idle.png-2ae53e88bf2e039dba24ee2be3f64e0b.ctex"]
+source_file="res://assets/background_assets/Stop-sign_Side_4_Overgrown_Green.png"
+dest_files=["res://.godot/imported/Stop-sign_Side_4_Overgrown_Green.png-2b400a480bb394dbc0fbd3274540b506.ctex"]
 
 [params]
 
-compress/mode=3
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

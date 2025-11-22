@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clv2rjc18im1s"
-path="res://.godot/imported/warden_idle.png-2ae53e88bf2e039dba24ee2be3f64e0b.ctex"
+uid="uid://chem5soiym0p4"
+path="res://.godot/imported/HVAC_Overgrown_Bleak-Yellow.png-1e80f6d24893bec8214f49deb14bac08.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/warden/warden_idle.png"
-dest_files=["res://.godot/imported/warden_idle.png-2ae53e88bf2e039dba24ee2be3f64e0b.ctex"]
+source_file="res://assets/background_assets/HVAC_Overgrown_Bleak-Yellow.png"
+dest_files=["res://.godot/imported/HVAC_Overgrown_Bleak-Yellow.png-1e80f6d24893bec8214f49deb14bac08.ctex"]
 
 [params]
 
-compress/mode=3
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

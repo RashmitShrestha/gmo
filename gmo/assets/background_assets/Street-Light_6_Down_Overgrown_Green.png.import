@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clv2rjc18im1s"
-path="res://.godot/imported/warden_idle.png-2ae53e88bf2e039dba24ee2be3f64e0b.ctex"
+uid="uid://c2s6byrcfp2ah"
+path="res://.godot/imported/Street-Light_6_Down_Overgrown_Green.png-6397e04202ed0924d59d983a1ad952de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/warden/warden_idle.png"
-dest_files=["res://.godot/imported/warden_idle.png-2ae53e88bf2e039dba24ee2be3f64e0b.ctex"]
+source_file="res://assets/background_assets/Street-Light_6_Down_Overgrown_Green.png"
+dest_files=["res://.godot/imported/Street-Light_6_Down_Overgrown_Green.png-6397e04202ed0924d59d983a1ad952de.ctex"]
 
 [params]
 
-compress/mode=3
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
