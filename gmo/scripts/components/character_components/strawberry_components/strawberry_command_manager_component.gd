@@ -3,10 +3,14 @@ extends CommandManagerComponent
 
 func update():
 	if null == _parent.curr_command:
-		if not _parent.stunned:
-			_parent.curr_command = _parent.default_command
+		var dist = _parent.warden.position.distance_to(_parent.position)
+		
+		if dist > _parent.max_dist:
+			_parent.curr_command = _parent.move_in_command
+		elif dist < _parent.min_dist:
+			_parent.curr_command = _parent.move_out_command
 		else:
-			_parent.curr_command = _parent.stun_command
+			_parent.curr_command = _parent.shoot_command
 
 	if Command.Status.DONE == _parent.curr_command.execute(_parent):
 		_parent.curr_command = null

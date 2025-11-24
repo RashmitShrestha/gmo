@@ -1,7 +1,7 @@
 class_name Pomegranate
 extends GameCharacter
 
-
+@export var max_dist: float
 @export var stun_time: float = 1.0
 
 @export var animation_manager_component: PomegranateAnimationManagerComponent
@@ -14,7 +14,7 @@ var stunned: bool = false
 
 var curr_command: Command
 var default_command: PomegranateDefaultCommand
-var stun_command: PomegranateStunCommand
+var shooting_command: PomegranateShootingCommand
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 
@@ -23,7 +23,7 @@ func _ready():
 	warden = %Warden
 	
 	default_command = PomegranateDefaultCommand.new(speed)
-	stun_command = PomegranateStunCommand.new(stun_time)
+	shooting_command = PomegranateShootingCommand.new(stun_time)
 
 
 func _physics_process(_delta) -> void:

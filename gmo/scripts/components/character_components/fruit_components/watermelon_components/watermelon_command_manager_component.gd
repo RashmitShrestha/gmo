@@ -4,7 +4,7 @@ extends CommandManagerComponent
 func update():
 	if null == _parent.curr_command:
 		if not _parent.stunned:
-			_parent.curr_command = _parent.default_command
+			_parent.curr_command = _parent.step_command
 		else:
 			_parent.curr_command = _parent.stun_command
 

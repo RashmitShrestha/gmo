@@ -1,12 +1,12 @@
-class_name WatermelonDefaultCommand
+class_name StrawberryMoveInCommand
 extends Command
 
 var _speed: float
 
-func _init(speed: float) -> void:
+func _init(speed: float):
 	_speed = speed
 
 
-func execute(character: Watermelon) -> Status:
+func execute(character: Strawberry) -> Status:
 	character.velocity = _speed * character.direction
 	return Command.Status.DONE

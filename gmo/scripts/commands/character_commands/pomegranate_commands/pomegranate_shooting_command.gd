@@ -1,4 +1,4 @@
-class_name PomegranateStunCommand
+class_name PomegranateShootingCommand
 extends Command
 
 var _timer: Timer
