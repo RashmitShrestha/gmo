@@ -75,6 +75,10 @@ enum TargetPriority {
 @export var drop_type: DropType = DropType.LOW
 @export var score_value: int = 10  # points for killing
 
+@export_group("Scene Configuration")
+@export_file("*.tscn") var scene_path: String = ""  ## this needs to be added later, should be the path to enemy scene file
+
+
 @export_group("Presentation")
 @export var sprite_texture: Texture2D  # main sprite
 @export var death_sound: AudioStream  # plays on death
