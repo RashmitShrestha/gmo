@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://dmf617rn6a8pm"]
+[gd_scene load_steps=22 format=4 uid="uid://dmf617rn6a8pm"]
 
 [ext_resource type="Texture2D" uid="uid://ckfplp2dp23fa" path="res://assets/test_area.webp" id="1_4eb3c"]
 [ext_resource type="Texture2D" uid="uid://c6lubr8yhm1w4" path="res://assets/terrain/Background_Green_TileSet.png" id="1_xt4jw"]
@@ -364,14 +364,9 @@ _limits = [0.0, 3500.0, 0.0, 1.0]
 _data = [Vector2(0, 3500), 0.0, 0.0, 0, 0, Vector2(0.10000001, 3500), 0.0, 0.0, 0, 0, Vector2(0.5027027, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="Curve" id="Curve_vlxm1"]
-_limits = [0.0, 4.874157, 0.0, 42.34]
-_data = [Vector2(0, 1.3691449), 0.0, -0.083023146, 0, 0, Vector2(42.34, 0.0547657), -0.032162115, 0.0, 0, 0]
-point_count = 2
-
 [sub_resource type="Gradient" id="Gradient_vlxm1"]
-offsets = PackedFloat32Array(0, 0.34246576)
-colors = PackedColorArray(0, 0.72156864, 0.8509804, 0.90588236, 0.9098039, 0.9098039, 0.9098039, 0.84705883)
+offsets = PackedFloat32Array(0, 0.5068493, 1)
+colors = PackedColorArray(0, 0, 0, 0.90588236, 0.73289335, 0.91626304, 0.9503558, 0.8729412, 0.9098039, 0.9098039, 0.9098039, 0.84705883)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]
 radius = 173.14156
@@ -409,18 +404,19 @@ collision_mask = 13
 dash_speed_curve = SubResource("Curve_gdmpp")
 speed = 1000.0
 
+[node name="Slice" type="Line2D" parent="Warden"]
+unique_name_in_owner = true
+z_index = 5
+position = Vector2(0.5, 0.5)
+scale = Vector2(0.5, 0.5)
+gradient = SubResource("Gradient_vlxm1")
+script = ExtResource("3_vlxm1")
+
 [node name="Camera2D" type="Camera2D" parent="Warden" node_paths=PackedStringArray("subject")]
 position = Vector2(14, -11)
 zoom = Vector2(0.5, 0.5)
 script = ExtResource("9_copoj")
 subject = NodePath("..")
-
-[node name="Slice" type="Line2D" parent="."]
-unique_name_in_owner = true
-z_index = 5
-width_curve = SubResource("Curve_vlxm1")
-gradient = SubResource("Gradient_vlxm1")
-script = ExtResource("3_vlxm1")
 
 [node name="Blueberry" parent="." instance=ExtResource("4_lamd3")]
 visible = false
