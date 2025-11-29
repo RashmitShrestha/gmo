@@ -1,14 +1,13 @@
-[gd_scene load_steps=23 format=4 uid="uid://dmf617rn6a8pm"]
+[gd_scene load_steps=19 format=4 uid="uid://dmf617rn6a8pm"]
 
 [ext_resource type="Texture2D" uid="uid://ckfplp2dp23fa" path="res://assets/test_area.webp" id="1_4eb3c"]
 [ext_resource type="Texture2D" uid="uid://c6lubr8yhm1w4" path="res://assets/terrain/Background_Green_TileSet.png" id="1_xt4jw"]
 [ext_resource type="PackedScene" uid="uid://jqidoyn47nxk" path="res://scenes/warden.tscn" id="2_gdmpp"]
 [ext_resource type="Script" uid="uid://bhbppojr8ikwe" path="res://scripts/commands/slice.gd" id="3_vlxm1"]
-[ext_resource type="Script" path="res://scripts/wave_manager.gd" id="3_wavemanager"]
+[ext_resource type="Script" uid="uid://dw60nguhxt0oe" path="res://scripts/wave_manager.gd" id="3_wavemanager"]
 [ext_resource type="PackedScene" uid="uid://dui38s68nj4ah" path="res://scenes/blueberry.tscn" id="4_lamd3"]
 [ext_resource type="PackedScene" uid="uid://bpmfnh2gfepdb" path="res://scenes/watermelon.tscn" id="5_uy78w"]
 [ext_resource type="PackedScene" uid="uid://ctsmh36aqyq5t" path="res://scenes/strawberry.tscn" id="6_copoj"]
-[ext_resource type="Script" uid="uid://bquw4773xgiaq" path="res://scripts/characters/character.gd" id="6_x48u6"]
 [ext_resource type="Script" uid="uid://bkdpfqiiukrdd" path="res://scripts/main_camera.gd" id="9_copoj"]
 [ext_resource type="PackedScene" uid="uid://c7ktnfe0qmnnc" path="res://scenes/pomegranate.tscn" id="9_xt4jw"]
 [ext_resource type="PackedScene" uid="uid://s1it7mo56jx" path="res://scenes/banana.tscn" id="10_56tp0"]
@@ -359,23 +358,16 @@ texture = ExtResource("1_xt4jw")
 sources/0 = SubResource("TileSetAtlasSource_xt4jw")
 
 [sub_resource type="TileSet" id="TileSet_xt4jw"]
+physics_layer_0/collision_layer = 1
 
 [sub_resource type="Curve" id="Curve_gdmpp"]
 _limits = [0.0, 3500.0, 0.0, 1.0]
 _data = [Vector2(0, 3500), 0.0, 0.0, 0, 0, Vector2(0.10000001, 3500), 0.0, 0.0, 0, 0, Vector2(0.5027027, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="Gradient" id="Gradient_vlxm1"]
-offsets = PackedFloat32Array(0, 0.5068493, 1)
-colors = PackedColorArray(0, 0, 0, 0.90588236, 0.73289335, 0.91626304, 0.9503558, 0.8729412, 0.9098039, 0.9098039, 0.9098039, 0.84705883)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]
-radius = 173.14156
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lamd3"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_lamd3"]
-radius = 81.30677
+[sub_resource type="Gradient" id="Gradient_6dmfj"]
+offsets = PackedFloat32Array(0.5466667, 1)
+colors = PackedColorArray(0.9471994, 0.9471994, 0.9471994, 1, 0.5176471, 0.78431374, 0.7647059, 0.81960785)
 
 [node name="GameArea" type="Node2D"]
 
@@ -392,6 +384,8 @@ tile_set = SubResource("TileSet_56tp0")
 position = Vector2(122, 6.999998)
 scale = Vector2(8, 8)
 tile_set = SubResource("TileSet_xt4jw")
+collision_enabled = false
+collision_visibility_mode = 1
 
 [node name="TestArea" type="Sprite2D" parent="."]
 position = Vector2(7003, 25.999985)
@@ -401,19 +395,47 @@ texture = ExtResource("1_4eb3c")
 [node name="Warden" parent="." instance=ExtResource("2_gdmpp")]
 unique_name_in_owner = true
 texture_filter = 1
-position = Vector2(-1, -1)
+position = Vector2(85, -12)
 scale = Vector2(2, 2)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 7
 dash_speed_curve = SubResource("Curve_gdmpp")
 speed = 1000.0
+
+[node name="SliceParticle" type="CPUParticles2D" parent="Warden"]
+unique_name_in_owner = true
+position = Vector2(-17.5, 6.5)
+scale = Vector2(0.5, 0.5)
+emitting = false
+amount = 32
+lifetime = 1.5
+speed_scale = 3.82
+randomness = 0.13
+emission_shape = 2
+emission_sphere_radius = 20.35
+spread = 133.95
+gravity = Vector2(0, 0)
+initial_velocity_max = 3.95
+angular_velocity_min = 31.76
+angular_velocity_max = 211.77
+linear_accel_min = 22.68
+linear_accel_max = 100.0
+radial_accel_min = 5.0
+radial_accel_max = 30.0
+scale_amount_min = 7.0
+scale_amount_max = 20.0
+color = Color(1, 0.9882353, 0.9882353, 0.69803923)
+color_ramp = SubResource("Gradient_6dmfj")
+hue_variation_min = -0.2
+hue_variation_max = 1.0
 
 [node name="Slice" type="Line2D" parent="Warden"]
 unique_name_in_owner = true
 z_index = 5
 position = Vector2(0.5, 0.5)
 scale = Vector2(0.5, 0.5)
-gradient = SubResource("Gradient_vlxm1")
+default_color = Color(1, 1, 1, 0)
+joint_mode = 2
 script = ExtResource("3_vlxm1")
 
 [node name="Camera2D" type="Camera2D" parent="Warden" node_paths=PackedStringArray("subject")]
@@ -443,31 +465,4 @@ scale = Vector2(2, 2)
 position = Vector2(1248, 119)
 
 [node name="SingleGrape" parent="." instance=ExtResource("12_d3ocr")]
-position = Vector2(1559, 267)
-
-[node name="Dummy9" type="CharacterBody2D" parent="."]
-z_index = 1
-position = Vector2(1559, 267)
-collision_layer = 4
-collision_mask = 15
-script = ExtResource("6_x48u6")
-metadata/_custom_type_script = "uid://bquw4773xgiaq"
-
-[node name="Sprite2D" type="Sprite2D" parent="Dummy9"]
-position = Vector2(-1084, 34)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dummy9"]
-position = Vector2(-1021, -354)
-shape = SubResource("CircleShape2D_57wkv")
-
-[node name="DummyArea" type="Area2D" parent="Dummy9"]
-material = SubResource("CanvasItemMaterial_lamd3")
-position = Vector2(-244, -179)
-
-[node name="DummyCollision" type="CollisionShape2D" parent="Dummy9/DummyArea"]
-light_mask = 2
-visibility_layer = 2
-position = Vector2(-777.99994, -176)
-scale = Vector2(2.140625, 2.109375)
-shape = SubResource("CircleShape2D_lamd3")
-debug_color = Color(0.7863566, 0.18725446, 0.12266659, 0.41960785)
+position = Vector2(1332, 375)

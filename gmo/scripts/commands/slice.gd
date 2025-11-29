@@ -10,10 +10,7 @@ var element_ready = -1
 
 var active_trails : Array = []
 
-var reg_colors={
-	0: Color(0.49, 0.82, .89, .6),
-	1: Color(1, 1, 1, .6)
-}
+
 var element_colors = {
 	1: Color(0.871, 0.235, 0.2, 0.7),
 	2: Color(0.275, 0.412, 0.988, 0.7),
@@ -38,8 +35,12 @@ func _process(delta):
 			
 			
 func slicing(mouse_pos: Vector2) -> void:
+	if current_element < 0:
+		return
 	# push the points based on the global to local mouse position 
 	points_queue.push_front(to_local(mouse_pos))
+
+
 	
 	var max_size = 0
 	if current_element >= 0:
@@ -61,7 +62,7 @@ func start_trail(element: int) -> void:
 		points_queue = []
 		
 		current_element = element
-		
+
 		# create a new gradient and color system based on the predefined element colors
 		var grad = Gradient.new()
 		var color = element_colors[element]
@@ -103,16 +104,12 @@ func end_trail() -> void:
 			"points": global_points,  # Store global points for collision detection
 			"timer": element_duration
 		})
-	
-	# changes the gradient and factors of the slice trail
-	var reg_grad = Gradient.new()
-	reg_grad.add_point(0, reg_colors[0])
-	reg_grad.add_point(1, reg_colors[1])
+
 	current_element = -1
 	element_ready = -1
-	gradient = reg_grad
 	width = 20
-	
+	clear_points()
+	points_queue = []
 	
 # simply sets the ready element to the passed in element int 
 func set_element(element: int) -> void:

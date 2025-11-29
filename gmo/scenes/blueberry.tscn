@@ -9,6 +9,9 @@
 [ext_resource type="Script" uid="uid://bq0uvpdkcpio8" path="res://scripts/components/character_components/fruit_components/blueberry_components/blueberry_command_manager_compnent.gd" id="7_duaux"]
 [ext_resource type="Script" uid="uid://b07x7fbfsatk3" path="res://scripts/components/character_components/fruit_components/blueberry_components/blueberry_reactive_component.gd" id="8_ylke1"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]
+radius = 30.0
+
 [sub_resource type="Animation" id="Animation_k05ik"]
 length = 0.001
 tracks/0/type = "value"
@@ -310,9 +313,6 @@ states/idle/position = Vector2(352.52, 100.875)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_w0x03"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_d1l6q"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_gdgj5"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_1fcle"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_rea8b"), "hurt", "attack", SubResource("AnimationNodeStateMachineTransition_iu6qv"), "attack", "hurt", SubResource("AnimationNodeStateMachineTransition_xw55q")]
 graph_offset = Vector2(13.109772, -77.25007)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]
-radius = 30.0
-
 [node name="blueberry" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component")]
 z_index = 1
 collision_layer = 4
@@ -323,6 +323,9 @@ command_manager_component = NodePath("CommandManagerComponent")
 reactive_component = NodePath("ReactiveComponent")
 speed = 100.0
 metadata/_custom_type_script = "uid://bquw4773xgiaq"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_57wkv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -341,9 +344,6 @@ parameters/conditions/hurt = false
 parameters/conditions/idle = false
 parameters/conditions/is_attacking = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_57wkv")
-
 [node name="AnimationManagerComponent" type="Node" parent="."]
 script = ExtResource("6_t03vd")
 
@@ -352,3 +352,10 @@ script = ExtResource("7_duaux")
 
 [node name="ReactiveComponent" type="Node" parent="."]
 script = ExtResource("8_ylke1")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_57wkv")

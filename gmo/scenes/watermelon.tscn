@@ -9,9 +9,6 @@
 [ext_resource type="Script" uid="uid://ylcuyobhupph" path="res://scripts/components/character_components/fruit_components/watermelon_components/watermelon_command_manager_component.gd" id="7_fl2h7"]
 [ext_resource type="Script" uid="uid://d10od3vdq30et" path="res://scripts/components/character_components/fruit_components/watermelon_components/watermelon_reactive_component.gd" id="8_ko7bv"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]
-radius = 30.066593
-
 [sub_resource type="Animation" id="Animation_1bs3t"]
 length = 0.001
 tracks/0/type = "value"
@@ -274,6 +271,10 @@ states/idle/position = Vector2(340.94998, 100.399994)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_rxi68"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_hnuyn"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_ecfly"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_smu78"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_rw55t"), "attack", "hurt", SubResource("AnimationNodeStateMachineTransition_m1fb4"), "hurt", "attack", SubResource("AnimationNodeStateMachineTransition_mxeyv")]
 graph_offset = Vector2(-95.55001, -92.70002)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fl2h7"]
+radius = 55.994568
+height = 245.9762
+
 [node name="Watermelon" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component")]
 z_index = 1
 collision_layer = 4
@@ -286,12 +287,10 @@ speed = 200.0
 metadata/_custom_type_script = "uid://bquw4773xgiaq"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
+position = Vector2(0, -1.8421059)
+scale = Vector2(6.117647, 5.6842103)
 texture = ExtResource("2_11m30")
 hframes = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_57wkv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -313,3 +312,18 @@ script = ExtResource("7_fl2h7")
 
 [node name="ReactiveComponent" type="Node" parent="."]
 script = ExtResource("8_ko7bv")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-9.307769e-09, -1.999999)
+rotation = -1.5847137
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("CapsuleShape2D_fl2h7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-9.307769e-09, -1.999999)
+rotation = -1.5847137
+shape = SubResource("CapsuleShape2D_fl2h7")

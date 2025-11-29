@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 @export var speed: float
 var direction := Vector2.ZERO
+var id : int
+var health : float
 
 var damaged: bool = false
 

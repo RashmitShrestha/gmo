@@ -335,8 +335,9 @@ _data = {
 &"idle": SubResource("Animation_hilkf")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]
-radius = 22.203604
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hpx1l"]
+radius = 18.0
+height = 90.33386
 
 [node name="Banana" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component")]
 z_index = 1
@@ -361,11 +362,14 @@ libraries = {
 }
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.9375, 2.7333333)
 texture = ExtResource("2_srj6n")
 hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_57wkv")
+position = Vector2(-10.999999, 4.0000005)
+rotation = 0.11021841
+shape = SubResource("CapsuleShape2D_hpx1l")
 
 [node name="AnimationManagerComponent" type="Node" parent="."]
 script = ExtResource("6_hpx1l")
@@ -375,3 +379,13 @@ script = ExtResource("7_bdl2a")
 
 [node name="ReactiveComponent" type="Node" parent="."]
 script = ExtResource("8_s8p0x")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 15
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-10.999999, 4.0000005)
+rotation = 0.11021842
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("CapsuleShape2D_hpx1l")

@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://cstfxpqorys6c" path="res://scripts/components/character_components/player_components/player_animation_manager_component.gd" id="11_mjqe3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cgkur"]
-size = Vector2(128, 128)
+size = Vector2(46, 86)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bcb5n"]
 atlas = ExtResource("3_r53ma")
@@ -712,3 +712,10 @@ script = ExtResource("10_mjqe3")
 
 [node name="AnimationManagerComponent" type="Node" parent="."]
 script = ExtResource("11_mjqe3")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_cgkur")

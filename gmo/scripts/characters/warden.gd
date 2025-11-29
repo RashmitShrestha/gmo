@@ -18,12 +18,17 @@ var vel_vec := Vector2.ZERO
 var curr_vel: int = 0
 var is_slicing: bool = false
 
+var slice_radius = 300
+
 func _ready() -> void:
 	animation_tree.active = true
 	idle_command = PlayerIdleCommand.new()
 	move_command = PlayerMoveCommand.new()
 	dash_command = PlayerDashCommand.new(dash_speed_curve)
+	queue_redraw()  # Add this
 
+func _draw():
+	draw_circle(Vector2.ZERO, slice_radius, Color(1, 0, 0, 0.2))
 
 func _input(event):
 	input_component.update(event)
