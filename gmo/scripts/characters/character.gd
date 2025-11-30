@@ -10,6 +10,7 @@ var damaged: bool = false
 
 @onready var sprite: Sprite2D = $Sprite2D
 
-
-func _physics_process(_delta: float) -> void:
-	move_and_slide()
+func _physics_process(delta: float) -> void:
+	var collision: KinematicCollision2D = move_and_collide(velocity * delta)
+	if collision:
+		velocity = Vector2.ZERO
