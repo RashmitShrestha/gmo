@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ds2h37wv00i2f"]
+[gd_scene load_steps=20 format=3 uid="uid://ds2h37wv00i2f"]
 
 [ext_resource type="Script" uid="uid://d2ma5d13r27x6" path="res://main_menu.gd" id="1_glbon"]
 [ext_resource type="Texture2D" uid="uid://ce48c3qwpx77b" path="res://assets/peach/skill_tree_background.png" id="1_jix8l"]
@@ -12,6 +12,38 @@
 [ext_resource type="Texture2D" uid="uid://o0mh0i0rhbh7" path="res://assets/Main Menu/Quit_Pressed.png" id="8_0o4t1"]
 [ext_resource type="Texture2D" uid="uid://k3de88idqxss" path="res://assets/Main Menu/Settings_Hover.png" id="8_j5v2v"]
 [ext_resource type="Texture2D" uid="uid://320l1b0da5y8" path="res://assets/Main Menu/Quit_Hover.png" id="11_iotk1"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_j5v2v"]
+device = -1
+pressed = true
+keycode = 80
+unicode = 80
+
+[sub_resource type="InputEventKey" id="InputEventKey_w44g7"]
+device = -1
+pressed = true
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_iotk1"]
+events = [SubResource("InputEventKey_j5v2v"), SubResource("InputEventKey_w44g7")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_iotk1"]
+device = -1
+pressed = true
+keycode = 83
+unicode = 115
+
+[sub_resource type="Shortcut" id="Shortcut_w44g7"]
+events = [SubResource("InputEventKey_iotk1")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_cm266"]
+device = -1
+pressed = true
+keycode = 81
+unicode = 81
+
+[sub_resource type="Shortcut" id="Shortcut_g8g3n"]
+events = [SubResource("InputEventKey_cm266")]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -53,6 +85,7 @@ theme_override_constants/separation = 30
 unique_name_in_owner = true
 custom_minimum_size = Vector2(228, 63)
 layout_mode = 2
+shortcut = SubResource("Shortcut_iotk1")
 texture_normal = ExtResource("3_glbon")
 texture_pressed = ExtResource("4_nlkkf")
 texture_hover = ExtResource("5_0o4t1")
@@ -62,6 +95,7 @@ stretch_mode = 0
 unique_name_in_owner = true
 custom_minimum_size = Vector2(228, 63)
 layout_mode = 2
+shortcut = SubResource("Shortcut_w44g7")
 texture_normal = ExtResource("5_qe12f")
 texture_pressed = ExtResource("6_8qtwp")
 texture_hover = ExtResource("8_j5v2v")
@@ -71,6 +105,7 @@ stretch_mode = 0
 unique_name_in_owner = true
 custom_minimum_size = Vector2(228, 63)
 layout_mode = 2
+shortcut = SubResource("Shortcut_g8g3n")
 texture_normal = ExtResource("7_dy7ct")
 texture_pressed = ExtResource("8_0o4t1")
 texture_hover = ExtResource("11_iotk1")
