@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://ds2h37wv00i2f"]
+
+[ext_resource type="Script" uid="uid://d2ma5d13r27x6" path="res://main_menu.gd" id="1_glbon"]
+[ext_resource type="Texture2D" uid="uid://ce48c3qwpx77b" path="res://assets/peach/skill_tree_background.png" id="1_jix8l"]
+[ext_resource type="Texture2D" uid="uid://dstps8ssgrnu7" path="res://assets/Main Menu/Play_Not-Pressed.png" id="2_glbon"]
+[ext_resource type="Texture2D" uid="uid://f88jsdr3arv3" path="res://assets/Main Menu/Settings_Not-Pressed.png" id="3_nlkkf"]
+[ext_resource type="Texture2D" uid="uid://bt7nl78se3vao" path="res://assets/Main Menu/Quit_Not-Pressed.png" id="4_qe12f"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_glbon")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_jix8l")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+icon = ExtResource("2_glbon")
+
+[node name="Settings" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+icon = ExtResource("3_nlkkf")
+
+[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+icon = ExtResource("4_qe12f")
