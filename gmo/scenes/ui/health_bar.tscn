@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://ithrgcjfgqlh"]
+
+[ext_resource type="Texture2D" uid="uid://8l0d2uoqdwlm" path="res://icon.svg" id="1_4rf34"]
+[ext_resource type="Script" uid="uid://dr0upe52eptfc" path="res://scripts/ui/health_bar.gd" id="1_qi2ti"]
+
+[node name="HealthBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qi2ti")
+
+[node name="ExactHealthBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 440.0
+offset_bottom = 90.0
+value = 100.0
+texture_progress = ExtResource("1_4rf34")
+
+[node name="DelayedHealthBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 440.0
+offset_bottom = 90.0
+value = 100.0
