@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ds2h37wv00i2f"]
+[gd_scene load_steps=7 format=3 uid="uid://ds2h37wv00i2f"]
 
 [ext_resource type="Script" uid="uid://d2ma5d13r27x6" path="res://main_menu.gd" id="1_glbon"]
 [ext_resource type="Texture2D" uid="uid://ce48c3qwpx77b" path="res://assets/peach/skill_tree_background.png" id="1_jix8l"]
 [ext_resource type="Texture2D" uid="uid://dstps8ssgrnu7" path="res://assets/Main Menu/Play_Not-Pressed.png" id="2_glbon"]
 [ext_resource type="Texture2D" uid="uid://f88jsdr3arv3" path="res://assets/Main Menu/Settings_Not-Pressed.png" id="3_nlkkf"]
 [ext_resource type="Texture2D" uid="uid://bt7nl78se3vao" path="res://assets/Main Menu/Quit_Not-Pressed.png" id="4_qe12f"]
+[ext_resource type="Texture2D" uid="uid://d2mwt651ar77h" path="res://assets/Inventory_1.png" id="5_inventory"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -51,3 +52,31 @@ icon = ExtResource("3_nlkkf")
 unique_name_in_owner = true
 layout_mode = 2
 icon = ExtResource("4_qe12f")
+
+[node name="SettingsContainer" type="CenterContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.5
+offset_top = -45.5
+offset_right = 71.5
+offset_bottom = 45.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="SettingsContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="SettingsContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("5_inventory")
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Settings" to="SettingsContainer" method="show"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Settings" to="SettingsContainer" method="set_mouse_filter" binds= [0]]
