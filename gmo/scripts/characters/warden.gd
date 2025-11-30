@@ -21,6 +21,7 @@ var is_slicing: bool = false
 var slice_radius = 300
 
 func _ready() -> void:
+	health = 100.0  # Initialize player health
 	animation_tree.active = true
 	idle_command = PlayerIdleCommand.new()
 	move_command = PlayerMoveCommand.new()
