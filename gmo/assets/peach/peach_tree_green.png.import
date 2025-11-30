@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2fjrgrp7167g"
-path="res://.godot/imported/Window_19_gray.png-5d7db53ffcbc3dff606944a881261676.ctex"
+uid="uid://duwhbv1xacrx8"
+path="res://.godot/imported/peach_tree_green.png-f64093229212ae0afad144136abccc72.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Windows/Window_19_gray.png"
-dest_files=["res://.godot/imported/Window_19_gray.png-5d7db53ffcbc3dff606944a881261676.ctex"]
+source_file="res://assets/peach/peach_tree_green.png"
+dest_files=["res://.godot/imported/peach_tree_green.png-f64093229212ae0afad144136abccc72.ctex"]
 
 [params]
 

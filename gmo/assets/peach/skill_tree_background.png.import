@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dej7yo2h8bh7s"
-path="res://.godot/imported/Window_6_Boarded-up_wood.png-527028eaebacebb4513cca88b8c7399e.ctex"
+uid="uid://ce48c3qwpx77b"
+path="res://.godot/imported/skill_tree_background.png-582629b5725b3918bbab39ef2589c09b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Windows/Window_6_Boarded-up_wood.png"
-dest_files=["res://.godot/imported/Window_6_Boarded-up_wood.png-527028eaebacebb4513cca88b8c7399e.ctex"]
+source_file="res://assets/peach/skill_tree_background.png"
+dest_files=["res://.godot/imported/skill_tree_background.png-582629b5725b3918bbab39ef2589c09b.ctex"]
 
 [params]
 

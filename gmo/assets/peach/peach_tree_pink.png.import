@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dn1ady3nne1xf"
-path="res://.godot/imported/Window_1_broken_wood.png-485c42503f1d3f09e22da2f916550981.ctex"
+uid="uid://waojdo12cvsa"
+path="res://.godot/imported/peach_tree_pink.png-a877efdc6140163169bb8e23fdc36999.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Windows/Window_1_broken_wood.png"
-dest_files=["res://.godot/imported/Window_1_broken_wood.png-485c42503f1d3f09e22da2f916550981.ctex"]
+source_file="res://assets/peach/peach_tree_pink.png"
+dest_files=["res://.godot/imported/peach_tree_pink.png-a877efdc6140163169bb8e23fdc36999.ctex"]
 
 [params]
 
