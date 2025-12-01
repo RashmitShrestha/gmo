@@ -1,31 +1,21 @@
 class_name Blueberry
-extends GameCharacter
+extends Fruit
 
-@export var stun_time: float = 1.0
 @export var animation_manager_component: BlueberryAnimationManagerComponent
 @export var command_manager_component: BlueberryCommandManagerComponent
 @export var reactive_component: BlueberryReactiveComponent
 
-var warden: Warden
-var stunned: bool = false
 var curr_command: Command
 var default_command: BlueberryDefaultCommand
 var stun_command: BlueberryStunCommand
 
-@onready var animation_tree: AnimationTree = $AnimationTree
-
 func _ready():
+	super()
 	max_health = 300.0  # 1 full slash
 	curr_health = max_health
-	
-	animation_tree.active = true
-	warden = %Warden
-	
 	default_command = BlueberryDefaultCommand.new(speed)
 	stun_command = BlueberryStunCommand.new(stun_time)
-	
-	SignalBus.damage_enemy.connect(_on_damage_enemy)
-	$Area2D.connect("mouse_entered", _on_mouse_entered)
+
 
 func _physics_process(_delta) -> void:
 	reactive_component.update()
@@ -34,20 +24,6 @@ func _physics_process(_delta) -> void:
 func _process(_delta) -> void:
 	command_manager_component.update()
 	animation_manager_component.update()
-
-func _on_mouse_entered():
-	if warden and warden.is_slicing:
-		SignalBus.damage_enemy.emit(self, warden.curr_vel)
-
-func _on_damage_enemy(character: GameCharacter, slice_velocity: float):
-	if character == self:
-		var damage = SliceDamage.calculate_damage(slice_velocity)
-		curr_health -= damage
-		
-		print(str(self) + " took " + str(damage) + " damage. Health: " + str(curr_health))
-		
-		if curr_health <= 0:
-			_die()
 
 func _die():
 	print(str(self) + " has been defeated!")

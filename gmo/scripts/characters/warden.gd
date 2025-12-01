@@ -24,6 +24,15 @@ var is_slicing: bool = false
 
 var slice_radius = 300
 
+# cooldown of the 6 total abilities 
+var cd1 : float
+var cd2 : float
+var cd3 : float
+var cd4 : float
+var cd5 : float
+var cd6 : float
+
+
 func _ready() -> void:
 	max_health = 100.0  # Initialize player health
 	curr_health = max_health
@@ -40,10 +49,6 @@ func _ready() -> void:
 	)
 	
 	queue_redraw()  # Add this
-
-
-func _draw():
-	draw_circle(Vector2.ZERO, slice_radius, Color(1, 0, 0, 0.2))
 
 
 func _input(event):

@@ -1194,6 +1194,8 @@ position = Vector2(1381, -165)
 [node name="Banana" parent="." instance=ExtResource("10_56tp0")]
 position = Vector2(1559, 267)
 scale = Vector2(2, 2)
+stun_time = null
+speed = null
 
 [node name="Grape" parent="." instance=ExtResource("11_xo1cx")]
 position = Vector2(1248, 119)
