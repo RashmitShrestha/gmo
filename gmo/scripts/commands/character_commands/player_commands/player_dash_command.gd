@@ -28,3 +28,7 @@ func execute(character: Warden) -> Status:
 		character.velocity = Vector2.ZERO
 		_timer.queue_free()
 		return Status.DONE
+
+
+func force_finish(_character) -> void:
+	_timer.queue_free()

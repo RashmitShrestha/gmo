@@ -6,6 +6,7 @@ extends GameCharacter
 @export var animation_manager_component: WatermelonAnimationManagerComponent
 @export var command_manager_component: WatermelonCommandManagerComponent
 @export var reactive_component: WatermelonReactiveComponent
+@export var damage_component: WatermelonDamageComponent
 
 var warden: Warden
 var full_slash = 45
@@ -17,7 +18,8 @@ var stun_command: WatermelonStunCommand
 @onready var animation_tree: AnimationTree = $AnimationTree
 
 func _ready():
-	health = 100 * full_slash  # 1000 HP
+	max_health = 100 * full_slash  # 1000 HP
+	curr_health = max_health
 	
 	animation_tree.active = true
 	warden = %Warden
@@ -30,6 +32,7 @@ func _ready():
 
 func _physics_process(_delta) -> void:
 	reactive_component.update()
+	damage_component.update()
 	super(_delta)
 
 func _process(_delta) -> void:
@@ -43,11 +46,11 @@ func _on_mouse_entered():
 func _on_damage_enemy(character: GameCharacter, slice_velocity: float):
 	if character == self:
 		var damage = SliceDamage.calculate_damage(slice_velocity)
-		health -= damage
+		curr_health -= damage
 		
-		print(str(self) + " took " + str(damage) + " damage. Health: " + str(health))
+		print(str(self) + " took " + str(damage) + " damage. Health: " + str(curr_health))
 		
-		if health <= 0:
+		if curr_health <= 0:
 			_die()
 
 func _die():

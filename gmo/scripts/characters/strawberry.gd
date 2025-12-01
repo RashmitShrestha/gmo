@@ -17,7 +17,8 @@ var shoot_command: StrawberryShootCommand
 @onready var animation_tree: AnimationTree = $AnimationTree
 
 func _ready():
-	health = 700.0  # 2 full slashes
+	max_health = 700.0  # 2 full slashes
+	curr_health = max_health
 	
 	animation_tree.active = true
 	warden = %Warden
@@ -44,11 +45,11 @@ func _on_mouse_entered():
 func _on_damage_enemy(character: GameCharacter, slice_velocity: float):
 	if character == self:
 		var damage = SliceDamage.calculate_damage(slice_velocity)
-		health -= damage
+		curr_health -= damage
 		
-		print(str(self) + " took " + str(damage) + " damage. Health: " + str(health))
+		print(str(self) + " took " + str(damage) + " damage. Health: " + str(curr_health))
 		
-		if health <= 0:
+		if curr_health <= 0:
 			_die()
 
 func _die():

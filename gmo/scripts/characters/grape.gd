@@ -16,7 +16,8 @@ var stun_command: GrapeStunCommand
 @onready var animation_tree: AnimationTree = $AnimationTree
 
 func _ready():
-	health = 100 * full_slash  # Total health = 2000
+	max_health = 100 * full_slash  # Total health = 2000
+	curr_health = max_health
 	
 	animation_tree.active = true
 	warden = %Warden
@@ -45,12 +46,12 @@ func _on_damage_enemy(character: GameCharacter, slice_velocity: float):
 		var damage = SliceDamage.calculate_damage(slice_velocity)
 		
 		# Apply damage
-		health -= damage
+		curr_health -= damage
 		
-		print(str(self) + " took " + str(damage) + " damage. Health: " + str(health))
+		print(str(self) + " took " + str(damage) + " damage. Health: " + str(curr_health))
 		
 		# Check if dead
-		if health <= 0:
+		if curr_health <= 0:
 			_die()
 
 func _die():

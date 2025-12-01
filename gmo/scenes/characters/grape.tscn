@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://2v7mmis20bd0" path="res://assets/grape/grape_attack.png" id="3_0y666"]
 [ext_resource type="Texture2D" uid="uid://cr074274f0bo2" path="res://assets/grape/grape_hurt.png" id="4_cccty"]
 [ext_resource type="Texture2D" uid="uid://dbotlr4bgvtdm" path="res://assets/grape/grape_death.png" id="5_0y666"]
-[ext_resource type="Script" uid="uid://da363lhrtmk23" path="res://scripts/components/character_components/grape_components/grape_animation_manager_component.gd" id="6_gcaue"]
-[ext_resource type="Script" uid="uid://bw8pi0h33nb7h" path="res://scripts/components/character_components/grape_components/grape_command_manager_component.gd" id="7_w5yg7"]
-[ext_resource type="Script" uid="uid://ba4w0chas82hm" path="res://scripts/components/character_components/grape_components/grape_reactive_component.gd" id="8_4hmav"]
+[ext_resource type="Script" uid="uid://da363lhrtmk23" path="res://scripts/components/character_components/fruit_components/grape_components/grape_animation_manager_component.gd" id="6_gcaue"]
+[ext_resource type="Script" uid="uid://bw8pi0h33nb7h" path="res://scripts/components/character_components/fruit_components/grape_components/grape_command_manager_component.gd" id="7_w5yg7"]
+[ext_resource type="Script" uid="uid://ba4w0chas82hm" path="res://scripts/components/character_components/fruit_components/grape_components/grape_reactive_component.gd" id="8_4hmav"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]
 radius = 34.058773

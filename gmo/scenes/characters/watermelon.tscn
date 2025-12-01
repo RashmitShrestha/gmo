@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bpmfnh2gfepdb"]
+[gd_scene load_steps=29 format=3 uid="uid://bpmfnh2gfepdb"]
 
 [ext_resource type="Script" uid="uid://bxvny668eguvv" path="res://scripts/characters/watermelon.gd" id="1_vlmfl"]
 [ext_resource type="Texture2D" uid="uid://d0rapm3oo8vmm" path="res://assets/watermelon/watermelon_idle.png" id="2_11m30"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bfiy7duu6tjkw" path="res://scripts/components/character_components/fruit_components/watermelon_components/watermelon_animation_manager_component.gd" id="6_8mcj1"]
 [ext_resource type="Script" uid="uid://ylcuyobhupph" path="res://scripts/components/character_components/fruit_components/watermelon_components/watermelon_command_manager_component.gd" id="7_fl2h7"]
 [ext_resource type="Script" uid="uid://d10od3vdq30et" path="res://scripts/components/character_components/fruit_components/watermelon_components/watermelon_reactive_component.gd" id="8_ko7bv"]
+[ext_resource type="Script" uid="uid://bifaixrqnd5n7" path="res://scripts/components/character_components/fruit_components/watermelon_components/watermelon_damage_component.gd" id="9_pmonm"]
 
 [sub_resource type="Animation" id="Animation_1bs3t"]
 length = 0.001
@@ -275,7 +276,7 @@ graph_offset = Vector2(-95.55001, -92.70002)
 radius = 55.994568
 height = 245.9762
 
-[node name="Watermelon" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component")]
+[node name="Watermelon" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component", "damage_component")]
 z_index = 1
 collision_layer = 4
 collision_mask = 15
@@ -283,6 +284,7 @@ script = ExtResource("1_vlmfl")
 animation_manager_component = NodePath("AnimationManagerComponent")
 command_manager_component = NodePath("CommandManagerComponent")
 reactive_component = NodePath("ReactiveComponent")
+damage_component = NodePath("DamageComponent")
 speed = 200.0
 metadata/_custom_type_script = "uid://bquw4773xgiaq"
 
@@ -312,6 +314,9 @@ script = ExtResource("7_fl2h7")
 
 [node name="ReactiveComponent" type="Node" parent="."]
 script = ExtResource("8_ko7bv")
+
+[node name="DamageComponent" type="Node" parent="."]
+script = ExtResource("9_pmonm")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
