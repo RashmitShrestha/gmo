@@ -1,12 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://ds2h37wv00i2f"]
+[gd_scene load_steps=23 format=3 uid="uid://ds2h37wv00i2f"]
 
-[ext_resource type="Script" path="res://main_menu.gd" id="1_glbon"]
+[ext_resource type="Script" uid="uid://d2ma5d13r27x6" path="res://main_menu.gd" id="1_glbon"]
 [ext_resource type="Texture2D" uid="uid://bsna14p8dk1js" path="res://assets/Main Menu/main_menu_background.png" id="2_j5v2v"]
 [ext_resource type="Texture2D" uid="uid://dstps8ssgrnu7" path="res://assets/Main Menu/Play_Not-Pressed.png" id="3_glbon"]
 [ext_resource type="Texture2D" uid="uid://bjffvldeouo62" path="res://assets/Main Menu/gmo_logo.png" id="3_iotk1"]
 [ext_resource type="Texture2D" uid="uid://bu7vac1dmj66k" path="res://assets/Main Menu/Play_Pressed.png" id="4_nlkkf"]
 [ext_resource type="Texture2D" uid="uid://dayg7ksqx01rp" path="res://assets/Main Menu/Play_Hover.png" id="5_0o4t1"]
-[ext_resource type="Texture2D" uid="uid://d2mwt651ar77h" path="res://assets/Inventory_1.png" id="5_inventory"]
 [ext_resource type="Texture2D" uid="uid://f88jsdr3arv3" path="res://assets/Main Menu/Settings_Not-Pressed.png" id="5_qe12f"]
 [ext_resource type="Texture2D" uid="uid://b0alkfsthk2d6" path="res://assets/Main Menu/Settings_Pressed.png" id="6_8qtwp"]
 [ext_resource type="Texture2D" uid="uid://bt7nl78se3vao" path="res://assets/Main Menu/Quit_Not-Pressed.png" id="7_dy7ct"]
@@ -46,6 +45,21 @@ unicode = 81
 [sub_resource type="Shortcut" id="Shortcut_g8g3n"]
 events = [SubResource("InputEventKey_cm266")]
 
+[sub_resource type="Animation" id="Animation_w44g7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(657, 105)]
+}
+
 [sub_resource type="Animation" id="Animation_iotk1"]
 resource_name = "float"
 length = 1.8
@@ -62,21 +76,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(657, 105), Vector2(657, 108), Vector2(657, 110.96629), Vector2(657, 113.89849), Vector2(657, 116.79621), Vector2(657, 120.65904), Vector2(657, 122.474815), Vector2(657, 125.266785), Vector2(657, 128.02261), Vector2(657, 124.74185), Vector2(657, 121.49812), Vector2(657, 118.29189), Vector2(657, 115.12364), Vector2(657, 111.99385), Vector2(657, 109.90302), Vector2(657, 106.83851), Vector2(657, 103.813995), Vector2(657, 103.830025)]
-}
-
-[sub_resource type="Animation" id="Animation_w44g7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(657, 105)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cm266"]
@@ -115,7 +114,7 @@ offset_left = -444.80005
 offset_top = -67.66
 offset_right = 16.199951
 offset_bottom = 300.84
-grow_horizontal = 0
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
@@ -152,31 +151,6 @@ texture_pressed = ExtResource("8_0o4t1")
 texture_hover = ExtResource("11_iotk1")
 stretch_mode = 0
 
-[node name="SettingsContainer" type="CenterContainer" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -71.5
-offset_top = -45.5
-offset_right = 71.5
-offset_bottom = 45.5
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="SettingsContainer"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="TextureRect" type="TextureRect" parent="SettingsContainer/PanelContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-texture = ExtResource("5_inventory")
-
 [node name="TextureRect2" type="TextureRect" parent="."]
 layout_direction = 1
 layout_mode = 0
@@ -192,6 +166,3 @@ libraries = {
 &"": SubResource("AnimationLibrary_cm266")
 }
 autoplay = "float"
-
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Settings" to="SettingsContainer" method="show"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Settings" to="SettingsContainer" method="set_mouse_filter" binds= [0]]

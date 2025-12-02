@@ -701,10 +701,8 @@ texture = ExtResource("3_ah84j")
 11:12/0 = 0
 12:12/0 = 0
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lc0e6"]
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_os3kr"]
-texture = SubResource("CompressedTexture2D_lc0e6")
+texture = ExtResource("5_a2vqc")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
