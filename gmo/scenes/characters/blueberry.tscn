@@ -330,7 +330,7 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_lbkys"]
 colors = PackedColorArray(0, 0, 0, 0.59607846, 1, 1, 1, 0.65882355)
 
-[node name="blueberry" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component")]
+[node name="Blueberry" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component")]
 z_index = 1
 collision_layer = 2
 collision_mask = 4

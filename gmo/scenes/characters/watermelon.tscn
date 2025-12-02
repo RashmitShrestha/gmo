@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://byv07qqap6fn5" path="res://assets/watermelon/watermelon_death.png" id="5_fl2h7"]
 [ext_resource type="Script" uid="uid://bfiy7duu6tjkw" path="res://scripts/components/character_components/fruit_components/watermelon_components/watermelon_animation_manager_component.gd" id="6_8mcj1"]
 [ext_resource type="Script" uid="uid://ylcuyobhupph" path="res://scripts/components/character_components/fruit_components/watermelon_components/watermelon_command_manager_component.gd" id="7_fl2h7"]
-[ext_resource type="Script" uid="uid://dkq7qiuvsgpy1" path="res://scripts/components/character_components/fruit_components/watermelon_components/watermelon_reactive_component.gd" id="8_ko7bv"]
+[ext_resource type="Script" uid="uid://d10od3vdq30et" path="res://scripts/components/character_components/fruit_components/watermelon_components/watermelon_reactive_component.gd" id="8_ko7bv"]
 [ext_resource type="Script" uid="uid://bhxvb4ri02c8t" path="res://scripts/components/character_components/damage_component.gd" id="9_pmonm"]
 
 [sub_resource type="Animation" id="Animation_1bs3t"]
@@ -284,15 +284,7 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_pmonm"]
 colors = PackedColorArray(0, 0, 0, 0.59607846, 1, 1, 1, 0.65882355)
 
-[sub_resource type="Curve" id="Curve_pmonm"]
-_limits = [0.0, 30.0, 0.0, 10.0]
-_data = [Vector2(0.06666684, 19.253733), 0.0, 0.0, 0, 0, Vector2(10, 0.44776154), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Gradient" id="Gradient_pmonm"]
-colors = PackedColorArray(0, 0, 0, 0.59607846, 1, 1, 1, 0.65882355)
-
-[node name="Watermelon" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component", "damage_component")]
+[node name="Watermelon" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component")]
 z_index = 1
 collision_layer = 2
 collision_mask = 4
