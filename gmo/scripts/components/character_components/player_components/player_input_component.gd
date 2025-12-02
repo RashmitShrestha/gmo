@@ -21,6 +21,13 @@ func update(event: InputEvent) -> void:
 		
 	elif Input.is_action_just_pressed("special_3") and slice.current_element < 0:
 		slice.set_element(3)
+		
+	#elif Input.is_action_just_pressed("special_4"):
+
+	#elif Input.is_action_just_pressed("special_5"):
+#
+	#elif Input.is_action_just_pressed("special_6"):
+
 	
 	# Handle slicing/drawing
 	if Input.is_action_pressed("left_click") and _parent.global_position.distance_to(mouse_pos) < _parent.slice_radius:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dui38s68nj4ah"]
+[gd_scene load_steps=30 format=3 uid="uid://dui38s68nj4ah"]
 
 [ext_resource type="Script" uid="uid://r0bl6vjeurgd" path="res://scripts/characters/blueberry.gd" id="1_74cfi"]
 [ext_resource type="Texture2D" uid="uid://dju2tvcfsvkd6" path="res://assets/blueberry/blueberry_idle.png" id="2_gjfxf"]
@@ -313,6 +313,14 @@ states/idle/position = Vector2(352.52, 100.875)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_w0x03"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_d1l6q"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_gdgj5"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_1fcle"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_rea8b"), "hurt", "attack", SubResource("AnimationNodeStateMachineTransition_iu6qv"), "attack", "hurt", SubResource("AnimationNodeStateMachineTransition_xw55q")]
 graph_offset = Vector2(13.109772, -77.25007)
 
+[sub_resource type="Curve" id="Curve_3q58b"]
+_limits = [0.0, 30.0, 0.0, 10.0]
+_data = [Vector2(0.06666684, 19.253733), 0.0, 0.0, 0, 0, Vector2(10, 0.44776154), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_lbkys"]
+colors = PackedColorArray(0, 0, 0, 0.59607846, 1, 1, 1, 0.65882355)
+
 [node name="blueberry" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component")]
 z_index = 1
 collision_layer = 4
@@ -359,3 +367,72 @@ collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_57wkv")
+
+[node name="FlameParticle" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2(2, -2)
+lifetime = 2.0
+preprocess = 1.24
+speed_scale = 2.0
+randomness = 0.25
+emission_shape = 3
+emission_rect_extents = Vector2(20, 20)
+direction = Vector2(0, 0)
+gravity = Vector2(0, -20)
+initial_velocity_min = 10.09
+initial_velocity_max = 20.19
+linear_accel_min = 0.5
+linear_accel_max = 5.0
+radial_accel_min = 4.12
+radial_accel_max = 28.87
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_3q58b")
+color = Color(0.8039216, 0.4509804, 0.32941177, 0.6431373)
+
+[node name="FrozenParticle" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2(2, -2)
+lifetime = 2.0
+preprocess = 1.24
+speed_scale = 2.0
+randomness = 0.05
+emission_shape = 3
+emission_rect_extents = Vector2(20, 20)
+direction = Vector2(0, 0)
+spread = 67.27
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.09
+initial_velocity_max = 20.19
+angular_velocity_max = 10.0
+linear_accel_min = 0.5
+linear_accel_max = 5.0
+radial_accel_min = 4.12
+radial_accel_max = 28.87
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_3q58b")
+color = Color(0.13045967, 0.6132431, 0.7802239, 0.6431373)
+
+[node name="FermentParticle" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2(-5, -6)
+lifetime = 2.0
+preprocess = 1.24
+speed_scale = 2.0
+randomness = 0.25
+emission_shape = 3
+emission_rect_extents = Vector2(20, 20)
+direction = Vector2(0, 0)
+spread = 67.27
+gravity = Vector2(0, -20)
+initial_velocity_min = 10.09
+initial_velocity_max = 20.19
+orbit_velocity_min = 0.1
+orbit_velocity_max = 0.3
+linear_accel_min = 0.5
+linear_accel_max = 5.0
+radial_accel_min = 4.12
+radial_accel_max = 28.87
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_3q58b")
+color = Color(0.30588236, 0.5803922, 0.27058825, 0.67058825)
+color_ramp = SubResource("Gradient_lbkys")

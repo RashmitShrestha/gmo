@@ -14,6 +14,9 @@ var stun_time: float = 1.0
 var warden: Warden
 var stunned: bool = false
 
+# indicates whether its affeted by the fertilized ability
+var fertilized : bool = false
+
 @onready var animation_tree: AnimationTree = $AnimationTree
 
 func _ready():

@@ -12,7 +12,6 @@ var curr_command: Command
 var step_command: WatermelonStepCommand
 var stun_command: WatermelonStunCommand
 
-
 func _ready():
 	super()
 

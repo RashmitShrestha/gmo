@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://s1it7mo56jx"]
+[gd_scene load_steps=30 format=3 uid="uid://s1it7mo56jx"]
 
 [ext_resource type="Script" uid="uid://djfh0hup035g7" path="res://scripts/characters/banana.gd" id="1_srj6n"]
 [ext_resource type="Texture2D" uid="uid://dgtj0t07ntlq2" path="res://assets/banana/banana_idle.png" id="2_srj6n"]
@@ -339,6 +339,14 @@ _data = {
 radius = 18.0
 height = 90.33386
 
+[sub_resource type="Curve" id="Curve_26yur"]
+_limits = [0.0, 30.0, 0.0, 10.0]
+_data = [Vector2(0.06666684, 19.253733), 0.0, 0.0, 0, 0, Vector2(10, 0.44776154), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_xeu8w"]
+colors = PackedColorArray(0, 0, 0, 0.59607846, 1, 1, 1, 0.65882355)
+
 [node name="Banana" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component")]
 z_index = 1
 collision_layer = 4
@@ -389,3 +397,70 @@ position = Vector2(-10.999999, 4.0000005)
 rotation = 0.11021842
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("CapsuleShape2D_hpx1l")
+
+[node name="FlameParticle" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2(-9, 6)
+lifetime = 2.0
+preprocess = 1.24
+speed_scale = 2.0
+randomness = 0.25
+emission_shape = 3
+emission_rect_extents = Vector2(20, 40)
+gravity = Vector2(0, -20)
+initial_velocity_min = 10.09
+initial_velocity_max = 20.19
+linear_accel_min = 0.5
+linear_accel_max = 5.0
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_26yur")
+color = Color(0.8039216, 0.4509804, 0.32941177, 0.6431373)
+
+[node name="FrozenParticle" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2(-7, 4)
+lifetime = 2.0
+preprocess = 1.24
+speed_scale = 2.0
+randomness = 0.05
+emission_shape = 3
+emission_rect_extents = Vector2(20, 40)
+direction = Vector2(0, 0)
+spread = 67.27
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.09
+initial_velocity_max = 20.19
+angular_velocity_min = 10.0
+angular_velocity_max = 30.0
+linear_accel_min = 0.5
+linear_accel_max = 5.0
+radial_accel_min = 4.12
+radial_accel_max = 28.87
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_26yur")
+color = Color(0.13045967, 0.6132431, 0.7802239, 0.6431373)
+
+[node name="FermentParticle" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2(-6, 7)
+lifetime = 2.0
+preprocess = 1.24
+speed_scale = 2.0
+randomness = 0.25
+emission_shape = 3
+emission_rect_extents = Vector2(20, 40)
+direction = Vector2(0, 0)
+spread = 67.27
+gravity = Vector2(0, -20)
+initial_velocity_min = 10.09
+initial_velocity_max = 20.19
+orbit_velocity_min = 0.1
+orbit_velocity_max = 0.3
+linear_accel_min = 0.5
+linear_accel_max = 5.0
+radial_accel_min = 4.12
+radial_accel_max = 28.87
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_26yur")
+color = Color(0.30588236, 0.5803922, 0.27058825, 0.67058825)
+color_ramp = SubResource("Gradient_xeu8w")
