@@ -349,8 +349,8 @@ colors = PackedColorArray(0, 0, 0, 0.59607846, 1, 1, 1, 0.65882355)
 
 [node name="Banana" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component")]
 z_index = 1
-collision_layer = 4
-collision_mask = 15
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_srj6n")
 animation_manager_component = NodePath("AnimationManagerComponent")
 command_manager_component = NodePath("CommandManagerComponent")
@@ -389,8 +389,7 @@ script = ExtResource("7_bdl2a")
 script = ExtResource("8_s8p0x")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 15
+collision_layer = 0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-10.999999, 4.0000005)

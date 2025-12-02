@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://da363lhrtmk23" path="res://scripts/components/character_components/fruit_components/grape_components/grape_animation_manager_component.gd" id="6_gcaue"]
 [ext_resource type="Script" uid="uid://bw8pi0h33nb7h" path="res://scripts/components/character_components/fruit_components/grape_components/grape_command_manager_component.gd" id="7_w5yg7"]
 [ext_resource type="Script" uid="uid://ba4w0chas82hm" path="res://scripts/components/character_components/fruit_components/grape_components/grape_reactive_component.gd" id="8_4hmav"]
+[ext_resource type="Script" uid="uid://bhxvb4ri02c8t" path="res://scripts/components/character_components/damage_component.gd" id="9_olgj5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]
 radius = 34.058773
@@ -347,8 +348,8 @@ colors = PackedColorArray(0, 0, 0, 0.59607846, 1, 1, 1, 0.65882355)
 [node name="Grape" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component")]
 z_index = 1
 scale = Vector2(2, 2)
-collision_layer = 4
-collision_mask = 15
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_0y666")
 animation_manager_component = NodePath("AnimationManagerComponent")
 command_manager_component = NodePath("CommandManagerComponent")
@@ -385,9 +386,14 @@ script = ExtResource("7_w5yg7")
 [node name="ReactiveComponent" type="Node" parent="."]
 script = ExtResource("8_4hmav")
 
+[node name="DamageComponent" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("9_olgj5")
+hitbox = NodePath("../Area2D")
+damage_amount = 7.0
+metadata/_custom_type_script = "uid://bhxvb4ri02c8t"
+
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 15
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -0.5)

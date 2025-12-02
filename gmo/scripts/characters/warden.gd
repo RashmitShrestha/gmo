@@ -43,7 +43,9 @@ func _ready() -> void:
 	
 	received_damage.connect(
 		func(damage, _source):
+			damaged = true
 			SignalBus.player_health_changed.emit(curr_health - damage, max_health)
+			hurt_animation()
 			make_invulnerable()
 			curr_health -= damage
 	)
@@ -84,3 +86,10 @@ func make_invulnerable() -> void:
 
 	_invulnerability_timer.start(invulnerability_duration)
 	_blink_timer.start(0.06)
+	
+func hurt_animation():
+	for anim in range(4):
+		sprite.self_modulate = Color(1.0, 0.117, 0.419, 0.5)
+		await get_tree().create_timer(.2).timeout
+		sprite.self_modulate = Color(1,1,1,1)
+		get_tree().create_timer(.5).timeout

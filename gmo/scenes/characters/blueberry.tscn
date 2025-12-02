@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://csopiplictw8j" path="res://scripts/components/character_components/fruit_components/blueberry_components/blueberry_animation_manager_component.gd" id="6_t03vd"]
 [ext_resource type="Script" uid="uid://bq0uvpdkcpio8" path="res://scripts/components/character_components/fruit_components/blueberry_components/blueberry_command_manager_compnent.gd" id="7_duaux"]
 [ext_resource type="Script" uid="uid://b07x7fbfsatk3" path="res://scripts/components/character_components/fruit_components/blueberry_components/blueberry_reactive_component.gd" id="8_ylke1"]
+[ext_resource type="Script" uid="uid://bhxvb4ri02c8t" path="res://scripts/components/character_components/damage_component.gd" id="9_lbkys"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]
 radius = 30.0
@@ -321,10 +322,18 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_lbkys"]
 colors = PackedColorArray(0, 0, 0, 0.59607846, 1, 1, 1, 0.65882355)
 
+[sub_resource type="Curve" id="Curve_3q58b"]
+_limits = [0.0, 30.0, 0.0, 10.0]
+_data = [Vector2(0.06666684, 19.253733), 0.0, 0.0, 0, 0, Vector2(10, 0.44776154), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_lbkys"]
+colors = PackedColorArray(0, 0, 0, 0.59607846, 1, 1, 1, 0.65882355)
+
 [node name="blueberry" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component")]
 z_index = 1
-collision_layer = 4
-collision_mask = 15
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_74cfi")
 animation_manager_component = NodePath("AnimationManagerComponent")
 command_manager_component = NodePath("CommandManagerComponent")
@@ -361,9 +370,13 @@ script = ExtResource("7_duaux")
 [node name="ReactiveComponent" type="Node" parent="."]
 script = ExtResource("8_ylke1")
 
+[node name="DamageComponent" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("9_lbkys")
+hitbox = NodePath("../Area2D")
+damage_amount = 3.0
+
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 15
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_57wkv")

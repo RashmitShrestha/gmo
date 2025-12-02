@@ -349,8 +349,8 @@ colors = PackedColorArray(0, 0, 0, 0.59607846, 1, 1, 1, 0.65882355)
 
 [node name="Pomegranate" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component")]
 z_index = 1
-collision_layer = 4
-collision_mask = 15
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_heb65")
 max_dist = 500.0
 animation_manager_component = NodePath("AnimationManagerComponent")
