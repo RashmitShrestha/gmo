@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://brm71c424vql4"]
+
+[ext_resource type="Script" uid="uid://dr17lbjkypoh2" path="res://scripts/peach_tree.gd" id="1_cavh2"]
+[ext_resource type="Texture2D" uid="uid://waojdo12cvsa" path="res://assets/peach/peach_tree_pink.png" id="1_qj8yx"]
+[ext_resource type="PackedScene" uid="uid://bak4bhorn5qlw" path="res://scenes/interactable.tscn" id="2_cavh2"]
+[ext_resource type="Script" uid="uid://l2jcs7r6q2g" path="res://scripts/interactable.gd" id="3_44br5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7iib2"]
+radius = 469.88617
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cavh2"]
+radius = 57.731194
+
+[node name="PeachTree" type="Area2D"]
+script = ExtResource("1_cavh2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7iib2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(8, 8)
+texture = ExtResource("1_qj8yx")
+
+[node name="Interactable" parent="." instance=ExtResource("2_cavh2")]
+script = ExtResource("3_44br5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+scale = Vector2(8, 8)
+shape = SubResource("CircleShape2D_cavh2")
