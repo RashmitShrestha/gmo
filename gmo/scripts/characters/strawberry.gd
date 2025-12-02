@@ -3,6 +3,9 @@ extends Fruit
 
 @export var min_dist: float = 20.0
 @export var max_dist: float = 50.0
+@export var projectile: PackedScene
+@export var shot_speed: float
+@export var frequency: float
 @export var animation_manager_component: StrawberryAnimationManagerComponent
 @export var command_manager_component: StrawberryCommandManagerComponent
 @export var reactive_component: StrawberryReactiveComponent
@@ -22,7 +25,7 @@ func _ready():
 	
 	move_in_command = StrawberryMoveInCommand.new(speed)
 	move_out_command = StrawberryMoveOutCommand.new(speed)
-	shoot_command = StrawberryShootCommand.new()
+	shoot_command = StrawberryShootCommand.new(projectile, shot_speed, frequency)
 	
 
 

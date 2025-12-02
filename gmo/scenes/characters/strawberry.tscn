@@ -1,6 +1,7 @@
-[gd_scene load_steps=28 format=3 uid="uid://ctsmh36aqyq5t"]
+[gd_scene load_steps=29 format=3 uid="uid://ctsmh36aqyq5t"]
 
 [ext_resource type="Script" uid="uid://dysgo16t22eu1" path="res://scripts/characters/strawberry.gd" id="1_h8us4"]
+[ext_resource type="PackedScene" uid="uid://j73h6fixrqui" path="res://scenes/seed.tscn" id="2_otaaa"]
 [ext_resource type="Texture2D" uid="uid://bx1ik1qy70hbg" path="res://assets/strawberry/strawberry_idle.png" id="2_rvm71"]
 [ext_resource type="Texture2D" uid="uid://dymfstb2qif5g" path="res://assets/strawberry/strawberry_attack.png" id="3_th2og"]
 [ext_resource type="Texture2D" uid="uid://d06gjxoa56j3h" path="res://assets/strawberry/strawberry_hurt.png" id="4_o3wpt"]
@@ -339,11 +340,14 @@ radius = 40.311287
 
 [node name="Strawberry" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component")]
 z_index = 1
-collision_layer = 4
-collision_mask = 15
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_h8us4")
 min_dist = 400.0
 max_dist = 800.0
+projectile = ExtResource("2_otaaa")
+shot_speed = 600.0
+frequency = 0.65
 animation_manager_component = NodePath("AnimationManagerComponent")
 command_manager_component = NodePath("CommandManagerComponent")
 reactive_component = NodePath("ReactiveComponent")
@@ -375,6 +379,9 @@ script = ExtResource("6_o3wpt")
 [node name="CommandManagerComponent" type="Node" parent="."]
 script = ExtResource("7_5fw15")
 
+[node name="ReactiveComponent" type="Node" parent="."]
+script = ExtResource("8_xqngi")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 4)
 shape = SubResource("CircleShape2D_57wkv")
@@ -386,6 +393,3 @@ collision_mask = 15
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-1, 3)
 shape = SubResource("CircleShape2D_57wkv")
-
-[node name="ReactiveComponent" type="Node" parent="."]
-script = ExtResource("8_xqngi")

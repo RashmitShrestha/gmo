@@ -340,8 +340,8 @@ graph_offset = Vector2(-12.787549, -88.83748)
 [node name="SingleGrape" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component")]
 z_index = 1
 scale = Vector2(2, 2)
-collision_layer = 4
-collision_mask = 15
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_sga2y")
 animation_manager_component = NodePath("AnimationManagerComponent")
 command_manager_component = NodePath("CommandManagerComponent")
