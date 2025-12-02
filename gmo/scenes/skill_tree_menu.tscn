@@ -48,8 +48,10 @@ offset_bottom = 40.0
 
 [node name="DescriptionBox" type="PanelContainer" parent="Control"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 806.0
+offset_top = 538.0
+offset_right = 924.0
+offset_bottom = 639.0
 
 [node name="DescriptionLabel" type="Label" parent="Control/DescriptionBox"]
 layout_mode = 2

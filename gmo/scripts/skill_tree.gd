@@ -32,13 +32,13 @@ var paths: Dictionary = {
 	"flame": {
 		"title": "Flame Path",
 		"nodes": [
-			{"id": "fire_trail", "name": "Fire Trail", "pos": Vector2(300, 250), "xp_cost": 100, "description": "Leave a trail of fire behind you that damages enemies who walk through it."},
-			{"id": "+10% Attack", "name": "+10% Attack", "pos": Vector2(150, 250), "xp_cost": 100, "description": "Permanently increase your attack damage by 10%."},
-			{"id": "trail_upgrade", "name": "Trail\nUpgrade", "pos": Vector2(400, 150), "xp_cost": 150, "description": "Your fire trail lasts longer and deals more damage."},
-			{"id": "status1", "name": "Status 1", "pos": Vector2(550, 150), "xp_cost": 200, "description": "Enemies hit by fire have a chance to be set ablaze."},
-			{"id": "ability", "name": "Ability", "pos": Vector2(400, 400), "xp_cost": 250, "description": "Unlock a powerful fire ability."},
-			{"id": "ability_upgrade", "name": "Ability\nUpgrade", "pos": Vector2(350, 550), "xp_cost": 300, "description": "Enhance your fire ability with increased range."},
-			{"id": "status2", "name": "Status 2", "pos": Vector2(550, 400), "xp_cost": 200, "description": "Burning enemies take increased damage from all sources."}
+			{"id": "+10% Attack", "name": "Grilled Gumption", "pos": Vector2(200, 600), "xp_cost": 100, "description": "Permanently increase your attack damage by 10%."},
+			{"id": "fire_trail", "name": "Torched and Tender", "pos": Vector2(200, 200), "xp_cost": 100, "description": "For 3 seconds, your main attack leaves a fiery trail that burns enemies. (burn lasts 2 seconds)"},
+			{"id": "trail_upgrade", "name": "Broiled Brutality", "pos": Vector2(500, 125), "xp_cost": 150, "description": " 'Torched and Tender' is increased to 5 seconds and has double burn damage"},
+			{"id": "status1", "name": "Carmelized Cruelty", "pos": Vector2(700, 150), "xp_cost": 200, "description": "Crit chance and Crit damage increased by 20% if enemy is burned"},
+			{"id": "ability", "name": "Flaming Finger", "pos": Vector2(375, 250), "xp_cost": 250, "description": "Flambé enemies with your blowtorch!"},
+			{"id": "ability_upgrade", "name": "Flambéed Fury", "pos": Vector2(350, 475), "xp_cost": 300, "description": "Your blowtorch range and damage are increased and flambé in all 4 directions."},
+			{"id": "status2", "name": "Searing Indignation", "pos": Vector2(650, 375), "xp_cost": 200, "description": "Every consecutive attack on an enemy increases CRIT DMG, CRIT chance, and ATK by 1%. (Slash window resets after 0.5 seconds)"}
 		],
 		"connections": [
 			["fire_trail", "+10% Attack"],
@@ -52,13 +52,13 @@ var paths: Dictionary = {
 	"frost": {
 		"title": "Frost Path",
 		"nodes": [
-			{"id": "trail", "name": "Frost Trail", "pos": Vector2(300, 250), "xp_cost": 100, "description": "Leave a trail of ice that slows enemies who walk through it."},
-			{"id": "+10% Movement Speed", "name": "+10% Movement\nSpeed", "pos": Vector2(150, 250), "xp_cost": 100, "description": "Permanently increase your movement speed by 10%."},
-			{"id": "trail_upgrade", "name": "Trail\nUpgrade", "pos": Vector2(400, 150), "xp_cost": 150, "description": "Your frost trail slows enemies even more."},
-			{"id": "status1", "name": "Status 1", "pos": Vector2(550, 150), "xp_cost": 200, "description": "Enemies hit by frost have a chance to be frozen."},
-			{"id": "ability", "name": "Ability", "pos": Vector2(400, 400), "xp_cost": 250, "description": "Unlock a powerful frost ability."},
-			{"id": "ability_upgrade", "name": "Ability\nUpgrade", "pos": Vector2(350, 550), "xp_cost": 300, "description": "Enhance your frost ability with increased effect."},
-			{"id": "status2", "name": "Status 2", "pos": Vector2(550, 400), "xp_cost": 200, "description": "Frozen enemies shatter when killed, damaging nearby foes."}
+			{"id": "+10% Movement Speed", "name": "Glacial Glide", "pos": Vector2(200, 600), "xp_cost": 100, "description": "Permanently increase your movement speed by 10%."},
+			{"id": "trail", "name": "Crystallized Cascade ", "pos": Vector2(200, 200), "xp_cost": 100, "description": "For 3 seconds, your main attack leaves a trail of ice that freezes enemies for 0.5 seconds every 1 second"},
+			{"id": "trail_upgrade", "name": "Permafrost Promenade", "pos": Vector2(500, 125), "xp_cost": 150, "description": "Your frost trail now freezes for 1 second every second and its duration is increased to 5 seconds."},
+			{"id": "status1", "name": "Frostbite Fracture", "pos": Vector2(700, 150), "xp_cost": 200, "description": "Emit a frozen shockwave every 5 seconds that freezes enemies for 1 second"},
+			{"id": "ability", "name": "Frame Freeze", "pos": Vector2(375, 250), "xp_cost": 250, "description": "Freeze all enemies on screen for 2 seconds. (Projectiles can still move)"},
+			{"id": "ability_upgrade", "name": "Nitrogen Nirvana", "pos": Vector2(350, 475), "xp_cost": 300, "description": "After you activate Frame Freeze, double movement speed, and gain unlimited range. (Freeze Frame duration increased to 3 seconds)"},
+			{"id": "status2", "name": "Refrigerated Reflexes", "pos": Vector2(650, 375), "xp_cost": 200, "description": "Your main attack now slows enemies for 2 seconds"}
 		],
 		"connections": [
 			["trail", "+10% Movement Speed"],
@@ -72,13 +72,13 @@ var paths: Dictionary = {
 	"ferment": {
 		"title": "Fermented Path",
 		"nodes": [
-			{"id": "trail", "name": "Fermented Trail", "pos": Vector2(300, 250), "xp_cost": 100, "description": "Leave a trail of fermented essence that poisons enemies."},
-			{"id": "+10% Health", "name": "+10% Health", "pos": Vector2(150, 250), "xp_cost": 100, "description": "Permanently increase your maximum health by 10%."},
-			{"id": "trail_upgrade", "name": "Trail\nUpgrade", "pos": Vector2(400, 150), "xp_cost": 150, "description": "Your fermented trail deals more poison damage."},
-			{"id": "status1", "name": "Status 1", "pos": Vector2(550, 150), "xp_cost": 200, "description": "Poisoned enemies spread the effect to nearby foes."},
-			{"id": "ability", "name": "Ability", "pos": Vector2(400, 400), "xp_cost": 250, "description": "Unlock a powerful fermented ability."},
-			{"id": "ability_upgrade", "name": "Ability\nUpgrade", "pos": Vector2(350, 550), "xp_cost": 300, "description": "Enhance your fermented ability with increased potency."},
-			{"id": "status2", "name": "Status 2", "pos": Vector2(550, 400), "xp_cost": 200, "description": "Poisoned enemies heal you when they die."}
+			{"id": "+10% Health", "name": "Ripened resilience", "pos": Vector2(200, 600), "xp_cost": 100, "description": "Permanently increase your maximum health by 10%."},
+			{"id": "trail", "name": "Leeching Loam", "pos": Vector2(200, 200), "xp_cost": 100, "description": "For 3 seconds, your main attack leaves a trail of fertilizer that lifesteals from fruits."},
+			{"id": "trail_upgrade", "name": "Vitamin Vamparism", "pos": Vector2(500, 125), "xp_cost": 150, "description": "Increase fermented trail duration to 5 seconds and siphon 10% ATK from each fruit that touches your fermented trail (Only applies once per trail activation)"},
+			{"id": "status1", "name": "Overripe Outrage", "pos": Vector2(700, 150), "xp_cost": 200, "description": "Deal extra % based damage depending on your health. (Full health multiplier is 100% of base attack)"},
+			{"id": "ability", "name": "Fertilized Farm", "pos": Vector2(375, 250), "xp_cost": 250, "description": "For 5 seconds every fruit you kill revives as an ally fruit at full health. Ally fruits attack enemy fruit for 10 seconds before fully decaying."},
+			{"id": "ability_upgrade", "name": "Vineyard Vengeance", "pos": Vector2(350, 475), "xp_cost": 300, "description": "All ally fruits have their base stats doubled."},
+			{"id": "status2", "name": "Hard to Peel", "pos": Vector2(650, 375), "xp_cost": 200, "description": "Gain a recharging shield that nullifies the first hit from an enemy.(Shield Recharges every 10 seconds)"}
 		],
 		"connections": [
 			["trail", "+10% Health"],
@@ -104,7 +104,7 @@ func _ready() -> void:
 	add_to_group("skill_tree_menu")
 	control.visible = false
 	description_box.visible = false
-	
+
 	# Move title to the right
 	title_label.position.x = 450
 	
@@ -212,11 +212,8 @@ func _create_skill_node(data: Dictionary) -> void:
 	var cost_label = Label.new()
 	if xp_cost > 0:
 		cost_label.text = str(xp_cost) + " XP"
-	else:
-		cost_label.text = "FREE"
+
 	cost_label.position = Vector2(5, 60)
-	cost_label.add_theme_font_size_override("font_size", 12)
-	cost_label.add_theme_color_override("font_color", Color(1, 0.8, 0))  # Gold color
 	container.add_child(cost_label)
 	
 	nodes.add_child(container)
@@ -367,6 +364,13 @@ func _on_skill_hover(skill_id: String) -> void:
 			description_label.text = desc + "\n\nCost: " + str(cost) + " XP\n[Locked - unlock connected skill first]"
 		
 		description_box.visible = true
+		
+	# Prevents descrption box from going over the edge
+	var viewport_size = get_viewport().get_visible_rect().size
+	description_box.position = Vector2(
+		viewport_size.x - description_box.size.x - 20, 
+		viewport_size.y - description_box.size.y - 20
+		)
 
 
 func _on_skill_hover_end() -> void:
