@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://j73h6fixrqui"]
+
+[ext_resource type="Script" uid="uid://xqtkhyltiuc3" path="res://scripts/seeds/seed.gd" id="1_6mtvd"]
+[ext_resource type="Texture2D" uid="uid://c1lfjyygeska6" path="res://assets/seed.png" id="2_kq6mk"]
+[ext_resource type="Script" uid="uid://bhxvb4ri02c8t" path="res://scripts/components/character_components/damage_component.gd" id="3_kq6mk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xr3pu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l184s"]
+radius = 10.049875
+
+[node name="Seed" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_6mtvd")
+lifetime = 3.5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_kq6mk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xr3pu")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_l184s")
+
+[node name="DamageComponent" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("3_kq6mk")
+hitbox = NodePath("../Area2D")
+damage_amount = 2.0
+metadata/_custom_type_script = "uid://bhxvb4ri02c8t"
