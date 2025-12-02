@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://1pjw4u0ygl5p"]
+
+[ext_resource type="Script" uid="uid://ciid3eva2ycqs" path="res://scripts/interacting_component.gd" id="1_ofc3v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sil8h"]
+radius = 52.009613
+
+[node name="InteractingComponent" type="Node2D"]
+script = ExtResource("1_ofc3v")
+
+[node name="InteractRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractRange"]
+shape = SubResource("CircleShape2D_sil8h")
+
+[node name="InteractLabel" type="Label" parent="."]
+offset_left = -47.0
+offset_top = 53.0
+offset_right = 47.0
+offset_bottom = 76.0
+text = "F to Interact"

@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://0cg4bkhm5jbt"]
+
+[ext_resource type="Script" uid="uid://crh0wx74jencf" path="res://scripts/skill_tree.gd" id="1_xjm4f"]
+[ext_resource type="Texture2D" uid="uid://ce48c3qwpx77b" path="res://assets/peach/skill_tree_background.png" id="2_petg3"]
+[ext_resource type="Script" uid="uid://dot86epaaeql8" path="res://scripts/skill_tree_lines.gd" id="3_k634w"]
+
+[node name="skill_tree_menu" type="CanvasLayer" groups=["skill_tree_menu"]]
+process_mode = 3
+script = ExtResource("1_xjm4f")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_right = 1092.0
+offset_bottom = 715.0
+texture = ExtResource("2_petg3")
+
+[node name="TitleLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="PathButtons" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SkillTree" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Lines" type="Control" parent="Control/SkillTree"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_k634w")
+
+[node name="Nodes" type="Control" parent="Control/SkillTree"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DescriptionBox" type="PanelContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DescriptionLabel" type="Label" parent="Control/DescriptionBox"]
+layout_mode = 2

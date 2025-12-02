@@ -1,0 +1,423 @@
+extends CanvasLayer
+
+@onready var control: Control = $Control
+@onready var lines: Control = $Control/SkillTree/Lines
+@onready var nodes: Control = $Control/SkillTree/Nodes
+@onready var title_label: Label = $Control/TitleLabel
+@onready var path_buttons: HBoxContainer = $Control/PathButtons
+@onready var description_box: PanelContainer = $Control/DescriptionBox
+@onready var description_label: Label = $Control/DescriptionBox/DescriptionLabel
+
+# XP Label to show current XP (add this node to your scene or create it dynamically)
+var xp_label: Label
+
+# Dictionary to store node references
+var skill_nodes: Dictionary = {}
+
+# Current active path
+var current_path: String = "flame"
+
+# Player's current XP (you'll want to connect this to your actual player stats)
+var player_xp: int = 500  # Starting XP for testing
+
+# Track unlocked skills (saved per path)
+var unlocked_skills: Dictionary = {
+	"flame": [],  # Starting skills (roots) are unlocked by default
+	"frost": [],
+	"ferment": []
+}
+
+# Define skill trees for each path (now with xp_cost!)
+var paths: Dictionary = {
+	"flame": {
+		"title": "Flame Path",
+		"nodes": [
+			{"id": "fire_trail", "name": "Fire Trail", "pos": Vector2(300, 250), "xp_cost": 100, "description": "Leave a trail of fire behind you that damages enemies who walk through it."},
+			{"id": "+10% Attack", "name": "+10% Attack", "pos": Vector2(150, 250), "xp_cost": 100, "description": "Permanently increase your attack damage by 10%."},
+			{"id": "trail_upgrade", "name": "Trail\nUpgrade", "pos": Vector2(400, 150), "xp_cost": 150, "description": "Your fire trail lasts longer and deals more damage."},
+			{"id": "status1", "name": "Status 1", "pos": Vector2(550, 150), "xp_cost": 200, "description": "Enemies hit by fire have a chance to be set ablaze."},
+			{"id": "ability", "name": "Ability", "pos": Vector2(400, 400), "xp_cost": 250, "description": "Unlock a powerful fire ability."},
+			{"id": "ability_upgrade", "name": "Ability\nUpgrade", "pos": Vector2(350, 550), "xp_cost": 300, "description": "Enhance your fire ability with increased range."},
+			{"id": "status2", "name": "Status 2", "pos": Vector2(550, 400), "xp_cost": 200, "description": "Burning enemies take increased damage from all sources."}
+		],
+		"connections": [
+			["fire_trail", "+10% Attack"],
+			["fire_trail", "trail_upgrade"],
+			["fire_trail", "ability"],
+			["trail_upgrade", "status1"],
+			["ability", "ability_upgrade"],
+			["ability", "status2"]
+		]
+	},
+	"frost": {
+		"title": "Frost Path",
+		"nodes": [
+			{"id": "trail", "name": "Frost Trail", "pos": Vector2(300, 250), "xp_cost": 100, "description": "Leave a trail of ice that slows enemies who walk through it."},
+			{"id": "+10% Movement Speed", "name": "+10% Movement\nSpeed", "pos": Vector2(150, 250), "xp_cost": 100, "description": "Permanently increase your movement speed by 10%."},
+			{"id": "trail_upgrade", "name": "Trail\nUpgrade", "pos": Vector2(400, 150), "xp_cost": 150, "description": "Your frost trail slows enemies even more."},
+			{"id": "status1", "name": "Status 1", "pos": Vector2(550, 150), "xp_cost": 200, "description": "Enemies hit by frost have a chance to be frozen."},
+			{"id": "ability", "name": "Ability", "pos": Vector2(400, 400), "xp_cost": 250, "description": "Unlock a powerful frost ability."},
+			{"id": "ability_upgrade", "name": "Ability\nUpgrade", "pos": Vector2(350, 550), "xp_cost": 300, "description": "Enhance your frost ability with increased effect."},
+			{"id": "status2", "name": "Status 2", "pos": Vector2(550, 400), "xp_cost": 200, "description": "Frozen enemies shatter when killed, damaging nearby foes."}
+		],
+		"connections": [
+			["trail", "+10% Movement Speed"],
+			["trail", "trail_upgrade"],
+			["trail", "ability"],
+			["trail_upgrade", "status1"],
+			["ability", "ability_upgrade"],
+			["ability", "status2"]
+		]
+	},
+	"ferment": {
+		"title": "Fermented Path",
+		"nodes": [
+			{"id": "trail", "name": "Fermented Trail", "pos": Vector2(300, 250), "xp_cost": 100, "description": "Leave a trail of fermented essence that poisons enemies."},
+			{"id": "+10% Health", "name": "+10% Health", "pos": Vector2(150, 250), "xp_cost": 100, "description": "Permanently increase your maximum health by 10%."},
+			{"id": "trail_upgrade", "name": "Trail\nUpgrade", "pos": Vector2(400, 150), "xp_cost": 150, "description": "Your fermented trail deals more poison damage."},
+			{"id": "status1", "name": "Status 1", "pos": Vector2(550, 150), "xp_cost": 200, "description": "Poisoned enemies spread the effect to nearby foes."},
+			{"id": "ability", "name": "Ability", "pos": Vector2(400, 400), "xp_cost": 250, "description": "Unlock a powerful fermented ability."},
+			{"id": "ability_upgrade", "name": "Ability\nUpgrade", "pos": Vector2(350, 550), "xp_cost": 300, "description": "Enhance your fermented ability with increased potency."},
+			{"id": "status2", "name": "Status 2", "pos": Vector2(550, 400), "xp_cost": 200, "description": "Poisoned enemies heal you when they die."}
+		],
+		"connections": [
+			["trail", "+10% Health"],
+			["trail", "trail_upgrade"],
+			["trail", "ability"],
+			["trail_upgrade", "status1"],
+			["ability", "ability_upgrade"],
+			["ability", "status2"]
+		]
+	}
+}
+
+# Store skill data for quick lookup
+var skill_data: Dictionary = {}
+
+# Style resources for different button states
+var style_locked: StyleBoxFlat
+var style_unlocked: StyleBoxFlat
+var style_purchasable: StyleBoxFlat
+
+
+func _ready() -> void:
+	add_to_group("skill_tree_menu")
+	control.visible = false
+	description_box.visible = false
+	
+	# Move title to the right
+	title_label.position.x = 450
+	
+	# Create styles for buttons
+	_create_button_styles()
+	
+	# Create XP label
+	_create_xp_label()
+	
+	_setup_path_buttons()
+	_load_path(current_path)
+
+
+func _create_button_styles() -> void:
+	# Locked style (dark, greyed out)
+	style_locked = StyleBoxFlat.new()
+	style_locked.bg_color = Color(0.2, 0.2, 0.2, 0.9)  # Dark grey
+	style_locked.border_color = Color(0.3, 0.3, 0.3)
+	style_locked.set_border_width_all(2)
+	style_locked.set_corner_radius_all(8)
+	
+	# Unlocked style (green tint)
+	style_unlocked = StyleBoxFlat.new()
+	style_unlocked.bg_color = Color(0.1, 0.4, 0.1, 0.9)  # Dark green
+	style_unlocked.border_color = Color(0.2, 0.8, 0.2)  # Bright green border
+	style_unlocked.set_border_width_all(3)
+	style_unlocked.set_corner_radius_all(8)
+	
+	# Purchasable style (can afford, connected to unlocked)
+	style_purchasable = StyleBoxFlat.new()
+	style_purchasable.bg_color = Color(0.3, 0.3, 0.5, 0.9)  # Blue-ish
+	style_purchasable.border_color = Color(0.4, 0.6, 1.0)  # Light blue border
+	style_purchasable.set_border_width_all(2)
+	style_purchasable.set_corner_radius_all(8)
+
+
+func _create_xp_label() -> void:
+	xp_label = Label.new()
+	xp_label.text = "XP: " + str(player_xp)
+	xp_label.position = Vector2(900, 20)  # Top right area
+	xp_label.add_theme_font_size_override("font_size", 24)
+	control.add_child(xp_label)
+
+
+func _setup_path_buttons() -> void:
+	for child in path_buttons.get_children():
+		child.queue_free()
+	
+	for path_id in paths.keys():
+		var btn := Button.new()
+		btn.text = paths[path_id]["title"]
+		btn.custom_minimum_size = Vector2(120, 40)
+		btn.pressed.connect(_on_path_selected.bind(path_id))
+		path_buttons.add_child(btn)
+
+
+func _load_path(path_id: String) -> void:
+	current_path = path_id
+	title_label.text = paths[path_id]["title"]
+	
+	# Clear existing skill nodes
+	for child in nodes.get_children():
+		child.queue_free()
+	skill_nodes.clear()
+	skill_data.clear()
+	
+	# Create nodes for this path
+	for node_data in paths[path_id]["nodes"]:
+		_create_skill_node(node_data)
+	
+	# Update button styles based on unlock status
+	_update_all_button_styles()
+	
+	lines.queue_redraw()
+	description_box.visible = false
+
+
+func _create_skill_node(data: Dictionary) -> void:
+	var id = data["id"]
+	var display_name = data["name"]
+	var pos = data["pos"]
+	var xp_cost = data["xp_cost"]
+	var description = data["description"]
+	
+	# Create a container for the button and cost label
+	var container = Control.new()
+	container.position = pos - Vector2(50, 50)
+	container.custom_minimum_size = Vector2(100, 100)
+	
+	# Create the main button
+	var btn = Button.new()
+	btn.text = display_name
+	btn.custom_minimum_size = Vector2(100, 80)
+	btn.position = Vector2(0, 0)
+	btn.pressed.connect(_on_skill_selected.bind(id))
+	btn.mouse_entered.connect(_on_skill_hover.bind(id))
+	btn.mouse_exited.connect(_on_skill_hover_end)
+	
+	# Center the text
+	btn.add_theme_constant_override("align", 1)
+	
+	container.add_child(btn)
+	
+	# Create XP cost label (bottom right of button)
+	var cost_label = Label.new()
+	if xp_cost > 0:
+		cost_label.text = str(xp_cost) + " XP"
+	else:
+		cost_label.text = "FREE"
+	cost_label.position = Vector2(5, 60)
+	cost_label.add_theme_font_size_override("font_size", 12)
+	cost_label.add_theme_color_override("font_color", Color(1, 0.8, 0))  # Gold color
+	container.add_child(cost_label)
+	
+	nodes.add_child(container)
+	
+	# Store references
+	skill_nodes[id] = btn
+	skill_data[id] = {
+		"xp_cost": xp_cost,
+		"description": description,
+		"container": container,
+		"cost_label": cost_label
+	}
+
+
+func _update_all_button_styles() -> void:
+	for skill_id in skill_nodes.keys():
+		_update_button_style(skill_id)
+
+
+func _update_button_style(skill_id: String) -> void:
+	var btn = skill_nodes[skill_id]
+	var data = skill_data[skill_id]
+	var is_unlocked = is_skill_unlocked(skill_id)
+	var can_purchase = can_purchase_skill(skill_id)
+	
+	if is_unlocked:
+		btn.add_theme_stylebox_override("normal", style_unlocked)
+		btn.add_theme_stylebox_override("hover", style_unlocked)
+		btn.add_theme_stylebox_override("pressed", style_unlocked)
+		data["cost_label"].text = "OWNED"
+		data["cost_label"].add_theme_color_override("font_color", Color(0.2, 1.0, 0.2))
+	elif can_purchase:
+		btn.add_theme_stylebox_override("normal", style_purchasable)
+		btn.add_theme_stylebox_override("hover", style_purchasable)
+		btn.add_theme_stylebox_override("pressed", style_purchasable)
+		data["cost_label"].add_theme_color_override("font_color", Color(0.4, 0.8, 1.0))
+	else:
+		btn.add_theme_stylebox_override("normal", style_locked)
+		btn.add_theme_stylebox_override("hover", style_locked)
+		btn.add_theme_stylebox_override("pressed", style_locked)
+		data["cost_label"].add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
+
+
+func is_skill_unlocked(skill_id: String) -> bool:
+	if not unlocked_skills.has(current_path):
+		return false
+	return skill_id in unlocked_skills[current_path]
+
+
+func can_purchase_skill(skill_id: String) -> bool:
+	# Already unlocked
+	if is_skill_unlocked(skill_id):
+		return false
+	
+	# Define root skills that can be purchased without connections
+	var root_skills = ["+10% Attack", "+10% Movement Speed", "+10% Health"]
+	
+	# If nothing is unlocked yet, only allow root skills
+	if unlocked_skills[current_path].is_empty():
+		if skill_id not in root_skills:
+			return false
+		# Check if player has enough XP
+		var cost = skill_data[skill_id]["xp_cost"]
+		return player_xp >= cost
+	
+	# Check if connected to an unlocked skill
+	var has_unlocked_connection = false
+	var connections = paths[current_path]["connections"]
+	
+	for connection in connections:
+		if connection[1] == skill_id and is_skill_unlocked(connection[0]):
+			has_unlocked_connection = true
+			break
+		if connection[0] == skill_id and is_skill_unlocked(connection[1]):
+			has_unlocked_connection = true
+			break
+	
+	if not has_unlocked_connection:
+		return false
+	
+	# Check if player has enough XP
+	var cost = skill_data[skill_id]["xp_cost"]
+	return player_xp >= cost
+
+
+func purchase_skill(skill_id: String) -> bool:
+	if not can_purchase_skill(skill_id):
+		return false
+	
+	var cost = skill_data[skill_id]["xp_cost"]
+	
+	# Deduct XP
+	player_xp -= cost
+	xp_label.text = "XP: " + str(player_xp)
+	
+	# Add to unlocked skills
+	if not unlocked_skills.has(current_path):
+		unlocked_skills[current_path] = []
+	unlocked_skills[current_path].append(skill_id)
+	
+	# Apply the skill effect (you'll customize this)
+	_apply_skill_effect(skill_id)
+	
+	# Update all button styles
+	_update_all_button_styles()
+	
+	print("Purchased skill: ", skill_id, " for ", cost, " XP")
+	return true
+
+
+func _apply_skill_effect(skill_id: String) -> void:
+	# This is where you apply the actual skill effects to the player
+	# You'll want to connect this to your player stats system
+	match skill_id:
+		"+10% Attack":
+			print("Applying +10% Attack boost!")
+			# Example: SignalBus.emit_signal("stat_boost", "attack", 0.10)
+		"+10% Movement Speed":
+			print("Applying +10% Movement Speed boost!")
+		"+10% Health":
+			print("Applying +10% Health boost!")
+		"fire_trail", "trail":
+			print("Trail ability unlocked!")
+		"trail_upgrade":
+			print("Trail upgraded!")
+		"ability":
+			print("New ability unlocked!")
+		"ability_upgrade":
+			print("Ability upgraded!")
+		"status1", "status2":
+			print("Status effect unlocked!")
+		_:
+			print("Skill effect not implemented: ", skill_id)
+
+
+func _on_skill_hover(skill_id: String) -> void:
+	if skill_data.has(skill_id):
+		var data = skill_data[skill_id]
+		var desc = data["description"]
+		var cost = data["xp_cost"]
+		var is_unlocked = is_skill_unlocked(skill_id)
+		
+		if is_unlocked:
+			description_label.text = desc + "\n\n[OWNED]"
+		elif can_purchase_skill(skill_id):
+			description_label.text = desc + "\n\nCost: " + str(cost) + " XP\n[Click to purchase]"
+		else:
+			description_label.text = desc + "\n\nCost: " + str(cost) + " XP\n[Locked - unlock connected skill first]"
+		
+		description_box.visible = true
+
+
+func _on_skill_hover_end() -> void:
+	description_box.visible = false
+
+
+func show_menu() -> void:
+	control.visible = true
+	get_tree().paused = true
+	xp_label.text = "XP: " + str(player_xp)
+	_update_all_button_styles()
+	lines.queue_redraw()
+
+
+func hide_menu() -> void:
+	control.visible = false
+	get_tree().paused = false
+
+
+func _on_path_selected(path_id: String) -> void:
+	_load_path(path_id)
+
+
+func _on_skill_selected(skill_id: String) -> void:
+	print("Clicked skill: ", skill_id)
+	
+	if is_skill_unlocked(skill_id):
+		print("Already unlocked!")
+		return
+	
+	if can_purchase_skill(skill_id):
+		purchase_skill(skill_id)
+	else:
+		print("Cannot purchase - either locked or not enough XP")
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if control.visible and event.is_action_pressed("escape_menu"):
+		hide_menu()
+
+
+func get_connections() -> Array:
+	return paths[current_path]["connections"]
+
+
+func get_skill_nodes() -> Dictionary:
+	return skill_nodes
+
+
+# Call this from your game when player collects XP
+func add_xp(amount: int) -> void:
+	player_xp += amount
+	if xp_label:
+		xp_label.text = "XP: " + str(player_xp)

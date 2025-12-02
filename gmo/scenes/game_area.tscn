@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=4 uid="uid://dmf617rn6a8pm"]
+[gd_scene load_steps=83 format=4 uid="uid://dmf617rn6a8pm"]
 
 [ext_resource type="Texture2D" uid="uid://ckfplp2dp23fa" path="res://assets/test_area.webp" id="1_4eb3c"]
 [ext_resource type="Texture2D" uid="uid://c6lubr8yhm1w4" path="res://assets/terrain/Background_Green_TileSet.png" id="1_xt4jw"]
@@ -32,8 +32,10 @@
 [ext_resource type="Texture2D" uid="uid://diva7tkv443my" path="res://assets/Wooden/Wooden-wall_Right-side_Left&Up-connect.png" id="13_8yiyj"]
 [ext_resource type="Texture2D" uid="uid://do4n5yadchw7r" path="res://assets/Wooden/Wooden-wall_Vertical.png" id="14_ypwe7"]
 [ext_resource type="Texture2D" uid="uid://d3lhhc1654l74" path="res://assets/Wooden/Wooden-wall_Vertical_For-gate.png" id="15_arupm"]
-[ext_resource type="Texture2D" uid="uid://waojdo12cvsa" path="res://assets/peach/peach_tree_pink.png" id="24_lc0e6"]
+[ext_resource type="PackedScene" uid="uid://cbbuq0u4r8fcy" path="res://scenes/peach_tree.tscn" id="28_lc0e6"]
 [ext_resource type="PackedScene" uid="uid://bxybsx8a4jhsd" path="res://scenes/ui/ui.tscn" id="34_y1fpr"]
+[ext_resource type="Script" uid="uid://b4lkw7rm3mb6d" path="res://scripts/peach_tree.gd" id="35_t7872"]
+[ext_resource type="PackedScene" uid="uid://0cg4bkhm5jbt" path="res://scenes/skill_tree_menu.tscn" id="36_t7872"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xt4jw"]
 resource_name = "terrain"
@@ -1112,11 +1114,6 @@ scale = Vector2(8, 8)
 tile_map_data = PackedByteArray("AAADAPb/AAAFAAAAAAADAPf/AAAFAAEAAAADAPj/AAAFAAIAAAAEAPj/AAAGAAIAAAAEAPn/AAAGAAMAAAAFAPn/AAAHAAMAAAAGAPr/AAAGAAMAAAAGAPn/AAAGAAIAAAAEAPf/AAAGAAEAAAAFAPf/AAAHAAEAAAAGAPj/AAAGAAEAAAAFAPj/AAAGAAIAAAACAPf/AAAEAAEAAAABAPf/AAADAAEAAAAAAPj/AAAEAAEAAAACAPj/AAAEAAIAAAABAPj/AAADAAIAAAACAPn/AAAEAAMAAAABAPn/AAADAAMAAAAAAPr/AAAEAAMAAAAAAPn/AAADAAIAAAAPAPf/AQAAAAAAAAA=")
 tile_set = SubResource("TileSet_f1rjr")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(104, -395)
-scale = Vector2(8, 8)
-texture = ExtResource("24_lc0e6")
-
 [node name="TestArea" type="Sprite2D" parent="."]
 position = Vector2(7003, 25.999985)
 scale = Vector2(3, 3)
@@ -1222,3 +1219,8 @@ shape = SubResource("RectangleShape2D_t7872")
 [node name="CollisionShapeRight" type="CollisionShape2D" parent="WorldBoundaries"]
 position = Vector2(2195, -20)
 shape = SubResource("RectangleShape2D_2w4xq")
+
+[node name="PeachTree" parent="." instance=ExtResource("28_lc0e6")]
+script = ExtResource("35_t7872")
+
+[node name="SkillTreeMenu" parent="." instance=ExtResource("36_t7872")]
