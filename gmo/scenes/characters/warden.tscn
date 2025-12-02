@@ -672,6 +672,7 @@ _data = {
 }
 
 [node name="Warden" type="CharacterBody2D" node_paths=PackedStringArray("command_manager_component", "input_component", "animation_manager_component")]
+collision_mask = 4
 script = ExtResource("1_wthw5")
 command_manager_component = NodePath("CommandManagerComponent")
 input_component = NodePath("InputComponent")

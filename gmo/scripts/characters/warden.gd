@@ -43,6 +43,7 @@ func _ready() -> void:
 	
 	received_damage.connect(
 		func(damage, _source):
+			damaged = true
 			SignalBus.player_health_changed.emit(curr_health - damage, max_health)
 			make_invulnerable()
 			curr_health -= damage

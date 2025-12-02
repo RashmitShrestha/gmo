@@ -1,7 +1,40 @@
 class_name StrawberryShootCommand
 extends Command
 
+var _projectile: PackedScene
+var _projectile_speed: float
+var _frequency: float
+var _timer: Timer
 
-func execute(_character: Strawberry) -> Status:
-	_character.velocity = Vector2.ZERO
-	return Command.Status.DONE
+func _init(projectile: PackedScene, projectile_speed: float, frequency: float) -> void:
+	_projectile = projectile
+	_projectile_speed = projectile_speed
+	_frequency = frequency
+
+
+func _shoot(character: Strawberry):
+	var dir: Vector2 = (character.warden.position - character.position).normalized()
+	var seed_projectile: Seed = _projectile.instantiate()
+	seed_projectile.position = character.position
+	seed_projectile.linear_velocity = dir * _projectile_speed
+	seed_projectile.rotation = dir.angle()
+	character.get_tree().root.add_child(seed_projectile)
+
+
+func execute(character: Strawberry) -> Status:
+	if _timer == null:
+		_timer = Timer.new()
+		character.add_child(_timer)
+		_timer.start(_frequency)
+		character.velocity = Vector2.ZERO
+		
+		_shoot(character)
+		
+		_timer.timeout.connect(func(): _shoot(character))
+	elif character.warden.position.distance_to(character.position) <= character.min_dist or \
+		character.warden.position.distance_to(character.position) >= character.max_dist:
+		_timer.queue_free()
+		return Command.Status.DONE
+
+	return Command.Status.ACTIVE
+	

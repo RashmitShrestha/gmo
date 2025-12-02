@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dui38s68nj4ah"]
+[gd_scene load_steps=29 format=3 uid="uid://dui38s68nj4ah"]
 
 [ext_resource type="Script" uid="uid://r0bl6vjeurgd" path="res://scripts/characters/blueberry.gd" id="1_74cfi"]
 [ext_resource type="Texture2D" uid="uid://dju2tvcfsvkd6" path="res://assets/blueberry/blueberry_idle.png" id="2_gjfxf"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://csopiplictw8j" path="res://scripts/components/character_components/fruit_components/blueberry_components/blueberry_animation_manager_component.gd" id="6_t03vd"]
 [ext_resource type="Script" uid="uid://bq0uvpdkcpio8" path="res://scripts/components/character_components/fruit_components/blueberry_components/blueberry_command_manager_compnent.gd" id="7_duaux"]
 [ext_resource type="Script" uid="uid://b07x7fbfsatk3" path="res://scripts/components/character_components/fruit_components/blueberry_components/blueberry_reactive_component.gd" id="8_ylke1"]
+[ext_resource type="Script" uid="uid://bhxvb4ri02c8t" path="res://scripts/components/character_components/damage_component.gd" id="9_lbkys"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]
 radius = 30.0
@@ -313,10 +314,10 @@ states/idle/position = Vector2(352.52, 100.875)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_w0x03"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_d1l6q"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_gdgj5"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_1fcle"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_rea8b"), "hurt", "attack", SubResource("AnimationNodeStateMachineTransition_iu6qv"), "attack", "hurt", SubResource("AnimationNodeStateMachineTransition_xw55q")]
 graph_offset = Vector2(13.109772, -77.25007)
 
-[node name="blueberry" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component")]
+[node name="Blueberry" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component")]
 z_index = 1
-collision_layer = 4
-collision_mask = 15
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_74cfi")
 animation_manager_component = NodePath("AnimationManagerComponent")
 command_manager_component = NodePath("CommandManagerComponent")
@@ -353,9 +354,13 @@ script = ExtResource("7_duaux")
 [node name="ReactiveComponent" type="Node" parent="."]
 script = ExtResource("8_ylke1")
 
+[node name="DamageComponent" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("9_lbkys")
+hitbox = NodePath("../Area2D")
+damage_amount = 3.0
+
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 15
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_57wkv")

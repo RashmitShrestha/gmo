@@ -5,7 +5,6 @@ extends Fruit
 @export var animation_manager_component: WatermelonAnimationManagerComponent
 @export var command_manager_component: WatermelonCommandManagerComponent
 @export var reactive_component: WatermelonReactiveComponent
-@export var damage_component: WatermelonDamageComponent
 
 var full_slash = 45
 var curr_command: Command
@@ -21,12 +20,10 @@ func _ready():
 	
 	step_command = WatermelonStepCommand.new(speed, step_time)
 	stun_command = WatermelonStunCommand.new(stun_time)
-	
 
 
 func _physics_process(_delta) -> void:
 	reactive_component.update()
-	damage_component.update()
 	super(_delta)
 
 func _process(_delta) -> void:
