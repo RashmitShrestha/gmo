@@ -1,0 +1,57 @@
+[gd_resource type="Resource" script_class="WaveData" load_steps=6 format=3]
+[ext_resource type="Script" path="res://scripts/resources/wave_data.gd" id="1_wave"]
+[ext_resource type="Resource" path="res://resources/enemies/strawberry.tres" id="2_strawberry"]
+[ext_resource type="Resource" path="res://resources/enemies/grapes.tres" id="3_grapes"]
+[ext_resource type="Resource" path="res://resources/enemies/pomegranate.tres" id="4_pomegranate"]
+
+[sub_resource type="Resource" id="EnemyGroup_1"]
+script = ExtResource("res://scripts/resources/enemy_group.gd")
+group_name = "Strawberry Group"
+description = "Ranged attackers"
+enemy_stats = ExtResource("2_strawberry")
+count = 4
+spawn_pattern = 4
+spawn_delay = 0.0
+spawn_interval = 0.5
+force_modifier = 0
+modifier_chance = 0.0
+
+[sub_resource type="Resource" id="EnemyGroup_2"]
+script = ExtResource("res://scripts/resources/enemy_group.gd")
+group_name = "Grape Group"
+description = "Splitting enemies"
+enemy_stats = ExtResource("3_grapes")
+count = 10
+spawn_pattern = 4
+spawn_delay = 1.0
+spawn_interval = 0.6
+force_modifier = 0
+modifier_chance = 0.0
+
+[sub_resource type="Resource" id="EnemyGroup_3"]
+script = ExtResource("res://scripts/resources/enemy_group.gd")
+group_name = "Pomegranate Group"
+description = "Machine gun burst fire"
+enemy_stats = ExtResource("4_pomegranate")
+count = 8
+spawn_pattern = 4
+spawn_delay = 2.0
+spawn_interval = 0.8
+force_modifier = 0
+modifier_chance = 0.0
+
+[resource]
+script = ExtResource("1_wave")
+wave_number = 4
+wave_name = "Wave 4"
+description = "New enemies arrive! Pomegranates bring heavy firepower!" #generated using gemini auto complete
+enemy_groups = Array[EnemyGroup]([SubResource("EnemyGroup_1"), SubResource("EnemyGroup_2"), SubResource("EnemyGroup_3")])
+spawn_delay_between_groups = 3.0
+modifier_spawn_chance = 0.15
+grilled_weight = 2.0
+frozen_weight = 1.5
+rotten_weight = 1.0
+wave_completion_bonus = 300
+is_final_wave = false
+spawn_boss_at_end = false
+wave_start_message = "Wave 4 incoming!"

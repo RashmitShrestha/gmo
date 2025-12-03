@@ -4,96 +4,96 @@
 [ext_resource type="Resource" path="res://resources/enemies/blueberry.tres" id="2_blueberry"]
 [ext_resource type="Resource" path="res://resources/enemies/strawberry.tres" id="3_strawberry"]
 [ext_resource type="Resource" path="res://resources/enemies/grapes.tres" id="4_grapes"]
-[ext_resource type="Resource" path="res://resources/enemies/watermelon.tres" id="5_watermelon"]
-[ext_resource type="Resource" path="res://resources/enemies/banana.tres" id="6_banana"]
-[ext_resource type="Resource" path="res://resources/enemies/pomegranate.tres" id="7_pomegranate"]
+[ext_resource type="Resource" path="res://resources/enemies/pomegranate.tres" id="5_pomegranate"]
+[ext_resource type="Resource" path="res://resources/enemies/watermelon.tres" id="6_watermelon"]
+[ext_resource type="Resource" path="res://resources/enemies/banana.tres" id="7_banana"]
 [ext_resource type="Resource" path="res://resources/enemies/cornucopia.tres" id="8_boss"]
 
 [sub_resource type="Resource" id="EnemyGroup_1"]
 script = ExtResource("res://scripts/resources/enemy_group.gd")
-group_name = "Initial Onslaught"
-description = "Heavy assault from all sides"
+group_name = "Blueberry Group"
+description = "Fast melee attackers"
 enemy_stats = ExtResource("2_blueberry")
-count = 12
+count = 10
 spawn_pattern = 4
 spawn_delay = 0.0
-spawn_interval = 0.2
+spawn_interval = 0.3
 force_modifier = 0
 modifier_chance = 0.0
 
 [sub_resource type="Resource" id="EnemyGroup_2"]
 script = ExtResource("res://scripts/resources/enemy_group.gd")
-group_name = "Grilled Strawberries"
-description = "Fire strawberries burning everything"
+group_name = "Strawberry Group"
+description = "Ranged attackers"
 enemy_stats = ExtResource("3_strawberry")
-count = 6
-spawn_pattern = 1
-spawn_delay = 0.5
-spawn_interval = 0.4
-force_modifier = 1
-modifier_chance = 1.0
+count = 8
+spawn_pattern = 4
+spawn_delay = 1.0
+spawn_interval = 0.5
+force_modifier = 0
+modifier_chance = 0.0
 
 [sub_resource type="Resource" id="EnemyGroup_3"]
 script = ExtResource("res://scripts/resources/enemy_group.gd")
-group_name = "Frozen Grapes"
-description = "Ice grapes that buff allies"
+group_name = "Grape Group"
+description = "Splitting enemies"
 enemy_stats = ExtResource("4_grapes")
-count = 5
-spawn_pattern = 2
-spawn_delay = 1.0
-spawn_interval = 0.5
-force_modifier = 2
-modifier_chance = 1.0
+count = 6
+spawn_pattern = 4
+spawn_delay = 1.5
+spawn_interval = 0.7
+force_modifier = 0
+modifier_chance = 0.0
 
 [sub_resource type="Resource" id="EnemyGroup_4"]
 script = ExtResource("res://scripts/resources/enemy_group.gd")
-group_name = "Rotten Watermelons"
-description = "Poison watermelons with second life"
-enemy_stats = ExtResource("5_watermelon")
-count = 3
-spawn_pattern = 0
-spawn_delay = 0.0
-spawn_interval = 1.5
-force_modifier = 3
-modifier_chance = 1.0
+group_name = "Pomegranate Group"
+description = "Machine gun burst fire"
+enemy_stats = ExtResource("5_pomegranate")
+count = 4
+spawn_pattern = 4
+spawn_delay = 2.0
+spawn_interval = 1.0
+force_modifier = 0
+modifier_chance = 0.0
 
 [sub_resource type="Resource" id="EnemyGroup_5"]
 script = ExtResource("res://scripts/resources/enemy_group.gd")
-group_name = "Explosive Bananas"
-description = "Bananas with explosive projectiles"
-enemy_stats = ExtResource("6_banana")
-count = 4
-spawn_pattern = 1
-spawn_delay = 1.0
-spawn_interval = 1.0
+group_name = "Watermelon Group"
+description = "High HP tanks"
+enemy_stats = ExtResource("6_watermelon")
+count = 6
+spawn_pattern = 4
+spawn_delay = 2.5
+spawn_interval = 1.2
 force_modifier = 0
 modifier_chance = 0.0
 
 [sub_resource type="Resource" id="EnemyGroup_6"]
 script = ExtResource("res://scripts/resources/enemy_group.gd")
-group_name = "Elite Pomegranates"
-description = "Dangerous pomegranates"
-enemy_stats = ExtResource("7_pomegranate")
-count = 3
-spawn_pattern = 3
-spawn_delay = 1.5
-spawn_interval = 1.0
+group_name = "Banana Group"
+description = "Explosive homing projectiles"
+enemy_stats = ExtResource("7_banana")
+count = 9
+spawn_pattern = 4
+spawn_delay = 3.0
+spawn_interval = 0.9
 force_modifier = 0
 modifier_chance = 0.0
 
 [resource]
 script = ExtResource("1_wave")
 wave_number = 10
-wave_name = "The Cornucopia"
-description = "The final wave! Defeat all enemies, then face the mighty Cornucopia boss. This is it - defend the Peach Tree of Immortality!"
+wave_name = "Wave 10"
+description = "Extra Fruit salad + the FINAL BOSS!"
 enemy_groups = Array[EnemyGroup]([SubResource("EnemyGroup_1"), SubResource("EnemyGroup_2"), SubResource("EnemyGroup_3"), SubResource("EnemyGroup_4"), SubResource("EnemyGroup_5"), SubResource("EnemyGroup_6")])
-spawn_delay_between_groups = 4.0
+spawn_delay_between_groups = 4.5
 modifier_spawn_chance = 0.5
-grilled_weight = 1.0
-frozen_weight = 1.0
-rotten_weight = 1.0
+grilled_weight = 1.5
+frozen_weight = 1.5
+rotten_weight = 1.5
 wave_completion_bonus = 2000
 is_final_wave = true
 spawn_boss_at_end = true
 boss_stats = ExtResource("8_boss")
-wave_start_message = "FINAL WAVE! Survive the onslaught and defeat the Cornucopia!"
+wave_start_message = "THIS IS IT! Final wave incoming - then the Cornucopia!"
