@@ -1,12 +1,13 @@
-[gd_resource type="Resource" script_class="WaveData" load_steps=6 format=3]
+[gd_resource type="Resource" script_class="WaveData" load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/wave_data.gd" id="1_wave"]
 [ext_resource type="Resource" path="res://resources/enemies/banana.tres" id="2_banana"]
 [ext_resource type="Resource" path="res://resources/enemies/pomegranate.tres" id="3_pomegranate"]
 [ext_resource type="Resource" path="res://resources/enemies/strawberry.tres" id="4_strawberry"]
+[ext_resource type="Script" path="res://scripts/resources/enemy_group.gd" id="5_enemy_group"]
 
 [sub_resource type="Resource" id="EnemyGroup_1"]
-script = ExtResource("res://scripts/resources/enemy_group.gd")
+script = ExtResource("5_enemy_group")
 group_name = "Banana Group"
 description = "Explosive homing projectiles"
 enemy_stats = ExtResource("2_banana")
@@ -17,7 +18,7 @@ spawn_interval = 0.0
 force_modifier = 0
 modifier_chance = 0.0
 [sub_resource type="Resource" id="EnemyGroup_2"]
-script = ExtResource("res://scripts/resources/enemy_group.gd")
+script = ExtResource("5_enemy_group")
 group_name = "Pomegranate Group"
 description = "Machine gun burst fire"
 enemy_stats = ExtResource("3_pomegranate")
@@ -29,7 +30,7 @@ force_modifier = 0
 modifier_chance = 0.0
 
 [sub_resource type="Resource" id="EnemyGroup_3"]
-script = ExtResource("res://scripts/resources/enemy_group.gd")
+script = ExtResource("5_enemy_group")
 group_name = "Strawberry Group"
 description = "Ranged attackers"
 enemy_stats = ExtResource("4_strawberry")

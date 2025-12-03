@@ -1,12 +1,13 @@
-[gd_resource type="Resource" script_class="WaveData" load_steps=6 format=3]
+[gd_resource type="Resource" script_class="WaveData" load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/wave_data.gd" id="1_wave"]
 [ext_resource type="Resource" path="res://resources/enemies/blueberry.tres" id="2_blueberry"]
 [ext_resource type="Resource" path="res://resources/enemies/strawberry.tres" id="3_strawberry"]
 [ext_resource type="Resource" path="res://resources/enemies/grapes.tres" id="4_grapes"]
+[ext_resource type="Script" path="res://scripts/resources/enemy_group.gd" id="5_enemy_group"]
 
 [sub_resource type="Resource" id="EnemyGroup_1"]
-script = ExtResource("res://scripts/resources/enemy_group.gd")
+script = ExtResource("5_enemy_group")
 group_name = "Blueberry Group"
 description = "Fast melee attackers"
 enemy_stats = ExtResource("2_blueberry")
@@ -18,7 +19,7 @@ force_modifier = 0
 modifier_chance = 0.0
 
 [sub_resource type="Resource" id="EnemyGroup_2"]
-script = ExtResource("res://scripts/resources/enemy_group.gd")
+script = ExtResource("5_enemy_group")
 group_name = "Strawberry Group"
 description = "Ranged attackers"
 enemy_stats = ExtResource("3_strawberry")
@@ -31,7 +32,7 @@ modifier_chance = 0.0
 
 
 [sub_resource type="Resource" id="EnemyGroup_3"]
-script = ExtResource("res://scripts/resources/enemy_group.gd")
+script = ExtResource("5_enemy_group")
 group_name = "Grape Group"
 description = "Splitting enemies"
 enemy_stats = ExtResource("4_grapes")

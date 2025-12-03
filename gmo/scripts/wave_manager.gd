@@ -194,9 +194,13 @@ func _spawn_enemy(stats: EnemyStats, pos: Vector2, modifier: EnemyStats.EnemyMod
 
 	_apply_modifier_to_enemy(enemy, modifier)
 
+	var warden_node = get_parent().get_node_or_null("Warden")
+	if warden_node and "warden" in enemy:
+		enemy.warden = warden_node
+
 	enemies_alive_count += 1
 	spawned_enemies.append(weakref(enemy))
-	get_tree().root.add_child(enemy)
+	get_parent().add_child(enemy)
 
 	SignalBus.enemy_spawned.emit(stats.enemy_name, enemy)
 
