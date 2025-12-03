@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://jqidoyn47nxk"]
+[gd_scene load_steps=74 format=3 uid="uid://jqidoyn47nxk"]
 
 [ext_resource type="Script" uid="uid://gs8ynx86xdf5" path="res://scripts/characters/warden.gd" id="1_wthw5"]
 [ext_resource type="Texture2D" uid="uid://clv2rjc18im1s" path="res://assets/warden/warden_idle.png" id="2_uvufd"]
@@ -12,6 +12,11 @@
 [ext_resource type="Script" uid="uid://c6j7pukqrqy81" path="res://scripts/components/character_components/player_components/player_command_manager_component.gd" id="10_mjqe3"]
 [ext_resource type="Script" uid="uid://cstfxpqorys6c" path="res://scripts/components/character_components/player_components/player_animation_manager_component.gd" id="11_mjqe3"]
 [ext_resource type="PackedScene" uid="uid://1pjw4u0ygl5p" path="res://scenes/interacting_component.tscn" id="12_uix1w"]
+
+[sub_resource type="Curve" id="Curve_uix1w"]
+_limits = [0.0, 600.0, 0.0, 0.5]
+_data = [Vector2(0, 600), 0.0, 0.0, 0, 0, Vector2(0.4993511, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cgkur"]
 size = Vector2(46, 86)
@@ -676,6 +681,9 @@ _data = {
 y_sort_enabled = true
 collision_mask = 4
 script = ExtResource("1_wthw5")
+knockback_speed_curve = SubResource("Curve_uix1w")
+dash_invulnerability_duration = 0.4
+invulnerability_duration = 0.5
 command_manager_component = NodePath("CommandManagerComponent")
 input_component = NodePath("InputComponent")
 animation_manager_component = NodePath("AnimationManagerComponent")

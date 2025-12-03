@@ -29,11 +29,12 @@ func _physics_process(_delta: float) -> void:
 	_process_dot_effects(_delta)
 
 
-func apply_damage(damage: float, _source: Node):
+func apply_damage(damage: float, _source: Node2D):
 	if invulnerable:
 		return
 	
 	received_damage.emit(damage, _source)
+	damaged = true
 	
 func _process_dot_effects(delta: float) -> void:
 	for element in dot_effects.keys():

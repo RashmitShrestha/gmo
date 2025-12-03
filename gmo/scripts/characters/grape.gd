@@ -10,7 +10,6 @@ var curr_command: Command
 var default_command: GrapeDefaultCommand
 var stun_command: GrapeStunCommand
 
-
 func _ready():
 	super()
 	max_health = 100 * full_slash  # Total health = 2000

@@ -28,8 +28,6 @@ func execute(character: Strawberry) -> Status:
 		_timer.start(_frequency)
 		character.velocity = Vector2.ZERO
 		
-		_shoot(character)
-		
 		_timer.timeout.connect(func(): _shoot(character))
 	elif character.warden.position.distance_to(character.position) <= character.min_dist or \
 		character.warden.position.distance_to(character.position) >= character.max_dist:

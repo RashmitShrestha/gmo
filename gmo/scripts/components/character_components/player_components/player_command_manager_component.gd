@@ -3,8 +3,13 @@ extends CommandManagerComponent
 
 
 func update() -> void:
-	if null == _parent.curr_command:
-		if _parent.direction != Vector2.ZERO:
+	if _parent.curr_command != null and _parent.damaged:
+		_parent.curr_command.force_finish()
+		_parent.curr_command = _parent.knockback_command
+	elif null == _parent.curr_command:
+		if _parent.damaged:
+			_parent.curr_command = _parent.knockback_command
+		elif _parent.direction != Vector2.ZERO:
 			if Input.is_action_just_pressed("shift"):
 				_parent.curr_command = _parent.dash_command
 			else:

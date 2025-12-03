@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://rpbrqr7066ew"]
+[gd_scene load_steps=31 format=3 uid="uid://rpbrqr7066ew"]
 
 [ext_resource type="Script" uid="uid://bxm763n735s0d" path="res://scripts/characters/grape.gd" id="1_0y666"]
 [ext_resource type="Texture2D" uid="uid://bbe37yfm23vef" path="res://assets/grape/grape_idle.png" id="2_ytvmp"]

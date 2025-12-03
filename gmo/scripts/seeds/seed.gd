@@ -5,6 +5,7 @@ extends RigidBody2D
 
 func _ready() -> void:
 	var timer := Timer.new()
+	add_child(timer)
 	timer.one_shot = true
 	timer.start(lifetime)
 	timer.timeout.connect(func(): queue_free())

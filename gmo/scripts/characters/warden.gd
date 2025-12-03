@@ -2,6 +2,8 @@ class_name Warden
 extends GameCharacter
 
 @export var dash_speed_curve: Curve
+@export var knockback_speed_curve: Curve
+@export var dash_invulnerability_duration: float
 @export var invulnerability_duration: float
 
 @export var command_manager_component: PlayerCommandManagerComponent
@@ -17,6 +19,7 @@ var curr_command: Command
 var idle_command: PlayerIdleCommand
 var move_command: PlayerMoveCommand
 var dash_command: PlayerDashCommand
+var knockback_command: PlayerKnockbackCommand
 
 var vel_vec := Vector2.ZERO
 var curr_vel: int = 0
@@ -32,7 +35,6 @@ var cd4 : float
 var cd5 : float
 var cd6 : float
 
-
 func _ready() -> void:
 	max_health = 100.0  # Initialize player health
 	curr_health = max_health
@@ -40,13 +42,13 @@ func _ready() -> void:
 	idle_command = PlayerIdleCommand.new()
 	move_command = PlayerMoveCommand.new()
 	dash_command = PlayerDashCommand.new(dash_speed_curve)
+	knockback_command = PlayerKnockbackCommand.new(knockback_speed_curve, self)
 	
 	received_damage.connect(
-		func(damage, _source):
-			damaged = true
+		func(damage: float, _source: Node2D):
 			SignalBus.player_health_changed.emit(curr_health - damage, max_health)
 			hurt_animation()
-			make_invulnerable()
+			make_invulnerable(invulnerability_duration)
 			curr_health -= damage
 	)
 	
@@ -62,34 +64,38 @@ func _process(_delta) -> void:
 	animation_manager_component.update()
 
 
-func make_invulnerable() -> void:
+func make_invulnerable(duration: float) -> void:
 	invulnerable = true
 	
 	_invulnerability_timer = Timer.new()
-	_blink_timer = Timer.new()
 	_invulnerability_timer.one_shot = true
 
 	add_child(_invulnerability_timer)
-	add_child(_blink_timer)
 	
 	_invulnerability_timer.timeout.connect(
-		func(): 
-			_blink_timer.queue_free()
-			sprite.visible = true
+		func():
 			invulnerable = false
 			_invulnerability_timer.queue_free()
 	)
+
+	_invulnerability_timer.start(duration)
+	
+func hurt_animation():
+	_blink_timer = Timer.new()
+	add_child(_blink_timer)
+	
 	_blink_timer.timeout.connect(
 		func():
 			sprite.visible = not sprite.visible
 	)
-
-	_invulnerability_timer.start(invulnerability_duration)
-	_blink_timer.start(0.06)
 	
-func hurt_animation():
-	for anim in range(4):
-		sprite.self_modulate = Color(1.0, 0.117, 0.419, 0.5)
-		await get_tree().create_timer(.2).timeout
-		sprite.self_modulate = Color(1,1,1,1)
-		get_tree().create_timer(.5).timeout
+	_blink_timer.start(0.06)
+	get_tree().create_timer(.5).timeout.connect(func(): _blink_timer.queue_free())
+	
+	sprite.self_modulate = Color(1.0, 0.117, 0.419, 0.5)
+	await get_tree().create_timer(.5).timeout
+	sprite.self_modulate = Color(1,1,1,1)
+	sprite.visible = true
+	#for anim in range(4):
+	
+	damaged = false

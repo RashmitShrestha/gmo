@@ -7,3 +7,5 @@ enum Status {
 }
 
 @abstract func execute(_character) -> Status
+func force_finish() -> void:
+	pass
