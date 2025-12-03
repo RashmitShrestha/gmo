@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="WaveData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/wave_data.gd" id="1_wave"]
+[ext_resource type="Resource" path="res://resources/enemies/watermelon.tres" id="2_watermelon"]
+[ext_resource type="Resource" path="res://resources/enemies/grapes.tres" id="3_grapes"]
+[ext_resource type="Resource" path="res://resources/enemies/blueberry.tres" id="4_blueberry"]
+
+[sub_resource type="Resource" id="EnemyGroup_1"]
+script = ExtResource("res://scripts/resources/enemy_group.gd")
+group_name = "Watermelon Group"
+description = "High HP tanks"
+enemy_stats = ExtResource("2_watermelon")
+count = 6
+spawn_pattern = 4
+spawn_delay = 0.0
+spawn_interval = 1.0
+force_modifier = 0
+modifier_chance = 0.0
+
+[sub_resource type="Resource" id="EnemyGroup_2"]
+script = ExtResource("res://scripts/resources/enemy_group.gd")
+group_name = "Grape Group"
+description = "Splitting enemies"
+enemy_stats = ExtResource("3_grapes")
+count = 8
+spawn_pattern = 4
+spawn_delay = 1.5
+spawn_interval = 0.6
+force_modifier = 0
+modifier_chance = 0.0
+
+[sub_resource type="Resource" id="EnemyGroup_3"]
+script = ExtResource("res://scripts/resources/enemy_group.gd")
+group_name = "Blueberry Group"
+description = "Fast melee attackers"
+enemy_stats = ExtResource("4_blueberry")
+count = 10
+spawn_pattern = 4
+spawn_delay = 0.8
+spawn_interval = 0.3
+force_modifier = 0
+modifier_chance = 0.0
+
+[resource]
+script = ExtResource("1_wave")
+wave_number = 6
+wave_name = "Wave 6"
+description = "Tanks, splitters, and berries"
+enemy_groups = Array[EnemyGroup]([SubResource("EnemyGroup_1"), SubResource("EnemyGroup_2"), SubResource("EnemyGroup_3")])
+spawn_delay_between_groups = 3.5
+modifier_spawn_chance = 0.25
+grilled_weight = 2.0
+frozen_weight = 1.5
+rotten_weight = 1.5
+wave_completion_bonus = 500
+is_final_wave = false
+spawn_boss_at_end = false
+wave_start_message = "Wave 6 incoming!"
