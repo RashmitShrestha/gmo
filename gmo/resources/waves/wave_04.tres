@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WaveData" load_steps=7 format=3]
+[gd_resource type="Resource" script_class="WaveData" load_steps=8 format=3]
 [ext_resource type="Script" path="res://scripts/resources/wave_data.gd" id="1_wave"]
 [ext_resource type="Resource" path="res://resources/enemies/strawberry.tres" id="2_strawberry"]
 [ext_resource type="Resource" path="res://resources/enemies/grapes.tres" id="3_grapes"]
@@ -45,7 +45,7 @@ modifier_chance = 0.0
 script = ExtResource("1_wave")
 wave_number = 4
 wave_name = "Wave 4"
-description = "New enemies arrive! Pomegranates bring heavy firepower!" #generated using gemini auto complete
+description = "New enemies arrive! Pomegranates bring heavy firepower!"
 enemy_groups = Array[EnemyGroup]([SubResource("EnemyGroup_1"), SubResource("EnemyGroup_2"), SubResource("EnemyGroup_3")])
 spawn_delay_between_groups = 3.0
 modifier_spawn_chance = 0.15
