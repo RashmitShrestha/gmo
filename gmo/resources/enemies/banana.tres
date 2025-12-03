@@ -26,4 +26,4 @@ modifier_speed_multiplier = 1.0
 modifier_effect_duration = 0.0
 drop_type = 2
 score_value = 60
-scene_path = "res://scenes/banana.tscn"
+scene_path = "res://scenes/characters/banana.tscn"

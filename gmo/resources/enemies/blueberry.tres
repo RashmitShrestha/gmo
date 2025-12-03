@@ -26,4 +26,4 @@ modifier_speed_multiplier = 1.0
 modifier_effect_duration = 0.0
 drop_type = 0
 score_value = 10
-scene_path = "res://scenes/blueberry.tscn"
+scene_path = "res://scenes/characters/blueberry.tscn"

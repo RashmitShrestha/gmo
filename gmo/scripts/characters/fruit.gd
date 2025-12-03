@@ -21,8 +21,11 @@ var fertilized : bool = false
 
 func _ready():
 	animation_tree.active = true
-	warden = %Warden
-	
+	if warden == null:
+		warden = get_node_or_null("%Warden")
+		if warden == null:
+			warden = get_parent().get_node_or_null("Warden") if get_parent() else null
+
 	SignalBus.damage_enemy.connect(_on_damage_enemy)
 	$Area2D.connect("mouse_entered", _on_mouse_entered)
 

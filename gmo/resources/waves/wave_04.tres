@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="WaveData" load_steps=6 format=3]
+[gd_resource type="Resource" script_class="WaveData" load_steps=8 format=3]
 [ext_resource type="Script" path="res://scripts/resources/wave_data.gd" id="1_wave"]
 [ext_resource type="Resource" path="res://resources/enemies/strawberry.tres" id="2_strawberry"]
 [ext_resource type="Resource" path="res://resources/enemies/grapes.tres" id="3_grapes"]
 [ext_resource type="Resource" path="res://resources/enemies/pomegranate.tres" id="4_pomegranate"]
+[ext_resource type="Script" path="res://scripts/resources/enemy_group.gd" id="5_enemy_group"]
 
 [sub_resource type="Resource" id="EnemyGroup_1"]
-script = ExtResource("res://scripts/resources/enemy_group.gd")
+script = ExtResource("5_enemy_group")
 group_name = "Strawberry Group"
 description = "Ranged attackers"
 enemy_stats = ExtResource("2_strawberry")
@@ -17,7 +18,7 @@ force_modifier = 0
 modifier_chance = 0.0
 
 [sub_resource type="Resource" id="EnemyGroup_2"]
-script = ExtResource("res://scripts/resources/enemy_group.gd")
+script = ExtResource("5_enemy_group")
 group_name = "Grape Group"
 description = "Splitting enemies"
 enemy_stats = ExtResource("3_grapes")
@@ -29,7 +30,7 @@ force_modifier = 0
 modifier_chance = 0.0
 
 [sub_resource type="Resource" id="EnemyGroup_3"]
-script = ExtResource("res://scripts/resources/enemy_group.gd")
+script = ExtResource("5_enemy_group")
 group_name = "Pomegranate Group"
 description = "Machine gun burst fire"
 enemy_stats = ExtResource("4_pomegranate")
@@ -44,7 +45,7 @@ modifier_chance = 0.0
 script = ExtResource("1_wave")
 wave_number = 4
 wave_name = "Wave 4"
-description = "New enemies arrive! Pomegranates bring heavy firepower!" #generated using gemini auto complete
+description = "New enemies arrive! Pomegranates bring heavy firepower!"
 enemy_groups = Array[EnemyGroup]([SubResource("EnemyGroup_1"), SubResource("EnemyGroup_2"), SubResource("EnemyGroup_3")])
 spawn_delay_between_groups = 3.0
 modifier_spawn_chance = 0.15

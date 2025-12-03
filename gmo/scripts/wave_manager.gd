@@ -194,9 +194,13 @@ func _spawn_enemy(stats: EnemyStats, pos: Vector2, modifier: EnemyStats.EnemyMod
 
 	_apply_modifier_to_enemy(enemy, modifier)
 
+	var warden_node = get_parent().get_node_or_null("Warden")
+	if warden_node and "warden" in enemy:
+		enemy.warden = warden_node
+
 	enemies_alive_count += 1
 	spawned_enemies.append(weakref(enemy))
-	get_tree().root.add_child(enemy)
+	get_parent().add_child(enemy)
 
 	SignalBus.enemy_spawned.emit(stats.enemy_name, enemy)
 
@@ -317,6 +321,38 @@ func _input(event):
 			KEY_P:
 				print("debug: wave progress:")
 				print(get_wave_progress())
+			# Number keys to jump to specific waves
+			KEY_1:
+				print("debug: jumping to wave 1")
+				reset()
+				start_next_wave()
+			KEY_2:
+				print("debug: jumping to wave 2")
+				skip_to_wave(2)
+			KEY_3:
+				print("debug: jumping to wave 3")
+				skip_to_wave(3)
+			KEY_4:
+				print("debug: jumping to wave 4")
+				skip_to_wave(4)
+			KEY_5:
+				print("debug: jumping to wave 5")
+				skip_to_wave(5)
+			KEY_6:
+				print("debug: jumping to wave 6")
+				skip_to_wave(6)
+			KEY_7:
+				print("debug: jumping to wave 7")
+				skip_to_wave(7)
+			KEY_8:
+				print("debug: jumping to wave 8")
+				skip_to_wave(8)
+			KEY_9:
+				print("debug: jumping to wave 9")
+				skip_to_wave(9)
+			KEY_0:
+				print("debug: jumping to wave 10")
+				skip_to_wave(10)
 
 
 func skip_to_wave(wave_num: int) -> void:
