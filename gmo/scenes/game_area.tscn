@@ -1605,6 +1605,7 @@ position = Vector2(1248, 119)
 
 [node name="SingleGrape" parent="." instance=ExtResource("12_d3ocr")]
 position = Vector2(1332, 375)
+speed = 0.0
 
 [node name="PeachTree" parent="." instance=ExtResource("34_lc0e6")]
 position = Vector2(116, -458)

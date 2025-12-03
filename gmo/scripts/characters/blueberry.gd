@@ -11,8 +11,7 @@ var stun_command: BlueberryStunCommand
 
 func _ready():
 	super()
-	max_health = 300.0  # 1 full slash
-	curr_health = max_health
+	
 	default_command = BlueberryDefaultCommand.new(speed)
 	stun_command = BlueberryStunCommand.new(stun_time)
 
@@ -21,10 +20,11 @@ func _physics_process(_delta) -> void:
 	reactive_component.update()
 	super(_delta)
 
+
 func _process(_delta) -> void:
 	command_manager_component.update()
 	animation_manager_component.update()
-
+'''
 func _die():
 	print(str(self) + " has been defeated!")
 	
@@ -33,3 +33,4 @@ func _die():
 	$Area2D/CollisionShape2D.set_deferred("disabled", true)
 	
 	queue_free()
+'''

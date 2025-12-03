@@ -13,9 +13,6 @@ var stun_command: BananaStunCommand
 
 func _ready():
 	super()
-
-	max_health = 100 * full_slash  # 500 HP
-	curr_health = max_health
 	
 	default_command = BananaDefaultCommand.new(speed)
 	stun_command = BananaStunCommand.new(stun_time)
@@ -28,7 +25,7 @@ func _process(_delta) -> void:
 	command_manager_component.update()
 	animation_manager_component.update()
 
-
+'''
 func _die():
 	print(str(self) + " has been defeated!")
 	
@@ -37,3 +34,5 @@ func _die():
 	$Area2D/CollisionShape2D.set_deferred("disabled", true)
 	
 	queue_free()
+
+'''

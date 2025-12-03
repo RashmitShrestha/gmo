@@ -9,6 +9,7 @@ extends GameCharacter
 @export var command_manager_component: PlayerCommandManagerComponent
 @export var input_component: PlayerInputComponent
 @export var animation_manager_component: PlayerAnimationManagerComponent
+@export var slice_radius = 300
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 
@@ -24,8 +25,6 @@ var knockback_command: PlayerKnockbackCommand
 var vel_vec := Vector2.ZERO
 var curr_vel: int = 0
 var is_slicing: bool = false
-
-var slice_radius = 300
 
 # cooldown of the 6 total abilities 
 var cd1 : float
@@ -90,12 +89,15 @@ func hurt_animation():
 	)
 	
 	_blink_timer.start(0.06)
-	get_tree().create_timer(.5).timeout.connect(func(): _blink_timer.queue_free())
+	get_tree().create_timer(invulnerability_duration).timeout.connect(
+		func():
+			_blink_timer.queue_free()
+			sprite.visible = true
+	)
 	
 	sprite.self_modulate = Color(1.0, 0.117, 0.419, 0.5)
 	await get_tree().create_timer(.5).timeout
 	sprite.self_modulate = Color(1,1,1,1)
-	sprite.visible = true
 	#for anim in range(4):
 	
 	damaged = false

@@ -43,8 +43,17 @@ func _on_damage_enemy(character: GameCharacter, slice_velocity: float):
 func _die():
 	print(str(self) + " has been defeated!")
 	
+	'''
 	visible = false
 	$CollisionShape2D.set_deferred("disabled", true)
 	$Area2D/CollisionShape2D.set_deferred("disabled", true)
+	'''
 	
 	queue_free()
+
+
+func apply_damage(damage: float, _source: Node2D):
+	super(damage, _source)
+
+	if curr_health <= 0.0:
+		_die()

@@ -355,11 +355,12 @@ min_dist = 400.0
 max_dist = 800.0
 projectile = ExtResource("2_otaaa")
 shot_speed = 600.0
-frequency = 1.0
+frequency = 1.25
 animation_manager_component = NodePath("AnimationManagerComponent")
 command_manager_component = NodePath("CommandManagerComponent")
 reactive_component = NodePath("ReactiveComponent")
 speed = 300.0
+max_health = 700.0
 metadata/_custom_type_script = "uid://bquw4773xgiaq"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

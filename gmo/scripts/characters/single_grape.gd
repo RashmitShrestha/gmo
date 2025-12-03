@@ -13,9 +13,6 @@ var stun_command: SingleGrapeStunCommand
 
 func _ready():
 	super()
-
-	max_health = 100 * full_slash  # 100 HP (1 full slash)
-	curr_health = max_health
 	
 	default_command = SingleGrapeDefaultCommand.new(speed)
 	stun_command = SingleGrapeStunCommand.new(stun_time)

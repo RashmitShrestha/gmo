@@ -17,8 +17,6 @@ var shoot_command: StrawberryShootCommand
 
 func _ready():
 	super()
-	max_health = 700.0  # 2 full slashes
-	curr_health = max_health
 	
 	move_in_command = StrawberryMoveInCommand.new(speed)
 	move_out_command = StrawberryMoveOutCommand.new(speed)
@@ -35,6 +33,7 @@ func _process(_delta) -> void:
 	animation_manager_component.update()
 
 
+'''
 func _die():
 	print(str(self) + " has been defeated!")
 	
@@ -43,3 +42,5 @@ func _die():
 	$Area2D/CollisionShape2D.set_deferred("disabled", true)
 	
 	queue_free()
+
+'''

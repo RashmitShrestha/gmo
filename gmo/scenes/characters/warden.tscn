@@ -14,8 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://1pjw4u0ygl5p" path="res://scenes/interacting_component.tscn" id="12_uix1w"]
 
 [sub_resource type="Curve" id="Curve_uix1w"]
-_limits = [0.0, 600.0, 0.0, 0.5]
-_data = [Vector2(0, 600), 0.0, 0.0, 0, 0, Vector2(0.4993511, 0), 0.0, 0.0, 0, 0]
+_limits = [0.0, 1000.0, 0.0, 0.5]
+_data = [Vector2(0, 1000), 0.0, 0.0, 0, 0, Vector2(0.4993511, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cgkur"]
@@ -683,10 +683,11 @@ collision_mask = 4
 script = ExtResource("1_wthw5")
 knockback_speed_curve = SubResource("Curve_uix1w")
 dash_invulnerability_duration = 0.4
-invulnerability_duration = 0.5
+invulnerability_duration = 1.0
 command_manager_component = NodePath("CommandManagerComponent")
 input_component = NodePath("InputComponent")
 animation_manager_component = NodePath("AnimationManagerComponent")
+slice_radius = 500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cgkur")

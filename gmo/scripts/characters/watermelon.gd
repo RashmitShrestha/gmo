@@ -13,9 +13,6 @@ var stun_command: WatermelonStunCommand
 
 func _ready():
 	super()
-
-	max_health = 100 * full_slash  # 1000 HP
-	curr_health = max_health
 	
 	step_command = WatermelonStepCommand.new(speed, step_time)
 	stun_command = WatermelonStunCommand.new(stun_time)
@@ -31,6 +28,7 @@ func _process(_delta) -> void:
 	animation_manager_component.update()
 
 
+'''
 func _die():
 	print(str(self) + " has been defeated!")
 	
@@ -39,3 +37,4 @@ func _die():
 	$Area2D/CollisionShape2D.set_deferred("disabled", true)
 	
 	queue_free()
+'''

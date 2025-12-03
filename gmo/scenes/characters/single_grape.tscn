@@ -354,6 +354,8 @@ script = ExtResource("1_sga2y")
 animation_manager_component = NodePath("AnimationManagerComponent")
 command_manager_component = NodePath("CommandManagerComponent")
 reactive_component = NodePath("ReactiveComponent")
+speed = 700.0
+max_health = 100.0
 metadata/_custom_type_script = "uid://bquw4773xgiaq"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

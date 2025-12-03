@@ -12,8 +12,6 @@ var stun_command: GrapeStunCommand
 
 func _ready():
 	super()
-	max_health = 100 * full_slash  # Total health = 2000
-	curr_health = max_health
 	
 	default_command = GrapeDefaultCommand.new(speed)
 	stun_command = GrapeStunCommand.new(stun_time)
@@ -28,7 +26,7 @@ func _process(_delta) -> void:
 	animation_manager_component.update()
 
 
-
+'''
 func _die():
 	print(str(self) + " has been defeated!")
 	
@@ -44,3 +42,5 @@ func _die():
 	
 	# Remove from scene tree
 	queue_free()
+
+'''

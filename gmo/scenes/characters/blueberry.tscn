@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dui38s68nj4ah"]
+[gd_scene load_steps=31 format=3 uid="uid://dui38s68nj4ah"]
 
 [ext_resource type="Script" uid="uid://r0bl6vjeurgd" path="res://scripts/characters/blueberry.gd" id="1_74cfi"]
 [ext_resource type="Texture2D" uid="uid://dju2tvcfsvkd6" path="res://assets/blueberry/blueberry_idle.png" id="2_gjfxf"]
@@ -322,14 +322,6 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_lbkys"]
 colors = PackedColorArray(0, 0, 0, 0.59607846, 1, 1, 1, 0.65882355)
 
-[sub_resource type="Curve" id="Curve_3q58b"]
-_limits = [0.0, 30.0, 0.0, 10.0]
-_data = [Vector2(0.06666684, 19.253733), 0.0, 0.0, 0, 0, Vector2(10, 0.44776154), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Gradient" id="Gradient_lbkys"]
-colors = PackedColorArray(0, 0, 0, 0.59607846, 1, 1, 1, 0.65882355)
-
 [node name="Blueberry" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component")]
 z_index = 1
 collision_layer = 2
@@ -338,7 +330,8 @@ script = ExtResource("1_74cfi")
 animation_manager_component = NodePath("AnimationManagerComponent")
 command_manager_component = NodePath("CommandManagerComponent")
 reactive_component = NodePath("ReactiveComponent")
-speed = 100.0
+speed = 400.0
+max_health = 300.0
 metadata/_custom_type_script = "uid://bquw4773xgiaq"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
