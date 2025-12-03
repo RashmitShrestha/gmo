@@ -33,9 +33,10 @@ func apply_damage(damage: float, _source: Node2D):
 	if invulnerable:
 		return
 	
-	received_damage.emit(damage, _source)
 	damaged = true
-	
+	received_damage.emit(damage, _source)
+
+
 func _process_dot_effects(delta: float) -> void:
 	for element in dot_effects.keys():
 		var effect = dot_effects[element]

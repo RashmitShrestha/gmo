@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dr2nk36vnu8y8"]
+
+[ext_resource type="Script" uid="uid://b64blv88twcxm" path="res://scripts/cursor.gd" id="1_1eco6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d7ugn"]
+
+[node name="Cursor" type="Area2D"]
+collision_layer = 16
+collision_mask = 2
+monitoring = false
+script = ExtResource("1_1eco6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_d7ugn")

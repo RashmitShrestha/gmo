@@ -11,7 +11,6 @@ var curr_command: Command
 var default_command: PomegranateDefaultCommand
 var shooting_command: PomegranateShootingCommand
 
-
 func _ready():
 	super()
 
@@ -25,6 +24,7 @@ func _ready():
 func _physics_process(_delta) -> void:
 	reactive_component.update()
 	super(_delta)
+
 
 func _process(_delta) -> void:
 	command_manager_component.update()

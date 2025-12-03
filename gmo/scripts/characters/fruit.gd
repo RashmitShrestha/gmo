@@ -26,13 +26,7 @@ func _ready():
 		if warden == null:
 			warden = get_parent().get_node_or_null("Warden") if get_parent() else null
 
-	SignalBus.damage_enemy.connect(_on_damage_enemy)
-	$Area2D.connect("mouse_entered", _on_mouse_entered)
-
-
-func _on_mouse_entered():
-	if warden and warden.is_slicing:
-		SignalBus.damage_enemy.emit(self, warden.curr_vel)
+	# SignalBus.damage_enemy.connect(_on_damage_enemy)
 
 
 func _on_damage_enemy(character: GameCharacter, slice_velocity: float):
@@ -44,6 +38,7 @@ func _on_damage_enemy(character: GameCharacter, slice_velocity: float):
 		
 		if curr_health <= 0:
 			_die()
+
 
 func _die():
 	print(str(self) + " has been defeated!")

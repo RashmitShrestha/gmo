@@ -10,32 +10,30 @@ extends Fruit
 @export var command_manager_component: StrawberryCommandManagerComponent
 @export var reactive_component: StrawberryReactiveComponent
 
-
 var curr_command: Command
 var move_in_command: StrawberryMoveInCommand
 var move_out_command: StrawberryMoveOutCommand
 var shoot_command: StrawberryShootCommand
-
 
 func _ready():
 	super()
 	max_health = 700.0  # 2 full slashes
 	curr_health = max_health
 	
-	
 	move_in_command = StrawberryMoveInCommand.new(speed)
 	move_out_command = StrawberryMoveOutCommand.new(speed)
 	shoot_command = StrawberryShootCommand.new(projectile, shot_speed, frequency)
-	
 
 
 func _physics_process(_delta) -> void:
 	reactive_component.update()
 	super(_delta)
 
+
 func _process(_delta) -> void:
 	command_manager_component.update()
 	animation_manager_component.update()
+
 
 func _die():
 	print(str(self) + " has been defeated!")

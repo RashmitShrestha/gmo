@@ -25,6 +25,7 @@ func _physics_process(_delta) -> void:
 	reactive_component.update()
 	super(_delta)
 
+
 func _process(_delta) -> void:
 	command_manager_component.update()
 	animation_manager_component.update()
