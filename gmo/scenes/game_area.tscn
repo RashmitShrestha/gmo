@@ -1,4 +1,4 @@
-[gd_scene load_steps=162 format=4 uid="uid://dmf617rn6a8pm"]
+[gd_scene load_steps=169 format=4 uid="uid://dmf617rn6a8pm"]
 
 [ext_resource type="Texture2D" uid="uid://ckfplp2dp23fa" path="res://assets/test_area.webp" id="1_4eb3c"]
 [ext_resource type="Texture2D" uid="uid://c6lubr8yhm1w4" path="res://assets/terrain/Background_Green_TileSet.png" id="1_xt4jw"]
@@ -52,13 +52,16 @@
 [ext_resource type="Texture2D" uid="uid://cn63qgjd5a1yf" path="res://assets/background_assets/Nature/Tree_10_Small-oak_Dark-Green.png" id="16_4vnps"]
 [ext_resource type="Texture2D" uid="uid://c2s6byrcfp2ah" path="res://assets/background_assets/Street-Light_6_Down_Overgrown_Green.png" id="21_hvsqm"]
 [ext_resource type="Texture2D" uid="uid://buu3erk5n61su" path="res://assets/background_assets/Street-Light_5_Up_Overgrown_Green.png" id="22_huarl"]
-[ext_resource type="Texture2D" uid="uid://waojdo12cvsa" path="res://assets/peach/peach_tree_pink.png" id="24_lc0e6"]
+[ext_resource type="Shader" uid="uid://dyks5if7j05ir" path="res://scenes/tree_sway_small.gdshader" id="23_5xjug"]
+[ext_resource type="Shader" uid="uid://c5l5vk1b76jtn" path="res://scenes/tree_sway_bigger.gdshader" id="24_ngom5"]
+[ext_resource type="Shader" uid="uid://ecnj8d2l1myp" path="res://scenes/tree_sway_smaller.gdshader" id="24_nuv0j"]
+[ext_resource type="Shader" uid="uid://omrj7l8k1s3t" path="res://scenes/tree_sway_big.gdshader" id="24_q0h64"]
 [ext_resource type="Texture2D" uid="uid://bee8o6r44v5wd" path="res://assets/background_assets/Nature/Grass_3_Dark-Green.png" id="27_u8ofs"]
 [ext_resource type="Texture2D" uid="uid://b6y5nfa3dj20n" path="res://assets/background_assets/Nature/Grass_4_Dark-Green.png" id="28_l6u5i"]
 [ext_resource type="Texture2D" uid="uid://y1648cgkvus2" path="res://assets/background_assets/Container_2_Gray_Vertical_Overgrown_Bleak-Yellow.png" id="29_l6u5i"]
 [ext_resource type="Texture2D" uid="uid://blcemc3m3wdyl" path="res://assets/background_assets/Nature/Flowers_1_purple.png" id="31_26c7f"]
 [ext_resource type="Texture2D" uid="uid://dsx34u8ob1372" path="res://assets/background_assets/Tire_2_Grass_Bleak-Yellow.png" id="31_tks2w"]
-[ext_resource type="PackedScene" uid="uid://brm71c424vql4" path="res://scenes/peach_tree.tscn" id="34_lc0e6"]
+[ext_resource type="PackedScene" uid="uid://u2ou1iejvbah" path="res://scenes/peach_tree.tscn" id="34_lc0e6"]
 [ext_resource type="PackedScene" uid="uid://bxybsx8a4jhsd" path="res://scenes/ui/ui.tscn" id="34_y1fpr"]
 [ext_resource type="PackedScene" uid="uid://0cg4bkhm5jbt" path="res://scenes/skill_tree_menu.tscn" id="35_lc0e6"]
 [ext_resource type="Texture2D" uid="uid://b86av4keklu2t" path="res://assets/background_assets/Nature/Grass_2_Dark-Green.png" id="41_sqp03"]
@@ -560,6 +563,11 @@ sources/4 = SubResource("TileSetAtlasSource_bxyks")
 sources/5 = SubResource("TileSetAtlasSource_bvm2c")
 sources/6 = SubResource("TileSetAtlasSource_2ukne")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5xjug"]
+shader = ExtResource("23_5xjug")
+shader_parameter/sway_intensity = 2.0
+shader_parameter/sway_speed = 3.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fe2ft"]
 texture = ExtResource("10_fu8q3")
 texture_region_size = Vector2i(39, 45)
@@ -573,6 +581,11 @@ texture_region_size = Vector2i(24, 36)
 [sub_resource type="TileSet" id="TileSet_g6m2n"]
 sources/0 = SubResource("TileSetAtlasSource_fe2ft")
 sources/1 = SubResource("TileSetAtlasSource_8d6fe")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ghy5t"]
+shader = ExtResource("24_ngom5")
+shader_parameter/sway_intensity = 2.0
+shader_parameter/sway_speed = 2.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eksly"]
 texture = ExtResource("12_82wt1")
@@ -588,6 +601,11 @@ texture_region_size = Vector2i(21, 30)
 sources/0 = SubResource("TileSetAtlasSource_eksly")
 sources/1 = SubResource("TileSetAtlasSource_c3801")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ngom5"]
+shader = ExtResource("24_q0h64")
+shader_parameter/sway_intensity = 2.0
+shader_parameter/sway_speed = 2.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v0v54"]
 texture = ExtResource("12_82wt1")
 texture_region_size = Vector2i(34, 52)
@@ -601,6 +619,11 @@ texture_region_size = Vector2i(21, 30)
 [sub_resource type="TileSet" id="TileSet_cfq8y"]
 sources/1 = SubResource("TileSetAtlasSource_v0v54")
 sources/2 = SubResource("TileSetAtlasSource_u80vr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q0h64"]
+shader = ExtResource("24_nuv0j")
+shader_parameter/sway_intensity = 2.0
+shader_parameter/sway_speed = 3.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pfrau"]
 texture = ExtResource("10_fu8q3")
@@ -1379,23 +1402,29 @@ tile_map_data = PackedByteArray("AAAXAPb/AAAAAAAAAAAYAOH/AAAAAAAAAAAYAPP/AAAAAAA
 tile_set = SubResource("TileSet_eafmv")
 
 [node name="SmallSwayingTrees2LeftMap" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_5xjug")
 scale = Vector2(8, 8)
 tile_map_data = PackedByteArray("AAAFAPD/AAAAAAAAAAD6//P/AAAAAAAAAAAGAPH/AQAAAAAAAAACAPD/AQAAAAAAAAD2//D/AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_g6m2n")
 
 [node name="BigSwayingTreesLeftMap" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_ghy5t")
 position = Vector2(128, 131)
 scale = Vector2(8, 8)
 tile_map_data = PackedByteArray("AADy/+//AAAAAAAAAAAEAPD/AAAAAAAAAADx//P/AAAAAAAAAAAGAO7/AAAAAAAAAAACAPD/AQAAAAAAAAD4/+//AAAAAAAAAADx//H/AAAAAAAAAAD5//P/AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_stem0")
 
 [node name="BigSwayingTrees2LeftMap" type="TileMapLayer" parent="."]
+material = SubResource("ShaderMaterial_ngom5")
 position = Vector2(128, 131)
 scale = Vector2(8, 8)
 tile_map_data = PackedByteArray("AAD7//H/AQAAAAAAAAD0//L/AQAAAAAAAAABAPH/AQAAAAAAAAD7/+7/AQAAAAAAAAAGAPH/AgAAAAAAAAACAO7/AgAAAAAAAAD3//H/AQAAAAAAAAD2//T/AQAAAAAAAAD+/+//AQAAAAAAAAA=")
 tile_set = SubResource("TileSet_cfq8y")
 
 [node name="SmallSwayingTreesLeftMap" type="TileMapLayer" parent="."]
+material = SubResource("ShaderMaterial_q0h64")
 position = Vector2(128, 131)
 scale = Vector2(8, 8)
 tile_map_data = PackedByteArray("AAD///H/AAAAAAAAAADz//T/AQAAAAAAAAD9//H/AQAAAAAAAAA=")
@@ -1468,11 +1497,6 @@ tile_set = SubResource("TileSet_mqau0")
 scale = Vector2(8, 8)
 tile_map_data = PackedByteArray("AAAMAPr/AAAAAAAAAAD+/wQAAAAAAAAAAAD//wUAAQAAAAAAAAAQAPL/AQAAAAAAAAD6/+//AwAAAAAAAAADAOj/AwAAAAAAAAD0/+P/AwAAAAAAAADk//L/AwAAAAAAAADs//j/AwAAAAAAAADm/+b/AwAAAAAAAAAPAOf/AwAAAAAAAAA=")
 tile_set = SubResource("TileSet_pt5b5")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(104, -395)
-scale = Vector2(8, 8)
-texture = ExtResource("24_lc0e6")
 
 [node name="TestArea" type="Sprite2D" parent="."]
 position = Vector2(7003, 25.999985)
