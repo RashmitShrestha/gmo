@@ -9,10 +9,9 @@ func update() -> void:
 	else: 
 		_parent.animation_tree["parameters/conditions/idle"] = false
 		_parent.animation_tree["parameters/conditions/is_moving"] = true
-		
+	
 	if _parent.damaged:
 		_parent.animation_tree["parameters/conditions/hurt"] = true
-		_parent.damaged = false
 	else: 
 		_parent.animation_tree["parameters/conditions/hurt"] = false
 	

@@ -52,10 +52,10 @@
 [ext_resource type="Texture2D" uid="uid://cn63qgjd5a1yf" path="res://assets/background_assets/Nature/Tree_10_Small-oak_Dark-Green.png" id="16_4vnps"]
 [ext_resource type="Texture2D" uid="uid://c2s6byrcfp2ah" path="res://assets/background_assets/Street-Light_6_Down_Overgrown_Green.png" id="21_hvsqm"]
 [ext_resource type="Texture2D" uid="uid://buu3erk5n61su" path="res://assets/background_assets/Street-Light_5_Up_Overgrown_Green.png" id="22_huarl"]
-[ext_resource type="Shader" uid="uid://dyks5if7j05ir" path="res://scenes/tree_sway_small.gdshader" id="23_5xjug"]
-[ext_resource type="Shader" uid="uid://c5l5vk1b76jtn" path="res://scenes/tree_sway_bigger.gdshader" id="24_ngom5"]
-[ext_resource type="Shader" uid="uid://ecnj8d2l1myp" path="res://scenes/tree_sway_smaller.gdshader" id="24_nuv0j"]
-[ext_resource type="Shader" uid="uid://omrj7l8k1s3t" path="res://scenes/tree_sway_big.gdshader" id="24_q0h64"]
+[ext_resource type="Shader" uid="uid://dyks5if7j05ir" path="res://shaders/tree_sway_small.gdshader" id="23_5xjug"]
+[ext_resource type="Shader" uid="uid://c5l5vk1b76jtn" path="res://shaders/tree_sway_bigger.gdshader" id="24_ngom5"]
+[ext_resource type="Shader" uid="uid://ecnj8d2l1myp" path="res://shaders/tree_sway_smaller.gdshader" id="24_nuv0j"]
+[ext_resource type="Shader" uid="uid://omrj7l8k1s3t" path="res://shaders/tree_sway_big.gdshader" id="24_q0h64"]
 [ext_resource type="Texture2D" uid="uid://bee8o6r44v5wd" path="res://assets/background_assets/Nature/Grass_3_Dark-Green.png" id="27_u8ofs"]
 [ext_resource type="Texture2D" uid="uid://b6y5nfa3dj20n" path="res://assets/background_assets/Nature/Grass_4_Dark-Green.png" id="28_l6u5i"]
 [ext_resource type="Texture2D" uid="uid://y1648cgkvus2" path="res://assets/background_assets/Container_2_Gray_Vertical_Overgrown_Bleak-Yellow.png" id="29_l6u5i"]
@@ -1357,15 +1357,6 @@ sources/1 = SubResource("TileSetAtlasSource_btsyj")
 sources/2 = SubResource("TileSetAtlasSource_hvsqm")
 sources/3 = SubResource("TileSetAtlasSource_x6xvg")
 
-[sub_resource type="Curve" id="Curve_gdmpp"]
-_limits = [0.0, 3500.0, 0.0, 1.0]
-_data = [Vector2(0, 3500), 0.0, 0.0, 0, 0, Vector2(0.10000001, 3500), 0.0, 0.0, 0, 0, Vector2(0.5027027, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="Gradient" id="Gradient_6dmfj"]
-offsets = PackedFloat32Array(0.5466667, 1)
-colors = PackedColorArray(0.9471994, 0.9471994, 0.9471994, 1, 0.5176471, 0.78431374, 0.7647059, 0.81960785)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1fpr"]
 size = Vector2(4101.5, 50)
 
@@ -1377,6 +1368,15 @@ size = Vector2(50, 4104.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2w4xq"]
 size = Vector2(50, 4112)
+
+[sub_resource type="Curve" id="Curve_gdmpp"]
+_limits = [0.0, 3500.0, 0.0, 1.0]
+_data = [Vector2(0, 3500), 0.0, 0.0, 0, 0, Vector2(0.10000001, 3500), 0.0, 0.0, 0, 0, Vector2(0.5027027, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_6dmfj"]
+offsets = PackedFloat32Array(0.5466667, 1)
+colors = PackedColorArray(0.9471994, 0.9471994, 0.9471994, 1, 0.5176471, 0.78431374, 0.7647059, 0.81960785)
 
 [node name="GameArea" type="Node2D"]
 
@@ -1503,6 +1503,30 @@ position = Vector2(7003, 25.999985)
 scale = Vector2(3, 3)
 texture = ExtResource("1_4eb3c")
 
+[node name="UI" parent="." instance=ExtResource("34_y1fpr")]
+
+[node name="WorldBoundaries" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShapeBottom" type="CollisionShape2D" parent="WorldBoundaries"]
+position = Vector2(120.75, 2080)
+shape = SubResource("RectangleShape2D_y1fpr")
+
+[node name="CollisionShapeTop" type="CollisionShape2D" parent="WorldBoundaries"]
+position = Vector2(127.25, -2066)
+shape = SubResource("RectangleShape2D_lc0e6")
+
+[node name="CollisionShapeLeft" type="CollisionShape2D" parent="WorldBoundaries"]
+position = Vector2(-1951, 0.75)
+shape = SubResource("RectangleShape2D_t7872")
+
+[node name="CollisionShapeRight" type="CollisionShape2D" parent="WorldBoundaries"]
+position = Vector2(2195, 3)
+shape = SubResource("RectangleShape2D_2w4xq")
+
+[node name="SkillTreeMenu" parent="." instance=ExtResource("35_lc0e6")]
+
 [node name="Warden" parent="." instance=ExtResource("2_gdmpp")]
 unique_name_in_owner = true
 texture_filter = 1
@@ -1581,29 +1605,5 @@ position = Vector2(1248, 119)
 [node name="SingleGrape" parent="." instance=ExtResource("12_d3ocr")]
 position = Vector2(1332, 375)
 
-[node name="UI" parent="." instance=ExtResource("34_y1fpr")]
-
-[node name="WorldBoundaries" type="StaticBody2D" parent="."]
-collision_layer = 4
-collision_mask = 3
-
-[node name="CollisionShapeBottom" type="CollisionShape2D" parent="WorldBoundaries"]
-position = Vector2(120.75, 2080)
-shape = SubResource("RectangleShape2D_y1fpr")
-
-[node name="CollisionShapeTop" type="CollisionShape2D" parent="WorldBoundaries"]
-position = Vector2(127.25, -2066)
-shape = SubResource("RectangleShape2D_lc0e6")
-
-[node name="CollisionShapeLeft" type="CollisionShape2D" parent="WorldBoundaries"]
-position = Vector2(-1951, 0.75)
-shape = SubResource("RectangleShape2D_t7872")
-
-[node name="CollisionShapeRight" type="CollisionShape2D" parent="WorldBoundaries"]
-position = Vector2(2195, 3)
-shape = SubResource("RectangleShape2D_2w4xq")
-
 [node name="PeachTree" parent="." instance=ExtResource("34_lc0e6")]
 position = Vector2(116, -458)
-
-[node name="SkillTreeMenu" parent="." instance=ExtResource("35_lc0e6")]

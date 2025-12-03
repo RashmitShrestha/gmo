@@ -1,12 +1,17 @@
-class_name PlayerDashCommand
+class_name PlayerKnockbackCommand
 extends Command
 
-var _speed_curve: Curve
 var _timer: Timer
+var _speed_curve: Curve
 var _direction: Vector2
+var _damaged_from: Vector2
 
-func _init(speed_curve: Curve) -> void:
+func _init(speed_curve: Curve, character: Warden):
 	_speed_curve = speed_curve
+	character.received_damage.connect(
+		func(_damage: float, source: Node2D):
+			_damaged_from = source.position
+	)
 
 
 func execute(character: Warden) -> Status:
@@ -16,13 +21,8 @@ func execute(character: Warden) -> Status:
 		_timer.one_shot = true
 		_timer.start(_speed_curve.max_domain)
 		
-		character.make_invulnerable(character.dash_invulnerability_duration)
+		_direction = (character.position - _damaged_from).normalized()
 
-		_direction = character.direction
-
-		#emit signal for audio n FX
-		SignalBus.player_dashed.emit()
-	
 	if not _timer.is_stopped():
 		character.velocity = _direction * _speed_curve.sample(_speed_curve.max_domain - _timer.time_left)
 		return Status.ACTIVE
@@ -30,7 +30,3 @@ func execute(character: Warden) -> Status:
 		character.velocity = Vector2.ZERO
 		_timer.queue_free()
 		return Status.DONE
-
-
-func force_finish() -> void:
-	_timer.queue_free()
