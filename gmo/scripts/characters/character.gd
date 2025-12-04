@@ -7,7 +7,7 @@ signal received_damage(damage, _source)
 var direction := Vector2.ZERO
 var id : int
 @export var max_health : float
-var curr_health : float = max_health
+@onready var curr_health : float = max_health
 
 var damaged: bool = false
 var invulnerable: bool = false
