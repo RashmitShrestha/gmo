@@ -33,8 +33,10 @@ func apply_damage(damage: float, _source: Node2D):
 	if invulnerable:
 		return
 	
+	curr_health -= damage
 	damaged = true
 	received_damage.emit(damage, _source)
+
 
 func _die():
 	print(str(self) + " has been defeated!")

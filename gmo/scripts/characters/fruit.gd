@@ -49,10 +49,6 @@ func _on_skill_damage_enemy(character: GameCharacter, dmg: float, element_type: 
 			_die()
 
 		print(str(self) + " took " + str(dmg) + " damage from element " + str(element_type) + ". Health: " + str(curr_health))
-		
-		
-
-
 
 
 func apply_damage(damage: float, _source: Node2D):
