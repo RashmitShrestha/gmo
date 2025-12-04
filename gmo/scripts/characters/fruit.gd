@@ -26,7 +26,9 @@ func _ready():
 		if warden == null:
 			warden = get_parent().get_node_or_null("Warden") if get_parent() else null
 
-	# SignalBus.damage_enemy.connect(_on_damage_enemy)
+	#SignalBus.damage_enemy.connect(_on_damage_enemy)
+	SignalBus.skill_damage_enemy.connect(_on_skill_damage_enemy)
+
 
 
 func _on_damage_enemy(character: GameCharacter, slice_velocity: float):
@@ -38,18 +40,19 @@ func _on_damage_enemy(character: GameCharacter, slice_velocity: float):
 		
 		if curr_health <= 0:
 			_die()
+			
+func _on_skill_damage_enemy(character: GameCharacter, dmg: float, element_type: int):
+	if character == self:
+		curr_health -= dmg
+		
+		if curr_health <= 0:
+			_die()
+
+		print(str(self) + " took " + str(dmg) + " damage from element " + str(element_type) + ". Health: " + str(curr_health))
+		
+		
 
 
-func _die():
-	print(str(self) + " has been defeated!")
-	
-	'''
-	visible = false
-	$CollisionShape2D.set_deferred("disabled", true)
-	$Area2D/CollisionShape2D.set_deferred("disabled", true)
-	'''
-	
-	queue_free()
 
 
 func apply_damage(damage: float, _source: Node2D):

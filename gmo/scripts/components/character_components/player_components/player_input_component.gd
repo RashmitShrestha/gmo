@@ -22,8 +22,10 @@ func update(event: InputEvent) -> void:
 	elif Input.is_action_just_pressed("special_3") and slice.current_element < 0:
 		slice.set_element(3)
 		
-	#elif Input.is_action_just_pressed("special_4"):
-
+	elif Input.is_action_just_pressed("special_4"):
+		var flame_flinger = _parent.get_node_or_null("FlameFlingerArea")
+		flame_flinger.toggle()
+			
 	#elif Input.is_action_just_pressed("special_5"):
 #
 	#elif Input.is_action_just_pressed("special_6"):

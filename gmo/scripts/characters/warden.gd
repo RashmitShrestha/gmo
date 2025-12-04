@@ -12,6 +12,7 @@ extends GameCharacter
 @export var slice_radius = 300
 
 @onready var animation_tree: AnimationTree = $AnimationTree
+var last_facing_direction := Vector2.RIGHT  
 
 var _invulnerability_timer: Timer
 var _blink_timer: Timer

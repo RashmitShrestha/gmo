@@ -24,13 +24,3 @@ func _physics_process(_delta) -> void:
 func _process(_delta) -> void:
 	command_manager_component.update()
 	animation_manager_component.update()
-'''
-func _die():
-	print(str(self) + " has been defeated!")
-	
-	visible = false
-	$CollisionShape2D.set_deferred("disabled", true)
-	$Area2D/CollisionShape2D.set_deferred("disabled", true)
-	
-	queue_free()
-'''

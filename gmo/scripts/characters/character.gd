@@ -36,6 +36,16 @@ func apply_damage(damage: float, _source: Node2D):
 	damaged = true
 	received_damage.emit(damage, _source)
 
+func _die():
+	print(str(self) + " has been defeated!")
+	
+	'''
+	visible = false
+	$CollisionShape2D.set_deferred("disabled", true)
+	$Area2D/CollisionShape2D.set_deferred("disabled", true)
+	'''
+	
+	queue_free()
 
 func _process_dot_effects(delta: float) -> void:
 	for element in dot_effects.keys():
@@ -56,29 +66,20 @@ func _process_dot_effects(delta: float) -> void:
 				effect.time = 0.0
 	
 func apply_dot(element: int, dps: float, duration: float) -> void:
-	"""Apply or refresh a damage-over-time effect
-	element: 1 (Fire), 2 (Frozen), 3 (Ferment)
-	dps: damage per second
-	duration: how long the effect lasts in seconds
-	"""
 	if element in dot_effects:
-		# Stack or refresh the effect
-		dot_effects[element].damage_per_second += dps  # Or use max() to not stack
+		dot_effects[element].damage_per_second += dps  
 		dot_effects[element].remaining_time = max(dot_effects[element].remaining_time, duration)
 
 func clear_dot(element: int) -> void:
-	"""Clear a specific elemental DoT effect"""
 	if element in dot_effects:
 		dot_effects[element].damage_per_second = 0.0
 		dot_effects[element].remaining_time = 0.0
 
 func clear_all_dots() -> void:
-	"""Clear all DoT effects"""
 	for element in dot_effects.keys():
 		clear_dot(element)
 
 func get_active_dots() -> Array:
-	"""Returns array of active element types"""
 	var active = []
 	for element in dot_effects.keys():
 		if dot_effects[element].remaining_time > 0:

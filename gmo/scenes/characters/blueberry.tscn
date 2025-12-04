@@ -392,6 +392,7 @@ linear_accel_max = 5.0
 radial_accel_min = 4.12
 radial_accel_max = 28.87
 scale_amount_min = 0.5
+scale_amount_max = 1.4
 scale_amount_curve = SubResource("Curve_3q58b")
 color = Color(0.8039216, 0.4509804, 0.32941177, 0.6431373)
 
@@ -415,6 +416,7 @@ linear_accel_max = 5.0
 radial_accel_min = 4.12
 radial_accel_max = 28.87
 scale_amount_min = 0.5
+scale_amount_max = 1.4
 scale_amount_curve = SubResource("Curve_3q58b")
 color = Color(0.13045967, 0.6132431, 0.7802239, 0.6431373)
 
@@ -439,6 +441,7 @@ linear_accel_max = 5.0
 radial_accel_min = 4.12
 radial_accel_max = 28.87
 scale_amount_min = 0.5
+scale_amount_max = 1.4
 scale_amount_curve = SubResource("Curve_3q58b")
 color = Color(0.30588236, 0.5803922, 0.27058825, 0.67058825)
 color_ramp = SubResource("Gradient_lbkys")

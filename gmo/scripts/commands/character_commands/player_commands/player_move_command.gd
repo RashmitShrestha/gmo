@@ -10,4 +10,6 @@ func execute(character: Warden) -> Status:
 		character.sprite.flip_h = true
 	else:
 		character.sprite.flip_h = false
+	
+	character.last_facing_direction = character.direction
 	return Status.DONE

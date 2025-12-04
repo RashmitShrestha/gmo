@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://jqidoyn47nxk"]
+[gd_scene load_steps=78 format=3 uid="uid://jqidoyn47nxk"]
 
 [ext_resource type="Script" uid="uid://gs8ynx86xdf5" path="res://scripts/characters/warden.gd" id="1_wthw5"]
 [ext_resource type="Texture2D" uid="uid://clv2rjc18im1s" path="res://assets/warden/warden_idle.png" id="2_uvufd"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://c6j7pukqrqy81" path="res://scripts/components/character_components/player_components/player_command_manager_component.gd" id="10_mjqe3"]
 [ext_resource type="Script" uid="uid://cstfxpqorys6c" path="res://scripts/components/character_components/player_components/player_animation_manager_component.gd" id="11_mjqe3"]
 [ext_resource type="PackedScene" uid="uid://1pjw4u0ygl5p" path="res://scenes/interacting_component.tscn" id="12_uix1w"]
+[ext_resource type="Script" uid="uid://gm4br7mfv5gs" path="res://scripts/commands/character_commands/player_commands/flameflinger.gd" id="13_70fpi"]
 
 [sub_resource type="Curve" id="Curve_uix1w"]
 _limits = [0.0, 1000.0, 0.0, 0.5]
@@ -677,6 +678,18 @@ _data = {
 &"running_side": SubResource("Animation_cabxg")
 }
 
+[sub_resource type="Curve" id="Curve_70fpi"]
+_limits = [0.0, 30.0, 0.0, 10.0]
+_data = [Vector2(0.06666684, 19.253733), 0.0, 0.0, 0, 0, Vector2(10, 0.44776154), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_wt0ak"]
+colors = PackedColorArray(0, 0, 0, 0.59607846, 1, 1, 1, 0.65882355)
+
+[sub_resource type="Gradient" id="Gradient_uix1w"]
+offsets = PackedFloat32Array(0.5410959, 1)
+colors = PackedColorArray(1, 1, 1, 0.90588236, 1, 1, 1, 0)
+
 [node name="Warden" type="CharacterBody2D" node_paths=PackedStringArray("command_manager_component", "input_component", "animation_manager_component")]
 y_sort_enabled = true
 collision_mask = 4
@@ -733,3 +746,110 @@ position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_cgkur")
 
 [node name="InteractingComponent" parent="." instance=ExtResource("12_uix1w")]
+
+[node name="FlameParticle" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2(2, -2)
+lifetime = 2.0
+preprocess = 1.24
+speed_scale = 2.0
+randomness = 0.25
+emission_shape = 3
+emission_rect_extents = Vector2(20, 40)
+direction = Vector2(0, 0)
+gravity = Vector2(0, -20)
+initial_velocity_min = 10.09
+initial_velocity_max = 20.19
+linear_accel_min = 0.5
+linear_accel_max = 5.0
+radial_accel_min = 4.12
+radial_accel_max = 28.87
+scale_amount_min = 0.5
+scale_amount_max = 1.4
+scale_amount_curve = SubResource("Curve_70fpi")
+color = Color(0.8640395, 0.24830881, 0.21605894, 0.8745098)
+
+[node name="FrozenParticle" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2(2, -2)
+lifetime = 2.0
+preprocess = 1.24
+speed_scale = 2.0
+randomness = 0.05
+emission_shape = 3
+emission_rect_extents = Vector2(20, 40)
+direction = Vector2(0, 0)
+spread = 67.27
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.09
+initial_velocity_max = 20.19
+angular_velocity_max = 10.0
+linear_accel_min = 0.5
+linear_accel_max = 5.0
+radial_accel_min = 4.12
+radial_accel_max = 28.87
+scale_amount_min = 0.5
+scale_amount_max = 1.4
+scale_amount_curve = SubResource("Curve_70fpi")
+color = Color(0.13045967, 0.6132431, 0.7802239, 0.6431373)
+
+[node name="FermentParticle" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2(-5, -6)
+lifetime = 2.0
+preprocess = 1.24
+speed_scale = 2.0
+randomness = 0.25
+emission_shape = 3
+emission_rect_extents = Vector2(20, 40)
+direction = Vector2(0, 0)
+spread = 67.27
+gravity = Vector2(0, -20)
+initial_velocity_min = 10.09
+initial_velocity_max = 20.19
+orbit_velocity_min = 0.1
+orbit_velocity_max = 0.3
+linear_accel_min = 0.5
+linear_accel_max = 5.0
+radial_accel_min = 4.12
+radial_accel_max = 28.87
+scale_amount_min = 0.5
+scale_amount_max = 1.4
+scale_amount_curve = SubResource("Curve_70fpi")
+color = Color(0.30588236, 0.5803922, 0.27058825, 0.88235295)
+color_ramp = SubResource("Gradient_wt0ak")
+
+[node name="FlameFlingerParticle" type="CPUParticles2D" parent="."]
+position = Vector2(-2, -1)
+amount = 26
+lifetime = 2.5
+preprocess = 1.24
+speed_scale = 4.0
+randomness = 0.25
+emission_shape = 3
+emission_rect_extents = Vector2(20, 40)
+direction = Vector2(0, 0)
+spread = 70.52
+gravity = Vector2(100, 0)
+initial_velocity_min = 10.09
+initial_velocity_max = 20.19
+linear_accel_min = 0.5
+linear_accel_max = 5.0
+radial_accel_min = 4.12
+radial_accel_max = 28.87
+scale_amount_min = 0.8
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_70fpi")
+color = Color(0.9607843, 0.21960784, 0.3764706, 0.8745098)
+color_ramp = SubResource("Gradient_uix1w")
+
+[node name="FlameFlingerArea" type="Area2D" parent="."]
+collision_layer = 13
+collision_mask = 6
+monitoring = false
+monitorable = false
+script = ExtResource("13_70fpi")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FlameFlingerArea"]
+position = Vector2(122, -6)
+polygon = PackedVector2Array(260, -104, 262, 82, -98, 49, -98, -36)
