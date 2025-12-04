@@ -13,7 +13,12 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if len(hitbox.get_overlapping_bodies()) != 0:
 		if hitbox.get_overlapping_bodies()[0] is GameCharacter:
+			if _parent is Fruit:
+				_parent.is_attacking = true
 			_damage(hitbox.get_overlapping_bodies()[0])
+		else:
+			if _parent is Fruit:
+				_parent.is_attacking = false
 
 
 func _damage(character: GameCharacter) -> void:
