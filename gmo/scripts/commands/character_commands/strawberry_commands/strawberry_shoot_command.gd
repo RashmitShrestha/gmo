@@ -23,6 +23,7 @@ func _shoot(character: Strawberry):
 
 func execute(character: Strawberry) -> Status:
 	if _timer == null:
+		character.is_attacking = true
 		_timer = Timer.new()
 		character.add_child(_timer)
 		_timer.start(_frequency)
@@ -32,6 +33,7 @@ func execute(character: Strawberry) -> Status:
 	elif character.warden.position.distance_to(character.position) <= character.min_dist or \
 		character.warden.position.distance_to(character.position) >= character.max_dist:
 		_timer.queue_free()
+		character.is_attacking = false
 		return Command.Status.DONE
 
 	return Command.Status.ACTIVE

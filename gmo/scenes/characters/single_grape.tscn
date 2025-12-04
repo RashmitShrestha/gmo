@@ -317,6 +317,7 @@ advance_mode = 2
 advance_condition = &"idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t3li2"]
+switch_mode = 2
 advance_mode = 2
 advance_condition = &"hurt"
 

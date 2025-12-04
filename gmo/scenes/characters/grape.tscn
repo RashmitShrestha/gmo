@@ -322,6 +322,7 @@ advance_mode = 2
 advance_condition = &"is_attacking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lvbaj"]
+switch_mode = 2
 advance_mode = 2
 advance_condition = &"hurt"
 

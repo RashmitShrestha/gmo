@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://byv07qqap6fn5" path="res://assets/watermelon/watermelon_death.png" id="5_fl2h7"]
 [ext_resource type="Script" uid="uid://bfiy7duu6tjkw" path="res://scripts/components/character_components/fruit_components/watermelon_components/watermelon_animation_manager_component.gd" id="6_8mcj1"]
 [ext_resource type="Script" uid="uid://ylcuyobhupph" path="res://scripts/components/character_components/fruit_components/watermelon_components/watermelon_command_manager_component.gd" id="7_fl2h7"]
-[ext_resource type="Script" uid="uid://dkq7qiuvsgpy1" path="res://scripts/components/character_components/fruit_components/watermelon_components/watermelon_reactive_component.gd" id="8_ko7bv"]
+[ext_resource type="Script" uid="uid://d10od3vdq30et" path="res://scripts/components/character_components/fruit_components/watermelon_components/watermelon_reactive_component.gd" id="8_ko7bv"]
 [ext_resource type="Script" uid="uid://bhxvb4ri02c8t" path="res://scripts/components/character_components/damage_component.gd" id="9_pmonm"]
 
 [sub_resource type="Animation" id="Animation_1bs3t"]

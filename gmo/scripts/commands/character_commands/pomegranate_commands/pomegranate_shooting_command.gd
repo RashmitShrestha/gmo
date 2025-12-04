@@ -10,6 +10,7 @@ func _init(stun_time: float):
 
 func execute(character: Pomegranate) -> Status:
 	if _timer == null:
+		character.is_attacking = true
 		_timer = Timer.new()
 		character.add_child(_timer)
 		_timer.one_shot = true
@@ -19,6 +20,7 @@ func execute(character: Pomegranate) -> Status:
 		character.direction = Vector2.ZERO
 	
 	if not _timer.is_stopped():
+		character.is_attacking = false
 		return Status.ACTIVE
 	else:
 		character.stunned = false

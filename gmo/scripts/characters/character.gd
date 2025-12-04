@@ -7,6 +7,7 @@ signal received_damage(damage, _source)
 var direction := Vector2.ZERO
 var id : int
 @export var max_health : float
+@onready var animation_player:AnimationPlayer = $AnimationPlayer
 @onready var curr_health : float = max_health
 
 var damaged: bool = false
@@ -40,7 +41,6 @@ func apply_damage(damage: float, _source: Node2D):
 
 func _die():
 	print(str(self) + " has been defeated!")
-	
 	'''
 	visible = false
 	$CollisionShape2D.set_deferred("disabled", true)

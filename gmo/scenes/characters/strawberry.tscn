@@ -311,6 +311,7 @@ advance_mode = 2
 advance_condition = &"is_attacking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_43bqi"]
+switch_mode = 2
 advance_mode = 2
 advance_condition = &"idle"
 
@@ -320,6 +321,7 @@ advance_mode = 2
 advance_condition = &"is_attacking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0rbhn"]
+switch_mode = 2
 advance_mode = 2
 advance_condition = &"hurt"
 
