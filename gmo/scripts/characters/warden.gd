@@ -40,9 +40,6 @@ var cd6 : float
 func _ready() -> void:
 	add_to_group("player")
 	
-	max_health = 100.0  # Initialize player health
-	curr_health = max_health
-	
 	# Call parent _ready to initialize base_speed
 	super._ready()
 	
@@ -110,7 +107,9 @@ func make_invulnerable(duration: float) -> void:
 	_invulnerability_timer.timeout.connect(
 		func():
 			invulnerable = false
-			_invulnerability_timer.queue_free()
+			
+			if _invulnerability_timer:
+				_invulnerability_timer.queue_free()
 	)
 	_invulnerability_timer.start(duration)
 
@@ -131,7 +130,8 @@ func blink(blink_duration: float):
 	
 	get_tree().create_timer(blink_duration).timeout.connect(
 		func():
-			_blink_timer.queue_free()
+			if _blink_timer:
+				_blink_timer.queue_free()
 	)
 
 

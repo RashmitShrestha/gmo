@@ -11,8 +11,8 @@
 [ext_resource type="Script" uid="uid://bhxvb4ri02c8t" path="res://scripts/components/character_components/damage_component.gd" id="9_lbkys"]
 
 [sub_resource type="Curve" id="Curve_lbkys"]
-_limits = [0.0, 300.0, 0.0, 0.4]
-_data = [Vector2(0, 300), 0.0, 0.0, 0, 0, Vector2(0.4, 0), 0.0, 0.0, 0, 0]
+_limits = [0.0, 300.0, 0.0, 0.30054054]
+_data = [Vector2(0, 300), 0.0, 0.0, 0, 0, Vector2(0.30054054, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]

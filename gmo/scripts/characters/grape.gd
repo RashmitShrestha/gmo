@@ -4,17 +4,20 @@ extends Fruit
 @export var animation_manager_component: GrapeAnimationManagerComponent
 @export var command_manager_component: GrapeCommandManagerComponent
 @export var reactive_component: GrapeReactiveComponent
+@export var knockback_curve: Curve
 
 var full_slash = 20
 var curr_command: Command
 var default_command: GrapeDefaultCommand
 var stun_command: GrapeStunCommand
+var knockback_command: KnockbackCommand
 
 func _ready():
 	super()
 	
 	default_command = GrapeDefaultCommand.new(speed)
 	stun_command = GrapeStunCommand.new(stun_time)
+	knockback_command = KnockbackCommand.new(knockback_curve, self)
 
 
 func _physics_process(_delta) -> void:
