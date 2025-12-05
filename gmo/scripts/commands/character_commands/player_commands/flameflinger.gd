@@ -1,10 +1,10 @@
 extends Area2D
 
-@export var max_damage := 100.0
-@export var min_damage := 20.0
-@export var max_range := 300.0
-@export var cone_angle := 45.0
-@export var gravity_strength := 100.0
+@export var max_damage := 150.0
+@export var min_damage := 40.0
+@export var max_range := 500.0
+@export var cone_angle := 25.0
+@export var gravity_strength := 75.0
 @export var damage_cooldown := 0.2
 
 var particle: CPUParticles2D
@@ -69,7 +69,7 @@ func activate():
 	
 	particle.initial_velocity_min = 100.0
 	particle.initial_velocity_max = 200.0
-	particle.spread = 30.0
+	particle.spread = 15.0
 	
 	monitoring = true
 	particle.emitting = true
@@ -122,10 +122,10 @@ func _physics_process(_delta):
 		if distance > max_range:
 			continue
 		
-		var damage_ratio = 1.0 - clamp(distance / max_range, 0.0, 1.0)
+		var damage_ratio = 1.0 - clamp((distance) / max_range, 0.0, 1.0)
 		var damage = lerp(min_damage, max_damage, damage_ratio)
 		
-		if enemy.has_method("apply_damage"):
-			enemy.apply_damage(damage, self)
+		
+		enemy.apply_damage(damage, self)
 		
 		damaged_enemies[enemy] = curr_time

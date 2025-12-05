@@ -10,8 +10,8 @@ func _ready() -> void:
 	timer.start(lifetime)
 	timer.timeout.connect(func(): queue_free())
 	
-	$Area2D.area_entered.connect(
-		func(_area: Area2D):
-			if _area.get_parent().name == "Warden":
+	$Area2D.body_entered.connect(
+		func(_body: Node2D):
+			if _body is Warden or _body is PeachTree:
 				queue_free()
 	)

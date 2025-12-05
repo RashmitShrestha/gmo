@@ -20,10 +20,17 @@ func _process(delta: float) -> void:
 	velocity.y += gravity * delta
 	position += velocity * delta
 
-func set_damage(amount: int, is_crit: bool = false) -> void:
+func set_damage(amount: int, color: Color = Color.WHITE, is_crit: bool = false) -> void:
 	label.text = str(amount)
+	label.self_modulate = color
 	
 	if is_crit:
-		label.add_theme_color_override("font_color", Color.YELLOW)
 		label.add_theme_font_size_override("font_size", 28)
-		label.text += "!"
+		label.text += "!!!"
+		if color == Color.WHITE:
+			label.self_modulate = Color.YELLOW
+
+func set_heal(amount: int):
+	label.text = "+" + str(amount)
+	label.self_modulate = Color(0.3, 1.0, 0.3)
+	label.add_theme_font_size_override("font_size", 24)

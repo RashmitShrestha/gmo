@@ -3,7 +3,12 @@ extends CommandManagerComponent
 
 
 func update() -> void:
-	if _parent.curr_command != null and _parent.damaged:
+	SignalBus.player_died.connect(
+		func():
+			_parent.curr_command = _parent.died_command
+	)
+	
+	if _parent.curr_command == _parent.dash_command and _parent.damaged:
 		_parent.curr_command.force_finish()
 		_parent.curr_command = _parent.knockback_command
 	elif null == _parent.curr_command:

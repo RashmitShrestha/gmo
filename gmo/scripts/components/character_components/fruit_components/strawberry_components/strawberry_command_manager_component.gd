@@ -3,7 +3,7 @@ extends CommandManagerComponent
 
 func update():
 	if null == _parent.curr_command:
-		var dist = _parent.warden.position.distance_to(_parent.position)
+		var dist = _parent.target.position.distance_to(_parent.position)
 		
 		if dist > _parent.max_dist:
 			_parent.curr_command = _parent.move_in_command

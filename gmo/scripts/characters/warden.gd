@@ -5,15 +5,16 @@ extends GameCharacter
 @export var knockback_speed_curve: Curve
 @export var dash_invulnerability_duration: float
 @export var invulnerability_duration: float
-
 @export var command_manager_component: PlayerCommandManagerComponent
 @export var input_component: PlayerInputComponent
 @export var animation_manager_component: PlayerAnimationManagerComponent
 @export var slice_radius = 300
+@export var respawn_time: float
+@export var respawn_point: Node2D
 
 @onready var animation_tree: AnimationTree = $AnimationTree
-var last_facing_direction := Vector2.RIGHT  
 
+var last_facing_direction := Vector2.RIGHT  
 var _invulnerability_timer: Timer
 var _blink_timer: Timer
 
@@ -21,7 +22,8 @@ var curr_command: Command
 var idle_command: PlayerIdleCommand
 var move_command: PlayerMoveCommand
 var dash_command: PlayerDashCommand
-var knockback_command: PlayerKnockbackCommand
+var died_command: PlayerDiedCommand
+var knockback_command: KnockbackCommand
 
 var vel_vec := Vector2.ZERO
 var curr_vel: int = 0
@@ -36,43 +38,73 @@ var cd5 : float
 var cd6 : float
 
 func _ready() -> void:
+	add_to_group("player")
+	
 	max_health = 100.0  # Initialize player health
 	curr_health = max_health
+	
+	# Call parent _ready to initialize base_speed
+	super._ready()
+	
 	animation_tree.active = true
 	idle_command = PlayerIdleCommand.new()
 	move_command = PlayerMoveCommand.new()
 	dash_command = PlayerDashCommand.new(dash_speed_curve)
-	knockback_command = PlayerKnockbackCommand.new(knockback_speed_curve, self)
+	died_command = PlayerDiedCommand.new(respawn_time, respawn_point.position)
+	knockback_command = KnockbackCommand.new(knockback_speed_curve, self)
+	
+	# Connect to SignalBus for warden-specific behavior
+	SignalBus.health_restored.connect(_on_health_restored)
 	
 	received_damage.connect(
 		func(damage: float, _source: Node2D):
-			SignalBus.player_health_changed.emit(curr_health - damage, max_health)
-			hurt_animation()
-			make_invulnerable(invulnerability_duration)
-			curr_health -= damage
+			SignalBus.player_health_changed.emit(curr_health, max_health)
 
-			if curr_health <= 0:
+			if curr_health > 0.0:
+				hurt_animation()
+				make_invulnerable(invulnerability_duration)
+			else:
 				SignalBus.player_died.emit()
 	)
-	
-	queue_redraw()  # Add this
-
+	queue_redraw()
 
 func _input(event):
 	input_component.update(event)
-
 
 func _process(_delta) -> void:
 	command_manager_component.update()
 	animation_manager_component.update()
 
+# Handle when any character takes damage
+func _on_received_damage(character: GameCharacter, damage: float) -> void:
+	if character == self:
+		# Warden-specific damage response
+		hurt_animation()
+		make_invulnerable(invulnerability_duration)
+		print("Warden took " + str(damage) + " damage! Health: " + str(curr_health) + "/" + str(max_health))
+
+# Handle when any character is healed
+func _on_health_restored(character: GameCharacter, amount: float) -> void:
+	if character == self:
+		print("Warden healed for " + str(amount) + "! Health: " + str(curr_health) + "/" + str(max_health))
+		# You could add visual feedback here (green flash, heal particle effect, etc.)
+
+# Handle when any character dies
+func _on_character_died(character: GameCharacter) -> void:
+	if character == self:
+		print("Warden has died!")
+		# Handle game over logic here
+		# For example:
+		# get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 
 func make_invulnerable(duration: float) -> void:
+	if _invulnerability_timer:
+		_invulnerability_timer.queue_free()
+
 	invulnerable = true
 	
 	_invulnerability_timer = Timer.new()
 	_invulnerability_timer.one_shot = true
-
 	add_child(_invulnerability_timer)
 	
 	_invulnerability_timer.timeout.connect(
@@ -80,10 +112,13 @@ func make_invulnerable(duration: float) -> void:
 			invulnerable = false
 			_invulnerability_timer.queue_free()
 	)
-
 	_invulnerability_timer.start(duration)
+
+
+func blink(blink_duration: float):
+	if _blink_timer:
+		_blink_timer.queue_free()
 	
-func hurt_animation():
 	_blink_timer = Timer.new()
 	add_child(_blink_timer)
 	
@@ -93,15 +128,23 @@ func hurt_animation():
 	)
 	
 	_blink_timer.start(0.06)
-	get_tree().create_timer(invulnerability_duration).timeout.connect(
+	
+	get_tree().create_timer(blink_duration).timeout.connect(
 		func():
 			_blink_timer.queue_free()
+	)
+
+
+func hurt_animation():
+	blink(invulnerability_duration)
+	
+	get_tree().create_timer(invulnerability_duration).timeout.connect(
+		func():
 			sprite.visible = true
 	)
 	
 	sprite.self_modulate = Color(1.0, 0.117, 0.419, 0.5)
 	await get_tree().create_timer(.5).timeout
-	sprite.self_modulate = Color(1,1,1,1)
-	#for anim in range(4):
+	sprite.self_modulate = Color(1, 1, 1, 1)
 	
 	damaged = false

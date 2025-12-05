@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://dymfstb2qif5g" path="res://assets/strawberry/strawberry_attack.png" id="3_th2og"]
 [ext_resource type="Texture2D" uid="uid://d06gjxoa56j3h" path="res://assets/strawberry/strawberry_hurt.png" id="4_o3wpt"]
 [ext_resource type="Texture2D" uid="uid://b3qs4nnq6qmp8" path="res://assets/strawberry/strawberry_death.png" id="5_5fw15"]
-[ext_resource type="Script" uid="uid://bo5mfea4emmd1" path="res://scripts/components/character_components/strawberry_components/strawberry_animation_manager_component.gd" id="6_o3wpt"]
-[ext_resource type="Script" uid="uid://buxigfngdtd2b" path="res://scripts/components/character_components/strawberry_components/strawberry_command_manager_component.gd" id="7_5fw15"]
-[ext_resource type="Script" uid="uid://bdcaj4ah77w3w" path="res://scripts/components/character_components/strawberry_components/strawberry_reactive_component.gd" id="8_xqngi"]
+[ext_resource type="Script" uid="uid://bo5mfea4emmd1" path="res://scripts/components/character_components/fruit_components/strawberry_components/strawberry_animation_manager_component.gd" id="6_o3wpt"]
+[ext_resource type="Script" uid="uid://buxigfngdtd2b" path="res://scripts/components/character_components/fruit_components/strawberry_components/strawberry_command_manager_component.gd" id="7_5fw15"]
+[ext_resource type="Script" uid="uid://bdcaj4ah77w3w" path="res://scripts/components/character_components/fruit_components/strawberry_components/strawberry_reactive_component.gd" id="8_xqngi"]
 
 [sub_resource type="Animation" id="Animation_2r5ql"]
 length = 0.001

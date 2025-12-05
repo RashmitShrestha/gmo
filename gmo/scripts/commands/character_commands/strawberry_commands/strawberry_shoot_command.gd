@@ -13,7 +13,7 @@ func _init(projectile: PackedScene, projectile_speed: float, frequency: float) -
 
 
 func _shoot(character: Strawberry):
-	var dir: Vector2 = (character.warden.position - character.position).normalized()
+	var dir: Vector2 = (character.target.position - character.position).normalized()
 	var seed_projectile: Seed = _projectile.instantiate()
 	seed_projectile.position = character.position
 	seed_projectile.linear_velocity = dir * _projectile_speed
@@ -30,8 +30,8 @@ func execute(character: Strawberry) -> Status:
 		character.velocity = Vector2.ZERO
 		
 		_timer.timeout.connect(func(): _shoot(character))
-	elif character.warden.position.distance_to(character.position) <= character.min_dist or \
-		character.warden.position.distance_to(character.position) >= character.max_dist:
+	elif character.target.position.distance_to(character.position) <= character.min_dist or \
+		character.target.position.distance_to(character.position) >= character.max_dist:
 		_timer.queue_free()
 		character.is_attacking = false
 		return Command.Status.DONE

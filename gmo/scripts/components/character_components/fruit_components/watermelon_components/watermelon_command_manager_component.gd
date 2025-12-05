@@ -1,6 +1,16 @@
 class_name WatermelonCommandManagerComponent
 extends CommandManagerComponent
 
+func _init() -> void:
+	SignalBus.char_damaged_char.connect(
+		func(source: GameCharacter, target: GameCharacter):
+			if source == _parent and target is Warden:
+				if _parent.curr_command:
+					_parent.curr_command.force_finish()
+				_parent.curr_command = _parent.knockback_command
+	)
+
+
 func update():
 	if null == _parent.curr_command:
 		if not _parent.stunned:

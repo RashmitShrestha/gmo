@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dui38s68nj4ah"]
+[gd_scene load_steps=32 format=3 uid="uid://dui38s68nj4ah"]
 
 [ext_resource type="Script" uid="uid://r0bl6vjeurgd" path="res://scripts/characters/blueberry.gd" id="1_74cfi"]
 [ext_resource type="Texture2D" uid="uid://dju2tvcfsvkd6" path="res://assets/blueberry/blueberry_idle.png" id="2_gjfxf"]
@@ -9,6 +9,11 @@
 [ext_resource type="Script" uid="uid://bq0uvpdkcpio8" path="res://scripts/components/character_components/fruit_components/blueberry_components/blueberry_command_manager_compnent.gd" id="7_duaux"]
 [ext_resource type="Script" uid="uid://b07x7fbfsatk3" path="res://scripts/components/character_components/fruit_components/blueberry_components/blueberry_reactive_component.gd" id="8_ylke1"]
 [ext_resource type="Script" uid="uid://bhxvb4ri02c8t" path="res://scripts/components/character_components/damage_component.gd" id="9_lbkys"]
+
+[sub_resource type="Curve" id="Curve_lbkys"]
+_limits = [0.0, 300.0, 0.0, 0.4]
+_data = [Vector2(0, 300), 0.0, 0.0, 0, 0, Vector2(0.4, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]
 radius = 30.0
@@ -330,6 +335,7 @@ script = ExtResource("1_74cfi")
 animation_manager_component = NodePath("AnimationManagerComponent")
 command_manager_component = NodePath("CommandManagerComponent")
 reactive_component = NodePath("ReactiveComponent")
+knockback_curve = SubResource("Curve_lbkys")
 speed = 400.0
 max_health = 300.0
 metadata/_custom_type_script = "uid://bquw4773xgiaq"
