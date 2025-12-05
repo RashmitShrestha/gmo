@@ -49,7 +49,6 @@ func _ready() -> void:
 			SignalBus.player_health_changed.emit(curr_health - damage, max_health)
 			hurt_animation()
 			make_invulnerable(invulnerability_duration)
-			curr_health -= damage
 	)
 	
 	queue_redraw()  # Add this
@@ -65,6 +64,9 @@ func _process(_delta) -> void:
 
 
 func make_invulnerable(duration: float) -> void:
+	if _invulnerability_timer:
+		_invulnerability_timer.queue_free()
+
 	invulnerable = true
 	
 	_invulnerability_timer = Timer.new()
@@ -75,12 +77,17 @@ func make_invulnerable(duration: float) -> void:
 	_invulnerability_timer.timeout.connect(
 		func():
 			invulnerable = false
-			_invulnerability_timer.queue_free()
+
+			if _invulnerability_timer:
+				_invulnerability_timer.queue_free()
 	)
 
 	_invulnerability_timer.start(duration)
 	
 func hurt_animation():
+	if _blink_timer:
+		_blink_timer.queue_free()
+	
 	_blink_timer = Timer.new()
 	add_child(_blink_timer)
 	

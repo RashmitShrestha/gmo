@@ -34,7 +34,6 @@ func _ready():
 	SignalBus.skill_damage_enemy.connect(_on_skill_damage_enemy)
 
 
-
 func _on_damage_enemy(character: GameCharacter, slice_velocity: float):
 	if character == self:
 		var damage = SliceDamage.calculate_damage(slice_velocity, 1.0)

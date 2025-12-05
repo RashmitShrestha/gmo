@@ -24,7 +24,7 @@ func _physics_process(_delta: float) -> void:
 func _damage(character: GameCharacter) -> void:
 	if not character.invulnerable:
 		character.apply_damage(damage_amount, _parent)
-		spawn_damage_number(character)
+		#spawn_damage_number(character)
 
 func spawn_damage_number(character: GameCharacter) -> void:
 	var damage_number = DamageNumber.instantiate()

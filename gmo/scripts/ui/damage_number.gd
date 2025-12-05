@@ -15,10 +15,12 @@ func _ready() -> void:
 	tween.tween_property(self, "modulate:a", 0.0, 0.5).set_delay(0.3)
 	tween.tween_callback(queue_free)
 
+
 func _process(delta: float) -> void:
 	# Float upward with slight gravity
 	velocity.y += gravity * delta
 	position += velocity * delta
+
 
 func set_damage(amount: int, is_crit: bool = false) -> void:
 	label.text = str(amount)

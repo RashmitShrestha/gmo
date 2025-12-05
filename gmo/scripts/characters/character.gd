@@ -10,7 +10,7 @@ var id : int
 @onready var animation_player:AnimationPlayer = $AnimationPlayer
 @onready var curr_health : float = max_health
 
-const DamageNumber = preload("res://scenes/ui/damage_number.tscn")
+const DAMAGE_NUMBER = preload("res://scenes/ui/damage_number.tscn")
 
 var damaged: bool = false
 var invulnerable: bool = false
@@ -43,7 +43,7 @@ func apply_damage(damage: float, _source: Node2D):
 
 
 func spawn_damage_number(damage: float) -> void:
-	var damage_number = DamageNumber.instantiate()
+	var damage_number = DAMAGE_NUMBER.instantiate()
 	get_parent().add_child(damage_number)
 	damage_number.global_position = global_position + Vector2(0, -30)
 	damage_number.z_index = 100

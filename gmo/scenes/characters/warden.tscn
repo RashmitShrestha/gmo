@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://jqidoyn47nxk"]
+[gd_scene load_steps=79 format=3 uid="uid://jqidoyn47nxk"]
 
 [ext_resource type="Script" uid="uid://gs8ynx86xdf5" path="res://scripts/characters/warden.gd" id="1_wthw5"]
 [ext_resource type="Texture2D" uid="uid://clv2rjc18im1s" path="res://assets/warden/warden_idle.png" id="2_uvufd"]
@@ -690,6 +690,9 @@ colors = PackedColorArray(0, 0, 0, 0.59607846, 1, 1, 1, 0.65882355)
 offsets = PackedFloat32Array(0.5410959, 1)
 colors = PackedColorArray(1, 1, 1, 0.90588236, 1, 1, 1, 0)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_70fpi"]
+radius = 500.0
+
 [node name="Warden" type="CharacterBody2D" node_paths=PackedStringArray("command_manager_component", "input_component", "animation_manager_component")]
 y_sort_enabled = true
 collision_mask = 4
@@ -853,3 +856,8 @@ script = ExtResource("13_70fpi")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FlameFlingerArea"]
 position = Vector2(122, -6)
 polygon = PackedVector2Array(260, -104, 262, 82, -98, 49, -98, -36)
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_70fpi")

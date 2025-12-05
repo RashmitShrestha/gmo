@@ -3,7 +3,6 @@ extends AnimationManagerComponent
 
 
 func update() -> void:
-	print("is_attacking: ", _parent.is_attacking)
 	_parent.animation_tree["parameters/conditions/idle"] = true
 	
 	if _parent.damaged:
