@@ -120,6 +120,12 @@ func spawn_heal_number(heal_amount: float) -> void:
 
 func _die():
 	print(str(self) + " has been defeated!")
+
+	if has_meta("enemy_name"):
+		var enemy_name = get_meta("enemy_name", "Unknown")
+		var drop_type = 0
+		SignalBus.enemy_died.emit(enemy_name, self, drop_type)
+
 	queue_free()
 
 func _process_dot_effects(delta: float) -> void:

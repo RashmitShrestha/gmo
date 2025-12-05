@@ -58,8 +58,8 @@ func _ready() -> void:
 	
 	received_damage.connect(
 		func(damage: float, _source: Node2D):
-			SignalBus.player_health_changed.emit(curr_health - damage, max_health)
-			
+			SignalBus.player_health_changed.emit(curr_health, max_health)
+
 			if curr_health > 0.0:
 				hurt_animation()
 				make_invulnerable(invulnerability_duration)

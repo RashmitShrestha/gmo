@@ -119,6 +119,9 @@ func _complete_wave() -> void:
 	else:
 		print("wavemanager: wave %d completed!" % current_wave_number)
 		SignalBus.wave_completed.emit(current_wave_number)
+		
+		await get_tree().create_timer(5.0).timeout
+		start_next_wave()
 
 func _spawn_boss():
 	var boss_pos = Vector2.ZERO
@@ -193,6 +196,10 @@ func _spawn_enemy(stats: EnemyStats, pos: Vector2, modifier: EnemyStats.EnemyMod
 	enemy.position = pos
 
 	_apply_modifier_to_enemy(enemy, modifier)
+
+	enemy.set_meta("enemy_stats", stats)
+	enemy.set_meta("modifier", modifier)
+	enemy.set_meta("enemy_name", stats.enemy_name)
 
 	var warden_node = get_parent().get_node_or_null("Warden")
 	if warden_node and "warden" in enemy:
