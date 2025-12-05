@@ -26,6 +26,7 @@ func execute(character: Warden) -> Status:
 		character.heal(character.max_health)
 		SignalBus.player_health_changed.emit(character.max_health, character.max_health)
 		character.blink(1.0)
+		
 		_timer.queue_free()
 		return Status.DONE
 

@@ -4,13 +4,18 @@ extends Command
 var _timer: Timer
 var _speed_curve: Curve
 var _direction: Vector2
-var _damaged_from: Vector2
+var _target: Vector2
 
 func _init(speed_curve: Curve, character: GameCharacter):
 	_speed_curve = speed_curve
 	character.received_damage.connect(
 		func(_damage: float, source: Node2D):
-			_damaged_from = source.position
+			_target = source.position
+	)
+	SignalBus.char_damaged_char.connect(
+		func(source: GameCharacter, target: GameCharacter):
+			if source == character:
+				_target = target.position
 	)
 
 
@@ -21,7 +26,7 @@ func execute(character: GameCharacter) -> Status:
 		_timer.one_shot = true
 		_timer.start(_speed_curve.max_domain)
 		
-		_direction = (character.position - _damaged_from).normalized()
+		_direction = (character.position - _target).normalized()
 
 	if not _timer.is_stopped():
 		character.velocity = _direction * _speed_curve.sample(_speed_curve.max_domain - _timer.time_left)
