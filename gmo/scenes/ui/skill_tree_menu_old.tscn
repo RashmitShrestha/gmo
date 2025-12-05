@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://kn53pcnouaee"]
+
+[ext_resource type="Script" uid="uid://dfl222xywqq5x" path="res://scripts/skill_tree.gd" id="1_23im5"]
+[ext_resource type="StyleBox" uid="uid://denrd6nd7cpwi" path="res://scenes/ui/Themes and Stylebox/normal_button.tres" id="2_qvpap"]
+[ext_resource type="Texture2D" uid="uid://qgt4arq1g0l" path="res://assets/peach/skill_tree_background.png" id="3_5grpg"]
+[ext_resource type="Script" path="res://scripts/skill_tree_lines.gd" id="4_745b7"]
+
+[sub_resource type="Theme" id="Theme_xji8d"]
+Button/colors/font_color = Color(0.998552, 0.8622486, 0.8601032, 1)
+Button/font_sizes/font_size = 18
+Button/styles/normal = ExtResource("2_qvpap")
+
+[node name="skill_tree_menu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_23im5")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_xji8d")
+
+[node name="Background" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_right = 1080.0
+offset_bottom = 719.0
+texture = ExtResource("3_5grpg")
+
+[node name="PathButtons" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+offset_right = 500.0
+offset_bottom = 40.0
+
+[node name="FlameButton" type="Button" parent="Control/PathButtons"]
+layout_mode = 2
+text = "Flame Path"
+
+[node name="FrostButton" type="Button" parent="Control/PathButtons"]
+layout_mode = 2
+text = "Frost Path"
+
+[node name="FermentButton" type="Button" parent="Control/PathButtons"]
+layout_mode = 2
+text = "Fermented Path"
+
+[node name="TitleLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="SkillTree" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Lines" type="Control" parent="Control/SkillTree"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_745b7")
+
+[node name="Nodes" type="Control" parent="Control/SkillTree"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DescriptionBox" type="PanelContainer" parent="Control"]
+layout_mode = 0
+offset_left = 806.0
+offset_top = 538.0
+offset_right = 924.0
+offset_bottom = 639.0
+
+[node name="DescriptionLabel" type="Label" parent="Control/DescriptionBox"]
+layout_mode = 2

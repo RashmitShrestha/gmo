@@ -28,6 +28,7 @@ func execute(character: Warden) -> Status:
 		character.blink(1.0)
 		
 		_timer.queue_free()
+		character.animation_tree.active = true
 		return Status.DONE
 
 	return Status.ACTIVE

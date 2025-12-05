@@ -38,6 +38,7 @@ var cd5 : float
 var cd6 : float
 
 func _ready() -> void:
+	animation_tree.active = true
 	add_to_group("player")
 	
 	max_health = 100.0  # Initialize player health
@@ -64,6 +65,7 @@ func _ready() -> void:
 				hurt_animation()
 				make_invulnerable(invulnerability_duration)
 			else:
+				await warden_death_animation()
 				SignalBus.player_died.emit()
 	)
 	queue_redraw()
@@ -98,8 +100,9 @@ func _on_character_died(character: GameCharacter) -> void:
 		# get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 
 func make_invulnerable(duration: float) -> void:
-	if _invulnerability_timer:
+	if is_instance_valid(_invulnerability_timer):
 		_invulnerability_timer.queue_free()
+	_invulnerability_timer = null
 
 	invulnerable = true
 	
@@ -110,14 +113,17 @@ func make_invulnerable(duration: float) -> void:
 	_invulnerability_timer.timeout.connect(
 		func():
 			invulnerable = false
-			_invulnerability_timer.queue_free()
+			if is_instance_valid(_invulnerability_timer):
+				_invulnerability_timer.queue_free()
+			_invulnerability_timer = null
 	)
 	_invulnerability_timer.start(duration)
 
 
 func blink(blink_duration: float):
-	if _blink_timer:
+	if is_instance_valid(_blink_timer):
 		_blink_timer.queue_free()
+	_blink_timer = null
 	
 	_blink_timer = Timer.new()
 	add_child(_blink_timer)
@@ -131,7 +137,7 @@ func blink(blink_duration: float):
 	
 	get_tree().create_timer(blink_duration).timeout.connect(
 		func():
-			_blink_timer.queue_free()
+			_blink_timer.stop()
 	)
 
 
@@ -148,3 +154,10 @@ func hurt_animation():
 	sprite.self_modulate = Color(1, 1, 1, 1)
 	
 	damaged = false
+
+
+func warden_death_animation() -> void:
+	animation_tree.active = false
+	animation_player.play("death")
+	
+	await animation_player.animation_finished

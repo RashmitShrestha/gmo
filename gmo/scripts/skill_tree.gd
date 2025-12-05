@@ -7,6 +7,10 @@ extends CanvasLayer
 @onready var path_buttons: HBoxContainer = $Control/PathButtons
 @onready var description_box: PanelContainer = $Control/DescriptionBox
 @onready var description_label: Label = $Control/DescriptionBox/DescriptionLabel
+@onready var flame_btn: Button = $Control/PathButtons/Flame
+@onready var frost_btn: Button = $Control/PathButtons/Frost
+@onready var ferment_btn: Button = $Control/PathButtons/Ferment
+
 
 # XP Label to show current XP (add this node to your scene or create it dynamically)
 var xp_label: Label
@@ -114,7 +118,20 @@ func _ready() -> void:
 	# Create XP label
 	_create_xp_label()
 	
-	_setup_path_buttons()
+	print("\n=== RUNTIME PATHBUTTONS CHILDREN ===")
+	if has_node("Control/PathButtons"):
+		for c in $Control/PathButtons.get_children():
+			print(" - ", c.name, " (", c.get_class(), ")")
+	else:
+		print("PathButtons NOT FOUND at runtime.")
+	print("====================================")
+
+	print("Scene loaded from file: ", get_tree().current_scene.scene_file_path)
+	print("This script is part of file: ", get_script().resource_path)
+
+	
+	_connect_path_buttons()
+	
 	_load_path(current_path)
 
 
@@ -149,16 +166,10 @@ func _create_xp_label() -> void:
 	control.add_child(xp_label)
 
 
-func _setup_path_buttons() -> void:
-	for child in path_buttons.get_children():
-		child.queue_free()
-	
-	for path_id in paths.keys():
-		var btn := Button.new()
-		btn.text = paths[path_id]["title"]
-		btn.custom_minimum_size = Vector2(120, 40)
-		btn.pressed.connect(_on_path_selected.bind(path_id))
-		path_buttons.add_child(btn)
+func _connect_path_buttons() -> void:
+	flame_btn.pressed.connect(_on_path_selected.bind("flame"))
+	frost_btn.pressed.connect(_on_path_selected.bind("frost"))
+	ferment_btn.pressed.connect(_on_path_selected.bind("ferment"))
 
 
 func _load_path(path_id: String) -> void:
