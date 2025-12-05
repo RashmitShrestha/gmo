@@ -9,7 +9,8 @@ func _ready() -> void:
 	body_entered.connect(
 		func(body: Node2D):
 			if (position - _warden.position).length() < _warden.slice_radius:
-				body.apply_damage(_speed, self)
+				if body is Fruit:
+					body.apply_damage(_speed, self)
 	)
 
 

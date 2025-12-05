@@ -1375,9 +1375,9 @@ size = Vector2(50, 4104.5)
 size = Vector2(50, 4112)
 
 [sub_resource type="Curve" id="Curve_gdmpp"]
-_limits = [0.0, 3500.0, 0.0, 1.0]
-_data = [Vector2(0, 2569.0806), 0.0, 0.0, 0, 0, Vector2(0.10000001, 2516.7817), 0.0, 0.0, 0, 0, Vector2(0.5027027, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+_limits = [0.0, 2250.0, 0.0, 0.7]
+_data = [Vector2(0, 2250), 0.0, 0.0, 0, 0, Vector2(0.55, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_6dmfj"]
 offsets = PackedFloat32Array(0.5466667, 1)
@@ -1553,6 +1553,7 @@ position = Vector2(85, -12)
 scale = Vector2(2, 2)
 safe_margin = 25.0
 dash_speed_curve = SubResource("Curve_gdmpp")
+dash_invulnerability_duration = 0.3
 respawn_time = 5.0
 respawn_point = NodePath("../RespawnPoint")
 speed = 500.0

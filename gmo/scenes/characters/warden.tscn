@@ -701,6 +701,7 @@ command_manager_component = NodePath("CommandManagerComponent")
 input_component = NodePath("InputComponent")
 animation_manager_component = NodePath("AnimationManagerComponent")
 slice_radius = 500
+max_health = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cgkur")

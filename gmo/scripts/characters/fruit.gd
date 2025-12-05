@@ -17,6 +17,8 @@ func _ready():
 	add_to_group("enemies")
 	super._ready()  # Call parent _ready
 	
+	SignalBus.player_died.connect(func(): target = peach_tree)
+	
 	animation_tree.active = true
 	animation_player.animation_finished.connect(_on_death)
 	
