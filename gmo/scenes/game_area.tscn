@@ -63,7 +63,7 @@
 [ext_resource type="Texture2D" uid="uid://dsx34u8ob1372" path="res://assets/background_assets/Tire_2_Grass_Bleak-Yellow.png" id="31_tks2w"]
 [ext_resource type="PackedScene" uid="uid://u2ou1iejvbah" path="res://scenes/peach_tree.tscn" id="34_lc0e6"]
 [ext_resource type="PackedScene" uid="uid://bxybsx8a4jhsd" path="res://scenes/ui/ui.tscn" id="34_y1fpr"]
-[ext_resource type="PackedScene" path="res://scenes/skill_tree_menu.tscn" id="35_lc0e6"]
+[ext_resource type="PackedScene" uid="uid://tctiowdwx855" path="res://scenes/skill_tree_menu.tscn" id="35_lc0e6"]
 [ext_resource type="Texture2D" uid="uid://b86av4keklu2t" path="res://assets/background_assets/Nature/Grass_2_Dark-Green.png" id="41_sqp03"]
 [ext_resource type="Texture2D" uid="uid://32cih5hdaxe0" path="res://assets/background_assets/Car_5_Rust_Tractor_Side.png" id="44_5xjug"]
 [ext_resource type="Texture2D" uid="uid://cbe6w1ymfm8sb" path="res://assets/background_assets/Car_8_Overgrown_Dark-Green_Light-Green_Bus.png" id="45_nuv0j"]
@@ -1539,13 +1539,15 @@ shape = SubResource("RectangleShape2D_2w4xq")
 
 [node name="SkillTreeMenu" parent="." instance=ExtResource("35_lc0e6")]
 
-[node name="Warden" parent="." instance=ExtResource("2_gdmpp")]
+[node name="Warden" parent="." node_paths=PackedStringArray("respawn_point") instance=ExtResource("2_gdmpp")]
 unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(85, -12)
 scale = Vector2(2, 2)
 safe_margin = 25.0
 dash_speed_curve = SubResource("Curve_gdmpp")
+respawn_time = 5.0
+respawn_point = NodePath("../RespawnPoint")
 speed = 500.0
 
 [node name="SliceParticle" type="CPUParticles2D" parent="Warden"]
@@ -1621,6 +1623,7 @@ position = Vector2(1332, 375)
 speed = 0.0
 
 [node name="PeachTree" parent="." instance=ExtResource("34_lc0e6")]
+unique_name_in_owner = true
 position = Vector2(116, -458)
 
 [node name="Cursor" parent="." instance=ExtResource("69_ngom5")]
@@ -1636,3 +1639,6 @@ stream = ExtResource("71_nvslu")
 volume_db = -9.759
 autoplay = true
 mix_target = 2
+
+[node name="RespawnPoint" type="Node2D" parent="."]
+position = Vector2(116, 300)

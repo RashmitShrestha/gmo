@@ -9,17 +9,22 @@ extends GameCharacter
 @export var input_component: PlayerInputComponent
 @export var animation_manager_component: PlayerAnimationManagerComponent
 @export var slice_radius = 300
+@export var respawn_time: float
+@export var respawn_point: Node2D
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 
 var last_facing_direction := Vector2.RIGHT  
 var _invulnerability_timer: Timer
 var _blink_timer: Timer
+
 var curr_command: Command
 var idle_command: PlayerIdleCommand
 var move_command: PlayerMoveCommand
 var dash_command: PlayerDashCommand
-var knockback_command: PlayerKnockbackCommand
+var died_command: PlayerDiedCommand
+var knockback_command: KnockbackCommand
+
 var vel_vec := Vector2.ZERO
 var curr_vel: int = 0
 var is_slicing: bool = false
@@ -45,17 +50,21 @@ func _ready() -> void:
 	idle_command = PlayerIdleCommand.new()
 	move_command = PlayerMoveCommand.new()
 	dash_command = PlayerDashCommand.new(dash_speed_curve)
-	knockback_command = PlayerKnockbackCommand.new(knockback_speed_curve, self)
+	died_command = PlayerDiedCommand.new(respawn_time, respawn_point.position)
+	knockback_command = KnockbackCommand.new(knockback_speed_curve, self)
 	
 	# Connect to SignalBus for warden-specific behavior
 	SignalBus.health_restored.connect(_on_health_restored)
 	
 	received_damage.connect(
-	func(damage: float, _source: Node2D):
-		SignalBus.player_health_changed.emit(curr_health - damage, max_health)
-		hurt_animation()
-		make_invulnerable(invulnerability_duration)
-		curr_health -= damage
+		func(damage: float, _source: Node2D):
+			SignalBus.player_health_changed.emit(curr_health - damage, max_health)
+			
+			if curr_health > 0.0:
+				hurt_animation()
+				make_invulnerable(invulnerability_duration)
+			else:
+				SignalBus.player_died.emit()
 	)
 	queue_redraw()
 
@@ -89,6 +98,9 @@ func _on_character_died(character: GameCharacter) -> void:
 		# get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 
 func make_invulnerable(duration: float) -> void:
+	if _invulnerability_timer:
+		_invulnerability_timer.queue_free()
+
 	invulnerable = true
 	
 	_invulnerability_timer = Timer.new()
@@ -102,7 +114,11 @@ func make_invulnerable(duration: float) -> void:
 	)
 	_invulnerability_timer.start(duration)
 
-func hurt_animation():
+
+func blink(blink_duration: float):
+	if _blink_timer:
+		_blink_timer.queue_free()
+	
 	_blink_timer = Timer.new()
 	add_child(_blink_timer)
 	
@@ -112,9 +128,18 @@ func hurt_animation():
 	)
 	
 	_blink_timer.start(0.06)
-	get_tree().create_timer(invulnerability_duration).timeout.connect(
+	
+	get_tree().create_timer(blink_duration).timeout.connect(
 		func():
 			_blink_timer.queue_free()
+	)
+
+
+func hurt_animation():
+	blink(invulnerability_duration)
+	
+	get_tree().create_timer(invulnerability_duration).timeout.connect(
+		func():
 			sprite.visible = true
 	)
 	

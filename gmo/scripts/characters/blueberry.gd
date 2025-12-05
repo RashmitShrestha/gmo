@@ -4,16 +4,17 @@ extends Fruit
 @export var animation_manager_component: BlueberryAnimationManagerComponent
 @export var command_manager_component: BlueberryCommandManagerComponent
 @export var reactive_component: BlueberryReactiveComponent
+@export var knockback_curve: Curve
 
 var curr_command: Command
 var default_command: BlueberryDefaultCommand
-var stun_command: BlueberryStunCommand
+var knockback_command: KnockbackCommand
 
 func _ready():
 	super()
 	
 	default_command = BlueberryDefaultCommand.new(speed)
-	stun_command = BlueberryStunCommand.new(stun_time)
+	knockback_command = KnockbackCommand.new(knockback_curve, self)
 
 
 func _physics_process(_delta) -> void:

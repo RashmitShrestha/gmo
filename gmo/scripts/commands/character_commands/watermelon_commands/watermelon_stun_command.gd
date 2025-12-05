@@ -24,3 +24,7 @@ func execute(character: Watermelon) -> Status:
 		character.stunned = false
 		_timer.queue_free()
 		return Status.DONE
+
+
+func force_finish() -> void:
+	_timer.queue_free()

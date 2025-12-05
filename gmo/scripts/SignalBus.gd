@@ -3,6 +3,7 @@ extends Node
 
 # Global signal bus for communication between systems
 # UI, Audio, and Logic can subscribe to these signals
+signal player_died
 
 # ui and logic signals
 signal player_health_changed(new_health, max_health)
@@ -19,6 +20,8 @@ signal health_restored(character: GameCharacter, amount: float)
 signal enemy_spawned(enemy_type: String, enemy_node: Node2D)
 signal enemy_died(enemy_type: String, enemy_node: Node2D, drop_type: int)
 signal enemy_split(parent_enemy: Node2D, split_count: int)
+
+signal char_damaged_char(source: GameCharacter, target: GameCharacter)
 
 # wave signals
 signal wave_started(wave_number: int)

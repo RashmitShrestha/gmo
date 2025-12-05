@@ -12,7 +12,7 @@ var id : int
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var curr_health : float = max_health
 
-const DamageNumber = preload("res://scenes/ui/damage_number.tscn")
+const DAMAGE_NUMBER = preload("res://scenes/ui/damage_number.tscn")
 
 var damaged: bool = false
 var invulnerable: bool = false
@@ -65,8 +65,11 @@ func apply_damage(damage: float, _source: Node2D, element: int = 0):
 	damaged = true
 	spawn_damage_number(final_damage, element)
 	
+	if curr_health < 0.0:
+		curr_health = 0.0
+	
 	received_damage.emit(final_damage, _source)
-		
+
 
 func heal(amount: float) -> void:
 	if amount <= 0:
@@ -96,7 +99,7 @@ func spawn_damage_number(damage: float, element: int = 0) -> void:
 	if damage < 0.5:  # Don't show tiny damage
 		return
 		
-	var damage_number = DamageNumber.instantiate()
+	var damage_number = DAMAGE_NUMBER.instantiate()
 	get_parent().add_child(damage_number)
 	damage_number.global_position = global_position + Vector2(0, -30)
 	damage_number.z_index = 100
@@ -109,7 +112,7 @@ func spawn_heal_number(heal_amount: float) -> void:
 	if heal_amount < 0.5:
 		return
 		
-	var damage_number = DamageNumber.instantiate()
+	var damage_number = DAMAGE_NUMBER.instantiate()
 	get_parent().add_child(damage_number)
 	damage_number.global_position = global_position + Vector2(0, -30)
 	damage_number.z_index = 100

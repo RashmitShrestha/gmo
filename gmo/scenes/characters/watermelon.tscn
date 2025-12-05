@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bpmfnh2gfepdb"]
+[gd_scene load_steps=32 format=3 uid="uid://bpmfnh2gfepdb"]
 
 [ext_resource type="Script" uid="uid://bxvny668eguvv" path="res://scripts/characters/watermelon.gd" id="1_vlmfl"]
 [ext_resource type="Texture2D" uid="uid://d0rapm3oo8vmm" path="res://assets/watermelon/watermelon_idle.png" id="2_11m30"]
@@ -7,8 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://byv07qqap6fn5" path="res://assets/watermelon/watermelon_death.png" id="5_fl2h7"]
 [ext_resource type="Script" uid="uid://bfiy7duu6tjkw" path="res://scripts/components/character_components/fruit_components/watermelon_components/watermelon_animation_manager_component.gd" id="6_8mcj1"]
 [ext_resource type="Script" uid="uid://ylcuyobhupph" path="res://scripts/components/character_components/fruit_components/watermelon_components/watermelon_command_manager_component.gd" id="7_fl2h7"]
-[ext_resource type="Script" uid="uid://d10od3vdq30et" path="res://scripts/components/character_components/fruit_components/watermelon_components/watermelon_reactive_component.gd" id="8_ko7bv"]
+[ext_resource type="Script" uid="uid://dkq7qiuvsgpy1" path="res://scripts/components/character_components/fruit_components/watermelon_components/watermelon_reactive_component.gd" id="8_ko7bv"]
 [ext_resource type="Script" uid="uid://bhxvb4ri02c8t" path="res://scripts/components/character_components/damage_component.gd" id="9_pmonm"]
+
+[sub_resource type="Curve" id="Curve_h4bri"]
+_limits = [0.0, 500.0, 0.0, 0.5]
+_data = [Vector2(0, 500), 0.0, 0.0, 0, 0, Vector2(0.5, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Animation" id="Animation_1bs3t"]
 length = 0.001
@@ -289,6 +294,7 @@ z_index = 1
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_vlmfl")
+knockback_curve = SubResource("Curve_h4bri")
 animation_manager_component = NodePath("AnimationManagerComponent")
 command_manager_component = NodePath("CommandManagerComponent")
 reactive_component = NodePath("ReactiveComponent")

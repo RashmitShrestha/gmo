@@ -1,4 +1,4 @@
-class_name PlayerKnockbackCommand
+class_name KnockbackCommand
 extends Command
 
 var _timer: Timer
@@ -6,7 +6,7 @@ var _speed_curve: Curve
 var _direction: Vector2
 var _damaged_from: Vector2
 
-func _init(speed_curve: Curve, character: Warden):
+func _init(speed_curve: Curve, character: GameCharacter):
 	_speed_curve = speed_curve
 	character.received_damage.connect(
 		func(_damage: float, source: Node2D):
@@ -14,7 +14,7 @@ func _init(speed_curve: Curve, character: Warden):
 	)
 
 
-func execute(character: Warden) -> Status:
+func execute(character: GameCharacter) -> Status:
 	if _timer == null:
 		_timer = Timer.new()
 		character.add_child(_timer)
