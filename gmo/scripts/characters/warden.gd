@@ -50,6 +50,9 @@ func _ready() -> void:
 			hurt_animation()
 			make_invulnerable(invulnerability_duration)
 			curr_health -= damage
+
+			if curr_health <= 0:
+				SignalBus.player_died.emit()
 	)
 	
 	queue_redraw()  # Add this

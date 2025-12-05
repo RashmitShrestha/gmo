@@ -194,6 +194,10 @@ func _spawn_enemy(stats: EnemyStats, pos: Vector2, modifier: EnemyStats.EnemyMod
 
 	_apply_modifier_to_enemy(enemy, modifier)
 
+	enemy.set_meta("enemy_stats", stats)
+	enemy.set_meta("modifier", modifier)
+	enemy.set_meta("enemy_name", stats.enemy_name)
+
 	var warden_node = get_parent().get_node_or_null("Warden")
 	if warden_node and "warden" in enemy:
 		enemy.warden = warden_node

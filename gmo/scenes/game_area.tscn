@@ -1,4 +1,4 @@
-[gd_scene load_steps=172 format=4 uid="uid://dmf617rn6a8pm"]
+[gd_scene load_steps=173 format=4 uid="uid://dmf617rn6a8pm"]
 
 [ext_resource type="Texture2D" uid="uid://ckfplp2dp23fa" path="res://assets/test_area.webp" id="1_4eb3c"]
 [ext_resource type="Texture2D" uid="uid://c6lubr8yhm1w4" path="res://assets/terrain/Background_Green_TileSet.png" id="1_xt4jw"]
@@ -71,6 +71,7 @@
 [ext_resource type="PackedScene" path="res://scenes/cursor.tscn" id="69_ngom5"]
 [ext_resource type="AudioStream" uid="uid://b104u4dlauv5j" path="res://audio/ambience.wav" id="70_ghy5t"]
 [ext_resource type="AudioStream" uid="uid://bjse5g2eoby6x" path="res://music/theme.mp3" id="71_nvslu"]
+[ext_resource type="PackedScene" uid="uid://ce8h5j2qwxn8c" path="res://scenes/ui/game_end_screen.tscn" id="72_endscreen"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xt4jw"]
 resource_name = "terrain"
@@ -1507,6 +1508,8 @@ scale = Vector2(3, 3)
 texture = ExtResource("1_4eb3c")
 
 [node name="UI" parent="." instance=ExtResource("34_y1fpr")]
+
+[node name="GameEndScreen" parent="." instance=ExtResource("72_endscreen")]
 
 [node name="WorldBoundaries" type="StaticBody2D" parent="."]
 collision_layer = 4

@@ -7,6 +7,7 @@ extends Node
 # ui and logic signals
 signal player_health_changed(new_health, max_health)
 signal base_health_changed(new_health, max_health)
+signal player_died
 
 # audio n fx signal 
 signal player_dashed
