@@ -119,6 +119,9 @@ func _complete_wave() -> void:
 	else:
 		print("wavemanager: wave %d completed!" % current_wave_number)
 		SignalBus.wave_completed.emit(current_wave_number)
+		
+		await get_tree().create_timer(5.0).timeout
+		start_next_wave()
 
 func _spawn_boss():
 	var boss_pos = Vector2.ZERO

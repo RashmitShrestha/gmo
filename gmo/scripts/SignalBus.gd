@@ -1,9 +1,6 @@
 class_name Signals
 extends Node
 
-# Global signal bus for communication between systems
-# UI, Audio, and Logic can subscribe to these signals
-signal player_died
 
 # ui and logic signals
 signal player_health_changed(new_health, max_health)

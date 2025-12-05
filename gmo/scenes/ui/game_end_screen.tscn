@@ -56,6 +56,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Health Bonuses: 0"
 
+[node name="PlayTime" type="Label" parent="CenterContainer/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Time: 0:00"
+
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
 

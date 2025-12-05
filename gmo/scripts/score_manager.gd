@@ -13,8 +13,12 @@ var cached_max_base_health: float = 100.0
 var current_wave_kills: int = 0
 var current_wave_kills_score: int = 0
 
+var gameplay_time: float = 0.0
+var is_timer_running: bool = false
+
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 	SignalBus.enemy_died.connect(_on_enemy_died)
 	SignalBus.wave_started.connect(_on_wave_started)
 	SignalBus.wave_completed.connect(_on_wave_completed)
@@ -24,6 +28,11 @@ func _ready() -> void:
 	SignalBus.base_health_changed.connect(_on_base_health_changed)
 
 	print("ScoreManager: Initialized and ready to track scores")
+
+
+func _process(delta: float) -> void:
+	if is_timer_running:
+		gameplay_time += delta
 
 
 func _on_enemy_died(enemy_type: String, enemy_node: Node2D, drop_type: int) -> void:
@@ -47,6 +56,12 @@ func _on_enemy_died(enemy_type: String, enemy_node: Node2D, drop_type: int) -> v
 func _on_wave_started(wave_number: int) -> void:
 	current_wave_kills = 0
 	current_wave_kills_score = 0
+
+	if wave_number == 1 and not is_timer_running:
+		is_timer_running = true
+		gameplay_time = 0.0
+		print("ScoreManager: Timer started")
+
 	print("ScoreManager: Wave %d started" % wave_number)
 
 
@@ -77,11 +92,13 @@ func _on_wave_completed(wave_number: int) -> void:
 
 
 func _on_all_waves_completed() -> void:
-	print("ScoreManager: All waves completed! Final score: %d" % total_score)
+	is_timer_running = false
+	print("ScoreManager: All waves completed! Final score: %d, Time: %s" % [total_score, _format_time(gameplay_time)])
 
 
 func _on_player_died() -> void:
-	print("ScoreManager: Player died. Final score: %d" % total_score)
+	is_timer_running = false
+	print("ScoreManager: Player died. Final score: %d, Time: %s" % [total_score, _format_time(gameplay_time)])
 
 
 func _on_player_health_changed(new_health: float, max_health: float) -> void:
@@ -112,12 +129,31 @@ func calculate_health_bonus(wave_completion_bonus: int) -> int:
 	return bonus
 
 
+func _format_time(seconds: float) -> String:
+	var total_seconds = int(seconds)
+	var minutes = total_seconds / 60
+	var secs = total_seconds % 60
+
+	if minutes >= 60:
+		var hours = minutes / 60
+		var mins = minutes % 60
+		return "%d:%02d:%02d" % [hours, mins, secs]
+	else:
+		return "%d:%02d" % [minutes, secs]
+
+
+func get_formatted_time() -> String:
+	return _format_time(gameplay_time)
+
+
 func get_score_breakdown() -> Dictionary:
 	return {
 		"total_score": total_score,
 		"kills_score": total_kills_score,
 		"wave_bonuses": total_wave_bonuses,
-		"health_bonuses": total_health_bonuses
+		"health_bonuses": total_health_bonuses,
+		"gameplay_time": gameplay_time,
+		"formatted_time": get_formatted_time()
 	}
 
 
@@ -128,4 +164,6 @@ func reset_score() -> void:
 	total_health_bonuses = 0
 	current_wave_kills = 0
 	current_wave_kills_score = 0
+	gameplay_time = 0.0
+	is_timer_running = false
 	print("ScoreManager: Score reset")
