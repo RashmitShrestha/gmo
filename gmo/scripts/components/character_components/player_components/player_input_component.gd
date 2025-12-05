@@ -9,7 +9,6 @@ func update(event: InputEvent) -> void:
 	).normalized()
 	
 	var slice = _parent.get_node("Slice")
-	var slice_particle = slice.get_node("../SliceParticle")
 	var mouse_pos = _parent.get_global_mouse_position()
 	
 	# pressing the number keys 1, 2, or 3 will set the element
@@ -29,10 +28,11 @@ func update(event: InputEvent) -> void:
 	#elif Input.is_action_just_pressed("special_5"):
 #
 	#elif Input.is_action_just_pressed("special_6"):
-
 	
 	# Handle slicing/drawing
 	if Input.is_action_pressed("left_click") and _parent.global_position.distance_to(mouse_pos) < _parent.slice_radius:
+		slice.clear_points()
+
 		# If we have an element ready and haven't started slicing yet, activate it
 		if slice.element_ready >= 0 and slice.current_element < 0:
 			slice.start_trail(slice.element_ready)
@@ -43,21 +43,16 @@ func update(event: InputEvent) -> void:
 			_parent.vel_vec = event.relative
 			_parent.curr_vel = abs(Vector2.ZERO.distance_to(_parent.vel_vec))
 			
-			# Always update particle position and emit
-			slice_particle.global_position = mouse_pos
-			slice_particle.emitting = true
-			
 			# Only add points to trail if element is active
-			if slice.current_element >= 0:
-				slice.slicing(mouse_pos)
+			slice.slicing(mouse_pos)
 		else:
 			# Not moving, stop particles
-			slice_particle.emitting = false
 			_parent.is_slicing = false
+			slice.clear_points()
 	else:
 		# Mouse released
 		_parent.is_slicing = false
-		slice_particle.emitting = false
+		slice.clear_points()
 		
 		# if we were using an element, end the slice
 		if slice.current_element >= 0:

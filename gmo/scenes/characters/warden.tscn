@@ -827,9 +827,9 @@ preprocess = 1.24
 speed_scale = 4.0
 randomness = 0.25
 emission_shape = 3
-emission_rect_extents = Vector2(20, 40)
+emission_rect_extents = Vector2(20, 20)
 direction = Vector2(0, 0)
-spread = 70.52
+spread = 0.0
 gravity = Vector2(100, 0)
 initial_velocity_min = 10.09
 initial_velocity_max = 20.19
@@ -852,4 +852,4 @@ script = ExtResource("13_70fpi")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FlameFlingerArea"]
 position = Vector2(122, -6)
-polygon = PackedVector2Array(260, -104, 262, 82, -98, 49, -98, -36)
+polygon = PackedVector2Array(255, -83, 257, 53, -98, 49, -98, -36)

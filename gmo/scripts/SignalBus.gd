@@ -13,8 +13,8 @@ signal player_dashed
 signal enemy_slashed
 
 signal damage_enemy(character:GameCharacter, slice_velocity:float)
-signal skill_damage_enemy(character: GameCharacter, dmg: float, element: int)
-
+# Health signals
+signal health_restored(character: GameCharacter, amount: float)
 # enemy signals
 signal enemy_spawned(enemy_type: String, enemy_node: Node2D)
 signal enemy_died(enemy_type: String, enemy_node: Node2D, drop_type: int)
