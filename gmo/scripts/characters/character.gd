@@ -66,17 +66,10 @@ func apply_damage(damage: float, _source: Node2D, element: int = 0, is_dot: bool
 	# Only spawn damage number if NOT from DOT
 	if not is_dot:
 		spawn_damage_number(final_damage, element)
-		print(final_damage)
-		
-	#if self is Warden:
-		#print("WARDEN SAYS HI")
-		#print(curr_health)
-	
+
 	if curr_health < 0.0:
 		curr_health = 0.0
-	
-	#print(self)
-	
+		
 	received_damage.emit(final_damage, _source)
 
 

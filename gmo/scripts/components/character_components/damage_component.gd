@@ -32,5 +32,4 @@ func _physics_process(_delta: float) -> void:
 func _damage(character: GameCharacter) -> void:
 	if not character.invulnerable:
 		SignalBus.char_damaged_char.emit(_parent, character)
-		print("DAMAGE IS" + str(damage_amount))
 		character.apply_damage(damage_amount, _parent, element_type, false)

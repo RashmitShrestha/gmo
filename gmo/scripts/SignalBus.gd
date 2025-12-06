@@ -11,7 +11,7 @@ signal player_died
 signal player_dashed
 signal enemy_slashed
 
-#signal damage_enemy(character:GameCharacter, slice_velocity:float)
+signal damage_enemy(character:GameCharacter, slice_velocity:float)
 # Health signals
 signal health_restored(character: GameCharacter, amount: float)
 # enemy signals
