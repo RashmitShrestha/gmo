@@ -1,6 +1,7 @@
 class_name Seed
 extends RigidBody2D
 
+@export var damage: float
 @export var lifetime: float
 
 func _ready() -> void:
@@ -12,6 +13,12 @@ func _ready() -> void:
 	
 	$Area2D.body_entered.connect(
 		func(_body: Node2D):
-			if _body is Warden or _body is PeachTree:
+			if _body is Warden:
+				var warden: Warden = _body as Warden
+				warden.apply_damage(damage, self)
+				queue_free()
+			elif _body is PeachTree:
+				var tree: PeachTree = _body as PeachTree
+				tree.apply_damage(damage, self)
 				queue_free()
 	)

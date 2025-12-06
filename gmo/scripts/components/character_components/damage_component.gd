@@ -5,7 +5,7 @@ extends Node
 @export var damage_amount: float
 @export var element_type: int = 0  # 0 = no element, 1 = fire, 2 = frozen, 3 = ferment
 
-var _parent
+var _parent: GameCharacter
 
 func _ready() -> void:
 	_parent = get_parent()

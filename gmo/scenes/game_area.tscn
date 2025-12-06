@@ -1,4 +1,4 @@
-[gd_scene load_steps=177 format=4 uid="uid://dmf617rn6a8pm"]
+[gd_scene load_steps=176 format=4 uid="uid://dmf617rn6a8pm"]
 
 [ext_resource type="Texture2D" uid="uid://ckfplp2dp23fa" path="res://assets/test_area.webp" id="1_4eb3c"]
 [ext_resource type="Texture2D" uid="uid://c6lubr8yhm1w4" path="res://assets/terrain/Background_Green_TileSet.png" id="1_xt4jw"]
@@ -1631,7 +1631,6 @@ position = Vector2(1248, 119)
 
 [node name="SingleGrape" parent="." instance=ExtResource("12_d3ocr")]
 position = Vector2(1332, 375)
-speed = 0.0
 
 [node name="PeachTree" parent="." instance=ExtResource("34_lc0e6")]
 unique_name_in_owner = true

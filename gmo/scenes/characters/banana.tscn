@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b2hnhyktvpada" path="res://assets/banana/banana_hurt.png" id="4_bp77k"]
 [ext_resource type="Texture2D" uid="uid://esbanwyi4lqf" path="res://assets/banana/banana_death.png" id="5_hpx1l"]
 [ext_resource type="Script" uid="uid://dftp6yojdeqqc" path="res://scripts/components/character_components/fruit_components/banana_components/banana_animation_manager_component.gd" id="6_hpx1l"]
-[ext_resource type="Script" uid="uid://l043c8iylc5" path="res://scripts/components/character_components/fruit_components/banana_components/banana_command_manager_comonent.gd" id="7_bdl2a"]
+[ext_resource type="Script" uid="uid://l043c8iylc5" path="res://scripts/components/character_components/fruit_components/banana_components/banana_command_manager_component.gd" id="7_bdl2a"]
 [ext_resource type="Script" uid="uid://35fe3yshecmh" path="res://scripts/components/character_components/fruit_components/banana_components/banana_reactive_component.gd" id="8_s8p0x"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bdl2a"]
