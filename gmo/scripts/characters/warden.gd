@@ -41,9 +41,6 @@ func _ready() -> void:
 	animation_tree.active = true
 	add_to_group("player")
 	
-	max_health = 100.0  # Initialize player health
-	curr_health = max_health
-	
 	# Call parent _ready to initialize base_speed
 	super._ready()
 	
@@ -59,8 +56,8 @@ func _ready() -> void:
 	
 	received_damage.connect(
 		func(damage: float, _source: Node2D):
-			SignalBus.player_health_changed.emit(curr_health - damage, max_health)
-			
+			SignalBus.player_health_changed.emit(curr_health, max_health)
+
 			if curr_health > 0.0:
 				hurt_animation()
 				make_invulnerable(invulnerability_duration)

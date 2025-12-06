@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://rpbrqr7066ew"]
+[gd_scene load_steps=32 format=3 uid="uid://rpbrqr7066ew"]
 
 [ext_resource type="Script" uid="uid://bxm763n735s0d" path="res://scripts/characters/grape.gd" id="1_0y666"]
 [ext_resource type="Texture2D" uid="uid://bbe37yfm23vef" path="res://assets/grape/grape_idle.png" id="2_ytvmp"]
@@ -9,6 +9,11 @@
 [ext_resource type="Script" uid="uid://bw8pi0h33nb7h" path="res://scripts/components/character_components/fruit_components/grape_components/grape_command_manager_component.gd" id="7_w5yg7"]
 [ext_resource type="Script" uid="uid://ba4w0chas82hm" path="res://scripts/components/character_components/fruit_components/grape_components/grape_reactive_component.gd" id="8_4hmav"]
 [ext_resource type="Script" uid="uid://bhxvb4ri02c8t" path="res://scripts/components/character_components/damage_component.gd" id="9_olgj5"]
+
+[sub_resource type="Curve" id="Curve_olgj5"]
+_limits = [0.0, 400.0, 0.0, 0.4]
+_data = [Vector2(0, 400), 0.0, 0.0, 0, 0, Vector2(0.4, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]
 radius = 34.058773
@@ -355,6 +360,7 @@ script = ExtResource("1_0y666")
 animation_manager_component = NodePath("AnimationManagerComponent")
 command_manager_component = NodePath("CommandManagerComponent")
 reactive_component = NodePath("ReactiveComponent")
+knockback_curve = SubResource("Curve_olgj5")
 speed = 200.0
 max_health = 2000.0
 metadata/_custom_type_script = "uid://bquw4773xgiaq"

@@ -71,6 +71,8 @@
 [ext_resource type="PackedScene" uid="uid://dr2nk36vnu8y8" path="res://scenes/cursor.tscn" id="69_ngom5"]
 [ext_resource type="AudioStream" uid="uid://b104u4dlauv5j" path="res://audio/ambience.wav" id="70_ghy5t"]
 [ext_resource type="AudioStream" uid="uid://bjse5g2eoby6x" path="res://music/theme.mp3" id="71_nvslu"]
+[ext_resource type="PackedScene" uid="uid://ce8h5j2qwxn8c" path="res://scenes/ui/game_end_screen.tscn" id="72_endscreen"]
+[ext_resource type="PackedScene" uid="uid://bwq8r5m3n7y4k" path="res://scenes/ui/wave_message.tscn" id="73_wavemsg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xt4jw"]
 resource_name = "terrain"
@@ -1373,9 +1375,9 @@ size = Vector2(50, 4104.5)
 size = Vector2(50, 4112)
 
 [sub_resource type="Curve" id="Curve_gdmpp"]
-_limits = [0.0, 3500.0, 0.0, 1.0]
-_data = [Vector2(0, 2569.0806), 0.0, 0.0, 0, 0, Vector2(0.10000001, 2516.7817), 0.0, 0.0, 0, 0, Vector2(0.5027027, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+_limits = [0.0, 2250.0, 0.0, 0.7]
+_data = [Vector2(0, 2250), 0.0, 0.0, 0, 0, Vector2(0.55, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_6dmfj"]
 offsets = PackedFloat32Array(0.5466667, 1)
@@ -1394,6 +1396,7 @@ colors = PackedColorArray(1, 1, 1, 1, 0.61960787, 0.24313726, 0.21568628, 0.5490
 
 [node name="WaveManager" type="Node" parent="."]
 script = ExtResource("3_wavemanager")
+auto_start_first_wave = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(122, 7)
@@ -1517,6 +1520,10 @@ texture = ExtResource("1_4eb3c")
 
 [node name="UI" parent="." instance=ExtResource("34_y1fpr")]
 
+[node name="GameEndScreen" parent="." instance=ExtResource("72_endscreen")]
+
+[node name="WaveMessage" parent="." instance=ExtResource("73_wavemsg")]
+
 [node name="WorldBoundaries" type="StaticBody2D" parent="."]
 collision_layer = 4
 collision_mask = 3
@@ -1546,6 +1553,7 @@ position = Vector2(85, -12)
 scale = Vector2(2, 2)
 safe_margin = 25.0
 dash_speed_curve = SubResource("Curve_gdmpp")
+dash_invulnerability_duration = 0.3
 respawn_time = 5.0
 respawn_point = NodePath("../RespawnPoint")
 speed = 500.0
