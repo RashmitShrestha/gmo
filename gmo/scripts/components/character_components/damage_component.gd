@@ -6,9 +6,16 @@ extends Node
 @export var element_type: int = 0  # 0 = no element, 1 = fire, 2 = frozen, 3 = ferment
 
 var _parent
+var is_curr_dot : bool
 
 func _ready() -> void:
 	_parent = get_parent()
+	
+	if element_type == 0:
+		is_curr_dot = false
+	else:
+		is_curr_dot = true
+		
 
 
 func _physics_process(_delta: float) -> void:
@@ -25,4 +32,5 @@ func _physics_process(_delta: float) -> void:
 func _damage(character: GameCharacter) -> void:
 	if not character.invulnerable:
 		SignalBus.char_damaged_char.emit(_parent, character)
-		character.apply_damage(damage_amount, _parent, element_type)
+		print("DAMAGE IS" + str(damage_amount))
+		character.apply_damage(damage_amount, _parent, element_type, false)

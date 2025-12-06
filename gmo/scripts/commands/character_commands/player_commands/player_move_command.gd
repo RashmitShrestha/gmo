@@ -3,7 +3,7 @@ extends Command
 
 
 func execute(character: Warden) -> Status:
-	character.velocity = character.direction * character.speed
+	character.velocity = character.direction * character.base_speed
 	character.move_and_slide()
 
 	if character.direction.x < 0:

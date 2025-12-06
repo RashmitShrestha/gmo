@@ -51,7 +51,7 @@ func _physics_process(_delta: float) -> void:
 	_process_dot_effects(_delta)
 	_process_heal_numbers(_delta)
 
-func apply_damage(damage: float, _source: Node2D, element: int = 0):
+func apply_damage(damage: float, _source: Node2D, element: int = 0, is_dot: bool = false):
 	if invulnerable:
 		return
 	
@@ -59,14 +59,23 @@ func apply_damage(damage: float, _source: Node2D, element: int = 0):
 	if self is Fruit and element > 0:
 		var multiplier = ElementSystem.element_mult(element, self.element)
 		final_damage = damage * multiplier
-		print(name + " taking " + str(final_damage) + " damage (base: " + str(damage) + ", multiplier: " + str(multiplier) + ")")
 	
 	curr_health -= final_damage
 	damaged = true
-	spawn_damage_number(final_damage, element)
+	
+	# Only spawn damage number if NOT from DOT
+	if not is_dot:
+		spawn_damage_number(final_damage, element)
+		print(final_damage)
+		
+	#if self is Warden:
+		#print("WARDEN SAYS HI")
+		#print(curr_health)
 	
 	if curr_health < 0.0:
 		curr_health = 0.0
+	
+	#print(self)
 	
 	received_damage.emit(final_damage, _source)
 
@@ -147,6 +156,7 @@ func _process_dot_effects(delta: float) -> void:
 				var multiplier = ElementSystem.element_mult(element, self.element)
 				final_damage = damage_this_frame * multiplier
 			
+			# Just reduce health directly, don't call apply_damage
 			curr_health -= final_damage
 			effect.tot_dmg += final_damage
 			
@@ -155,23 +165,33 @@ func _process_dot_effects(delta: float) -> void:
 				var lifesteal_amount = ceil(final_damage * 0.5)
 				effect.lifesteal_source.heal(lifesteal_amount)
 			
-			# Emit both local and SignalBus signals
 			received_damage.emit(final_damage, self)
 			
 			effect.time -= delta
 			
-			if effect.time <= 0:
-				if should_spawn_damage_number and effect.tot_dmg >= 0.5:
+			# Check for death
+			if curr_health <= 0:
+				curr_health = 0.0
+				if effect.tot_dmg >= 0.5:
 					spawn_damage_number(effect.tot_dmg, element)
-					effect.tot_dmg = 0.0
+				_die()
+				return
+			
+			# DOT expired
+			if effect.time <= 0:
+				if effect.tot_dmg >= 0.5:
+					spawn_damage_number(effect.tot_dmg, element)
+				effect.tot_dmg = 0.0
 				_clear_effect(element)
 	
+	# Show accumulated DOT damage every interval
 	if should_spawn_damage_number:
 		for element in dot_effects.keys():
 			var effect = dot_effects[element]
 			if effect.tot_dmg >= 0.5:
 				spawn_damage_number(effect.tot_dmg, element)
 				effect.tot_dmg = 0.0
+
 
 func _clear_effect(element: int) -> void:
 	if element in dot_effects:
@@ -188,17 +208,30 @@ func _clear_effect(element: int) -> void:
 			dot_effects[element].lifesteal_source = null
 
 func apply_dot(element: int, dps: float, duration: float, lifesteal_source = null) -> void:
+	print("\n=== APPLY_DOT CALLED ===")
+	print("Character: ", name)
+	print("Element: ", element)
+	print("DPS: ", dps)
+	print("Duration: ", duration)
+	print("Lifesteal source: ", lifesteal_source.name if lifesteal_source else "None")
+	
 	if element in dot_effects:
 		dot_effects[element].dps = dps
 		dot_effects[element].time = duration
 		dot_effects[element].active = true
 		
+		print("DOT effect set: ", dot_effects[element])
+		
 		if element == 2:
 			dot_effects[element].slow_multiplier = 0.5
 			_update_speed()
+			print("Applied frost slow")
 		
 		if element == 3 and lifesteal_source:
 			dot_effects[element].lifesteal_source = lifesteal_source
+			print("Applied lifesteal source")
+		
+		print("========================\n")
 
 func _update_speed() -> void:
 	var slowest = 1.0
@@ -207,6 +240,8 @@ func _update_speed() -> void:
 			slowest = min(slowest, dot_effects[element].slow_multiplier)
 	
 	speed = base_speed * slowest
+	push_warning(speed)
+	push_warning(base_speed)
 
 func clear_dot(element: int) -> void:
 	_clear_effect(element)
