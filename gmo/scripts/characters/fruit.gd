@@ -13,6 +13,13 @@ var fertilized : bool = false
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 
+func _physics_process(_delta: float) -> void:
+	super._physics_process(_delta)
+	if dead:
+		return
+		
+	_face_warden()
+
 func _ready():
 	add_to_group("enemies")
 	super._ready()  # Call parent _ready
@@ -54,3 +61,13 @@ func apply_damage(damage: float, _source: Node2D, elem: int = 0):
 func _on_death(animation_name: StringName):
 	if animation_name == "death":
 		_die()
+
+
+func _face_warden() -> void:
+	var direction_to_warden: float = target.global_position.x - global_position.x
+	
+	# turn around if warden is behind fruit
+	if direction_to_warden < 0:
+		sprite.flip_h = true
+	else:
+		sprite.flip_h = false

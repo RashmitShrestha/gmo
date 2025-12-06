@@ -17,7 +17,7 @@ _data = [Vector2(0, 400), 0.0, 0.0, 0, 0, Vector2(0.4, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]
-radius = 34.058773
+radius = 130.57756
 
 [sub_resource type="Animation" id="Animation_gcaue"]
 length = 0.001
@@ -370,12 +370,12 @@ max_health = 5000.0
 metadata/_custom_type_script = "uid://bquw4773xgiaq"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2.125, 1.78125)
+scale = Vector2(5, 4.19)
 texture = ExtResource("2_6auju")
 hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0.5)
+position = Vector2(-63.5, -9.5)
 shape = SubResource("CircleShape2D_57wkv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -409,7 +409,7 @@ metadata/_custom_type_script = "uid://bhxvb4ri02c8t"
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -0.5)
+position = Vector2(-65, -7.5)
 shape = SubResource("CircleShape2D_57wkv")
 
 [node name="FlameParticle" type="CPUParticles2D" parent="."]
