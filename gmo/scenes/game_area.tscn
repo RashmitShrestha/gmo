@@ -72,8 +72,8 @@
 [ext_resource type="PackedScene" uid="uid://dr2nk36vnu8y8" path="res://scenes/cursor.tscn" id="69_ngom5"]
 [ext_resource type="AudioStream" uid="uid://b104u4dlauv5j" path="res://audio/ambience.wav" id="70_ghy5t"]
 [ext_resource type="AudioStream" uid="uid://bjse5g2eoby6x" path="res://music/theme.mp3" id="71_nvslu"]
-[ext_resource type="PackedScene" path="res://scenes/ui/game_end_screen.tscn" id="72_endscreen"]
-[ext_resource type="PackedScene" path="res://scenes/ui/wave_message.tscn" id="73_wavemsg"]
+[ext_resource type="PackedScene" uid="uid://ce8h5j2qwxn8c" path="res://scenes/ui/game_end_screen.tscn" id="72_endscreen"]
+[ext_resource type="PackedScene" uid="uid://bwq8r5m3n7y4k" path="res://scenes/ui/wave_message.tscn" id="73_wavemsg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xt4jw"]
 resource_name = "terrain"
