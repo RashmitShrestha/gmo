@@ -1,6 +1,7 @@
 class_name SingleGrapeReactiveComponent
 extends ReactiveComponent
 
+
 func _ready():
 	super()
 	_parent.mouse_entered.connect(_on_mouse_entered)

@@ -1,6 +1,16 @@
 class_name SingleGrapeCommandManagerComponent
 extends CommandManagerComponent
 
+
+func _init() -> void:
+	SignalBus.char_damaged_char.connect(_on_damage)
+
+
+func _on_damage(source: GameCharacter, target: GameCharacter):
+	if source == _parent and (target is Warden or target is PeachTree):
+		_parent.curr_command = _parent.knockback_command
+
+
 func update():
 	if null == _parent.curr_command:
 		if not _parent.stunned:

@@ -56,10 +56,19 @@ func _ready():
 		if peach_tree == null:
 			peach_tree = get_parent().get_node_or_null("PeachTree") if get_parent() else null
 	
-	target = warden
+	target = peach_tree
+	
+	# Only need damage_enemy signal - it handles everything
+	SignalBus.damage_enemy.connect(_on_damage_enemy)
+
+
+func _on_damage_enemy(character: GameCharacter, damage: float, element_type: int = 0):
+	if character == self:
+		apply_damage(damage, self, element_type)
+
 
 func apply_damage(damage: float, _source: Node2D, elem: int = 0, is_dot: bool = false):
-	super(damage, _source, elem, is_dot)  # Pass is_dot to parent
+	super(damage, _source, elem, is_dot)
 	
 	if curr_health <= 0.0 and not dead:
 		dead = true

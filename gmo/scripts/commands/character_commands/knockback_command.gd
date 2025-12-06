@@ -5,6 +5,7 @@ var _timer: Timer
 var _speed_curve: Curve
 var _direction: Vector2
 var _target: Vector2
+var _character: GameCharacter
 
 func _init(speed_curve: Curve, character: GameCharacter):
 	_speed_curve = speed_curve
@@ -12,12 +13,13 @@ func _init(speed_curve: Curve, character: GameCharacter):
 		func(_damage: float, source: Node2D):
 			_target = source.position
 	)
-	SignalBus.char_damaged_char.connect(
-		func(source: GameCharacter, target: GameCharacter):
-			if source == character:
-				_target = target.position
-	)
+	_character = character
+	SignalBus.char_damaged_char.connect(_on_damage)
 
+
+func _on_damage(source: GameCharacter, target: GameCharacter):
+	if source == _character:
+		_target = target.position
 
 func execute(character: GameCharacter) -> Status:
 	if _timer == null:

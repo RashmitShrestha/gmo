@@ -6,6 +6,8 @@ extends Fruit
 @export var reactive_component: GrapeReactiveComponent
 @export var knockback_curve: Curve
 
+@onready var single_grape: PackedScene = preload("res://scenes/characters/single_grape.tscn")
+
 var full_slash = 20
 var curr_command: Command
 var default_command: GrapeDefaultCommand
@@ -24,26 +26,23 @@ func _physics_process(_delta) -> void:
 	reactive_component.update()
 	super(_delta)
 
+
 func _process(_delta) -> void:
 	command_manager_component.update()
 	animation_manager_component.update()
 
 
-'''
 func _die():
-	print(str(self) + " has been defeated!")
+	var g1: SingleGrape = single_grape.instantiate()
+	var g2: SingleGrape = single_grape.instantiate()
+	var g3: SingleGrape = single_grape.instantiate()
 	
-	# Hide the grape
-	visible = false
+	g1.position = position + Vector2(50.0, 0)
+	g2.position = position + Vector2(-25.0, 43.3)
+	g3.position = position + Vector2(-25.0, -43.3)
 	
-	# Disable collisions so it doesn't interact anymore
-	$CollisionShape2D.set_deferred("disabled", true)
-	$Area2D/CollisionShape2D.set_deferred("disabled", true)
+	get_parent().add_child(g1)
+	get_parent().add_child(g2)
+	get_parent().add_child(g3)
 	
-	# Optional: Play death animation/particles before removing
-	# await get_tree().create_timer(0.5).timeout
-	
-	# Remove from scene tree
-	queue_free()
-
-'''
+	super()
