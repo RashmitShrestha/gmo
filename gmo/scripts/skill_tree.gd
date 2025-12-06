@@ -57,12 +57,12 @@ var paths: Dictionary = {
 		"title": "Frost Path",
 		"nodes": [
 			{"id": "+10% Movement Speed", "name": "Glacial Glide", "pos": Vector2(200, 600), "xp_cost": 100, "description": "Permanently increase your movement speed by 10%."},
-			{"id": "trail", "name": "Crystallized Cascade ", "pos": Vector2(200, 200), "xp_cost": 100, "description": "For 3 seconds, your main attack leaves a trail of ice that freezes enemies for 0.5 seconds every 1 second"},
-			{"id": "trail_upgrade", "name": "Permafrost Promenade", "pos": Vector2(500, 125), "xp_cost": 150, "description": "Your frost trail now freezes for 1 second every second and its duration is increased to 5 seconds."},
-			{"id": "status1", "name": "Frostbite Fracture", "pos": Vector2(700, 150), "xp_cost": 200, "description": "Emit a frozen shockwave every 5 seconds that freezes enemies for 1 second"},
-			{"id": "ability", "name": "Frame Freeze", "pos": Vector2(375, 250), "xp_cost": 250, "description": "Freeze all enemies on screen for 2 seconds. (Projectiles can still move)"},
-			{"id": "ability_upgrade", "name": "Nitrogen Nirvana", "pos": Vector2(350, 475), "xp_cost": 300, "description": "After you activate Frame Freeze, double movement speed, and gain unlimited range. (Freeze Frame duration increased to 3 seconds)"},
-			{"id": "status2", "name": "Refrigerated Reflexes", "pos": Vector2(650, 375), "xp_cost": 200, "description": "Your main attack now slows enemies for 2 seconds"}
+			{"id": "trail", "name": "Crystallized Cascade ", "pos": Vector2(200, 200), "xp_cost": 100, "description": "For 3 seconds, your main attack leaves a trail of ice that slows enemy movement by 25%"},
+			{"id": "trail_upgrade", "name": "Permafrost Promenade", "pos": Vector2(500, 125), "xp_cost": 150, "description": "Your frost trail now slows down enemy movement by 50% and its duration is increased to 5 seconds."},
+			{"id": "status1", "name": "Frostbite Fracture", "pos": Vector2(700, 150), "xp_cost": 200, "description": "20% chance to freeze enemy on hit"},
+			{"id": "ability", "name": "Frame Freeze", "pos": Vector2(375, 250), "xp_cost": 250, "description": "Freeze all enemies on screen for 4 seconds. (Projectiles can still move)"},
+			{"id": "ability_upgrade", "name": "Nitrogen Nirvana", "pos": Vector2(350, 475), "xp_cost": 300, "description": "After you activate Frame Freeze, double movement speed, and gain unlimited range. (Freeze Frame duration increased to 7 seconds)"},
+			{"id": "status2", "name": "Refrigerated Reflexes", "pos": Vector2(650, 375), "xp_cost": 200, "description": "Permanently decrease enemy movement speed by 20%"}
 		],
 		"connections": [
 			["trail", "+10% Movement Speed"],
@@ -79,7 +79,7 @@ var paths: Dictionary = {
 			{"id": "+10% Health", "name": "Ripened resilience", "pos": Vector2(200, 600), "xp_cost": 100, "description": "Permanently increase your maximum health by 10%."},
 			{"id": "trail", "name": "Leeching Loam", "pos": Vector2(200, 200), "xp_cost": 100, "description": "For 3 seconds, your main attack leaves a trail of fertilizer that lifesteals from fruits."},
 			{"id": "trail_upgrade", "name": "Vitamin Vamparism", "pos": Vector2(500, 125), "xp_cost": 150, "description": "Increase fermented trail duration to 5 seconds and siphon 10% ATK from each fruit that touches your fermented trail (Only applies once per trail activation)"},
-			{"id": "status1", "name": "Overripe Outrage", "pos": Vector2(700, 150), "xp_cost": 200, "description": "Deal extra % based damage depending on your health. (Full health multiplier is 100% of base attack)"},
+			{"id": "status1", "name": "Regenerative Realization", "pos": Vector2(700, 150), "xp_cost": 200, "description": "Regenerate 2 health every 10 seconds"},
 			{"id": "ability", "name": "Fertilized Farm", "pos": Vector2(375, 250), "xp_cost": 250, "description": "For 5 seconds every fruit you kill revives as an ally fruit at full health. Ally fruits attack enemy fruit for 10 seconds before fully decaying."},
 			{"id": "ability_upgrade", "name": "Vineyard Vengeance", "pos": Vector2(350, 475), "xp_cost": 300, "description": "All ally fruits have their base stats doubled."},
 			{"id": "status2", "name": "Hard to Peel", "pos": Vector2(650, 375), "xp_cost": 200, "description": "Gain a recharging shield that nullifies the first hit from an enemy.(Shield Recharges every 10 seconds)"}
