@@ -1,7 +1,7 @@
 @abstract class_name ReactiveComponent
 extends Node
 
-var _parent
+var _parent: Fruit
 
 func _ready() -> void:
 	_parent = get_parent()

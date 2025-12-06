@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cpisay5d7h55w"]
+[gd_scene load_steps=32 format=3 uid="uid://cpisay5d7h55w"]
 
 [ext_resource type="Script" uid="uid://dwba6nowvs6tw" path="res://scripts/characters/single_grape.gd" id="1_sga2y"]
 [ext_resource type="Texture2D" uid="uid://dwmmtboeqnn4" path="res://assets/single_grape/single_grape_idle.png" id="2_0ljss"]
@@ -8,6 +8,12 @@
 [ext_resource type="Script" uid="uid://mjkj3a1tf5br" path="res://scripts/components/character_components/fruit_components/single_grape_components/single_grape_animation_manager_component.gd" id="6_1cw6p"]
 [ext_resource type="Script" uid="uid://o8gabn4e6rj5" path="res://scripts/components/character_components/fruit_components/single_grape_components/single_grape_command_manager_component.gd" id="7_gg7ta"]
 [ext_resource type="Script" uid="uid://lnnxd5244hdy" path="res://scripts/components/character_components/fruit_components/single_grape_components/single_grape_reactive_component.gd" id="8_7j2wc"]
+[ext_resource type="Script" uid="uid://bhxvb4ri02c8t" path="res://scripts/components/character_components/damage_component.gd" id="9_lf7sr"]
+
+[sub_resource type="Curve" id="Curve_lf7sr"]
+_limits = [0.0, 350.0, 0.0, 0.3]
+_data = [Vector2(0, 350), 0.0, 0.0, 0, 0, Vector2(0.3, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_57wkv"]
 radius = 14.035668
@@ -355,6 +361,7 @@ script = ExtResource("1_sga2y")
 animation_manager_component = NodePath("AnimationManagerComponent")
 command_manager_component = NodePath("CommandManagerComponent")
 reactive_component = NodePath("ReactiveComponent")
+knockback_curve = SubResource("Curve_lf7sr")
 speed = 700.0
 max_health = 100.0
 metadata/_custom_type_script = "uid://bquw4773xgiaq"
@@ -389,6 +396,12 @@ script = ExtResource("7_gg7ta")
 
 [node name="ReactiveComponent" type="Node" parent="."]
 script = ExtResource("8_7j2wc")
+
+[node name="DamageComponent" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("9_lf7sr")
+hitbox = NodePath("../Area2D")
+damage_amount = 2.0
+metadata/_custom_type_script = "uid://bhxvb4ri02c8t"
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4

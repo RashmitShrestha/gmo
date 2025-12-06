@@ -31,7 +31,7 @@ func _ready():
 		if peach_tree == null:
 			peach_tree = get_parent().get_node_or_null("PeachTree") if get_parent() else null
 	
-	target = warden
+	target = peach_tree
 	
 	# Only need damage_enemy signal - it handles everything
 	SignalBus.damage_enemy.connect(_on_damage_enemy)

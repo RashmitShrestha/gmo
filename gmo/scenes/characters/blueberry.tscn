@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cqiqbfrryny47" path="res://assets/blueberry/blueberry_hurt.png" id="4_dw3cp"]
 [ext_resource type="Texture2D" uid="uid://pbkd1gsvtool" path="res://assets/blueberry/blueberry_death.png" id="5_k05ik"]
 [ext_resource type="Script" uid="uid://csopiplictw8j" path="res://scripts/components/character_components/fruit_components/blueberry_components/blueberry_animation_manager_component.gd" id="6_t03vd"]
-[ext_resource type="Script" uid="uid://bq0uvpdkcpio8" path="res://scripts/components/character_components/fruit_components/blueberry_components/blueberry_command_manager_compnent.gd" id="7_duaux"]
+[ext_resource type="Script" uid="uid://bq0uvpdkcpio8" path="res://scripts/components/character_components/fruit_components/blueberry_components/blueberry_command_manager_component.gd" id="7_duaux"]
 [ext_resource type="Script" uid="uid://b07x7fbfsatk3" path="res://scripts/components/character_components/fruit_components/blueberry_components/blueberry_reactive_component.gd" id="8_ylke1"]
 [ext_resource type="Script" uid="uid://bhxvb4ri02c8t" path="res://scripts/components/character_components/damage_component.gd" id="9_lbkys"]
 

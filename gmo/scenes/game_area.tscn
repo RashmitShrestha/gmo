@@ -1,4 +1,4 @@
-[gd_scene load_steps=174 format=4 uid="uid://dmf617rn6a8pm"]
+[gd_scene load_steps=176 format=4 uid="uid://dmf617rn6a8pm"]
 
 [ext_resource type="Texture2D" uid="uid://ckfplp2dp23fa" path="res://assets/test_area.webp" id="1_4eb3c"]
 [ext_resource type="Texture2D" uid="uid://c6lubr8yhm1w4" path="res://assets/terrain/Background_Green_TileSet.png" id="1_xt4jw"]
@@ -63,7 +63,7 @@
 [ext_resource type="Texture2D" uid="uid://dsx34u8ob1372" path="res://assets/background_assets/Tire_2_Grass_Bleak-Yellow.png" id="31_tks2w"]
 [ext_resource type="PackedScene" uid="uid://u2ou1iejvbah" path="res://scenes/peach_tree.tscn" id="34_lc0e6"]
 [ext_resource type="PackedScene" uid="uid://bxybsx8a4jhsd" path="res://scenes/ui/ui.tscn" id="34_y1fpr"]
-[ext_resource type="PackedScene" uid="uid://tctiowdwx855" path="res://scenes/skill_tree_menu.tscn" id="35_lc0e6"]
+[ext_resource type="PackedScene" uid="uid://tctiowdwx855" path="res://scenes/ui/skill_tree_menu.tscn" id="35_lc0e6"]
 [ext_resource type="Texture2D" uid="uid://b86av4keklu2t" path="res://assets/background_assets/Nature/Grass_2_Dark-Green.png" id="41_sqp03"]
 [ext_resource type="Texture2D" uid="uid://32cih5hdaxe0" path="res://assets/background_assets/Car_5_Rust_Tractor_Side.png" id="44_5xjug"]
 [ext_resource type="Texture2D" uid="uid://cbe6w1ymfm8sb" path="res://assets/background_assets/Car_8_Overgrown_Dark-Green_Light-Green_Bus.png" id="45_nuv0j"]
@@ -1628,7 +1628,6 @@ position = Vector2(1248, 119)
 
 [node name="SingleGrape" parent="." instance=ExtResource("12_d3ocr")]
 position = Vector2(1332, 375)
-speed = 0.0
 
 [node name="PeachTree" parent="." instance=ExtResource("34_lc0e6")]
 unique_name_in_owner = true
