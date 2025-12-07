@@ -128,6 +128,7 @@ func _spawn_boss():
 	var boss_pos = Vector2.ZERO
 	print("wavemanager: spawning boss: %s" % current_wave_data.boss_stats.enemy_name)
 	_spawn_enemy(current_wave_data.boss_stats, boss_pos, EnemyStats.EnemyModifier.NONE)
+	wave_state = WaveState.ACTIVE
 
 # group spawning
 
