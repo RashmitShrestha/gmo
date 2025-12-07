@@ -20,7 +20,7 @@ _data = [Vector2(0, 1000), 0.0, 0.0, 0, 0, Vector2(0.4993511, 0), 0.0, 0.0, 0, 0
 point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cgkur"]
-size = Vector2(46, 86)
+size = Vector2(46, 78)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bcb5n"]
 atlas = ExtResource("3_r53ma")
@@ -692,7 +692,7 @@ colors = PackedColorArray(1, 1, 1, 0.90588236, 1, 1, 1, 0)
 
 [node name="Warden" type="CharacterBody2D" node_paths=PackedStringArray("command_manager_component", "input_component", "animation_manager_component")]
 y_sort_enabled = true
-collision_mask = 4
+collision_mask = 132
 script = ExtResource("1_wthw5")
 knockback_speed_curve = SubResource("Curve_uix1w")
 dash_invulnerability_duration = 0.4
@@ -704,6 +704,7 @@ slice_radius = 500
 max_health = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_cgkur")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

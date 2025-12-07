@@ -30,6 +30,24 @@ signal all_waves_completed
 signal item_dropped(item_type: String, position: Vector2, rarity: int)
 signal item_collected(item_type: String, rarity: int)
 
+# skill tree upgrade signals
+signal stat_modified(character_group: String, stat_name: String, value: float)
+# character_group: "player" or "enemies"
+# stat_name: "attack", "movement_speed", "max_health", etc.
+# value: the new value or multiplier
+# is_multiplier: true if it's a percentage boost (1.10 = +10%), false if flat value
+
+# === ABILITY TOGGLES ===
+signal ability_toggled(ability_id: String, enabled: bool, parameters: Dictionary)
+# ability_id: "flame_trail", "frost_trail", "blowtorch", "freeze_frame", etc.
+# enabled: true/false
+# parameters: ability-specific settings like duration, damage, range
+
+# === STATUS EFFECTS ===
+signal status_effect_applied(character_group: String, effect_name: String, parameters: Dictionary)
+# character_group: "player" or "enemies"
+# effect_name: "burn_crit_boost", "consecutive_hit", "health_regen", etc.
+
 # more signals should be added here as the systems that emit them are built
 # example usage:
 #   to emit: SignalBus.player_dashed.emit()
