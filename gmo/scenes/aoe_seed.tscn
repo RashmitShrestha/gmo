@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://yloeniaaho13"]
+
+[ext_resource type="Script" uid="uid://ctub0rxoy0ru8" path="res://scripts/projectiles/aoe_seed.gd" id="1_f0vmc"]
+[ext_resource type="Texture2D" uid="uid://c1lfjyygeska6" path="res://assets/seed.png" id="1_ihkc5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f0vmc"]
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sljn8"]
+radius = 16.0
+
+[node name="AOESeed" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 0
+gravity_scale = 0.0
+angular_damp = -1.0
+script = ExtResource("1_f0vmc")
+lifetime = 4.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_ihkc5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_f0vmc")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_sljn8")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bxybsx8a4jhsd"]
 
 [ext_resource type="PackedScene" uid="uid://ithrgcjfgqlh" path="res://scenes/ui/health_bar.tscn" id="1_u7n8c"]
-[ext_resource type="Shader" uid="uid://ym2h1p7oly1x" path="res://scenes/vignette.gdshader" id="2_f5cxw"]
+[ext_resource type="Shader" uid="uid://ym2h1p7oly1x" path="res://shaders/vignette.gdshader" id="2_f5cxw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aac20"]
 shader = ExtResource("2_f5cxw")

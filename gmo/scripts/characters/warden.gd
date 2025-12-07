@@ -55,7 +55,7 @@ func _ready() -> void:
 	SignalBus.health_restored.connect(_on_health_restored)
 	
 	received_damage.connect(
-		func(damage: float, _source: Node2D):
+		func(_damage: float, _source: Node2D):
 			SignalBus.player_health_changed.emit(curr_health, max_health)
 
 			if curr_health > 0.0:
