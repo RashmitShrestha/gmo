@@ -228,11 +228,17 @@ func _calculate_spawn_positions(pattern: EnemyGroup.SpawnPattern, count: int) ->
 				positions.append(_get_random_perimeter_position())
 
 		EnemyGroup.SpawnPattern.SPREAD:
-			var angle_step = TAU / count
-			for i in count:
-				var angle = i * angle_step
-				var pos = Vector2(cos(angle), sin(angle)) * spawn_radius
-				positions.append(pos)
+			if not spawn_points.is_empty():
+				var spawn_step = spawn_points.size() / float(count)
+				for i in count:
+					var marker_index = int(i * spawn_step) % spawn_points.size()
+					positions.append(spawn_points[marker_index].global_position)
+			else:
+				var angle_step = TAU / count
+				for i in count:
+					var angle = i * angle_step
+					var pos = Vector2(cos(angle), sin(angle)) * spawn_radius
+					positions.append(pos)
 
 		EnemyGroup.SpawnPattern.CLUSTER:
 			var base_pos = _get_random_perimeter_position()
