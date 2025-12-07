@@ -36,6 +36,7 @@ func _ready():
 	SignalBus.enemy_died.connect(_on_enemy_died)
 
 	if auto_start_first_wave:
+		await get_tree().create_timer(1.5).timeout
 		start_next_wave()
 
 	print("wavemanager: ready! loaded %d waves, found %d spawn points" % [wave_resources.size(), spawn_points.size()])
