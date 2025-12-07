@@ -69,3 +69,13 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "TOTAL SCORE: 0"
 horizontal_alignment = 1
+
+[node name="VSeparator2" type="Control" parent="CenterContainer/VBoxContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="TotalXP" type="Label" parent="CenterContainer/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "TOTAL XP EARNED: 0"
+horizontal_alignment = 1
