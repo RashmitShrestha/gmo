@@ -1,10 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://tctiowdwx855"]
+[gd_scene load_steps=7 format=3 uid="uid://cxvjrgu4apucc"]
 
 [ext_resource type="Script" uid="uid://dfl222xywqq5x" path="res://scripts/skill_tree.gd" id="1_xjm4f"]
 [ext_resource type="Texture2D" uid="uid://qgt4arq1g0l" path="res://assets/peach/skill_tree_background.png" id="2_petg3"]
 [ext_resource type="StyleBox" uid="uid://denrd6nd7cpwi" path="res://scenes/ui/Themes and Stylebox/normal_button.tres" id="2_xji8d"]
 [ext_resource type="FontFile" uid="uid://dxqub4bcdsgb3" path="res://assets/PixelatedEleganceRegular-ovyAA.ttf" id="3_0sj0g"]
-[ext_resource type="Script" path="res://scripts/skill_tree_lines.gd" id="3_k634w"]
+[ext_resource type="Script" uid="uid://b11o5wkmadq1g" path="res://scripts/skill_tree_lines.gd" id="3_k634w"]
 
 [sub_resource type="Theme" id="Theme_vysrx"]
 default_font = ExtResource("3_0sj0g")

@@ -200,36 +200,43 @@ func _create_skill_node(data: Dictionary) -> void:
 	var xp_cost = data["xp_cost"]
 	var description = data["description"]
 	
-	# Create a container for the button and cost label
 	var container = Control.new()
 	container.position = pos - Vector2(50, 50)
 	container.custom_minimum_size = Vector2(100, 100)
 	
-	# Create the main button
-	var btn = Button.new()
-	btn.text = display_name
-	btn.custom_minimum_size = Vector2(100, 80)
-	btn.position = Vector2(0, 0)
+	# Use TextureButton instead of Button
+	var btn = TextureButton.new()
+	btn.texture_normal = preload("res://assets/peach/locked_peach.png")
+	btn.ignore_texture_size = true
+	btn.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_CENTERED
+	btn.custom_minimum_size = Vector2(80, 80)
+	btn.position = Vector2(10, 0)
 	btn.pressed.connect(_on_skill_selected.bind(id))
 	btn.mouse_entered.connect(_on_skill_hover.bind(id))
 	btn.mouse_exited.connect(_on_skill_hover_end)
 	
-	# Center the text
-	btn.add_theme_constant_override("align", 1)
-	
 	container.add_child(btn)
 	
-	# Create XP cost label (bottom right of button)
+	# Add skill name label below/on the peach
+	var name_label = Label.new()
+	name_label.text = display_name
+	name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	name_label.position = Vector2(0, 85)
+	name_label.custom_minimum_size = Vector2(100, 20)
+	name_label.add_theme_font_size_override("font_size", 14)
+	name_label.add_theme_constant_override("outline_size", 2)
+	name_label.add_theme_color_override("font_outline_color", Color(1, 1, 1))  # White outline
+	container.add_child(name_label)
+	
+	# XP cost label
 	var cost_label = Label.new()
 	if xp_cost > 0:
 		cost_label.text = str(xp_cost) + " XP"
-
-	cost_label.position = Vector2(5, 60)
+	cost_label.position = Vector2(5, 105)
 	container.add_child(cost_label)
 	
 	nodes.add_child(container)
 	
-	# Store references
 	skill_nodes[id] = btn
 	skill_data[id] = {
 		"xp_cost": xp_cost,
@@ -239,33 +246,27 @@ func _create_skill_node(data: Dictionary) -> void:
 	}
 
 
-func _update_all_button_styles() -> void:
-	for skill_id in skill_nodes.keys():
-		_update_button_style(skill_id)
-
-
 func _update_button_style(skill_id: String) -> void:
-	var btn = skill_nodes[skill_id]
+	var btn = skill_nodes[skill_id] as TextureButton
 	var data = skill_data[skill_id]
 	var is_unlocked = is_skill_unlocked(skill_id)
 	var can_purchase = can_purchase_skill(skill_id)
 	
 	if is_unlocked:
-		btn.add_theme_stylebox_override("normal", style_unlocked)
-		btn.add_theme_stylebox_override("hover", style_unlocked)
-		btn.add_theme_stylebox_override("pressed", style_unlocked)
+		btn.texture_normal = preload("res://assets/peach/yellow_peach.png")
 		data["cost_label"].text = "OWNED"
 		data["cost_label"].add_theme_color_override("font_color", Color(0.2, 1.0, 0.2))
 	elif can_purchase:
-		btn.add_theme_stylebox_override("normal", style_purchasable)
-		btn.add_theme_stylebox_override("hover", style_purchasable)
-		btn.add_theme_stylebox_override("pressed", style_purchasable)
+		btn.texture_normal = preload("res://assets/peach/pink_peach.png")
 		data["cost_label"].add_theme_color_override("font_color", Color(0.4, 0.8, 1.0))
 	else:
-		btn.add_theme_stylebox_override("normal", style_locked)
-		btn.add_theme_stylebox_override("hover", style_locked)
-		btn.add_theme_stylebox_override("pressed", style_locked)
+		btn.texture_normal = preload("res://assets/peach/locked_peach.png")
 		data["cost_label"].add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
+
+
+func _update_all_button_styles() -> void:
+	for skill_id in skill_nodes.keys():
+		_update_button_style(skill_id)
 
 
 func is_skill_unlocked(skill_id: String) -> bool:
