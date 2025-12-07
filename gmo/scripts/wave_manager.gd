@@ -36,6 +36,7 @@ func _ready():
 	SignalBus.enemy_died.connect(_on_enemy_died)
 
 	if auto_start_first_wave:
+		await get_tree().create_timer(1.5).timeout
 		start_next_wave()
 
 	print("wavemanager: ready! loaded %d waves, found %d spawn points" % [wave_resources.size(), spawn_points.size()])
@@ -127,6 +128,7 @@ func _spawn_boss():
 	var boss_pos = Vector2.ZERO
 	print("wavemanager: spawning boss: %s" % current_wave_data.boss_stats.enemy_name)
 	_spawn_enemy(current_wave_data.boss_stats, boss_pos, EnemyStats.EnemyModifier.NONE)
+	wave_state = WaveState.ACTIVE
 
 # group spawning
 
@@ -227,11 +229,17 @@ func _calculate_spawn_positions(pattern: EnemyGroup.SpawnPattern, count: int) ->
 				positions.append(_get_random_perimeter_position())
 
 		EnemyGroup.SpawnPattern.SPREAD:
-			var angle_step = TAU / count
-			for i in count:
-				var angle = i * angle_step
-				var pos = Vector2(cos(angle), sin(angle)) * spawn_radius
-				positions.append(pos)
+			if not spawn_points.is_empty():
+				var spawn_step = spawn_points.size() / float(count)
+				for i in count:
+					var marker_index = int(i * spawn_step) % spawn_points.size()
+					positions.append(spawn_points[marker_index].global_position)
+			else:
+				var angle_step = TAU / count
+				for i in count:
+					var angle = i * angle_step
+					var pos = Vector2(cos(angle), sin(angle)) * spawn_radius
+					positions.append(pos)
 
 		EnemyGroup.SpawnPattern.CLUSTER:
 			var base_pos = _get_random_perimeter_position()
