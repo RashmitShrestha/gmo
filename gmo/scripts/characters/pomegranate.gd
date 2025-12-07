@@ -1,6 +1,7 @@
 class_name Pomegranate
 extends Fruit
 
+@export var projectile_speed: float
 @export var max_dist: float
 @export var animation_manager_component: PomegranateAnimationManagerComponent
 @export var command_manager_component: PomegranateCommandManagerComponent
@@ -11,11 +12,13 @@ var curr_command: Command
 var default_command: PomegranateDefaultCommand
 var shooting_command: PomegranateShootingCommand
 
+@onready var _projectile: PackedScene = preload("res://scenes/seed.tscn")
+
 func _ready():
 	super()
 	
 	default_command = PomegranateDefaultCommand.new(speed)
-	shooting_command = PomegranateShootingCommand.new(stun_time)
+	shooting_command = PomegranateShootingCommand.new(_projectile, projectile_speed)
 
 
 func _physics_process(_delta) -> void:

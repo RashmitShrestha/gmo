@@ -42,6 +42,7 @@ var accumulated_heal := 0.0
 func _ready():
 	base_speed = speed
 
+
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	
@@ -76,7 +77,7 @@ func apply_damage(damage: float, _source: Node2D, element: int = 0, is_dot: bool
 func heal(amount: float) -> void:
 	if amount <= 0:
 		return
-		
+	
 	var old_health = curr_health
 	curr_health = min(curr_health + amount, max_health)
 	var actual_heal = curr_health - old_health
@@ -87,6 +88,7 @@ func heal(amount: float) -> void:
 		# Only emit through SignalBus (no local signal)
 		SignalBus.health_restored.emit(self, actual_heal)
 
+
 func _process_heal_numbers(delta: float) -> void:
 	heal_number_timer += delta
 	
@@ -96,6 +98,7 @@ func _process_heal_numbers(delta: float) -> void:
 		if accumulated_heal >= 0.5:
 			spawn_heal_number(accumulated_heal)
 			accumulated_heal = 0.0
+
 
 func spawn_damage_number(damage: float, element: int = 0) -> void:
 	if damage < 0.5:  # Don't show tiny damage
@@ -109,6 +112,7 @@ func spawn_damage_number(damage: float, element: int = 0) -> void:
 	var color = element_colors.get(element, Color.WHITE)
 	# Use ceil to round up so we never show 0
 	damage_number.set_damage(ceili(damage), color)
+
 
 func spawn_heal_number(heal_amount: float) -> void:
 	if heal_amount < 0.5:

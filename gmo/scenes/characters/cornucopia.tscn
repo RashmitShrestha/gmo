@@ -1,6 +1,6 @@
 [gd_scene load_steps=33 format=3 uid="uid://dlvm4nhb144ev"]
 
-[ext_resource type="Script" uid="uid://duxriptfaikwf" path="res://scenes/characters/cornucopia.gd" id="1_o1gxn"]
+[ext_resource type="Script" uid="uid://duxriptfaikwf" path="res://scripts/characters/cornucopia.gd" id="1_o1gxn"]
 [ext_resource type="Texture2D" uid="uid://bbe37yfm23vef" path="res://assets/grape/grape_idle.png" id="2_6auju"]
 [ext_resource type="Texture2D" uid="uid://m3yffipqb8sx" path="res://assets/cornucopia/cornucopia_attack.png" id="3_6auju"]
 [ext_resource type="Texture2D" uid="uid://b3irqd5g1utyo" path="res://assets/cornucopia/cornucopia_death.png" id="3_o1gxn"]

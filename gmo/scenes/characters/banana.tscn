@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://s1it7mo56jx"]
+[gd_scene load_steps=31 format=3 uid="uid://s1it7mo56jx"]
 
 [ext_resource type="Script" uid="uid://djfh0hup035g7" path="res://scripts/characters/banana.gd" id="1_srj6n"]
 [ext_resource type="Texture2D" uid="uid://dgtj0t07ntlq2" path="res://assets/banana/banana_idle.png" id="2_srj6n"]
@@ -348,6 +348,9 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_xeu8w"]
 colors = PackedColorArray(0, 0, 0, 0.59607846, 1, 1, 1, 0.65882355)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_26yur"]
+radius = 200.0
+
 [node name="Banana" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component")]
 z_index = 1
 collision_layer = 2
@@ -356,6 +359,9 @@ script = ExtResource("1_srj6n")
 animation_manager_component = NodePath("AnimationManagerComponent")
 command_manager_component = NodePath("CommandManagerComponent")
 reactive_component = NodePath("ReactiveComponent")
+projectile_speed = 400.0
+frequency = 2.0
+max_dist = 400.0
 speed = 400.0
 max_health = 500.0
 metadata/_custom_type_script = "uid://bquw4773xgiaq"
@@ -388,8 +394,9 @@ script = ExtResource("6_hpx1l")
 [node name="CommandManagerComponent" type="Node" parent="."]
 script = ExtResource("7_bdl2a")
 
-[node name="ReactiveComponent" type="Node" parent="."]
+[node name="ReactiveComponent" type="Node" parent="." node_paths=PackedStringArray("detection_area")]
 script = ExtResource("8_s8p0x")
+detection_area = NodePath("../DetectionArea")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -466,3 +473,10 @@ scale_amount_min = 0.5
 scale_amount_curve = SubResource("Curve_26yur")
 color = Color(0.30588236, 0.5803922, 0.27058825, 0.67058825)
 color_ramp = SubResource("Gradient_xeu8w")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_26yur")
