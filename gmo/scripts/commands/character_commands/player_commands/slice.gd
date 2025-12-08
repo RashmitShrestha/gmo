@@ -41,12 +41,12 @@ var element_effects = {
 		"description": "Burn"
 	},
 	2: {  
-		"dps": 4.0,
+		"dps": 6.0,
 		"slow_multiplier": 0.5,
 		"description": "Frozen"
 	},
 	3: { 
-		"dps": 5.0,
+		"dps": 6.0,
 		"lifesteal_percent": 0.5,
 		"description": "Ferment"
 	}
@@ -56,33 +56,34 @@ func _ready():
 	width = 20.0
 	set_as_top_level(true)
 	capture_default_state()
-	
 	SignalBus.ability_toggled.connect(_on_ability_toggled)
+
+	
 
 func _on_ability_toggled(ability_id: String, enabled: bool, parameters: Dictionary) -> void:
 	match ability_id:
 		"flame_trail":
 			flame_trail_enabled = enabled
-			flame_trail_duration = parameters.get("duration", 3.0)
-			flame_trail_burn_duration = parameters.get("burn_duration", 2.0)
-			flame_trail_burn_multiplier = parameters.get("burn_damage_multiplier", 1.0)
+			flame_trail_duration = parameters.get("duration")
+			flame_trail_burn_duration = parameters.get("burn_duration")
+			flame_trail_burn_multiplier = parameters.get("burn_damage_multiplier")
+			element_effects[1]["dps"] *=  flame_trail_burn_multiplier
 			
-			element_effects[1]["dps"] = 1000 * flame_trail_burn_multiplier
 			effect_duration = flame_trail_duration
 			
 		"frost_trail":
 			frost_trail_enabled = enabled
-			frost_trail_duration = parameters.get("duration", 3.0)
-			frost_trail_slow_percent = parameters.get("slow_percent", 0.25)
+			frost_trail_duration = parameters.get("duration")
+			frost_trail_slow_percent = parameters.get("slow_percent")
 			
 			element_effects[2]["slow_multiplier"] = frost_trail_slow_percent
 			effect_duration = frost_trail_duration
 			
 		"ferment_trail":
 			ferment_trail_enabled = enabled
-			ferment_trail_duration = parameters.get("duration", 3.0)
-			ferment_trail_lifesteal_enabled = parameters.get("lifesteal_enabled", false)
-			ferment_trail_atk_siphon = parameters.get("atk_siphon_percent", 0.0)
+			ferment_trail_duration = parameters.get("duration")
+			ferment_trail_lifesteal_enabled = parameters.get("lifesteal_enabled")
+			ferment_trail_atk_siphon = parameters.get("atk_siphon_percent")
 	
 			effect_duration = ferment_trail_duration
 
@@ -145,8 +146,6 @@ func apply_trail_effect(enemy: GameCharacter, element_type: int) -> void:
 	if not element_type in element_effects:
 		return
 		
-
-	
 	if enemy.dot_effects[element_type].time > 0:
 		return
 	

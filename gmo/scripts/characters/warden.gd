@@ -111,11 +111,10 @@ func _process(_delta) -> void:
 	command_manager_component.update()
 	animation_manager_component.update()
 
-func _on_received_damage(character: GameCharacter, damage: float) -> void:
+func _on_received_damage(character: GameCharacter, _damage: float) -> void:
 	if character == self:
 		hurt_animation()
 		make_invulnerable(invulnerability_duration)
-		print("Warden took " + str(damage) + " damage! Health: " + str(curr_health) + "/" + str(max_health))
 
 #func _on_health_restored(character: GameCharacter, amount: float) -> void:
 	#if character == self:
@@ -268,6 +267,7 @@ func _setup_health_regen(amount: int, interval: float) -> void:
 
 
 func apply_damage(damage: float, source: Node2D, elem: int = 0, is_dot: bool = false) -> void:
+	print(elem)
 	if invulnerable:
 		return
 	
@@ -280,6 +280,10 @@ func apply_damage(damage: float, source: Node2D, elem: int = 0, is_dot: bool = f
 	
 	var final_damage = damage
 	
+	match elem:
+		1:
+			final_damage *= 2
+	
 	curr_health -= final_damage
 	damaged = true
 	
@@ -288,6 +292,8 @@ func apply_damage(damage: float, source: Node2D, elem: int = 0, is_dot: bool = f
 
 	if curr_health < 0.0:
 		curr_health = 0.0
+		
+
 		
 	received_damage.emit(final_damage, source)
 	

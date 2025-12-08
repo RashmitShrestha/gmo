@@ -1,7 +1,7 @@
 class_name Fruit 
 extends GameCharacter
 
-var element : int 
+var element : int = 0
 var stun_time: float = 1.0
 var warden: Warden
 var peach_tree: PeachTree
@@ -10,6 +10,7 @@ var stunned: bool = false
 var dead: bool = false
 var is_attacking: bool = false
 var fertilized : bool = false
+var elem_speed_mult : float = 1.0
 
 var global_slow_modifier: float = 1.0
 var frost_trail_modifier: float = 1.0
@@ -19,6 +20,9 @@ var is_burned: bool = false
 var burn_timer: Timer
 var stun_timer: Timer
 
+var elemParticle: CPUParticles2D
+
+
 @onready var animation_tree: AnimationTree = $AnimationTree
 
 func _physics_process(_delta: float) -> void:
@@ -27,7 +31,7 @@ func _physics_process(_delta: float) -> void:
 		move_and_slide()
 		return
 		
-	var speed_mult = global_slow_modifier * frost_trail_modifier
+	var speed_mult = global_slow_modifier * frost_trail_modifier * elem_speed_mult
 	
 	if speed_mult != 1.0:
 		velocity *= speed_mult
@@ -43,6 +47,24 @@ func _physics_process(_delta: float) -> void:
 	_face_warden()
 
 func _ready():
+	
+	match element:
+		1: 	
+			elemParticle = $FlameParticle
+
+		2:
+			elemParticle = $FrozenParticle
+			elem_speed_mult = 1.3
+		3:
+			elemParticle = $FermentParticle
+			max_health *= 2
+			curr_health = max_health
+		
+			
+	if element != 0:
+		elemParticle.emitting = true
+		elemParticle.visible = true
+	
 	add_to_group("enemies")
 	super._ready()
 		

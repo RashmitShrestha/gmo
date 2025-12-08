@@ -215,8 +215,7 @@ func _update_speed() -> void:
 			slowest = min(slowest, dot_effects[element].slow_multiplier)
 	
 	speed = base_speed * slowest
-	push_warning(speed)
-	push_warning(base_speed)
+
 
 func clear_dot(element: int) -> void:
 	_clear_effect(element)

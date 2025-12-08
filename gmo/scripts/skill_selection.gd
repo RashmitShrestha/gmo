@@ -9,14 +9,15 @@ static func apply_skill_effect(skill_id: String) -> void:
 		"1_trail": 
 			SignalBus.emit_signal("ability_toggled", "flame_trail", true, {
 				"duration": 3.0,
-				"burn_duration": 2.0
+				"burn_duration": 2.0,
+				"burn_damage_multiplier": 1.0
 			})
 			
 		"1_trail_upgrade":
 			SignalBus.emit_signal("ability_toggled", "flame_trail", true, {
 				"duration": 5.0,
-				"burn_duration": 2.0,
-				"burn_damage_multiplier": 2.0
+				"burn_duration": 3.0,
+				"burn_damage_multiplier": 1000.0
 			})
 			
 		"1_status1": 
@@ -60,7 +61,7 @@ static func apply_skill_effect(skill_id: String) -> void:
 		"2_trail_upgrade":  
 			SignalBus.emit_signal("ability_toggled", "frost_trail", true, {
 				"duration": 5.0,
-				"slow_percent": 0.75
+				"slow_percent": 1
 			})
 			
 		"2_status1":  
@@ -90,14 +91,15 @@ static func apply_skill_effect(skill_id: String) -> void:
 		"3_trail":  
 			SignalBus.emit_signal("ability_toggled", "ferment_trail", true, {
 				"duration": 3.0,
-				"lifesteal_enabled": true
+				"lifesteal_enabled": true,
+				"atk_siphon_percent" : 0.0
 			})
 			
 		"3_trail_upgrade":  
 			SignalBus.emit_signal("ability_toggled", "ferment_trail", true, {
 				"duration": 5.0,
 				"lifesteal_enabled": true,
-				"atk_siphon_percent": 0.10
+				"atk_siphon_percent": 0.2
 			})
 			
 		"3_status1": 

@@ -3,18 +3,21 @@ extends Node
 
 @export var hitbox: Area2D
 @export var damage_amount: float
-@export var element_type: int = 0  # 0 = no element, 1 = fire, 2 = frozen, 3 = ferment
+@export var element_type: int  # 0 = no element, 1 = fire, 2 = frozen, 3 = ferment
 
 var _parent: GameCharacter
 var is_curr_dot : bool
 
 func _ready() -> void:
 	_parent = get_parent()
+	element_type = _parent.element 
 	
 	if element_type == 0:
 		is_curr_dot = false
 	else:
 		is_curr_dot = true
+		
+
 		
 
 
