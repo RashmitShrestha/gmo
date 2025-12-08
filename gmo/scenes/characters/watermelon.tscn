@@ -253,10 +253,12 @@ advance_mode = 2
 advance_condition = &"is_attacking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rw55t"]
+switch_mode = 2
 advance_mode = 2
 advance_condition = &"idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m1fb4"]
+switch_mode = 2
 advance_mode = 2
 advance_condition = &"hurt"
 
