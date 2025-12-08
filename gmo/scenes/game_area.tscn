@@ -1,4 +1,4 @@
-[gd_scene load_steps=178 format=4 uid="uid://dmf617rn6a8pm"]
+[gd_scene load_steps=177 format=4 uid="uid://dmf617rn6a8pm"]
 
 [ext_resource type="Texture2D" uid="uid://ckfplp2dp23fa" path="res://assets/test_area.webp" id="1_4eb3c"]
 [ext_resource type="Texture2D" uid="uid://c6lubr8yhm1w4" path="res://assets/terrain/Background_Green_TileSet.png" id="1_xt4jw"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://bhbppojr8ikwe" path="res://scripts/commands/character_commands/player_commands/slice.gd" id="3_vlxm1"]
 [ext_resource type="Script" uid="uid://dw60nguhxt0oe" path="res://scripts/wave_manager.gd" id="3_wavemanager"]
 [ext_resource type="Texture2D" uid="uid://cac0h17dstewi" path="res://assets/background_assets/Street-Light_4_Side_Overgrown_Green.png" id="4_2w4xq"]
-[ext_resource type="PackedScene" uid="uid://dui38s68nj4ah" path="res://scenes/characters/blueberry.tscn" id="4_lamd3"]
 [ext_resource type="Texture2D" uid="uid://drc1newb2u2ec" path="res://assets/background_assets/Car_2_Overgrown_Bleak-Yellow_Gray_Upsidedown.png" id="5_8yiyj"]
 [ext_resource type="Texture2D" uid="uid://bs601y00a2h2u" path="res://assets/Buildings_beige_TileSet.png" id="5_a2vqc"]
 [ext_resource type="Texture2D" uid="uid://d4hunabemkdr7" path="res://assets/Buildings/Door_3_Boarded-up_Beige.png" id="5_f1rjr"]
@@ -1798,8 +1797,6 @@ limit_bottom = 2050
 limit_smoothed = true
 script = ExtResource("9_copoj")
 subject = NodePath("..")
-
-[node name="Blueberry" parent="." instance=ExtResource("4_lamd3")]
 
 [node name="PeachTree" parent="." instance=ExtResource("34_lc0e6")]
 unique_name_in_owner = true
