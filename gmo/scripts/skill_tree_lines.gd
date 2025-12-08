@@ -1,4 +1,3 @@
-# skill_tree_lines.gd
 extends Control
 
 
@@ -23,7 +22,6 @@ func _draw() -> void:
 			var from_btn = skill_nodes[from_id]
 			var to_btn = skill_nodes[to_id]
 			
-			# Get the container position + button center
 			var from_container = from_btn.get_parent()
 			var to_container = to_btn.get_parent()
 			

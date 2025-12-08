@@ -4,7 +4,7 @@
 [ext_resource type="StyleBox" uid="uid://denrd6nd7cpwi" path="res://scenes/ui/Themes and Stylebox/normal_button.tres" id="2_3oqrh"]
 [ext_resource type="FontFile" uid="uid://dxqub4bcdsgb3" path="res://assets/PixelatedEleganceRegular-ovyAA.ttf" id="2_k634w"]
 [ext_resource type="Texture2D" uid="uid://qgt4arq1g0l" path="res://assets/peach/skill_tree_background.png" id="2_petg3"]
-[ext_resource type="Script" path="res://scripts/skill_tree_lines.gd" id="3_k634w"]
+[ext_resource type="Script" uid="uid://b11o5wkmadq1g" path="res://scripts/skill_tree_lines.gd" id="3_k634w"]
 
 [sub_resource type="Theme" id="Theme_3oqrh"]
 default_font = ExtResource("2_k634w")
@@ -77,11 +77,9 @@ layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
-
 theme_override_constants/margin_bottom = 10
 
 [node name="DescriptionLabel" type="Label" parent="Control/DescriptionBox/MarginContainer"]
 custom_minimum_size = Vector2(250, 0)
-
 layout_mode = 2
 autowrap_mode = 3
