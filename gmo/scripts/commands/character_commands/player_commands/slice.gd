@@ -15,8 +15,6 @@ var element_colors = {
 	3: Color(0.702, 0.937, 0.306, 0.7)  # Ferment - Green
 }
 
-# SKILL TREE MODIFICATIONS
-# Trail ability parameters (updated by skill tree)
 var flame_trail_enabled: bool = false
 var flame_trail_duration: float = 3.0
 var flame_trail_burn_duration: float = 2.0
@@ -30,26 +28,24 @@ var ferment_trail_enabled: bool = false
 var ferment_trail_duration: float = 3.0
 var ferment_trail_lifesteal_enabled: bool = false
 var ferment_trail_atk_siphon: float = 0.0
-
-# How long the trail itself should last (can be modified by upgrades)
+var ferment_trail_siphon_amount :float = 2.0
 var element_duration = 10.0
 var trail_check_interval = 0.1
 var trail_check_timer = 0.0
 
-# Effect configurations
-var effect_duration = 5.0  # How long effects last after stepping on trail
+var effect_duration = 5.0  
 
 var element_effects = {
-	1: {  # Fire - Pure damage over time
+	1: {  
 		"dps": 8.0,
 		"description": "Burn"
 	},
-	2: {  # Frozen - Less damage but slows
+	2: {  
 		"dps": 4.0,
 		"slow_multiplier": 0.5,
 		"description": "Frozen"
 	},
-	3: {  # Ferment - Lifesteal
+	3: { 
 		"dps": 5.0,
 		"lifesteal_percent": 0.5,
 		"description": "Ferment"
@@ -61,7 +57,6 @@ func _ready():
 	set_as_top_level(true)
 	capture_default_state()
 	
-	# Connect to skill tree signals
 	SignalBus.ability_toggled.connect(_on_ability_toggled)
 
 func _on_ability_toggled(ability_id: String, enabled: bool, parameters: Dictionary) -> void:
@@ -72,29 +67,24 @@ func _on_ability_toggled(ability_id: String, enabled: bool, parameters: Dictiona
 			flame_trail_burn_duration = parameters.get("burn_duration", 2.0)
 			flame_trail_burn_multiplier = parameters.get("burn_damage_multiplier", 1.0)
 			
-			# Update element effects
 			element_effects[1]["dps"] = 1000 * flame_trail_burn_multiplier
 			effect_duration = flame_trail_duration
-			print("Flame trail updated: duration=", flame_trail_duration, "s, burn_multiplier=", flame_trail_burn_multiplier)
 			
 		"frost_trail":
 			frost_trail_enabled = enabled
 			frost_trail_duration = parameters.get("duration", 3.0)
 			frost_trail_slow_percent = parameters.get("slow_percent", 0.25)
 			
-			# Update element effects
 			element_effects[2]["slow_multiplier"] = frost_trail_slow_percent
 			effect_duration = frost_trail_duration
-			print("Frost trail updated: duration=", frost_trail_duration, "s, slow=", frost_trail_slow_percent * 100, "%")
 			
 		"ferment_trail":
 			ferment_trail_enabled = enabled
 			ferment_trail_duration = parameters.get("duration", 3.0)
 			ferment_trail_lifesteal_enabled = parameters.get("lifesteal_enabled", false)
 			ferment_trail_atk_siphon = parameters.get("atk_siphon_percent", 0.0)
-			
+	
 			effect_duration = ferment_trail_duration
-			print("Ferment trail updated: duration=", ferment_trail_duration, "s, lifesteal=", ferment_trail_lifesteal_enabled, ", atk_siphon=", ferment_trail_atk_siphon * 100, "%")
 
 func capture_default_state() -> void:
 	default_state = {
@@ -143,10 +133,8 @@ func check_enemy_trail_collision(enemy: GameCharacter, trail: Dictionary) -> boo
 	for i in range(trail.points.size() - 1):
 		var segment_start = trail.points[i]
 		var segment_end = trail.points[i + 1]
-		
-		var distance = point_to_segment_distance(enemy_pos, segment_start, segment_end)
-		
-		if distance <= collision_radius:
+				
+		if point_to_segment_distance(enemy_pos, segment_start, segment_end) <= collision_radius:
 			return true
 	
 	return false
@@ -156,36 +144,21 @@ func apply_trail_effect(enemy: GameCharacter, element_type: int) -> void:
 
 	if not element_type in element_effects:
 		return
+		
+
 	
-	var effect = element_effects[element_type]
-	
-	# Check current DOT status
-	print("\n=== TRAIL EFFECT CHECK ===")
-	print("Enemy: ", enemy.name)
-	print("Element: ", element_type)
-	print("Current DOT time: ", enemy.dot_effects[element_type].time)
-	print("==========================")
-	
-	# DON'T reapply DOT if already active on this enemy
 	if enemy.dot_effects[element_type].time > 0:
-		print(">>> SKIPPING - DOT already active <<<\n")
 		return
 	
-	print(">>> APPLYING NEW DOT <<<\n")
-	
-	# Special handling for frost trail - apply slow with duration
 	if element_type == 2 and enemy is Fruit:
 		enemy.enter_frost_trail(frost_trail_slow_percent, effect_duration)
 	
-	# Special handling for ferment trail - apply attack siphon
 	if element_type == 3 and ferment_trail_atk_siphon > 0.0:
 		if not warden:
 			warden = get_tree().get_first_node_in_group("player")
 		
 		if warden and enemy is Fruit:
-			var siphon_amount = enemy.base_damage * ferment_trail_atk_siphon
-			warden.attack_multiplier += ferment_trail_atk_siphon
-			print("Siphoned ", siphon_amount, " attack from enemy!")
+			warden.attack_damage_multiplier += ferment_trail_atk_siphon
 	
 	if element_type == 3:
 		warden = get_node_or_null("%Warden")
@@ -194,8 +167,7 @@ func apply_trail_effect(enemy: GameCharacter, element_type: int) -> void:
 		if not warden:
 			warden = get_parent().get_node_or_null("Warden")
 	
-	# Only apply DOT once
-	enemy.apply_dot(element_type, effect.dps, effect_duration, warden)
+	enemy.apply_dot(element_type, element_effects[element_type].dps, effect_duration, warden)
 
 
 func point_to_segment_distance(point: Vector2, segment_start: Vector2, segment_end: Vector2) -> float:
@@ -239,21 +211,20 @@ func can_use_element(element: int) -> bool:
 		_:
 			return false
 		
-func start_trail(element: int) -> void:
-	if element in element_colors and can_use_element(element):
+func start_trail(elem: int) -> void:
+	if elem in element_colors and can_use_element(elem):
 		points_queue = []
 		clear_points()
 		
-		current_element = element
+		current_element = elem
 		var grad = Gradient.new()
-		var color = element_colors[element]
+		var color = element_colors[elem]
 		grad.add_point(0.0, Color(color.r - 0.3, color.g - 0.3, color.b - 0.3, 0.8))
 		grad.add_point(1.0, Color(color.r, color.g, color.b, 0.6))
 		
 		gradient = grad
 		width = 20.0
 		
-		print("Started ", ["", "flame", "frost", "ferment"][element], " trail!")
 		
 func end_trail() -> void:
 	if current_element >= 0 and points_queue.size() > 0:
@@ -293,7 +264,6 @@ func end_trail() -> void:
 			"timer": duration
 		})
 		
-		print("Ended trail with ", points_queue.size(), " points, duration: ", duration, "s")
 	
 	current_element = -1
 	element_ready = -1
@@ -302,9 +272,6 @@ func end_trail() -> void:
 	clear_points()
 	points_queue = []
 
-func set_element(element: int) -> void:
-	if can_use_element(element):
-		element_ready = element
-		print("Element ", element, " ready to use!")
-	else:
-		print("Element ", element, " is not unlocked yet!")
+func set_element(elem: int) -> void:
+	if can_use_element(elem):
+		element_ready = elem

@@ -30,12 +30,10 @@ var vel_vec := Vector2.ZERO
 var curr_vel: int = 0
 var is_slicing: bool = false
 
-# === STAT MULTIPLIERS ===
 var attack_damage_multiplier: float = 1.0
 var movement_speed_multiplier: float = 1.0
 var max_health_multiplier: float = 1.0
 
-# === ACTIVE ABILITIES ===
 var active_abilities: Dictionary = {
 	"flame_trail": {"enabled": false, "params": {}},
 	"frost_trail": {"enabled": false, "params": {}},
@@ -45,8 +43,6 @@ var active_abilities: Dictionary = {
 	"fertilized_farm": {"enabled": false, "params": {}}
 }
 
-
-# cooldown of the 6 total abilities 
 var cd1 : float
 var cd2 : float
 var cd3 : float
@@ -54,7 +50,6 @@ var cd4 : float
 var cd5 : float
 var cd6 : float
 
-# === STATUS EFFECTS ===
 var burn_crit_boost_active: bool = false
 var burn_crit_chance_bonus: float = 0.0
 var burn_crit_damage_bonus: float = 0.0
@@ -82,7 +77,6 @@ func _ready() -> void:
 	animation_tree.active = true
 	add_to_group("player")
 	
-	# Call parent _ready to initialize base_speed
 	super._ready()
 	
 	animation_tree.active = true
@@ -92,8 +86,7 @@ func _ready() -> void:
 	died_command = PlayerDiedCommand.new(respawn_time, respawn_point.position)
 	knockback_command = KnockbackCommand.new(knockback_speed_curve, self)
 	
-	# Connect to SignalBus for warden-specific behavior
-	SignalBus.health_restored.connect(_on_health_restored)
+	#SignalBus.health_restored.connect(_on_health_restored)
 	SignalBus.stat_modified.connect(_on_stat_modified)
 	SignalBus.ability_toggled.connect(_on_ability_toggled)
 	SignalBus.status_effect_applied.connect(_on_status_effect_applied)
@@ -118,27 +111,21 @@ func _process(_delta) -> void:
 	command_manager_component.update()
 	animation_manager_component.update()
 
-# Handle when any character takes damage
 func _on_received_damage(character: GameCharacter, damage: float) -> void:
 	if character == self:
-		# Warden-specific damage response
 		hurt_animation()
 		make_invulnerable(invulnerability_duration)
 		print("Warden took " + str(damage) + " damage! Health: " + str(curr_health) + "/" + str(max_health))
 
-# Handle when any character is healed
-func _on_health_restored(character: GameCharacter, amount: float) -> void:
-	if character == self:
-		print("Warden healed for " + str(amount) + "! Health: " + str(curr_health) + "/" + str(max_health))
-		# You could add visual feedback here (green flash, heal particle effect, etc.)
+#func _on_health_restored(character: GameCharacter, amount: float) -> void:
+	#if character == self:
+		#print("warden heak")
 
 # Handle when any character dies
-func _on_character_died(character: GameCharacter) -> void:
-	if character == self:
-		print("Warden has died!")
-		# Handle game over logic here
-		# For example:
-		# get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+#func _on_character_died(character: GameCharacter) -> void:
+	#if character == self:
+		#print("warden dead!")
+	
 
 func make_invulnerable(duration: float) -> void:
 	if is_instance_valid(_invulnerability_timer):
@@ -204,8 +191,6 @@ func warden_death_animation() -> void:
 	await animation_player.animation_finished
 	
 	
-# === SKILL TREE SIGNAL HANDLERS ===
-
 func _on_stat_modified(character_group: String, stat_name: String, value: float) -> void:
 	if character_group != "player":
 		return
@@ -213,29 +198,23 @@ func _on_stat_modified(character_group: String, stat_name: String, value: float)
 	match stat_name:
 		"attack":
 			attack_damage_multiplier *= value
-			print("Attack multiplier now: ", attack_damage_multiplier)
 				
 		"movement_speed":
 			movement_speed_multiplier *= value
 			base_speed *= value
-			print("Movement speed now: ", base_speed)
 				
 		"max_health":
 			var old_max = max_health
 			max_health_multiplier *= value
 			max_health *= value
-			# Heal the difference
 			curr_health += (max_health - old_max)
 			SignalBus.player_health_changed.emit(curr_health, max_health)
-			print("Max health now: ", max_health)
 
 
 func _on_ability_toggled(ability_id: String, enabled: bool, parameters: Dictionary) -> void:
 	if active_abilities.has(ability_id):
 		active_abilities[ability_id]["enabled"] = enabled
-		active_abilities[ability_id]["params"] = parameters
-		print("Ability toggled: ", ability_id, " - Enabled: ", enabled, " - Params: ", parameters)
-		
+		active_abilities[ability_id]["params"] = parameters		
 
 
 func _on_status_effect_applied(character_group: String, effect_name: String, parameters: Dictionary) -> void:
@@ -247,35 +226,27 @@ func _on_status_effect_applied(character_group: String, effect_name: String, par
 			burn_crit_boost_active = true
 			burn_crit_chance_bonus = parameters.get("crit_chance_bonus", 0.0)
 			burn_crit_damage_bonus = parameters.get("crit_damage_bonus", 0.0)
-			print("Burn crit boost activated! Crit chance +", burn_crit_chance_bonus * 100, "%, Crit damage +", burn_crit_damage_bonus * 100, "%")
 			
 		"freeze_on_hit":
 			freeze_on_hit_active = true
 			freeze_on_hit_chance = parameters.get("freeze_chance", 0.0)
-			print("Freeze on hit activated! ", freeze_on_hit_chance * 100, "% chance")
 			
 		"consecutive_hit_boost":
 			consecutive_hit_boost_active = true
 			consecutive_hit_params = parameters
-			print("Consecutive hit boost activated!")
 			
 		"health_regen":
 			health_regen_active = true
 			_setup_health_regen(parameters.get("amount", 2), parameters.get("interval", 10.0))
-			print("Health regen activated! +", parameters.get("amount", 2), " HP every ", parameters.get("interval", 10.0), "s")
 			
 		"ally_stat_boost":
 			ally_stat_boost_active = true
 			ally_stat_boost_multiplier = parameters.get("multiplier", 1.0)
-			print("Ally stat boost activated! x", ally_stat_boost_multiplier)
 			
 		"recharging_shield":
 			recharging_shield_active = true
 			shield_recharge_time = parameters.get("recharge_time", 10.0)
 			shield_up = true
-			print("Recharging shield activated! Recharge time: ", shield_recharge_time, "s")
-
-# === HELPER FUNCTIONS ===
 
 func _setup_health_regen(amount: int, interval: float) -> void:
 	if is_instance_valid(health_regen_timer):
@@ -292,24 +263,34 @@ func _setup_health_regen(amount: int, interval: float) -> void:
 				curr_health = min(curr_health + amount, max_health)
 				SignalBus.health_restored.emit(self, amount)
 				SignalBus.player_health_changed.emit(curr_health, max_health)
+				spawn_heal_number(amount)
 	)
 
 
-
-# Add this to Warden.gd
 func apply_damage(damage: float, source: Node2D, elem: int = 0, is_dot: bool = false) -> void:
-	# Check shield first
+	if invulnerable:
+		return
+	
 	if recharging_shield_active and shield_up and not is_dot:
 		shield_up = false
-		print("Shield absorbed hit!")
+		spawn_damage_number(damage, 4)
 		_start_shield_recharge()
-		return  # No damage taken
+		make_invulnerable(0.5)
+		return
 	
-	# Call parent (GameCharacter) apply_damage
+	var final_damage = damage
 	
-	super(damage, source, elem, is_dot)
+	curr_health -= final_damage
+	damaged = true
+	
+	if not is_dot:
+		spawn_damage_number(final_damage, elem)
 
-
+	if curr_health < 0.0:
+		curr_health = 0.0
+		
+	received_damage.emit(final_damage, source)
+	
 
 func _start_shield_recharge() -> void:
 	if is_instance_valid(shield_recharge_timer):
@@ -323,76 +304,56 @@ func _start_shield_recharge() -> void:
 	shield_recharge_timer.timeout.connect(
 		func():
 			shield_up = true
-			print("Shield recharged!")
 			if is_instance_valid(shield_recharge_timer):
 				shield_recharge_timer.queue_free()
 	)
 	shield_recharge_timer.start()
 
 func calculate_slice_damage(target: GameCharacter) -> float:
-	"""Calculate damage based on slice velocity using SliceDamage system"""
+	var damage = SliceDamage.calculate_damage(curr_vel, attack_damage_multiplier)
 	
-	# Start with velocity-based damage (no base damage, pure velocity)
-	# SliceDamage.calculate_damage returns damage from velocity alone
-	var velocity_damage = SliceDamage.calculate_damage(curr_vel, attack_damage_multiplier)
-	
-	var damage = velocity_damage
-	
-	# Apply consecutive hit boost if active
 	if consecutive_hit_boost_active and consecutive_hits > 0:
 		var atk_bonus = consecutive_hits * consecutive_hit_params.get("atk_per_hit", 0.01)
 		damage *= (1.0 + atk_bonus)
 	
-	# Check if target is burned (for burn crit boost)
 	var target_is_burned = false
 	if target is Fruit and target.is_burned:
 		target_is_burned = true
 	
-	# Get crit stats and roll for crit
 	var crit_stats = get_crit_stats(target_is_burned)
 	if randf() < crit_stats.chance:
 		damage *= crit_stats.damage
-		print("CRITICAL HIT! ", damage, " damage (velocity: ", curr_vel, ")")
 	
-	print("Slice damage: velocity=", curr_vel, ", mult=", attack_damage_multiplier, ", final=", damage)
 	return damage
 
 func get_crit_stats(enemy_is_burned: bool = false) -> Dictionary:
-	"""Returns crit chance and crit damage with all modifiers applied"""
-	var base_crit_chance = 0.05  # 5% base crit chance
-	var base_crit_damage = 1.5   # 150% crit damage multiplier
+	var base_crit_chance = 0.05  
+	var base_crit_damage = 1.5  
 	
 	var crit_chance = base_crit_chance
-	var crit_damage = base_crit_damage
+	var crit_dmg = base_crit_damage
 	
-	# Apply burn crit boost if enemy is burned
 	if burn_crit_boost_active and enemy_is_burned:
 		crit_chance += burn_crit_chance_bonus
-		crit_damage += burn_crit_damage_bonus
+		crit_dmg += burn_crit_damage_bonus
 	
-	# Apply consecutive hit boost
 	if consecutive_hit_boost_active and consecutive_hits > 0:
 		crit_chance += consecutive_hits * consecutive_hit_params.get("crit_chance_per_hit", 0.01)
-		crit_damage += consecutive_hits * consecutive_hit_params.get("crit_dmg_per_hit", 0.01)
+		crit_dmg += consecutive_hits * consecutive_hit_params.get("crit_dmg_per_hit", 0.01)
 	
-	return {"chance": crit_chance, "damage": crit_damage}
+	return {"chance": crit_chance, "damage": crit_dmg}
 
 func on_successful_hit(enemy: GameCharacter) -> void:
-	"""Called whenever Warden successfully hits an enemy"""
 	
-	# Update consecutive hits for damage scaling
 	if consecutive_hit_boost_active:
 		var current_time = Time.get_ticks_msec() / 1000.0
 		if current_time - last_hit_time > consecutive_hit_params.get("reset_window", 0.5):
 			consecutive_hits = 0
 		consecutive_hits += 1
 		last_hit_time = current_time
-		print("Consecutive hits: ", consecutive_hits)
 	
-	# Check for freeze proc
 	if check_freeze_on_hit() and enemy is Fruit:
-		enemy.stunned = true
-		print("Enemy frozen!")
+		enemy.apply_stun()
 
 func check_freeze_on_hit() -> bool:
 	if not freeze_on_hit_active:

@@ -1,7 +1,7 @@
 class_name Fruit 
 extends GameCharacter
 
-var element : int  # This Fruit's element type
+var element : int 
 var stun_time: float = 1.0
 var warden: Warden
 var peach_tree: PeachTree
@@ -11,17 +11,22 @@ var dead: bool = false
 var is_attacking: bool = false
 var fertilized : bool = false
 
-# Speed modifiers
 var global_slow_modifier: float = 1.0
 var frost_trail_modifier: float = 1.0
 var frost_timer : Timer
 
 var is_burned: bool = false
 var burn_timer: Timer
+var stun_timer: Timer
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 
 func _physics_process(_delta: float) -> void:
+	if stunned or dead:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
+		
 	var speed_mult = global_slow_modifier * frost_trail_modifier
 	
 	if speed_mult != 1.0:
@@ -34,7 +39,7 @@ func _physics_process(_delta: float) -> void:
 		
 	if dead:
 		return
-		
+	
 	_face_warden()
 
 func _ready():
@@ -58,7 +63,6 @@ func _ready():
 	
 	target = peach_tree
 	
-	# Only need damage_enemy signal - it handles everything
 	SignalBus.damage_enemy.connect(_on_damage_enemy)
 
 
@@ -94,20 +98,13 @@ func _on_stat_modified(character_group: String, stat_name: String, value: float)
 	match stat_name:
 		"movement_speed":
 			global_slow_modifier *= value
-			print("Enemy global movement speed modified: x", value, ", new modifier: ", global_slow_modifier)
 
-func enter_frost_trail(slow_percent: float, duration: float = 5.0) -> void:
-	print("=== ENTERING FROST TRAIL ===")
-	print("Slow percent: ", slow_percent)
-	print("Duration: ", duration, "s")
-	
+func enter_frost_trail(slow_percent: float, duration: float = 5.0) -> void:	
 	if is_instance_valid(frost_timer):
 		frost_timer.queue_free()
 	
 	frost_trail_modifier = 1.0 - slow_percent
 	
-	print("New frost modifier: ", frost_trail_modifier)
-	print("============================")
 	
 	frost_timer = Timer.new()
 	frost_timer.wait_time = duration
@@ -117,13 +114,12 @@ func enter_frost_trail(slow_percent: float, duration: float = 5.0) -> void:
 	frost_timer.timeout.connect(
 		func():
 			frost_trail_modifier = 1.0
-			print("Frost trail effect expired on ", name)
 			if is_instance_valid(frost_timer):
 				frost_timer.queue_free()
 	)
 	frost_timer.start()
 
-func apply_burn(duration: float, damage_multiplier: float = 1.0) -> void:
+func apply_burn(duration: float, _damage_multiplier: float = 1.0) -> void:
 	is_burned = true
 	
 	if is_instance_valid(burn_timer):
@@ -137,9 +133,26 @@ func apply_burn(duration: float, damage_multiplier: float = 1.0) -> void:
 	burn_timer.timeout.connect(
 		func():
 			is_burned = false
-			print("Burn expired on enemy")
 			if is_instance_valid(burn_timer):
 				burn_timer.queue_free()
 	)
-	burn_timer.start()
-	print("Enemy is burning for ", duration, "s with x", damage_multiplier, " damage")
+	burn_timer.start()	
+
+func apply_stun() -> void:	
+	if is_instance_valid(stun_timer):
+		stun_timer.queue_free()
+	
+	stunned = true
+	
+	stun_timer = Timer.new()
+	stun_timer.wait_time = stun_time
+	stun_timer.one_shot = true
+	add_child(stun_timer)
+	
+	stun_timer.timeout.connect(
+		func():
+			stunned = false
+			if is_instance_valid(stun_timer):
+				stun_timer.queue_free()
+	)
+	stun_timer.start()
