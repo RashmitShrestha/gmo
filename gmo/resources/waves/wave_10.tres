@@ -95,6 +95,6 @@ frozen_weight = 1.5
 rotten_weight = 1.5
 wave_completion_bonus = 2000
 is_final_wave = true
-spawn_boss_at_end = true
+spawn_boss_at_end = false
 boss_stats = ExtResource("8_boss")
 wave_start_message = "THIS IS IT! Final wave incoming - then the Cornucopia!"
