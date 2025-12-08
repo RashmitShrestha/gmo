@@ -6,6 +6,18 @@
 [ext_resource type="Resource" path="res://resources/enemies/cornucopia.tres" id="4_cornucopia"]
 [ext_resource type="Script" path="res://scripts/resources/enemy_group.gd" id="4_enemy_group"]
 
+[sub_resource type="Resource" id="EnemyGroup_Boss"]
+script = ExtResource("4_enemy_group")
+group_name = "Cornucopia Boss"
+description = "The boss appear"
+enemy_stats = ExtResource("4_cornucopia")
+count = 1
+spawn_pattern = 4
+spawn_delay = 0.0
+spawn_interval = 0.0
+force_modifier = 0
+modifier_chance = 0.0
+
 [sub_resource type="Resource" id="EnemyGroup_1"]
 script = ExtResource("4_enemy_group")
 group_name = "Watermelon Group"
@@ -34,9 +46,9 @@ modifier_chance = 0.0
 [resource]
 script = ExtResource("1_wave")
 wave_number = 5
-wave_name = "Wave 5"
-description = "Tank watermelons with pomegranate support!"
-enemy_groups = Array[EnemyGroup]([SubResource("EnemyGroup_1"), SubResource("EnemyGroup_2")])
+wave_name = "Wave 5 - Boss Battle"
+description = "The Cornucopia boss has arrived with backup!"
+enemy_groups = Array[EnemyGroup]([SubResource("EnemyGroup_Boss"), SubResource("EnemyGroup_1"), SubResource("EnemyGroup_2")])
 spawn_delay_between_groups = 3.5
 modifier_spawn_chance = 0.2
 grilled_weight = 1.5
@@ -44,6 +56,5 @@ frozen_weight = 1.5
 rotten_weight = 2.0
 wave_completion_bonus = 400
 is_final_wave = false
-spawn_boss_at_end = true
-boss_stats = ExtResource("4_cornucopia")
-wave_start_message = "Wave 5 incoming!"
+spawn_boss_at_end = false
+wave_start_message = "Wave 5 - Boss Battle!"
