@@ -3,7 +3,6 @@ extends GameCharacter
 
 var target_warden_chance: float = 0.2
 
-var target_warden_chance: float = 0.2
 
 var element : int = 0
 var stun_time: float = 1.0
