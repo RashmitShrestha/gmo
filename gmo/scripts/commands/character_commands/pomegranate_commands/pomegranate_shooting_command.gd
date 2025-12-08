@@ -16,6 +16,9 @@ func _shoot(character: Pomegranate):
 	character.is_attacking = true
 	
 	for i in range(5):
+		if not is_instance_valid(character.target):
+			break
+
 		var dir: Vector2 = (character.target.position - character.position).normalized()
 		var seed_projectile: Seed = _projectile.instantiate()
 		seed_projectile.position = character.position

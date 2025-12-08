@@ -13,6 +13,9 @@ func _init(projectile: PackedScene, projectile_speed: float, frequency: float) -
 
 
 func _shoot(character: Banana):
+	if not is_instance_valid(character.target):
+		return
+	
 	var dir: Vector2 = (character.target.position - character.position).normalized()
 	var seed_projectile: AOESeed = _projectile.instantiate()
 	seed_projectile.spawner = character
