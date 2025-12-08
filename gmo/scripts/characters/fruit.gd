@@ -1,6 +1,10 @@
 class_name Fruit 
 extends GameCharacter
 
+var target_warden_chance: float = 0.2
+
+var target_warden_chance: float = 0.2
+
 var element : int = 0
 var stun_time: float = 1.0
 var warden: Warden
@@ -83,7 +87,10 @@ func _ready():
 		if peach_tree == null:
 			peach_tree = get_parent().get_node_or_null("PeachTree") if get_parent() else null
 	
-	target = peach_tree
+	if randf() < target_warden_chance:
+		target = warden
+	else:
+		target = peach_tree
 	
 	SignalBus.damage_enemy.connect(_on_damage_enemy)
 

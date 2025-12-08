@@ -6,32 +6,26 @@ extends CanvasLayer
 @onready var title_label: Label = $Control/TitleLabel
 @onready var path_buttons: HBoxContainer = $Control/PathButtons
 @onready var description_box: PanelContainer = $Control/DescriptionBox
-@onready var description_label: Label = $Control/DescriptionBox/DescriptionLabel
+@onready var description_label: Label = $Control/DescriptionBox/MarginContainer/DescriptionLabel
 @onready var flame_btn: Button = $Control/PathButtons/Flame
 @onready var frost_btn: Button = $Control/PathButtons/Frost
 @onready var ferment_btn: Button = $Control/PathButtons/Ferment
 
 
-# XP Label to show current XP (add this node to your scene or create it dynamically)
 var xp_label: Label
 
-# Dictionary to store node references
 var skill_nodes: Dictionary = {}
 
-# Current active path
 var current_path: String = "flame"
 
-# Player's current XP (you'll want to connect this to your actual player stats)
-var player_xp: int = 100000  # Starting XP for testing
+var player_xp: int = 100000
 
-# Track unlocked skills (saved per path)
 var unlocked_skills: Dictionary = {
-	"flame": [],  # Starting skills (roots) are unlocked by default
+	"flame": [],
 	"frost": [],
 	"ferment": []
 }
 
-# Define skill trees for each path (now with xp_cost!)
 var paths: Dictionary = {
 	"flame": {
 		"title": "Flame Path",
@@ -95,10 +89,8 @@ var paths: Dictionary = {
 	}
 }
 
-# Store skill data for quick lookup
 var skill_data: Dictionary = {}
 
-# Style resources for different button states
 var style_locked: StyleBoxFlat
 var style_unlocked: StyleBoxFlat
 var style_purchasable: StyleBoxFlat
@@ -109,16 +101,12 @@ func _ready() -> void:
 	control.visible = false
 	description_box.visible = false
 
-	# Move title to the right
 	title_label.position.x = 450
 	
-	# Create styles for buttons
 	_create_button_styles()
 	
-	# Create XP label
 	_create_xp_label()
 	
-	print("\n=== RUNTIME PATHBUTTONS CHILDREN ===")
 	if has_node("Control/PathButtons"):
 		for c in $Control/PathButtons.get_children():
 			print(" - ", c.name, " (", c.get_class(), ")")
@@ -136,21 +124,21 @@ func _ready() -> void:
 
 
 func _create_button_styles() -> void:
-	# Locked style (dark, greyed out)
+	# locked style (dark, greyed out)
 	style_locked = StyleBoxFlat.new()
 	style_locked.bg_color = Color(0.2, 0.2, 0.2, 0.9)  # Dark grey
 	style_locked.border_color = Color(0.3, 0.3, 0.3)
 	style_locked.set_border_width_all(2)
 	style_locked.set_corner_radius_all(8)
 	
-	# Unlocked style (green tint)
+	# unlocked style (green)
 	style_unlocked = StyleBoxFlat.new()
 	style_unlocked.bg_color = Color(0.1, 0.4, 0.1, 0.9)  # Dark green
 	style_unlocked.border_color = Color(0.2, 0.8, 0.2)  # Bright green border
 	style_unlocked.set_border_width_all(3)
 	style_unlocked.set_corner_radius_all(8)
 	
-	# Purchasable style (can afford, connected to unlocked)
+	# purchasable style (blue)
 	style_purchasable = StyleBoxFlat.new()
 	style_purchasable.bg_color = Color(0.3, 0.3, 0.5, 0.9)  # Blue-ish
 	style_purchasable.border_color = Color(0.4, 0.6, 1.0)  # Light blue border
@@ -161,7 +149,7 @@ func _create_button_styles() -> void:
 func _create_xp_label() -> void:
 	xp_label = Label.new()
 	xp_label.text = "XP: " + str(player_xp)
-	xp_label.position = Vector2(900, 20)  # Top right area
+	xp_label.position = Vector2(900, 20)
 	xp_label.add_theme_font_size_override("font_size", 24)
 	control.add_child(xp_label)
 
@@ -176,17 +164,14 @@ func _load_path(path_id: String) -> void:
 	current_path = path_id
 	title_label.text = paths[path_id]["title"]
 	
-	# Clear existing skill nodes
 	for child in nodes.get_children():
 		child.queue_free()
 	skill_nodes.clear()
 	skill_data.clear()
 	
-	# Create nodes for this path
 	for node_data in paths[path_id]["nodes"]:
 		_create_skill_node(node_data)
 	
-	# Update button styles based on unlock status
 	_update_all_button_styles()
 	
 	lines.queue_redraw()
@@ -204,7 +189,6 @@ func _create_skill_node(data: Dictionary) -> void:
 	container.position = pos - Vector2(50, 50)
 	container.custom_minimum_size = Vector2(100, 100)
 	
-	# Use TextureButton instead of Button
 	var btn = TextureButton.new()
 	btn.texture_normal = preload("res://assets/peach/locked_peach.png")
 	btn.ignore_texture_size = true
@@ -217,7 +201,6 @@ func _create_skill_node(data: Dictionary) -> void:
 	
 	container.add_child(btn)
 	
-	# Add skill name label below/on the peach
 	var name_label = Label.new()
 	name_label.text = display_name
 	name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -228,7 +211,6 @@ func _create_skill_node(data: Dictionary) -> void:
 	name_label.add_theme_color_override("font_outline_color", Color(1, 1, 1))  # White outline
 	container.add_child(name_label)
 	
-	# XP cost label
 	var cost_label = Label.new()
 	if xp_cost > 0:
 		cost_label.text = str(xp_cost) + " XP"
@@ -276,22 +258,21 @@ func is_skill_unlocked(skill_id: String) -> bool:
 
 
 func can_purchase_skill(skill_id: String) -> bool:
-	# Already unlocked
 	if is_skill_unlocked(skill_id):
 		return false
 	
-	# Define root skills that can be purchased without connections
+	# root skills that can be purchased without connections
 	var root_skills = ["+10% Attack", "+10% Movement Speed", "+10% Health"]
 	
-	# If nothing is unlocked yet, only allow root skills
+	# ff nothing is bought, only allow root skills
 	if unlocked_skills[current_path].is_empty():
 		if skill_id not in root_skills:
 			return false
-		# Check if player has enough XP
+		# check if player has enough XP
 		var cost = skill_data[skill_id]["xp_cost"]
 		return player_xp >= cost
 	
-	# Check if connected to an unlocked skill
+	# check if connected to an unlocked skill
 	var has_unlocked_connection = false
 	var connections = paths[current_path]["connections"]
 	
@@ -306,7 +287,7 @@ func can_purchase_skill(skill_id: String) -> bool:
 	if not has_unlocked_connection:
 		return false
 	
-	# Check if player has enough XP
+	# check if player has enough XP
 	var cost = skill_data[skill_id]["xp_cost"]
 	return player_xp >= cost
 
@@ -317,19 +298,17 @@ func purchase_skill(skill_id: String) -> bool:
 	
 	var cost = skill_data[skill_id]["xp_cost"]
 	
-	# Deduct XP
+	# deduct XP
 	player_xp -= cost
 	xp_label.text = "XP: " + str(player_xp)
 	
-	# Add to unlocked skills
+	# add to unlocked skills pool
 	if not unlocked_skills.has(current_path):
 		unlocked_skills[current_path] = []
 	unlocked_skills[current_path].append(skill_id)
 	
-	# Apply the skill effect (you'll customize this)
 	SkillSelection.apply_skill_effect(skill_id)
 	
-	# Update all button styles
 	_update_all_button_styles()
 	
 	print("Purchased skill: ", skill_id, " for ", cost, " XP")
@@ -353,7 +332,6 @@ func _on_skill_hover(skill_id: String) -> void:
 		
 		description_box.visible = true
 		
-	# Prevents descrption box from going over the edge
 	var viewport_size = get_viewport().get_visible_rect().size
 	description_box.position = Vector2(
 		viewport_size.x - description_box.size.x - 20, 
@@ -408,7 +386,7 @@ func get_skill_nodes() -> Dictionary:
 	return skill_nodes
 
 
-# Call this from your game when player collects XP
+# adds xp to player after certain conditions
 func add_xp(amount: int) -> void:
 	player_xp += amount
 	if xp_label:

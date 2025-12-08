@@ -5,19 +5,22 @@ extends Fruit
 @export var command_manager_component: CornucopiaCommandManagerComponent
 @export var reactive_component: CornucopiaReactiveComponent
 @export var knockback_curve: Curve
+@export var wait_time: float
 
 var full_slash = 20
 var curr_command: Command
-var default_command: CornucopiaDefaultCommand
-var stun_command: CornucopiaStunCommand
-var knockback_command: KnockbackCommand
+var rush_command: CornucopiaRushCommand
+var retreat_command: CornucopiaRetreatCommand
+var spawn_command: CornucopiaSpawnCommand
+var wait_command: CornucopiaWaitCommand
 
 func _ready():
 	super()
 	
-	default_command = CornucopiaDefaultCommand.new(speed)
-	stun_command = CornucopiaStunCommand.new(stun_time)
-	knockback_command = KnockbackCommand.new(knockback_curve, self)
+	rush_command = CornucopiaRushCommand.new(speed, self)
+	retreat_command = CornucopiaRetreatCommand.new(speed)
+	spawn_command = CornucopiaSpawnCommand.new()
+	wait_command = CornucopiaWaitCommand.new(wait_time)
 
 
 func _physics_process(_delta) -> void:
