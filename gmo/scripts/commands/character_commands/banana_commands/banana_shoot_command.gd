@@ -24,6 +24,7 @@ func _shoot(character: Banana):
 
 func execute(character: Banana) -> Status:
 	if _timer == null:
+		character.is_attacking = false
 		_timer = Timer.new()
 		_timer.one_shot = true
 		character.add_child(_timer)
@@ -37,7 +38,6 @@ func execute(character: Banana) -> Status:
 		)
 	elif _timer.is_stopped():
 		_timer.queue_free()
-		character.is_attacking = false
 		return Command.Status.DONE
 
 	return Command.Status.ACTIVE

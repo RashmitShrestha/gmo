@@ -25,8 +25,6 @@ func _physics_process(_delta: float) -> void:
 				_parent.is_attacking = true
 			
 			_damage(body)
-	if _parent is Fruit:
-		_parent.is_attacking = false
 
 
 func _damage(character: GameCharacter) -> void:
