@@ -1616,131 +1616,131 @@ shape = SubResource("RectangleShape2D_2w4xq")
 [node name="SpawnPoints" type="Node2D" parent="." groups=["spawn_points"]]
 
 [node name="SpawnPoint01" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-1687, -1970)
+position = Vector2(-1451, -1823)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint02" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-1164, -1967)
+position = Vector2(-1050, -1861)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint03" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-638, -1944)
+position = Vector2(-540, -1797)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint04" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-143, -1970)
+position = Vector2(12, -1880)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint05" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(383, -1967)
+position = Vector2(521, -1845)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint06" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(919, -1923)
+position = Vector2(1000, -1817)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint07" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(1426, -1944)
+position = Vector2(1418, -1838)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint08" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(1903, -1944)
+position = Vector2(1805, -1871)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint09" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(2047, -1791)
+position = Vector2(1949, -1661)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint10" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(2094, -1286)
+position = Vector2(1874, -1237)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint11" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(2083, -758)
+position = Vector2(1912, -774)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint12" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(2116, -247)
+position = Vector2(1937, -239)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint13" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(2111, 267)
+position = Vector2(2021, 275)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint14" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(2107, 781)
+position = Vector2(1838, 829)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint15" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(2103, 1273)
+position = Vector2(1834, 1411)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint16" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(2105, 1817)
+position = Vector2(1779, 1841)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint17" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(1934, 2007)
+position = Vector2(1389, 1860)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint18" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(1427, 1975)
+position = Vector2(1069, 1861)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint19" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(913, 1966)
+position = Vector2(604, 1868)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint20" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(401, 1969)
+position = Vector2(222, 1879)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint21" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-119, 1975)
+position = Vector2(-200, 1861)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint22" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-665, 1996)
+position = Vector2(-599, 1882)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint23" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-1161, 2005)
+position = Vector2(-973, 1858)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint24" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-1688, 2009)
+position = Vector2(-1306, 1829)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint25" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-1844, 1825)
+position = Vector2(-1616, 1678)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint26" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-1829, 1310)
+position = Vector2(-1577, 1302)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint27" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-1876, 785)
+position = Vector2(-1664, 785)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint28" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-1825, 278)
+position = Vector2(-1621, 286)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint29" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-1831, -242)
+position = Vector2(-1668, -307)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint30" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-1848, -762)
+position = Vector2(-1669, -811)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint31" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-1873, -1294)
+position = Vector2(-1653, -1294)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint32" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-1876, -1807)
+position = Vector2(-1656, -1660)
 gizmo_extents = 32.0
 
 [node name="SkillTreeMenu" parent="." instance=ExtResource("35_lc0e6")]
