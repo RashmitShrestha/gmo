@@ -33,9 +33,8 @@ func _process(_delta) -> void:
 
 func _die():
 	print(str(self) + " has been defeated!")
-	
+
 	visible = false
 	$CollisionShape2D.set_deferred("disabled", true)
 	$Area2D/CollisionShape2D.set_deferred("disabled", true)
-	
 	queue_free()

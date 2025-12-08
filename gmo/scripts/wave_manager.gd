@@ -99,7 +99,15 @@ func start_wave(wave_data: WaveData) -> void:
 	wave_state = WaveState.SPAWNING
 	_current_group_index = 0
 
+	enemies_alive_count = 0
+	for group in wave_data.enemy_groups:
+		enemies_alive_count += group.count
+
+	if wave_data.spawn_boss_at_end and wave_data.boss_stats:
+		enemies_alive_count += 1
+
 	print("wavemanager: starting wave %d - %s" % [wave_data.wave_number, wave_data.wave_name])
+	print("wavemanager: expecting %d enemies this wave" % enemies_alive_count)
 	SignalBus.wave_started.emit(wave_data.wave_number)
 
 	if wave_data.enemy_groups.size() > 0:
@@ -207,7 +215,6 @@ func _spawn_enemy(stats: EnemyStats, pos: Vector2, modifier: EnemyStats.EnemyMod
 	if warden_node and "warden" in enemy:
 		enemy.warden = warden_node
 
-	enemies_alive_count += 1
 	spawned_enemies.append(weakref(enemy))
 	get_parent().add_child(enemy)
 

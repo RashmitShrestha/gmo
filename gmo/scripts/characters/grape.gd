@@ -36,13 +36,22 @@ func _die():
 	var g1: SingleGrape = single_grape.instantiate()
 	var g2: SingleGrape = single_grape.instantiate()
 	var g3: SingleGrape = single_grape.instantiate()
-	
+
 	g1.position = position + Vector2(50.0, 0)
 	g2.position = position + Vector2(-25.0, 43.3)
 	g3.position = position + Vector2(-25.0, -43.3)
-	
+
+	if warden:
+		g1.warden = warden
+		g2.warden = warden
+		g3.warden = warden
+	if peach_tree:
+		g1.peach_tree = peach_tree
+		g2.peach_tree = peach_tree
+		g3.peach_tree = peach_tree
+
 	get_parent().add_child(g1)
 	get_parent().add_child(g2)
 	get_parent().add_child(g3)
-	
+
 	super()
