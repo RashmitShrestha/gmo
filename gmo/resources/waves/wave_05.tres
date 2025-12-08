@@ -43,5 +43,5 @@ frozen_weight = 1.5
 rotten_weight = 2.0
 wave_completion_bonus = 400
 is_final_wave = false
-spawn_boss_at_end = false
+spawn_boss_at_end = true
 wave_start_message = "Wave 5 incoming!"
