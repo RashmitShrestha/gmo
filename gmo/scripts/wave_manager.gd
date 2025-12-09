@@ -347,11 +347,12 @@ func skip_to_wave(wave_num: int) -> void:
 	start_next_wave()
 
 func clear_all_enemies() -> void:
-	for weak_ref in spawned_enemies:
-		var enemy = weak_ref.get_ref()
-		if enemy:
+	var enemies = get_tree().get_nodes_in_group("enemies")
+	for enemy in enemies:
+		if is_instance_valid(enemy):
 			SignalBus.enemy_died.emit("Debug", enemy, 0)
 			enemy.queue_free()
+
 	spawned_enemies.clear()
 
 func reset():
