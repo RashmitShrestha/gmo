@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/upgrade.mp3-77494ab8146c711479529ea535e80962.
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

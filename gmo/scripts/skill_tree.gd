@@ -11,7 +11,7 @@ extends CanvasLayer
 @onready var frost_btn: Button = $Control/PathButtons/Frost
 @onready var ferment_btn: Button = $Control/PathButtons/Ferment
 
-
+var musicStream : AudioStreamPlayer
 var xp_label: Label
 
 var skill_nodes: Dictionary = {}
@@ -97,6 +97,7 @@ var style_purchasable: StyleBoxFlat
 
 
 func _ready() -> void:
+	musicStream = $Music
 	add_to_group("skill_tree_menu")
 	control.visible = false
 	description_box.visible = false
@@ -258,6 +259,7 @@ func is_skill_unlocked(skill_id: String) -> bool:
 
 
 func can_purchase_skill(skill_id: String) -> bool:
+	var cost 
 	if is_skill_unlocked(skill_id):
 		return false
 	
@@ -269,7 +271,7 @@ func can_purchase_skill(skill_id: String) -> bool:
 		if skill_id not in root_skills:
 			return false
 		# check if player has enough XP
-		var cost = skill_data[skill_id]["xp_cost"]
+		cost = skill_data[skill_id]["xp_cost"]
 		return player_xp >= cost
 	
 	# check if connected to an unlocked skill
@@ -288,7 +290,7 @@ func can_purchase_skill(skill_id: String) -> bool:
 		return false
 	
 	# check if player has enough XP
-	var cost = skill_data[skill_id]["xp_cost"]
+	cost = skill_data[skill_id]["xp_cost"]
 	return player_xp >= cost
 
 
@@ -344,6 +346,7 @@ func _on_skill_hover_end() -> void:
 
 
 func show_menu() -> void:
+	musicStream.play(0)
 	control.visible = true
 	get_tree().paused = true
 	xp_label.text = "XP: " + str(player_xp)
@@ -354,6 +357,8 @@ func show_menu() -> void:
 func hide_menu() -> void:
 	control.visible = false
 	get_tree().paused = false
+	musicStream.stop()
+
 
 
 func _on_path_selected(path_id: String) -> void:

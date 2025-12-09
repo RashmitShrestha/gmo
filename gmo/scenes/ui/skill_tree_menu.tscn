@@ -77,11 +77,9 @@ layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
-
 theme_override_constants/margin_bottom = 10
 
 [node name="DescriptionLabel" type="Label" parent="Control/DescriptionBox/MarginContainer"]
 custom_minimum_size = Vector2(250, 0)
-
 layout_mode = 2
 autowrap_mode = 3
