@@ -17,22 +17,37 @@ func _init():
 func _spawn(character: Cornucopia) -> void:
 	var choice: int
 	var random: float = randf()
-				
+	var enemy_name: String
+
 	if random < 0.25:
 		choice = 1
+		enemy_name = "Blueberry"
 	elif random < 0.5:
-		choice = 4
+		choice = 4 
+		enemy_name = "Strawberry"
 	elif random < 0.65:
 		choice = 2
+		enemy_name = "Grapes (Cluster)"
 	elif random < 0.8:
 		choice = 0
+		enemy_name = "Banana"
 	elif random < 0.9:
 		choice = 5
+		enemy_name = "Watermelon"
 	else:
 		choice = 3
-				
+		enemy_name = "Pomegranate"
+
 	var fruit: Fruit = _fruits[choice].instantiate()
 	fruit.position = character.position
+
+	fruit.set_meta("enemy_name", enemy_name)
+
+	if character.warden:
+		fruit.warden = character.warden
+	if character.peach_tree:
+		fruit.peach_tree = character.peach_tree
+
 	character.get_parent().add_child(fruit)
 
 func execute(character: Cornucopia) -> Status:

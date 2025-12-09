@@ -37,4 +37,5 @@ func _die():
 	visible = false
 	$CollisionShape2D.set_deferred("disabled", true)
 	$Area2D/CollisionShape2D.set_deferred("disabled", true)
-	queue_free()
+
+	super()

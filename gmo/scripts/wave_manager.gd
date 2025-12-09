@@ -18,7 +18,6 @@ var current_wave_data: WaveData = null
 var wave_state: WaveState = WaveState.IDLE
 var wave_resources: Array[WaveData] = []
 
-var enemies_alive_count: int = 0
 var spawned_enemies: Array[WeakRef] = []
 var spawn_points: Array[Marker2D] = []
 
@@ -99,15 +98,7 @@ func start_wave(wave_data: WaveData) -> void:
 	wave_state = WaveState.SPAWNING
 	_current_group_index = 0
 
-	enemies_alive_count = 0
-	for group in wave_data.enemy_groups:
-		enemies_alive_count += group.count
-
-	if wave_data.spawn_boss_at_end and wave_data.boss_stats:
-		enemies_alive_count += 1
-
 	print("wavemanager: starting wave %d - %s" % [wave_data.wave_number, wave_data.wave_name])
-	print("wavemanager: expecting %d enemies this wave" % enemies_alive_count)
 	SignalBus.wave_started.emit(wave_data.wave_number)
 
 	if wave_data.enemy_groups.size() > 0:
@@ -310,18 +301,24 @@ func _apply_modifier_to_enemy(enemy: Node2D, modifier: EnemyStats.EnemyModifier)
 # needs to be connected to enemy dying, SignalBus.enemy_died.emit(enemy_name, self, drop_type)
 
 func _on_enemy_died(enemy_type: String, enemy_node: Node2D, drop_type: int):
-	enemies_alive_count -= 1
-
 	if debug_mode:
-		print("wavemanager: enemy died - %s (%d enemies remaining)" % [enemy_type, enemies_alive_count])
+		var remaining = _count_living_enemies()
+		print("wavemanager: enemy died - %s (%d enemies remaining)" % [enemy_type, remaining])
 
 	spawned_enemies = spawned_enemies.filter(func(wr): return wr.get_ref() != null)
 
-	if enemies_alive_count <= 0 and not _is_still_spawning():
+	if not _is_still_spawning() and _count_living_enemies() == 0:
 		_complete_wave()
 
 func _is_still_spawning() -> bool:
 	return wave_state == WaveState.SPAWNING or spawn_timer.time_left > 0
+
+func _count_living_enemies() -> int:
+	var count = 0
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		if is_instance_valid(enemy) and enemy is Fruit and not enemy.dead:
+			count += 1
+	return count
 
 # some debug stuff
 func _input(event):
@@ -343,38 +340,6 @@ func _input(event):
 			KEY_P:
 				print("debug: wave progress:")
 				print(get_wave_progress())
-			# Number keys to jump to specific waves
-			KEY_1:
-				print("debug: jumping to wave 1")
-				reset()
-				start_next_wave()
-			KEY_2:
-				print("debug: jumping to wave 2")
-				skip_to_wave(2)
-			KEY_3:
-				print("debug: jumping to wave 3")
-				skip_to_wave(3)
-			KEY_4:
-				print("debug: jumping to wave 4")
-				skip_to_wave(4)
-			KEY_5:
-				print("debug: jumping to wave 5")
-				skip_to_wave(5)
-			KEY_6:
-				print("debug: jumping to wave 6")
-				skip_to_wave(6)
-			KEY_7:
-				print("debug: jumping to wave 7")
-				skip_to_wave(7)
-			KEY_8:
-				print("debug: jumping to wave 8")
-				skip_to_wave(8)
-			KEY_9:
-				print("debug: jumping to wave 9")
-				skip_to_wave(9)
-			KEY_0:
-				print("debug: jumping to wave 10")
-				skip_to_wave(10)
 
 
 func skip_to_wave(wave_num: int) -> void:
@@ -387,7 +352,6 @@ func clear_all_enemies() -> void:
 		if enemy:
 			SignalBus.enemy_died.emit("Debug", enemy, 0)
 			enemy.queue_free()
-	enemies_alive_count = 0
 	spawned_enemies.clear()
 
 func reset():
@@ -404,7 +368,7 @@ func get_wave_progress() -> Dictionary:
 	return {
 		"wave": current_wave_number,
 		"state": WaveState.keys()[wave_state],
-		"enemies_alive": enemies_alive_count,
+		"enemies_alive": _count_living_enemies(),
 		"group_index": _current_group_index,
 		"total_waves": wave_resources.size()
 	}
