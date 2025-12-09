@@ -23,11 +23,17 @@ func _die() -> void:
 	print("peachTree has been destroyed!")
 
 	SignalBus.tree_died.emit()
+
 	if interactable:
 		interactable.interact = func(): pass
 		interactable.monitoring = false
 		interactable.monitorable = false
 
+	var collision_shape = get_node_or_null("CollisionShape2D")
+	if collision_shape:
+		collision_shape.set_deferred("disabled", true)
+
+	invulnerable = true
 
 	modulate = Color(0.5, 0.5, 0.5, 0.7)
 
