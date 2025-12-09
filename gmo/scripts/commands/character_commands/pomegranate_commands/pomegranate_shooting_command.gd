@@ -27,8 +27,8 @@ func _shoot(character: Pomegranate):
 		character.get_tree().root.add_child(seed_projectile)
 		
 		await character.get_tree().create_timer(0.1).timeout
-	
-	character.velocity = Vector2.ZERO
+	if is_instance_valid(character):
+		character.velocity = Vector2.ZERO
 
 
 func execute(character: Pomegranate) -> Status:

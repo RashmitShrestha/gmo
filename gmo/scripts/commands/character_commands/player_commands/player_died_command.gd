@@ -15,18 +15,28 @@ func execute(character: Warden) -> Status:
 		character.damaged = false
 		character.make_invulnerable(_respawn_time + 1.0)
 		character.velocity = Vector2.ZERO
-		
+
+		var tree = character.get_tree().get_first_node_in_group("peach_tree")
+		if tree and tree.is_dead:
+			print("cannot respawn")
+			return Status.ACTIVE
+
 		_timer = Timer.new()
 		character.add_child(_timer)
 		_timer.one_shot = true
 		_timer.start(_respawn_time)
-	
-	if _timer.is_stopped():
+
+	if _timer != null and _timer.is_stopped():
+		var tree = character.get_tree().get_first_node_in_group("peach_tree")
+		if tree and tree.is_dead:
+			print("Tree died during respawn timer gg")
+			return Status.ACTIVE
+
 		character.position = _respawn_point
 		character.heal(character.max_health)
 		SignalBus.player_health_changed.emit(character.max_health, character.max_health)
 		character.blink(1.0)
-		
+
 		_timer.queue_free()
 		character.animation_tree.active = true
 		return Status.DONE

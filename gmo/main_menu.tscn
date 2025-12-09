@@ -131,7 +131,7 @@ texture_pressed = ExtResource("4_nlkkf")
 texture_hover = ExtResource("5_0o4t1")
 stretch_mode = 0
 
-[node name="Settings" type="TextureButton" parent="CenterContainer/VBoxContainer"]
+[node name="HowToPlay" type="TextureButton" parent="CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(228, 63)
 layout_mode = 2

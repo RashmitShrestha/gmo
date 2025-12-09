@@ -1,4 +1,4 @@
-[gd_scene load_steps=185 format=4 uid="uid://dmf617rn6a8pm"]
+[gd_scene load_steps=177 format=4 uid="uid://dmf617rn6a8pm"]
 
 [ext_resource type="Texture2D" uid="uid://ckfplp2dp23fa" path="res://assets/test_area.webp" id="1_4eb3c"]
 [ext_resource type="Texture2D" uid="uid://c6lubr8yhm1w4" path="res://assets/terrain/Background_Green_TileSet.png" id="1_xt4jw"]
@@ -8,15 +8,12 @@
 [ext_resource type="Script" uid="uid://bhbppojr8ikwe" path="res://scripts/commands/character_commands/player_commands/slice.gd" id="3_vlxm1"]
 [ext_resource type="Script" uid="uid://dw60nguhxt0oe" path="res://scripts/wave_manager.gd" id="3_wavemanager"]
 [ext_resource type="Texture2D" uid="uid://cac0h17dstewi" path="res://assets/background_assets/Street-Light_4_Side_Overgrown_Green.png" id="4_2w4xq"]
-[ext_resource type="PackedScene" uid="uid://dui38s68nj4ah" path="res://scenes/characters/blueberry.tscn" id="4_lamd3"]
 [ext_resource type="Texture2D" uid="uid://drc1newb2u2ec" path="res://assets/background_assets/Car_2_Overgrown_Bleak-Yellow_Gray_Upsidedown.png" id="5_8yiyj"]
 [ext_resource type="Texture2D" uid="uid://bs601y00a2h2u" path="res://assets/Buildings_beige_TileSet.png" id="5_a2vqc"]
 [ext_resource type="Texture2D" uid="uid://d4hunabemkdr7" path="res://assets/Buildings/Door_3_Boarded-up_Beige.png" id="5_f1rjr"]
 [ext_resource type="Texture2D" uid="uid://bmoeti4xn2ya8" path="res://assets/background_assets/Nature/Tree_2_Spruce-Sparse_Dark-Green.png" id="5_t61ul"]
-[ext_resource type="PackedScene" uid="uid://bpmfnh2gfepdb" path="res://scenes/characters/watermelon.tscn" id="5_uy78w"]
 [ext_resource type="Texture2D" uid="uid://dq8e3swm2w487" path="res://assets/background_assets/Nature/Tree_1_Spruce_Dark-Green.png" id="6_0vxwl"]
 [ext_resource type="Texture2D" uid="uid://71t0sf6evo68" path="res://assets/Roof_TileSet.png" id="6_ah84j"]
-[ext_resource type="PackedScene" uid="uid://ctsmh36aqyq5t" path="res://scenes/characters/strawberry.tscn" id="6_copoj"]
 [ext_resource type="Texture2D" uid="uid://c0o58hcffbb33" path="res://assets/Buildings/Door_2_Ajar_Beige.png" id="6_wxrlo"]
 [ext_resource type="Texture2D" uid="uid://dqq8qssek7y1p" path="res://assets/Wooden/Wooden-wall_Gate_Horizontal.png" id="6_y1fpr"]
 [ext_resource type="Texture2D" uid="uid://bir2wdaldnhiu" path="res://assets/background_assets/Traffic-cone.png" id="6_ypwe7"]
@@ -33,18 +30,14 @@
 [ext_resource type="Script" uid="uid://bkdpfqiiukrdd" path="res://scripts/main_camera.gd" id="9_copoj"]
 [ext_resource type="Texture2D" uid="uid://b410x6hau08wv" path="res://assets/background_assets/Container_4_Gray_Horizontal_Overgrown_Bleak-Yellow.png" id="9_l6u5i"]
 [ext_resource type="Texture2D" uid="uid://cnvojtk4pvoh6" path="res://assets/Buildings/Door_6_Boarded-up_Metal.png" id="9_qpxjn"]
-[ext_resource type="PackedScene" uid="uid://c7ktnfe0qmnnc" path="res://scenes/characters/pomegranate.tscn" id="9_xt4jw"]
-[ext_resource type="PackedScene" uid="uid://s1it7mo56jx" path="res://scenes/characters/banana.tscn" id="10_56tp0"]
 [ext_resource type="Texture2D" uid="uid://x7gtt5hb1f4u" path="res://assets/Wooden/Wooden-wall_Left-side_Right&Up-connect.png" id="10_d7q8q"]
 [ext_resource type="Texture2D" uid="uid://cwfdqfdj4rc3j" path="res://assets/background_assets/Stop-sign_Side_4_Overgrown_Green.png" id="10_f4rpa"]
 [ext_resource type="Texture2D" uid="uid://nythwdamep2b" path="res://assets/background_assets/Nature/Tree_9_Small-oak_Dark-Green.png" id="10_fu8q3"]
 [ext_resource type="Texture2D" uid="uid://fsaat0o2836a" path="res://assets/Wooden/Wooden-wall_Middle_Right&Left&Down-connect.png" id="11_hqq5g"]
 [ext_resource type="Texture2D" uid="uid://ii5v6331jry4" path="res://assets/background_assets/Street-Light_2_Up.png" id="11_mqau0"]
 [ext_resource type="Texture2D" uid="uid://dmgm25htgjhaf" path="res://assets/background_assets/Nature/Tree_3_Normal_Dark-Green.png" id="11_u2dfq"]
-[ext_resource type="PackedScene" uid="uid://rpbrqr7066ew" path="res://scenes/characters/grape.tscn" id="11_xo1cx"]
 [ext_resource type="Texture2D" uid="uid://bemk7cgfsee1o" path="res://assets/background_assets/Nature/Tree_5_Big_Dark-Green.png" id="12_82wt1"]
 [ext_resource type="Texture2D" uid="uid://bt8billmibne8" path="res://assets/Wooden/Wooden-wall_Right-side_Left&Down-connect.png" id="12_bjvoj"]
-[ext_resource type="PackedScene" uid="uid://cpisay5d7h55w" path="res://scenes/characters/single_grape.tscn" id="12_d3ocr"]
 [ext_resource type="Texture2D" uid="uid://cs3nyhjax85ky" path="res://assets/Buildings/Roof-hole_2_Red.png" id="12_wxrlo"]
 [ext_resource type="Texture2D" uid="uid://diva7tkv443my" path="res://assets/Wooden/Wooden-wall_Right-side_Left&Up-connect.png" id="13_8yiyj"]
 [ext_resource type="Texture2D" uid="uid://do4n5yadchw7r" path="res://assets/Wooden/Wooden-wall_Vertical.png" id="14_ypwe7"]
@@ -68,7 +61,6 @@
 [ext_resource type="Texture2D" uid="uid://32cih5hdaxe0" path="res://assets/background_assets/Car_5_Rust_Tractor_Side.png" id="44_5xjug"]
 [ext_resource type="Texture2D" uid="uid://cbe6w1ymfm8sb" path="res://assets/background_assets/Car_8_Overgrown_Dark-Green_Light-Green_Bus.png" id="45_nuv0j"]
 [ext_resource type="Texture2D" uid="uid://cu3mqu0ivxjoh" path="res://assets/background_assets/Manhole.png" id="46_mqau0"]
-[ext_resource type="PackedScene" uid="uid://dlvm4nhb144ev" path="res://scenes/characters/cornucopia.tscn" id="69_eqnl1"]
 [ext_resource type="PackedScene" uid="uid://dr2nk36vnu8y8" path="res://scenes/cursor.tscn" id="69_ngom5"]
 [ext_resource type="AudioStream" uid="uid://b104u4dlauv5j" path="res://audio/ambience.wav" id="70_ghy5t"]
 [ext_resource type="AudioStream" uid="uid://bjse5g2eoby6x" path="res://music/theme.mp3" id="71_nvslu"]
@@ -1616,131 +1608,131 @@ shape = SubResource("RectangleShape2D_2w4xq")
 [node name="SpawnPoints" type="Node2D" parent="." groups=["spawn_points"]]
 
 [node name="SpawnPoint01" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-1451, -1823)
+position = Vector2(-479, 1021)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint02" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-1050, -1861)
+position = Vector2(-412, -1503)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint03" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-540, -1797)
+position = Vector2(-542, -1651)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint04" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(12, -1880)
+position = Vector2(10, -1658)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint05" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(521, -1845)
+position = Vector2(533, -1641)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint06" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(1000, -1817)
+position = Vector2(1000, -1643)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint07" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(1418, -1838)
+position = Vector2(1344, -1610)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint08" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(1805, -1871)
+position = Vector2(1531, -1585)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint09" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(1949, -1661)
+position = Vector2(1701, -1429)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint10" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(1874, -1237)
+position = Vector2(1538, -1223)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint11" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(1912, -774)
+position = Vector2(1656, -774)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint12" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(1937, -239)
+position = Vector2(1775, -243)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint13" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(2021, 275)
+position = Vector2(1637, 313)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint14" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(1838, 829)
+position = Vector2(1660, 829)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint15" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(1834, 1411)
+position = Vector2(1594, 1343)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint16" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(1779, 1841)
+position = Vector2(1641, 1579)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint17" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(1389, 1860)
+position = Vector2(1379, 1568)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint18" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(1069, 1861)
+position = Vector2(1069, 1557)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint19" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(604, 1868)
+position = Vector2(604, 1636)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint20" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(222, 1879)
+position = Vector2(190, 1699)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint21" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-200, 1861)
+position = Vector2(-196, 1643)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint22" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-599, 1882)
+position = Vector2(-601, 1662)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint23" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-973, 1858)
+position = Vector2(-973, 1508)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint24" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-1306, 1829)
+position = Vector2(-1114, 1199)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint25" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-1616, 1678)
+position = Vector2(-1374, 1582)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint26" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-1577, 1302)
+position = Vector2(-1467, 1172)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint27" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-1664, 785)
+position = Vector2(-1352, 785)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint28" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-1621, 286)
+position = Vector2(-1401, 286)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint29" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-1668, -307)
+position = Vector2(-1430, -307)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint30" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-1669, -811)
+position = Vector2(-1357, -615)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint31" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-1653, -1294)
+position = Vector2(-1227, -932)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint32" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-1656, -1660)
+position = Vector2(-1294, -1328)
 gizmo_extents = 32.0
 
 [node name="SkillTreeMenu" parent="." instance=ExtResource("35_lc0e6")]
@@ -1805,32 +1797,6 @@ limit_bottom = 2050
 limit_smoothed = true
 script = ExtResource("9_copoj")
 subject = NodePath("..")
-
-[node name="Blueberry" parent="." instance=ExtResource("4_lamd3")]
-
-[node name="Watermelon" parent="." instance=ExtResource("5_uy78w")]
-position = Vector2(1535, -32)
-step_time = 0.5
-
-[node name="Strawberry" parent="." instance=ExtResource("6_copoj")]
-position = Vector2(1222, -298)
-
-[node name="Pomegranate" parent="." instance=ExtResource("9_xt4jw")]
-position = Vector2(1381, -165)
-
-[node name="Banana" parent="." instance=ExtResource("10_56tp0")]
-position = Vector2(1559, 267)
-scale = Vector2(2, 2)
-
-[node name="Grape" parent="." instance=ExtResource("11_xo1cx")]
-position = Vector2(1248, 119)
-
-[node name="Cornucopia" parent="." instance=ExtResource("69_eqnl1")]
-position = Vector2(-401, 827)
-collision_mask = 0
-
-[node name="SingleGrape" parent="." instance=ExtResource("12_d3ocr")]
-position = Vector2(1332, 375)
 
 [node name="PeachTree" parent="." instance=ExtResource("34_lc0e6")]
 unique_name_in_owner = true

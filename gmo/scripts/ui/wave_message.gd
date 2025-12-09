@@ -9,6 +9,10 @@ func _ready() -> void:
 
 func _on_wave_completed(wave_number: int) -> void:
 	show_message("WAVE %d CLEARED!" % wave_number)
+	
+	if wave_number == 10:
+		await get_tree().create_timer(3.5).timeout
+		show_message("BOSS TIME", 3.0)
 
 func _on_wave_started(wave_number: int) -> void:
 	show_message("WAVE %d STARTING!" % wave_number, 3.0)

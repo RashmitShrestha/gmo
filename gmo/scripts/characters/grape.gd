@@ -50,6 +50,10 @@ func _die():
 		g2.peach_tree = peach_tree
 		g3.peach_tree = peach_tree
 
+	g1.set_meta("enemy_name", "SingleGrape")
+	g2.set_meta("enemy_name", "SingleGrape")
+	g3.set_meta("enemy_name", "SingleGrape")
+
 	get_parent().add_child(g1)
 	get_parent().add_child(g2)
 	get_parent().add_child(g3)

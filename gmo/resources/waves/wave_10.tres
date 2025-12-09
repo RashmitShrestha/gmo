@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WaveData" load_steps=10 format=3]
+[gd_resource type="Resource" script_class="WaveData" load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/wave_data.gd" id="1_wave"]
 [ext_resource type="Resource" path="res://resources/enemies/blueberry.tres" id="2_blueberry"]
@@ -82,6 +82,18 @@ spawn_interval = 0.9
 force_modifier = 0
 modifier_chance = 0.0
 
+[sub_resource type="Resource" id="EnemyGroup_Boss"]
+script = ExtResource("9_enemy_group")
+group_name = "Cornucopia Boss"
+description = "big corn appears"
+enemy_stats = ExtResource("8_boss")
+count = 1
+spawn_pattern = 4
+spawn_delay = 0.0
+spawn_interval = 0.0
+force_modifier = 0
+modifier_chance = 0.0
+
 [resource]
 script = ExtResource("1_wave")
 wave_number = 10
@@ -95,6 +107,6 @@ frozen_weight = 1.5
 rotten_weight = 1.5
 wave_completion_bonus = 2000
 is_final_wave = true
-spawn_boss_at_end = false
+spawn_boss_at_end = true
 boss_stats = ExtResource("8_boss")
-wave_start_message = "THIS IS IT! Final wave incoming - then the Cornucopia!"
+wave_start_message = "THIS IS IT! Final wave incoming :> then the Cornucopia!"
