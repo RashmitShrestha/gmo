@@ -19,19 +19,25 @@ func _ready() -> void:
 
 
 func show_screen(is_victory: bool) -> void:
+	var breakdown = ScoreManager.get_score_breakdown()
+
 	if is_victory:
 		title.text = "VICTORY!"
 		title.add_theme_color_override("font_color", Color(0.2, 1.0, 0.2))  # Green
 	else:
-		title.text = "GAME OVER"
+		title.text = "GAME OVER - Wave %d" % breakdown.current_wave
 		title.add_theme_color_override("font_color", Color(1.0, 0.2, 0.2))  # Red
 
-	var breakdown = ScoreManager.get_score_breakdown()
 	var xp_breakdown = ScoreManager.get_xp_breakdown()
 
 	kills_label.text = "Enemy Kills: %d" % breakdown.kills_score
 	wave_label.text = "Wave Bonuses: %d" % breakdown.wave_bonuses
-	health_label.text = "Health Bonuses: %d" % breakdown.health_bonuses
+
+	if breakdown.death_count > 0:
+		health_label.text = "Deaths: %d (-%d points)" % [breakdown.death_count, breakdown.death_penalty]
+	else:
+		health_label.text = "Deaths: Flawless"
+
 	time_label.text = "Time: %s" % breakdown.formatted_time
 	total_label.text = "TOTAL SCORE: %d" % breakdown.total_score
 	xp_label.text = "TOTAL XP EARNED: %d" % xp_breakdown.total_xp

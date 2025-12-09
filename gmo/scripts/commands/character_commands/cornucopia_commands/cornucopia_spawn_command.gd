@@ -49,6 +49,8 @@ func _spawn(character: Cornucopia) -> void:
 		fruit.peach_tree = character.peach_tree
 
 	character.get_parent().add_child(fruit)
+	
+	SignalBus.enemy_spawned.emit(enemy_name, fruit)
 
 func execute(character: Cornucopia) -> Status:
 	if _timer == null:
