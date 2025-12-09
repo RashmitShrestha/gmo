@@ -27,8 +27,19 @@ var elemParticle: CPUParticles2D
 
 
 @onready var animation_tree: AnimationTree = $AnimationTree
+@onready var attack_area: Area2D = $Area2D
+
+var attack_cooldown: float = 0.0
+var attack_rate: float = 1.0 
+var attack_damage: float = 10.0
 
 func _physics_process(_delta: float) -> void:
+	if attack_cooldown > 0:
+		attack_cooldown -= _delta
+
+	if target == peach_tree and peach_tree and peach_tree.is_dead:
+		target = warden
+
 	if stunned or dead:
 		velocity = Vector2.ZERO
 		move_and_slide()
@@ -70,8 +81,9 @@ func _ready():
 	
 	add_to_group("enemies")
 	super._ready()
-		
+
 	SignalBus.player_died.connect(func(): target = peach_tree)
+	SignalBus.tree_died.connect(func(): target = warden)
 	SignalBus.stat_modified.connect(_on_stat_modified)
 	
 	animation_tree.active = true
@@ -85,13 +97,18 @@ func _ready():
 		peach_tree = get_node_or_null("%PeachTree")
 		if peach_tree == null:
 			peach_tree = get_parent().get_node_or_null("PeachTree") if get_parent() else null
-	
-	if randf() < target_warden_chance:
+
+	if peach_tree and peach_tree.is_dead:
+		target = warden
+	elif randf() < target_warden_chance:
 		target = warden
 	else:
 		target = peach_tree
-	
+
 	SignalBus.damage_enemy.connect(_on_damage_enemy)
+
+	if attack_area:
+		attack_area.body_entered.connect(_on_attack_area_body_entered)
 
 
 func _on_damage_enemy(character: GameCharacter, damage: float, element_type: int = 0):
@@ -184,3 +201,18 @@ func apply_stun() -> void:
 				stun_timer.queue_free()
 	)
 	stun_timer.start()
+
+func _on_attack_area_body_entered(body: Node2D) -> void:
+	if dead or stunned:
+		return
+
+	if body == target and attack_cooldown <= 0:
+		is_attacking = true
+		attack_cooldown = attack_rate
+
+		
+		if target and target.has_method("apply_damage"):
+			target.apply_damage(attack_damage, self, element)
+
+		await get_tree().create_timer(0.5).timeout
+		is_attacking = false

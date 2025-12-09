@@ -15,7 +15,7 @@ func _ready() -> void:
 	visible = false
 
 	SignalBus.all_waves_completed.connect(func(): show_screen(true))
-	SignalBus.player_died.connect(func(): show_screen(false))
+	SignalBus.game_over.connect(func(): show_screen(false))
 
 
 func show_screen(is_victory: bool) -> void:

@@ -194,7 +194,12 @@ func _spawn_enemy(stats: EnemyStats, pos: Vector2, modifier: EnemyStats.EnemyMod
 		return null
 
 	var enemy = scene.instantiate()
-	enemy.position = pos
+
+	var spawn_pos = pos
+	if stats.enemy_name.to_lower().contains("cornucopia") and not spawn_points.is_empty():
+		spawn_pos = spawn_points[0].global_position
+		if debug_mode:
+			print("wavemanager: forcing Cornucopia spawn at spawnpoint01")
 
 	_apply_modifier_to_enemy(enemy, modifier)
 
@@ -208,6 +213,8 @@ func _spawn_enemy(stats: EnemyStats, pos: Vector2, modifier: EnemyStats.EnemyMod
 
 	spawned_enemies.append(weakref(enemy))
 	get_parent().add_child(enemy)
+
+	enemy.position = spawn_pos
 
 	SignalBus.enemy_spawned.emit(stats.enemy_name, enemy)
 
