@@ -6,6 +6,8 @@ extends Node
 signal player_health_changed(new_health, max_health)
 signal base_health_changed(new_health, max_health)
 signal player_died
+signal tree_died
+signal game_over
 
 # audio n fx signal 
 signal player_dashed

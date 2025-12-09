@@ -1608,7 +1608,7 @@ shape = SubResource("RectangleShape2D_2w4xq")
 [node name="SpawnPoints" type="Node2D" parent="." groups=["spawn_points"]]
 
 [node name="SpawnPoint01" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-877, -1565)
+position = Vector2(-479, 1021)
 gizmo_extents = 32.0
 
 [node name="SpawnPoint02" type="Marker2D" parent="SpawnPoints"]

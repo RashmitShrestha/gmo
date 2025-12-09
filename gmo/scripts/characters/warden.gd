@@ -100,7 +100,14 @@ func _ready() -> void:
 				make_invulnerable(invulnerability_duration)
 			else:
 				await warden_death_animation()
-				SignalBus.player_died.emit()
+
+				var tree = get_tree().get_first_node_in_group("peach_tree")
+				if tree and tree.is_dead:
+					print("warden died and tree is dead")
+					SignalBus.game_over.emit()
+				else:
+					print("warden died but tree is alive")
+					SignalBus.player_died.emit()
 	)
 	queue_redraw()
 

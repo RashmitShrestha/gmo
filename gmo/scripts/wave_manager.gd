@@ -18,9 +18,10 @@ var current_wave_data: WaveData = null
 var wave_state: WaveState = WaveState.IDLE
 var wave_resources: Array[WaveData] = []
 
-var enemies_alive_count: int = 0
-var spawned_enemies: Array[WeakRef] = []
+var spawned_enemies_dict: Dictionary = {}
 var spawn_points: Array[Marker2D] = []
+var boss_spawned: bool = false
+var boss_defeated: bool = false
 
 var _current_group_index: int = 0
 var _enemies_spawned_in_group: int = 0
@@ -34,6 +35,7 @@ func _ready():
 	_load_waves()
 	_discover_spawn_points()
 	SignalBus.enemy_died.connect(_on_enemy_died)
+	SignalBus.enemy_spawned.connect(_on_enemy_spawned)
 
 	if auto_start_first_wave:
 		await get_tree().create_timer(1.5).timeout
@@ -99,15 +101,7 @@ func start_wave(wave_data: WaveData) -> void:
 	wave_state = WaveState.SPAWNING
 	_current_group_index = 0
 
-	enemies_alive_count = 0
-	for group in wave_data.enemy_groups:
-		enemies_alive_count += group.count
-
-	if wave_data.spawn_boss_at_end and wave_data.boss_stats:
-		enemies_alive_count += 1
-
 	print("wavemanager: starting wave %d - %s" % [wave_data.wave_number, wave_data.wave_name])
-	print("wavemanager: expecting %d enemies this wave" % enemies_alive_count)
 	SignalBus.wave_started.emit(wave_data.wave_number)
 
 	if wave_data.enemy_groups.size() > 0:
@@ -122,13 +116,19 @@ func _complete_wave() -> void:
 
 	wave_state = WaveState.IDLE
 
-	if current_wave_data.spawn_boss_at_end and current_wave_data.boss_stats:
-		print("wavemanager: spawning boss after wave completion")
+	if current_wave_data.spawn_boss_at_end and current_wave_data.boss_stats and not boss_spawned:
+		print("wavemanager: wave %d completed! boss incoming" % current_wave_number)
+		SignalBus.wave_completed.emit(current_wave_number)
+
+		await get_tree().create_timer(5.0).timeout
 		_spawn_boss()
+	elif boss_defeated and _count_living_enemies() == 0:
+		print("wavemanager: boss defeated and all enemies cleared show VICOTRY")
+		SignalBus.all_waves_completed.emit()
 	else:
 		print("wavemanager: wave %d completed!" % current_wave_number)
 		SignalBus.wave_completed.emit(current_wave_number)
-		
+
 		await get_tree().create_timer(5.0).timeout
 		start_next_wave()
 
@@ -137,6 +137,7 @@ func _spawn_boss():
 	print("wavemanager: spawning boss: %s" % current_wave_data.boss_stats.enemy_name)
 	_spawn_enemy(current_wave_data.boss_stats, boss_pos, EnemyStats.EnemyModifier.NONE)
 	wave_state = WaveState.ACTIVE
+	boss_spawned = true
 
 # group spawning
 
@@ -203,7 +204,16 @@ func _spawn_enemy(stats: EnemyStats, pos: Vector2, modifier: EnemyStats.EnemyMod
 		return null
 
 	var enemy = scene.instantiate()
-	enemy.position = pos
+
+	var spawn_pos = pos
+	var is_cornucopia = stats.enemy_name.to_lower().contains("cornucopia")
+
+	if is_cornucopia and not spawn_points.is_empty():
+		spawn_pos = spawn_points[0].global_position
+		if debug_mode:
+			print("wavemanager: corn found overriding spawn position")
+			print("  original pos: %v" % pos)
+			print("  spawnpoint01 pos: %v" % spawn_points[0].global_position)
 
 	_apply_modifier_to_enemy(enemy, modifier)
 
@@ -215,17 +225,23 @@ func _spawn_enemy(stats: EnemyStats, pos: Vector2, modifier: EnemyStats.EnemyMod
 	if warden_node and "warden" in enemy:
 		enemy.warden = warden_node
 
-	spawned_enemies.append(weakref(enemy))
+	var enemy_id = enemy.get_instance_id()
+	spawned_enemies_dict[enemy_id] = enemy
+	
 	get_parent().add_child(enemy)
+
+	enemy.position = spawn_pos
+
+	if debug_mode:
+		print("wavemanager: spawned %s at %v (modifier: %s)" % [stats.enemy_name, spawn_pos, EnemyStats.EnemyModifier.keys()[modifier]])
+		if is_cornucopia:
+			print("  CORNUCOPIA final position after spawn: %v" % enemy.position)
 
 	SignalBus.enemy_spawned.emit(stats.enemy_name, enemy)
 
-	if debug_mode:
-		print("wavemanager: spawned %s at %v (modifier: %s)" % [stats.enemy_name, pos, EnemyStats.EnemyModifier.keys()[modifier]])
-
 	return enemy
 
-# ========== Spawn Patterns ==========
+#spawns
 
 func _calculate_spawn_positions(pattern: EnemyGroup.SpawnPattern, count: int) -> Array[Vector2]:
 	var positions: Array[Vector2] = []
@@ -309,19 +325,58 @@ func _apply_modifier_to_enemy(enemy: Node2D, modifier: EnemyStats.EnemyModifier)
 
 # needs to be connected to enemy dying, SignalBus.enemy_died.emit(enemy_name, self, drop_type)
 
+func _on_enemy_spawned(enemy_type: String, enemy_node: Node2D):
+	if boss_spawned and not boss_defeated and is_instance_valid(enemy_node):
+		var enemy_id = enemy_node.get_instance_id()
+		if not spawned_enemies_dict.has(enemy_id):
+			spawned_enemies_dict[enemy_id] = enemy_node
+			if debug_mode:
+				print("wavemanager: tracking boss-spawned enemy - %s" % enemy_type)
+
 func _on_enemy_died(enemy_type: String, enemy_node: Node2D, drop_type: int):
-	enemies_alive_count -= 1
-
+	var is_boss = false
+	if is_instance_valid(enemy_node) and enemy_node.has_meta("enemy_stats"):
+		var stats = enemy_node.get_meta("enemy_stats")
+		if stats is EnemyStats and stats.is_boss:
+			is_boss = true
+			boss_defeated = true
+			print("wavemanager: BOSS DEFEATED!")
+	
+	if is_instance_valid(enemy_node):
+		var enemy_id = enemy_node.get_instance_id()
+		spawned_enemies_dict.erase(enemy_id)
+	
 	if debug_mode:
-		print("wavemanager: enemy died - %s (%d enemies remaining)" % [enemy_type, enemies_alive_count])
+		var remaining = _count_living_enemies()
+		print("wavemanager: enemy died - %s (%d enemies remaining)" % [enemy_type, remaining])
 
-	spawned_enemies = spawned_enemies.filter(func(wr): return wr.get_ref() != null)
-
-	if enemies_alive_count <= 0 and not _is_still_spawning():
+	if not _is_still_spawning() and _count_living_enemies() == 0:
 		_complete_wave()
 
 func _is_still_spawning() -> bool:
 	return wave_state == WaveState.SPAWNING or spawn_timer.time_left > 0
+
+func _count_living_enemies() -> int:
+
+	var count = 0
+	var invalid_ids = []
+	
+	for enemy_id in spawned_enemies_dict.keys():
+		var enemy = instance_from_id(enemy_id)
+		if is_instance_valid(enemy) and enemy is Fruit:
+
+			if "dead" in enemy and not enemy.dead:
+				count += 1
+			else:
+				invalid_ids.append(enemy_id)
+		else:
+
+			invalid_ids.append(enemy_id)
+
+	for id in invalid_ids:
+		spawned_enemies_dict.erase(id)
+	
+	return count
 
 # some debug stuff
 func _input(event):
@@ -343,38 +398,6 @@ func _input(event):
 			KEY_P:
 				print("debug: wave progress:")
 				print(get_wave_progress())
-			# Number keys to jump to specific waves
-			KEY_1:
-				print("debug: jumping to wave 1")
-				reset()
-				start_next_wave()
-			KEY_2:
-				print("debug: jumping to wave 2")
-				skip_to_wave(2)
-			KEY_3:
-				print("debug: jumping to wave 3")
-				skip_to_wave(3)
-			KEY_4:
-				print("debug: jumping to wave 4")
-				skip_to_wave(4)
-			KEY_5:
-				print("debug: jumping to wave 5")
-				skip_to_wave(5)
-			KEY_6:
-				print("debug: jumping to wave 6")
-				skip_to_wave(6)
-			KEY_7:
-				print("debug: jumping to wave 7")
-				skip_to_wave(7)
-			KEY_8:
-				print("debug: jumping to wave 8")
-				skip_to_wave(8)
-			KEY_9:
-				print("debug: jumping to wave 9")
-				skip_to_wave(9)
-			KEY_0:
-				print("debug: jumping to wave 10")
-				skip_to_wave(10)
 
 
 func skip_to_wave(wave_num: int) -> void:
@@ -382,19 +405,22 @@ func skip_to_wave(wave_num: int) -> void:
 	start_next_wave()
 
 func clear_all_enemies() -> void:
-	for weak_ref in spawned_enemies:
-		var enemy = weak_ref.get_ref()
-		if enemy:
-			SignalBus.enemy_died.emit("Debug", enemy, 0)
+
+	for enemy_id in spawned_enemies_dict.keys():
+		var enemy = instance_from_id(enemy_id)
+		if is_instance_valid(enemy):
 			enemy.queue_free()
-	enemies_alive_count = 0
-	spawned_enemies.clear()
+	
+	spawned_enemies_dict.clear()
 
 func reset():
 	current_wave_number = 0
 	current_wave_data = null
 	wave_state = WaveState.IDLE
+	boss_spawned = false
+	boss_defeated = false
 	clear_all_enemies()
+	spawned_enemies_dict.clear()
 	spawn_timer.stop()
 	group_delay_timer.stop()
 	print("wavemanager: reset complete")
@@ -404,7 +430,7 @@ func get_wave_progress() -> Dictionary:
 	return {
 		"wave": current_wave_number,
 		"state": WaveState.keys()[wave_state],
-		"enemies_alive": enemies_alive_count,
+		"enemies_alive": _count_living_enemies(),
 		"group_index": _current_group_index,
 		"total_waves": wave_resources.size()
 	}
