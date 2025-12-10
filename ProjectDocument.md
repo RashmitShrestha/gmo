@@ -26,6 +26,7 @@ If you used tutorials or other intellectual guidance to create aspects of your p
 
 - Vignette Shader code from imakeshaders on Godot Shaders website [here](https://godotshaders.com/shader/vignette-2/)
 - Animation Tree setup tutorial from YouTube channel [Chris' Tutorials](https://www.youtube.com/watch?v=WrMORzl3g1U)
+- Interactable objects in godot.[Queble](https://www.youtube.com/watch?v=pQINWFKc9_k)
 
 # Team Member Contributions
 
