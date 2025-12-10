@@ -63,6 +63,44 @@ Add addition contributions int he Other Contributions section.
 
 ## Main Roles ##
 
+Jordan (Animation and Visuals)
+Explain why I switched roles.
+
+*Assets* - I drew and animated all assets except TileMap and UI elements. This includes:
+- MC Warden Gramsey (running in all directions, idle, hurt, death)
+- Fruits (attack, hurt, idle, death):
+  - Blueberry
+  - Strawberry
+  - Watermelon
+  - Grape
+  - Pomegranate
+  - Grapes and Single Grapes
+- Peach Tree with animation
+- Main menu background
+- Skill Tree background and peaches
+- GMO! Logo
+- the two types of seed bullets
+
+*Visual Style*
+We wanted a vibrant, cute, and fun 2D pixel style game that emphasizes visual charm while still making it intense. Warden is a chef who accidentally made sentient fruit, so I wanted his design to reflect this crazy chef who would probably blow up a kitchen given the chance (crazy eyes and dramatic coat). The fruits are all designed to look fierce while maintaining likeability, like Mario's enemies. I tried to emphasize this in their movements, facial expressions, and how they are posed in the logo.
+We chose for the peach tree to be animated, to draw attention to it and remind the player that it is a crucial structure to defend.
+
+*Animation*
+All animated assets were animated and previewed in my drawing program. When assetes were approved, I exported them as sprite sheets and uploaded them into Godot.
+I set up animation players for all animated assets. All were created by setting the sprite sheed for that animation, adjusting h and v frames, and setting frames according to custom playback speed.
+Afterwards, I set up an animation tree and drew the animation state machine. I set conditions and applicable transition constraints for each transition.
+
+All assets have an [AnimationManagerComponent](https://github.com/RashmitShrestha/gmo/blob/4e3038445af44eb82a12f019032c73c315dc8e17/gmo/scripts/components/character_components/player_components/player_animation_manager_component.gd#L1C1-L19C78). It separates gameplay logic from animation tree system. For every character:
+- Idle animation alawys plays by default
+- If parent is damaged, plays hurt animation once (per damage). Since it takes a second to play the whole animation, I set it so the animation has to finish playing before playing again, otherwise it wouldn't show because the enemy is taking damage in rapid succession. 
+- If enemy is attacking, plays attack animation once (per attack).
+
+This AnimationManagerComponent makes it easy to just insert boolean updates in the main enemy scripts, and the animation will take care of itself.
+
+Warden has a special [BlendSpace2D](https://github.com/RashmitShrestha/gmo/commit/9097a6e30d26481a5a1949c2a3c7678e9880c04e#diff-9632bb3e417d0906704663b39dbbedd9c3fd22e935f9eac465456d5ed93eaad8R1), which helps automatically determine the correct running animation to play depending on which way the character is facing.
+
+[Death animations](https://github.com/RashmitShrestha/gmo/blob/4e3038445af44eb82a12f019032c73c315dc8e17/gmo/scripts/characters/fruit.gd#L122C1-L131C20) are played manually from the AnimationPlayer. I also had to make sure the animation fully plays before the actual death function begins, to ensure the player can visually see the animation play before the game officially considers the enemy death and turns off visibility.
+
 ## Sub-Roles ##
 
 ## Other Contributions ##
