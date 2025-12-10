@@ -63,10 +63,14 @@ Add addition contributions int he Other Contributions section.
 
 ## Main Roles ##
 
-Jordan (Animation and Visuals)
+# Animation and Visuals (Jordan, Jordanjt4 on Github)
 Explain why I switched roles.
 
-*Assets* - I drew and animated all assets except TileMap and UI elements. This includes:
+*Assets* - I drew and animated all assets except TileMap and UI elements.
+
+![Jordan's Assets](<ProjectDocument Images/jordan-assets.jpeg>)
+
+This includes:
 - MC Warden Gramsey (running in all directions, idle, hurt, death)
 - Fruits (attack, hurt, idle, death):
   - Blueberry
@@ -75,6 +79,7 @@ Explain why I switched roles.
   - Grape
   - Pomegranate
   - Grapes and Single Grapes
+  - Cornucopia Final Boss
 - Peach Tree with animation
 - Main menu background
 - Skill Tree background and peaches
@@ -82,6 +87,7 @@ Explain why I switched roles.
 - the two types of seed bullets
 
 *Visual Style*
+![GMO Logi](<gmo/assets/Main Menu/gmo_logo.png>)
 We wanted a vibrant, cute, and fun 2D pixel style game that emphasizes visual charm while still making it intense. Warden is a chef who accidentally made sentient fruit, so I wanted his design to reflect this crazy chef who would probably blow up a kitchen given the chance (crazy eyes and dramatic coat). The fruits are all designed to look fierce while maintaining likeability, like Mario's enemies. I tried to emphasize this in their movements, facial expressions, and how they are posed in the logo.
 We chose for the peach tree to be animated, to draw attention to it and remind the player that it is a crucial structure to defend.
 
