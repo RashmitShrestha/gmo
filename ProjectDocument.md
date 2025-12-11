@@ -59,11 +59,12 @@ Used this to figure out wave stuff: https://www.youtube.com/watch?v=_1bVJSglte8
 Arthur - :
 Command logic taken from [HW1](https://github.com/dr-jam/CommandPatternExercise/blob/master/ElkSong/scripts/commands/command.gd)
 
-Claire - :
-[Asset Pack](https://thelazystone.itch.io/post-apocalypse-pixel-art-asset-pack)
-[Health Bar Tutorial](https://youtu.be/UEJcUnq2dfU)
-[Audio Manager Starter Code](https://github.com/Aarimous/AudioManager)
-[Audio Manager Tutorial](https://www.youtube.com/watch?v=Egf2jgET3nQ&t=14s)
+Claire - : 
+
+- [Asset Pack](https://thelazystone.itch.io/post-apocalypse-pixel-art-asset-pack)
+- [Health Bar Tutorial](https://youtu.be/UEJcUnq2dfU)
+- [Audio Manager Starter Code](https://github.com/Aarimous/AudioManager)
+- [Audio Manager Tutorial](https://www.youtube.com/watch?v=Egf2jgET3nQ&t=14s)
 
 
 # Team Member Contributions
