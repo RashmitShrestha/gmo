@@ -379,25 +379,25 @@ func _count_living_enemies() -> int:
 	return count
 
 # some debug stuff
-func _input(event):
-	if not debug_mode:
-		return
-
-	if event is InputEventKey and event.pressed:
-		match event.keycode:
-			KEY_N:
-				print("debug: starting next wave")
-				start_next_wave()
-			KEY_K:
-				print("debug: clearing all enemies")
-				clear_all_enemies()
-				_complete_wave()
-			KEY_R:
-				print("debug: resetting wavemanager")
-				reset()
-			KEY_P:
-				print("debug: wave progress:")
-				print(get_wave_progress())
+#func _input(event):
+	#if not debug_mode:
+		#return
+#
+	#if event is InputEventKey and event.pressed:
+		#match event.keycode:
+			#KEY_N:
+				#print("debug: starting next wave")
+				#start_next_wave()
+			#KEY_K:
+				#print("debug: clearing all enemies")
+				#clear_all_enemies()
+				#_complete_wave()
+			#KEY_R:
+				#print("debug: resetting wavemanager")
+				#reset()
+			#KEY_P:
+				#print("debug: wave progress:")
+				#print(get_wave_progress())
 
 
 func skip_to_wave(wave_num: int) -> void:

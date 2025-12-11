@@ -16,7 +16,7 @@ func execute(character: Blueberry) -> Status:
 		_timer.one_shot = true
 		_timer.start(_stun_time)
 		
-		character.velocity = Vector2.ZERO
+		character.velocity = Vector2.ZERO              
 		character.direction = Vector2.ZERO
 	
 	if not _timer.is_stopped():

@@ -71,7 +71,7 @@ var paths: Dictionary = {
 		"title": "Fermented Path",
 		"nodes": [
 			{"id": "+10% Health", "name": "Guano Guard", "pos": Vector2(200, 600), "xp_cost": 100, "description": "Permanently increase your maximum health by 10%."},
-			{"id": "3_trail", "name": "Leeching Loam", "pos": Vector2(200, 200), "xp_cost": 100, "description": "For 3 seconds, your main attack leaves a trail of fertilizer that lifesteals from fruits."},
+			{"id": "3_trail", "name": "Leeching Loam", "pos": Vector2(200, 200), "xp_cost": 100, "description": "For 3 seconds, your main attack leaves a trail of fertilized that lifesteals from fruits."},
 			{"id": "3_trail_upgrade", "name": "Vitamin Vamparism", "pos": Vector2(500, 125), "xp_cost": 150, "description": "Increase fermented trail duration to 5 seconds and siphon 10% ATK from each fruit that touches your fermented trail (Only applies once per trail activation)"},
 			{"id": "3_status1", "name": "Regenerative Realization", "pos": Vector2(700, 150), "xp_cost": 200, "description": "Regenerate 2 health every 10 seconds"},
 			{"id": "3_ability", "name": "Fertilized Farm", "pos": Vector2(375, 250), "xp_cost": 250, "description": "For 5 seconds every fruit you kill revives as an ally fruit at full health. Ally fruits attack enemy fruit for 10 seconds before fully decaying."},

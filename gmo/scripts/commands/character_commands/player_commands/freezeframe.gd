@@ -1,3 +1,4 @@
+class_name FreezeFrame
 extends Node
 
 # Freeze Frame Ability
@@ -48,20 +49,6 @@ func _on_ability_toggled(ability_id: String, enabled: bool, parameters: Dictiona
 		speed_boost = parameters.speed_multiplier
 	if parameters.has("unlimited_range"):
 		unlimited_range = parameters.unlimited_range
-	
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("special_5"):
-		if not unlocked:
-			return
-		
-		if not can_use:
-			return
-		
-		if active:
-			return
-		
-		_activate_freeze_frame()
 
 
 func _activate_freeze_frame() -> void:
@@ -73,6 +60,7 @@ func _activate_freeze_frame() -> void:
 	
 	# freeze enemies
 	var enemies = get_tree().get_nodes_in_group("enemies")
+
 	
 	for enemy in enemies:
 		if is_instance_valid(enemy):
@@ -149,19 +137,22 @@ func _freeze_enemy(enemy: Node) -> void:
 	enemy.set_meta("ff_process", enemy.is_processing())
 	enemy.set_meta("ff_physics_process", enemy.is_physics_processing())
 	
+
 	
-	# Store and zero velocity
 	if "velocity" in enemy:
 		enemy.set_meta("ff_velocity", enemy.velocity)
 		enemy.velocity = Vector2.ZERO
 	
-	# Disable attacking
 	if "can_attack" in enemy:
 		enemy.set_meta("ff_can_attack", enemy.can_attack)
 		enemy.can_attack = false
 	
 	enemy.set_process(false)
 	enemy.set_physics_process(false)
+	enemy.stunned = true
+	
+	print("STUNEDDD" + str(enemy.stunned))
+	
 	
 	# applies frozen color to all sprites
 	_apply_frost_color_recursive(enemy, enemy)
@@ -244,6 +235,8 @@ func _freeze_projectile(projectile: Node) -> void:
 func _unfreeze_enemy(enemy: Node) -> void:
 	if not is_instance_valid(enemy):
 		return
+		
+	enemy.stunned = false
 	
 	# restores enemy movement
 	if enemy.has_meta("ff_process"):

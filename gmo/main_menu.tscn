@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ds2h37wv00i2f"]
+[gd_scene load_steps=24 format=3 uid="uid://ds2h37wv00i2f"]
 
 [ext_resource type="Script" uid="uid://d2ma5d13r27x6" path="res://main_menu.gd" id="1_glbon"]
 [ext_resource type="Texture2D" uid="uid://bsna14p8dk1js" path="res://assets/Main Menu/main_menu_background.png" id="2_j5v2v"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://o0mh0i0rhbh7" path="res://assets/Main Menu/Quit_Pressed.png" id="8_0o4t1"]
 [ext_resource type="Texture2D" uid="uid://k3de88idqxss" path="res://assets/Main Menu/Settings_Hover.png" id="8_j5v2v"]
 [ext_resource type="Texture2D" uid="uid://320l1b0da5y8" path="res://assets/Main Menu/Quit_Hover.png" id="11_iotk1"]
+[ext_resource type="AudioStream" uid="uid://otn88j7poxqr" path="res://music/gmo_main.mp3" id="13_iotk1"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_j5v2v"]
 device = -1
@@ -166,3 +167,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_cm266")
 }
 autoplay = "float"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_iotk1")
+volume_db = -9.759
+autoplay = true
+mix_target = 2

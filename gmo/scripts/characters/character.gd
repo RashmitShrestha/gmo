@@ -28,7 +28,7 @@ var element_colors = {
 	2: Color(0.3, 0.6, 1.0), # frost
 	3: Color(0.7, 1.0, 0.3), # ferment
 	4: Color(0.0, 0.898, 0.625, 1.0), # resistance shield color
-	5: Color(0.0, 0.898, 0.625, 1.0) # stunned damage color
+	#5: Color(0.499, 0.612, 1.0, 1.0) # stunned damage color
 }
 
 var dot_damage_number_timer := 0.0
@@ -85,6 +85,7 @@ func heal(amount: float) -> void:
 	if actual_heal > 0:
 		accumulated_heal += actual_heal
 		SignalBus.health_restored.emit(self, actual_heal)
+		SignalBus.player_health_changed.emit(curr_health, max_health)
 
 
 func _process_heal_numbers(delta: float) -> void:
@@ -153,7 +154,7 @@ func _process_dot_effects(delta: float) -> void:
 			effect.tot_dmg += final_damage
 			
 			if element == 3 and effect.has("lifesteal_source") and is_instance_valid(effect.lifesteal_source):
-				var lifesteal_amount = ceil(final_damage * 0.5)
+				var lifesteal_amount = ceil(final_damage * 0.5) /10
 				effect.lifesteal_source.heal(lifesteal_amount)
 			
 			received_damage.emit(final_damage, self)

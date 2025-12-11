@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dlvm4nhb144ev"]
+[gd_scene load_steps=32 format=3 uid="uid://dlvm4nhb144ev"]
 
 [ext_resource type="Script" uid="uid://duxriptfaikwf" path="res://scripts/characters/cornucopia.gd" id="1_o1gxn"]
 [ext_resource type="Texture2D" uid="uid://bbe37yfm23vef" path="res://assets/grape/grape_idle.png" id="2_6auju"]
@@ -347,13 +347,10 @@ states/idle/position = Vector2(347.86002, 100.556244)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_r7kxr"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_v6cv2"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_kyff7"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_vuih7"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_s0dk1"), "hurt", "attack", SubResource("AnimationNodeStateMachineTransition_pijri"), "attack", "hurt", SubResource("AnimationNodeStateMachineTransition_lvbaj")]
 graph_offset = Vector2(-22.13999, -73.38751)
 
-[sub_resource type="Curve" id="Curve_vp8vm"]
+[sub_resource type="Curve" id="Curve_6auju"]
 _limits = [0.0, 30.0, 0.0, 10.0]
 _data = [Vector2(0.06666684, 19.253733), 0.0, 0.0, 0, 0, Vector2(10, 0.44776154), 0.0, 0.0, 0, 0]
 point_count = 2
-
-[sub_resource type="Gradient" id="Gradient_olgj5"]
-colors = PackedColorArray(0, 0, 0, 0.59607846, 1, 1, 1, 0.65882355)
 
 [node name="Cornucopia" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component")]
 z_index = 1
@@ -413,68 +410,25 @@ collision_layer = 0
 position = Vector2(-65, -7.5)
 shape = SubResource("CircleShape2D_57wkv")
 
-[node name="FlameParticle" type="CPUParticles2D" parent="."]
+[node name="FreezeFrameParticle" type="CPUParticles2D" parent="."]
 visible = false
-lifetime = 2.0
-preprocess = 1.24
-speed_scale = 2.0
-randomness = 0.25
-emission_shape = 3
-emission_rect_extents = Vector2(40, 30)
-gravity = Vector2(0, -20)
-initial_velocity_min = 10.09
-initial_velocity_max = 20.19
-linear_accel_min = 0.5
-linear_accel_max = 5.0
-scale_amount_min = 0.5
-scale_amount_curve = SubResource("Curve_vp8vm")
-color = Color(0.8039216, 0.4509804, 0.32941177, 0.6431373)
-
-[node name="FrozenParticle" type="CPUParticles2D" parent="."]
-visible = false
-position = Vector2(1, 1)
+position = Vector2(4, -4)
 lifetime = 2.0
 preprocess = 1.24
 speed_scale = 2.0
 randomness = 0.05
 emission_shape = 3
-emission_rect_extents = Vector2(35, 30)
+emission_rect_extents = Vector2(40, 40)
 direction = Vector2(0, 0)
 spread = 67.27
 gravity = Vector2(0, 0)
 initial_velocity_min = 10.09
 initial_velocity_max = 20.19
-angular_velocity_min = 5.0
-angular_velocity_max = 20.0
+angular_velocity_max = 10.0
 linear_accel_min = 0.5
 linear_accel_max = 5.0
 radial_accel_min = 4.12
 radial_accel_max = 28.87
 scale_amount_min = 0.5
-scale_amount_curve = SubResource("Curve_vp8vm")
-color = Color(0.13045967, 0.6132431, 0.7802239, 0.6431373)
-
-[node name="FermentParticle" type="CPUParticles2D" parent="."]
-visible = false
-position = Vector2(1, 1)
-lifetime = 2.0
-preprocess = 1.24
-speed_scale = 2.0
-randomness = 0.25
-emission_shape = 3
-emission_rect_extents = Vector2(35, 30)
-direction = Vector2(0, 0)
-spread = 67.27
-gravity = Vector2(0, -20)
-initial_velocity_min = 10.09
-initial_velocity_max = 20.19
-orbit_velocity_min = 0.1
-orbit_velocity_max = 0.3
-linear_accel_min = 0.5
-linear_accel_max = 5.0
-radial_accel_min = 4.12
-radial_accel_max = 28.87
-scale_amount_min = 0.5
-scale_amount_curve = SubResource("Curve_vp8vm")
-color = Color(0.30588236, 0.5803922, 0.27058825, 0.67058825)
-color_ramp = SubResource("Gradient_olgj5")
+scale_amount_curve = SubResource("Curve_6auju")
+color = Color(0.51256263, 0.57394516, 1, 0.6431373)

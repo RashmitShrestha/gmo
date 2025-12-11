@@ -109,13 +109,13 @@ static func apply_skill_effect(skill_id: String) -> void:
 			})
 			
 		"3_ability":  
-			SignalBus.emit_signal("ability_toggled", "ally_fruit_spawn", true, {
+			SignalBus.emit_signal("ability_toggled", "fertilized_farm", true, {
 				"spawn_duration": 5.0,
 				"ally_lifetime": 10.0
 			})
 			
 		"3_ability_upgrade": 
-			SignalBus.emit_signal("status_effect_applied", "player", "ally_stat_boost", {
+			SignalBus.emit_signal("status_effect_applied", "player", "fertilized_farm_boost", {
 				"multiplier": 2.0
 			})
 			

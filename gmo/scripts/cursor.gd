@@ -35,5 +35,6 @@ func _deal_slice_damage(enemy: Fruit) -> void:
 	if randf() < crit_stats.chance:
 		damage *= crit_stats.damage
 	
-	enemy.apply_damage(damage, self, 0)
+	if !enemy.fertilized:
+		enemy.apply_damage(damage, self, 0)
 	_warden.on_successful_hit(enemy)

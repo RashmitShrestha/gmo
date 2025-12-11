@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cpisay5d7h55w"]
+[gd_scene load_steps=33 format=3 uid="uid://cpisay5d7h55w"]
 
 [ext_resource type="Script" uid="uid://dwba6nowvs6tw" path="res://scripts/characters/single_grape.gd" id="1_sga2y"]
 [ext_resource type="Texture2D" uid="uid://dwmmtboeqnn4" path="res://assets/single_grape/single_grape_idle.png" id="2_0ljss"]
@@ -352,6 +352,11 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_lf7sr"]
 colors = PackedColorArray(0, 0, 0, 0.59607846, 1, 1, 1, 0.65882355)
 
+[sub_resource type="Curve" id="Curve_575m1"]
+_limits = [0.0, 30.0, 0.0, 10.0]
+_data = [Vector2(0.06666684, 19.253733), 0.0, 0.0, 0, 0, Vector2(10, 0.44776154), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="SingleGrape" type="CharacterBody2D" node_paths=PackedStringArray("animation_manager_component", "command_manager_component", "reactive_component")]
 z_index = 1
 scale = Vector2(2, 2)
@@ -478,3 +483,26 @@ scale_amount_min = 0.5
 scale_amount_curve = SubResource("Curve_ca0af")
 color = Color(0.30588236, 0.5803922, 0.27058825, 0.67058825)
 color_ramp = SubResource("Gradient_lf7sr")
+
+[node name="FreezeFrameParticle" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2(4, -4)
+lifetime = 2.0
+preprocess = 1.24
+speed_scale = 2.0
+randomness = 0.05
+emission_shape = 3
+emission_rect_extents = Vector2(40, 40)
+direction = Vector2(0, 0)
+spread = 67.27
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.09
+initial_velocity_max = 20.19
+angular_velocity_max = 10.0
+linear_accel_min = 0.5
+linear_accel_max = 5.0
+radial_accel_min = 4.12
+radial_accel_max = 28.87
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_575m1")
+color = Color(0.51256263, 0.57394516, 1, 0.6431373)

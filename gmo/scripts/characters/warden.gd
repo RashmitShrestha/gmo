@@ -65,8 +65,9 @@ var consecutive_hit_params: Dictionary = {}
 var health_regen_active: bool = false
 var health_regen_timer: Timer
 
-var ally_stat_boost_active: bool = false
-var ally_stat_boost_multiplier: float = 1.0
+var fertilized_farm_active:bool = false
+var fertilize_farm_boost: bool = false
+var fertilize_farm_mult: float = 1.0
 
 var recharging_shield_active: bool = false
 var shield_up: bool = true
@@ -246,8 +247,8 @@ func _on_status_effect_applied(character_group: String, effect_name: String, par
 			_setup_health_regen(parameters.get("amount", 2), parameters.get("interval", 10.0))
 			
 		"ally_stat_boost":
-			ally_stat_boost_active = true
-			ally_stat_boost_multiplier = parameters.get("multiplier", 1.0)
+			fertilize_farm_boost = true
+			fertilize_farm_mult = parameters.get("multiplier", 1.0)
 			
 		"recharging_shield":
 			recharging_shield_active = true
