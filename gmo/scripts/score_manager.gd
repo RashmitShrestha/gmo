@@ -137,6 +137,7 @@ func _on_player_died() -> void:
 	var penalty = 100
 	death_penalty += penalty
 	total_score -= penalty
+	total_score = max(0, total_score)
 
 	print("ScoreManager: Player died (death #%d, -%d points). Score: %d, Time: %s" % [death_count, penalty, total_score, _format_time(gameplay_time)])
 
