@@ -9,10 +9,15 @@ extends CanvasLayer
 @onready var separator: HSeparator = $CenterContainer/VBoxContainer/Panel/VBoxContainer/HSeparator
 @onready var total_label: Label = $CenterContainer/VBoxContainer/Panel/VBoxContainer/TotalScore
 @onready var xp_label: Label = $CenterContainer/VBoxContainer/Panel/VBoxContainer/TotalXP
+@onready var win_sound: AudioStreamPlayer = $WinSound
+@onready var lose_sound: AudioStreamPlayer = $LoseSound
 
 
 func _ready() -> void:
 	visible = false
+
+	win_sound.stream = load("res://audio/winsound.wav")
+	lose_sound.stream = load("res://audio/losesound.wav")
 
 	SignalBus.all_waves_completed.connect(func(): show_screen(true))
 	SignalBus.game_over.connect(func(): show_screen(false))
@@ -23,10 +28,14 @@ func show_screen(is_victory: bool) -> void:
 
 	if is_victory:
 		title.text = "VICTORY!"
+				#used ai for the line below
 		title.add_theme_color_override("font_color", Color(0.2, 1.0, 0.2))  # Green
+		win_sound.play()
 	else:
 		title.text = "GAME OVER - Wave %d" % breakdown.current_wave
+				#used ai for the line below this one as well
 		title.add_theme_color_override("font_color", Color(1.0, 0.2, 0.2))  # Red
+		lose_sound.play()
 
 	var xp_breakdown = ScoreManager.get_xp_breakdown()
 

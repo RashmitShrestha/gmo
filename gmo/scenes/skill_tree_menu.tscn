@@ -89,3 +89,5 @@ autowrap_mode = 3
 stream = ExtResource("6_e7tv0")
 volume_db = -13.575
 mix_target = 2
+
+[node name="PurchaseSound" type="AudioStreamPlayer" parent="."]
