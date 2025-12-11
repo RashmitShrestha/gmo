@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8vx7y2n3p4qm"]
+[gd_scene load_steps=8 format=3 uid="uid://c8vx7y2n3p4qm"]
 
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_pause_menu"]
+[ext_resource type="FontFile" uid="uid://dxqub4bcdsgb3" path="res://assets/PixelatedEleganceRegular-ovyAA.ttf" id="2_0lmf7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
-bg_color = Color(0.1, 0.1, 0.1, 0.85)
+bg_color = Color(0.1882353, 0.047058824, 0.039215688, 0.87058824)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -13,6 +14,20 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0lmf7"]
+bg_color = Color(0.25490198, 0.06666667, 0.050980393, 0.84705883)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8uki6"]
+bg_color = Color(0.17254902, 0.03529412, 0.023529412, 0.84705883)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f6eus"]
+bg_color = Color(0.25490198, 0.06666667, 0.050980393, 0.84705883)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bnpd"]
+bg_color = Color(0.17089266, 0.033865567, 0.024314266, 0.84705883)
 
 [node name="pause_menu" type="CanvasLayer" groups=["pause_menu"]]
 process_mode = 3
@@ -57,6 +72,7 @@ theme_override_constants/separation = 20
 [node name="TitleLabel" type="Label" parent="Control/MenuPanel/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.9, 0.7, 1)
+theme_override_fonts/font = ExtResource("2_0lmf7")
 theme_override_font_sizes/font_size = 48
 text = "PAUSED"
 horizontal_alignment = 1
@@ -69,14 +85,22 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0lmf7")
 theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_0lmf7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8uki6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8uki6")
 text = "Tutorial"
 
 [node name="QuitButton" type="Button" parent="Control/MenuPanel/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0lmf7")
 theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_f6eus")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0bnpd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0bnpd")
 text = "Quit to Main Menu"
 
 [node name="Spacer2" type="Control" parent="Control/MenuPanel/VBoxContainer"]
@@ -85,7 +109,7 @@ layout_mode = 2
 
 [node name="HintLabel" type="Label" parent="Control/MenuPanel/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_colors/font_color = Color(0.9523836, 0.8469502, 0.6540472, 1)
 theme_override_font_sizes/font_size = 16
 text = "Press ESC to resume"
 horizontal_alignment = 1
