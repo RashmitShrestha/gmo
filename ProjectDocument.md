@@ -14,7 +14,10 @@ You are Warden Gramsay, a world renowed chef. One day, the Cornucorpia emerges a
 ## Gameplay Explanation ##
 
 ### Instructions
-WASD to move, shift to dash. F to access the peach tree's upgrades when near it. Press 1, 2, or 3 to temporarily give your slices special effects (if unlocked from the peach tree). To buy upgrades from the peach tree, you use XP which is gained from killing enemies.
+WASD to move, shift to dash. 
+Pressing space brings out his knife in the form of your cursor! You must move your knife over enemies within a certain radius from you, slicing through them to victory. The amount of damage they take depends on mouse movement velocity - slice faster for more damage!
+The same thing applies to left click holding.
+F to access the peach tree's upgrades when near it. Upon unlocking, Press 1, 2, or 3 to temporarily give your slices special effects (if unlocked from the peach tree). To buy upgrades from the peach tree, you use XP which is gained from killing enemies.
 
 ### Strategy
 This game has a variety of enemies, so it's best to understand how to deal with each one. Enemies have two targets: you or the peach tree. Some will target the tree and some will target you. For those that target the peach tree, just take them out as soon as possible. However, the strategy gets more interesting for when enemies attack YOU.
