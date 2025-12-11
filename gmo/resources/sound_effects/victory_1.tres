@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SoundEffect" load_steps=3 format=3 uid="uid://c6utidsxyuy7b"]
+
+[ext_resource type="Script" uid="uid://bq8x3k2nan4p7" path="res://scripts/resources/sound_effect.gd" id="1_btff7"]
+[ext_resource type="AudioStream" uid="uid://btgw5m0sdwk4v" path="res://audio/victory1.wav" id="2_fx381"]
+
+[resource]
+script = ExtResource("1_btff7")
+type = 16
+sound_effect = ExtResource("2_fx381")
+metadata/_custom_type_script = "uid://bq8x3k2nan4p7"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SoundEffect" load_steps=3 format=3 uid="uid://74ogl23cran3"]
+
+[ext_resource type="Script" uid="uid://bq8x3k2nan4p7" path="res://scripts/resources/sound_effect.gd" id="1_qtbvv"]
+[ext_resource type="AudioStream" uid="uid://v1f5dleq5ku6" path="res://audio/w_hurt_5.wav" id="2_qtbvv"]
+
+[resource]
+script = ExtResource("1_qtbvv")
+type = 6
+sound_effect = ExtResource("2_qtbvv")
+metadata/_custom_type_script = "uid://bq8x3k2nan4p7"
