@@ -1,5 +1,4 @@
 extends Area2D
-
 var _speed: float
 @onready var _warden: Warden = %Warden
 
@@ -8,8 +7,11 @@ func _ready() -> void:
 	
 	body_entered.connect(
 		func(body: Node2D):
-			if (position - _warden.position).length() < _warden.slice_radius:
-				if body is Fruit:
+			if body is Fruit:
+				var distance = (position - _warden.position).length()
+				var input_component = _warden.input_component
+				
+				if input_component.unlimited or distance < _warden.slice_radius:
 					_deal_slice_damage(body)
 	)
 

@@ -1,5 +1,4 @@
 extends Area2D
-
 @export var max_damage := 150.0
 @export var min_damage := 40.0
 @export var max_range := 500.0
@@ -11,6 +10,7 @@ var particle: CPUParticles2D
 var is_active := false
 var player: Node2D
 var damaged_enemies := {}
+var duration_timer: Timer
 
 func _ready():
 	monitoring = false
@@ -25,7 +25,6 @@ func _ready():
 	if particle:
 		particle.emitting = false
 	
-
 func _process(_delta):
 	if not is_active:
 		return
@@ -48,14 +47,13 @@ func _process(_delta):
 			particle.global_position = player.global_position
 
 func toggle():
-	is_active = !is_active
-	
-	if is_active:
+	# Only activate if not already active
+	if not is_active:
 		activate()
-	else:
-		deactivate()
 
 func activate():
+	is_active = true
+	
 	global_position = player.global_position
 	rotation = player.last_facing_direction.angle()
 	
@@ -70,12 +68,28 @@ func activate():
 	particle.initial_velocity_min = 100.0
 	particle.initial_velocity_max = 200.0
 	particle.spread = 15.0
-	
+	AudioManager.create_element_audio(0)
 	monitoring = true
 	particle.emitting = true
 	particle.restart()
 	
 	damaged_enemies.clear()
+	
+	if is_instance_valid(duration_timer):
+		duration_timer.queue_free()
+	
+	duration_timer = Timer.new()
+	duration_timer.wait_time = 10
+	duration_timer.one_shot = true
+	add_child(duration_timer)
+	
+	duration_timer.timeout.connect(
+		func():
+			deactivate()
+			if is_instance_valid(duration_timer):
+				duration_timer.queue_free()
+	)
+	duration_timer.start()
 	
 func deactivate():
 	is_active = false
@@ -124,7 +138,6 @@ func _physics_process(_delta):
 		
 		var damage_ratio = 1.0 - clamp((distance) / max_range, 0.0, 1.0)
 		var damage = lerp(min_damage, max_damage, damage_ratio)
-		
 		
 		enemy.apply_damage(damage, self)
 		

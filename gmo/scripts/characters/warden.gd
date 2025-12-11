@@ -9,7 +9,9 @@ extends GameCharacter
 @export var input_component: PlayerInputComponent
 @export var animation_manager_component: PlayerAnimationManagerComponent
 
-@export var slice_radius = 300
+var slice_radius = 500
+var original_slice_radius : float = 500  # Store the original value
+
 @export var respawn_time: float
 @export var respawn_point: Node2D
 
@@ -43,12 +45,12 @@ var active_abilities: Dictionary = {
 	"fertilized_farm": {"enabled": false, "params": {}}
 }
 
-var cd1: float
-var cd2: float
-var cd3: float
-var cd4: float
-var cd5: float
-var cd6: float
+var cd1: float = 5
+var cd2: float = 5
+var cd3: float = 5
+var cd4: float = 10
+var cd5: float = 7
+var cd6: float = 15
 
 var burn_crit_boost_active: bool = false
 var burn_crit_chance_bonus: float = 0.0
@@ -77,6 +79,8 @@ var shield_recharge_timer: Timer
 var death_sound_played: bool = false
 
 func _ready() -> void:
+	print("INITIAL slice_radius: ", slice_radius)
+
 	animation_tree.active = true
 	add_to_group("player")
 	
@@ -123,6 +127,7 @@ func _ready() -> void:
 	)
 	queue_redraw()
 
+
 func _input(event):
 	input_component.update(event)
 
@@ -135,16 +140,7 @@ func _on_received_damage(character: GameCharacter, _damage: float) -> void:
 		hurt_animation()
 		make_invulnerable(invulnerability_duration)
 
-#func _on_health_restored(character: GameCharacter, amount: float) -> void:
-	#if character == self:
-		#print("warden heak")
-
-# Handle when any character dies
-#func _on_character_died(character: GameCharacter) -> void:
-	#if character == self:
-		#print("warden dead!")
 	
-
 func make_invulnerable(duration: float) -> void:
 	if is_instance_valid(_invulnerability_timer):
 		_invulnerability_timer.queue_free()

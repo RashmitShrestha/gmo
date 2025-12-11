@@ -1,6 +1,8 @@
 class_name PlayerInputComponent
 extends InputComponent
 
+var unlimited : bool = false  # Changed from int to bool
+
 func update(event: InputEvent) -> void:
 	_parent.direction = Vector2(
 		int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left")),
@@ -38,17 +40,21 @@ func update(event: InputEvent) -> void:
 			
 	elif Input.is_action_just_pressed("special_5"):
 		if _parent.active_abilities["freeze_frame"]["enabled"]:
+			AudioManager.create_element_audio(1)
 			_activate_freeze_frame()
 		else:
 			print("Freeze Frame ability not unlocked yet!")
 	
 	elif Input.is_action_just_pressed("special_6"):
 		if _parent.active_abilities["fertilized_farm"]["enabled"]:
+			AudioManager.create_element_audio(2)
 			_activate_fertilized_farm()
 		else:
 			print("Fertilized Farm ability not unlocked yet!")
-	
-	if Input.is_action_pressed("left_click") and _parent.global_position.distance_to(mouse_pos) < _parent.slice_radius:
+			
+	var within_range = unlimited or _parent.global_position.distance_to(mouse_pos) < _parent.original_slice_radius
+
+	if Input.is_action_pressed("left_click") and within_range:
 		slice.clear_points()
 		if slice.element_ready >= 0 and slice.current_element < 0:
 			slice.start_trail(slice.element_ready)
@@ -71,9 +77,15 @@ func update(event: InputEvent) -> void:
 
 func _activate_freeze_frame() -> void:
 	var params = _parent.active_abilities["freeze_frame"]["params"]
-	var duration = params.get("duration", 4.0)
+	var duration = params.get("duration")
 	var speed_mult = params.get("speed_multiplier", 1.0)
-	var _unlimited_range = params.get("unlimited_range", false)
+	var unlimited_range = params.get("unlimited_range", false)
+		
+		
+	# Set unlimited flag instead of modifying slice_radius
+	if unlimited_range:
+		unlimited = true
+
 	
 	var enemies = get_tree().get_nodes_in_group("enemies")
 	for enemy in enemies:
@@ -96,6 +108,8 @@ func _activate_freeze_frame() -> void:
 			
 			if speed_mult > 1.0:
 				_parent.base_speed /= speed_mult
+				
+			unlimited = false
 			
 			freeze_timer.queue_free()
 	)
