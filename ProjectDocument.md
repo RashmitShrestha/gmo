@@ -287,7 +287,7 @@ To control the player's movement and viewing area, I created world boundaries. F
 - Game Feel (Jordan)
 - Narrative Design (Arthur)
 - Narrative Design (Jonathan)
-- Audio Manager (Claire)
+- Presskit And Trailer (Claire)
 
 ## Audio
 I created the audio system and created all the music.
@@ -341,29 +341,14 @@ The how to play is on the title screen. After you click the middle button it tak
 
 [How to Play Script](https://github.com/RashmitShrestha/gmo/blob/main/gmo/how_to_play.gd)
 
-## Audio Manager (Claire)
-My secondary role became creating the Audio Manager due to team priorities. Since our producer, Rash, was busy with their primary role, we determined that the audio manager was a more important task overall compared to the presskit and trailer. My main responsibility in this sub-role was to take the required audio cues and integrate them into the game.
+## Presskit and Trailer (Claire)
+Link to presskit: https://clairehbear.github.io/gmo-presskit/ 
 
-### Implementation Process
-To handle audio, I created an AudioManager [class](https://github.com/RashmitShrestha/gmo/blob/39e0cf9d3af0f23ba79c83621943b86659ee1b0d/gmo/scripts/audio_manager.gd) and scene. I used an online [skeleton code](https://github.com/Aarimous/AudioManager) and [tutorial](https://www.youtube.com/watch?v=Egf2jgET3nQ&t=14s) as a base for both the AudioManager and the SoundEffect scripts.
+I created a basic React web app as the game’s presskit. It showcases the game trailer and several key screenshots. The presskit also includes a dedicated team section and a game synopsis to provide further context on the project goals and narrative. The site concludes with a large announcement confirming the game is live on Itch.io and includes a direct link to redirect visitors to the game page.
 
-I first created dedicated sound effect resources using the raw audio files provided in [resources/sound_effects](https://github.com/RashmitShrestha/gmo/tree/main/gmo/resources/sound_effects). These sound effect resources were then loaded into the AudioManager scene/node.
+Link to trailer: https://youtu.be/CVhFLi_56sM 
 
-<img width="454" height="619" alt="image" src="https://github.com/user-attachments/assets/988ba039-2154-4faa-afa5-2a3f290570f4" />
-
-The AudioManager was then configured as a global autoload, meaning that any script within the project could call on it.
-
-<img width="1164" height="212" alt="image" src="https://github.com/user-attachments/assets/e6e35e24-c1a6-4511-9fe0-49b99416612e" />
-
-The AudioManager uses an enum within the [SoundEffect](https://github.com/RashmitShrestha/gmo/blob/39e0cf9d3af0f23ba79c83621943b86659ee1b0d/gmo/scripts/resources/sound_effect.gd) to determine the effect type, which determines when it should be played. This is also used to allow the manager to [randomly select a specific effect](https://github.com/RashmitShrestha/gmo/blob/39e0cf9d3af0f23ba79c83621943b86659ee1b0d/gmo/scripts/audio_manager.gd#L65) from a selection when multiple sounds are provided.
-
-### Audio Events
-The functions within the AudioManager were called from [functions within various game scripts](https://github.com/RashmitShrestha/gmo/blob/39e0cf9d3af0f23ba79c83621943b86659ee1b0d/gmo/scripts/cursor.gd#L30) to trigger sound effects based on gameplay events:
-- A sword sound when damage is inflicted.
-- A random damage sound played when the player character is hit.
-- A random death sound played upon player character defeat.
-- A random start sound played when a new enemy wave begins.
-- A random victory sound played when an enemy wave is successfully cleared.
+I created a short announcement trailer using Final Cut Pro, stitching together direct gameplay with snippets of the skills from the skill tree that can be unlocked. The trailer is short enough to keep the audience’s attention while also displaying what some of the core game mechanics are, including the fact that the character is revived after being killed. I also used many of the funny sound clips that the character says throughout the game, as it shows the playful nature that we are trying to achieve with our story and game. 
 
 
 ## Other Contributions ##
@@ -405,4 +390,26 @@ The functions within the AudioManager were called from [functions within various
   *Damage system* - The DamageComponent and [GameCharacter](https://github.com/RashmitShrestha/gmo/blob/39e0cf9d3af0f23ba79c83621943b86659ee1b0d/gmo/scripts/characters/character.gd#L56) classes work with one another to store and deliver information about health
 
 ### Claire
+#### Asset Scaling
 I implemented the assets for several fruits and the player character. Because the player character and fruit assets had different resolutions, Godot's default scaling behavior made the sprites appear blurry. To fix this, I used Godot documentation and external guides to adjust the resource settings. This allowed me to appropriately scale the resources within the engine, and prevented the blurriness.
+
+#### Audio Manager
+To handle audio, I created an AudioManager [class](https://github.com/RashmitShrestha/gmo/blob/39e0cf9d3af0f23ba79c83621943b86659ee1b0d/gmo/scripts/audio_manager.gd) and scene. I used an online [skeleton code](https://github.com/Aarimous/AudioManager) and [tutorial](https://www.youtube.com/watch?v=Egf2jgET3nQ&t=14s) as a base for both the AudioManager and the SoundEffect scripts.
+
+I first created dedicated sound effect resources using the raw audio files provided in [resources/sound_effects](https://github.com/RashmitShrestha/gmo/tree/main/gmo/resources/sound_effects). These sound effect resources were then loaded into the AudioManager scene/node.
+
+<img width="454" height="619" alt="image" src="https://github.com/user-attachments/assets/988ba039-2154-4faa-afa5-2a3f290570f4" />
+
+The AudioManager was then configured as a global autoload, meaning that any script within the project could call on it.
+
+<img width="1164" height="212" alt="image" src="https://github.com/user-attachments/assets/e6e35e24-c1a6-4511-9fe0-49b99416612e" />
+
+The AudioManager uses an enum within the [SoundEffect](https://github.com/RashmitShrestha/gmo/blob/39e0cf9d3af0f23ba79c83621943b86659ee1b0d/gmo/scripts/resources/sound_effect.gd) to determine the effect type, which determines when it should be played. This is also used to allow the manager to [randomly select a specific effect](https://github.com/RashmitShrestha/gmo/blob/39e0cf9d3af0f23ba79c83621943b86659ee1b0d/gmo/scripts/audio_manager.gd#L65) from a selection when multiple sounds are provided.
+
+##### Audio Events
+The functions within the AudioManager were called from [functions within various game scripts](https://github.com/RashmitShrestha/gmo/blob/39e0cf9d3af0f23ba79c83621943b86659ee1b0d/gmo/scripts/cursor.gd#L30) to trigger sound effects based on gameplay events:
+- A sword sound when damage is inflicted.
+- A random damage sound played when the player character is hit.
+- A random death sound played upon player character defeat.
+- A random start sound played when a new enemy wave begins.
+- A random victory sound played when an enemy wave is successfully cleared.
