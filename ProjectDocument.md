@@ -14,7 +14,10 @@ You are Warden Gramsay, a world renowed chef. One day, the Cornucorpia emerges a
 ## Gameplay Explanation ##
 
 ### Instructions
-WASD to move, shift to dash. F to access the peach tree's upgrades when near it. Press 1, 2, or 3 to temporarily give your slices special effects (if unlocked from the peach tree). To buy upgrades from the peach tree, you use XP which is gained from killing enemies.
+WASD to move, shift to dash. 
+Pressing space brings out his knife in the form of your cursor! You must move your knife over enemies within a certain radius from you, slicing through them to victory. The amount of damage they take depends on mouse movement velocity - slice faster for more damage!
+The same thing applies to left click holding.
+F to access the peach tree's upgrades when near it. Upon unlocking, Press 1, 2, or 3 to temporarily give your slices special effects (if unlocked from the peach tree). To buy upgrades from the peach tree, you use XP which is gained from killing enemies.
 
 ### Strategy
 This game has a variety of enemies, so it's best to understand how to deal with each one. Enemies have two targets: you or the peach tree. Some will target the tree and some will target you. For those that target the peach tree, just take them out as soon as possible. However, the strategy gets more interesting for when enemies attack YOU.
@@ -59,11 +62,12 @@ Used this to figure out wave stuff: https://www.youtube.com/watch?v=_1bVJSglte8
 Arthur - :
 Command logic taken from [HW1](https://github.com/dr-jam/CommandPatternExercise/blob/master/ElkSong/scripts/commands/command.gd)
 
-Claire - :
-[Asset Pack](https://thelazystone.itch.io/post-apocalypse-pixel-art-asset-pack)
-[Health Bar Tutorial](https://youtu.be/UEJcUnq2dfU)
-[Audio Manager Starter Code](https://github.com/Aarimous/AudioManager)
-[Audio Manager Tutorial](https://www.youtube.com/watch?v=Egf2jgET3nQ&t=14s)
+Claire - : 
+
+- [Asset Pack](https://thelazystone.itch.io/post-apocalypse-pixel-art-asset-pack)
+- [Health Bar Tutorial](https://youtu.be/UEJcUnq2dfU)
+- [Audio Manager Starter Code](https://github.com/Aarimous/AudioManager)
+- [Audio Manager Tutorial](https://www.youtube.com/watch?v=Egf2jgET3nQ&t=14s)
 
 
 # Team Member Contributions
@@ -338,6 +342,8 @@ The actual vignette shader code is from the Godot Shader website [here](https://
 
 *Cursor* The cursor [changes](https://github.com/RashmitShrestha/gmo/blob/0b78e66ce5507b6459ef47e1d31f162770678d49/gmo/scenes/cursor_manager.gd#L1) when you go into attack mode, so the player immediately knows if they are holding down the correct button to be able to slice down enemies. 
 
+*Revival Counter* Added a [revival timer](https://github.com/RashmitShrestha/gmo/blob/53264d633468289af05d3e3055ebd53f3a4e3b5e/gmo/scripts/characters/warden.gd#L389C1-L394C31) to let the player know that Warden is being revived and game isn't over. This was important because originally he only played death animation and stayed still for 5 seconds, making the player wonder if this was game over or if there was more to come.
+
 I also introduced visual feedback in sprites as well. I drew unlocked, ready to unlock, and unlocked peaches for the skill tree menu, so the player can instantly see which nodes they can unlock by color alone.
 
 ## Narrative Design (Arthur)
@@ -365,7 +371,7 @@ The how to play is on the title screen. After you click the middle button it tak
 ## Presskit and Trailer (Claire)
 Link to presskit: https://clairehbear.github.io/gmo-presskit/ 
 
-I created a basic React web app as the game’s presskit. It showcases the game trailer and several key screenshots. The presskit also includes a dedicated team section and a game synopsis to provide further context on the project goals and narrative. The site concludes with a large announcement confirming the game is live on Itch.io and includes a direct link to redirect visitors to the game page.
+I created a basic React web app as the game’s presskit. It showcases the game trailer and several key screenshots. The presskit also includes a dedicated team section and a game synopsis to provide further context on the project goals and narrative. The background image is a nod to the early map design that we created, which we ended up deviating from heavily in the end. The site concludes with a large announcement confirming the game is live on Itch.io and includes a direct link to redirect visitors to the game page.
 
 Link to trailer: https://youtu.be/CVhFLi_56sM 
 
@@ -434,3 +440,12 @@ The functions within the AudioManager were called from [functions within various
 - A random death sound played upon player character defeat.
 - A random start sound played when a new enemy wave begins.
 - A random victory sound played when an enemy wave is successfully cleared.
+
+### Jordan
+#### Cutscenes
+I illustrated the game [cutscenes](https://github.com/RashmitShrestha/gmo/tree/main/gmo/assets/Cutscenes), helping with storytelling and narration. It gives players a better understanding of the lore and game, and while making the game feel complete and more alive.
+
+### UI Aesthetics
+I refined UI buttons and menus from their base look, making them all cohesive throughout the game and following a similar palette. I wanted the game experience as a whole, even down to the buttons, to feel thoughtfully planned and feel nice for the user. I also modified the existing "settings" button to say "tutorial" instead. I edited styleboxes and themes to give everything a cohesive finish, mainly editing colors, padding, and borders.
+These included: tutorial menu containers, peach tree buttons, and most menu screens throughout the game.
+![Peach tree UI buttons](<ProjectDocument Images/jordan-ui.png>)
