@@ -82,7 +82,7 @@ Add additional contributions in the Other Contributions section.
 - Producer (Rashmit)
 - Animation and Visuals (Jordan)
 - Systems Tools Engineer (Zi Zeng)
-- Physics and Movement
+- Physics and Movement (Arthur)
 - Game Logic (Jonathan)
 
 ## Producer (Rashmit, Rashura on Github)
@@ -170,7 +170,7 @@ Warden has a special [BlendSpace2D](https://github.com/RashmitShrestha/gmo/commi
 All player and enemy movement was handled by me. I designed the [base classes](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/characters/character.gd) which all other behaviors derive from. It holds information which the characters will use to determine their behavior such as what to target or whether to move closer. I used [commands](https://github.com/RashmitShrestha/gmo/tree/main/gmo/scripts/commands) to implement all movement, managing which component to use using a [CommandManagerComponent](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/components/character_components/command_manager_component.gd) class. Regarding components themselves, I developed many different kinds of movements so no one fruit feels like a copy with just tweaked stats. To allow for more complex movement, I utilized timers heavily to determine how long a component holding some movement behavior should run for.
 
 ### Physics
-Area2Ds are used extensively in this project, being the main form of communicating damage. I made a [DamageComponent](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/components/character_components/damage_component.gd) that makes adding hitboxes incredibly straightforward, merely adding it as a child and specifying the damage. To prevent Warden from dying by taking damage every game tick, I added management for an [invulnerability state](https://github.com/RashmitShrestha/gmo/blob/04be934246b59ae3338ad292b6b36918724bcfb5/gmo/scripts/characters/character.gd#L57) which prevents hitboxes from killing Warden nearly instantaneously. I altered the layers and masks of the bodies in our game to ensure the cursor, enemies, and projectiles hit what they're supposed to hit.
+Area2Ds are used extensively in this project, being the main form of communicating damage and the environmental surroundings. I made a [DamageComponent](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/components/character_components/damage_component.gd) that makes adding hitboxes incredibly straightforward, merely adding it as a child and specifying the damage. To prevent Warden from dying by taking damage every game tick, I added management for an [invulnerability state](https://github.com/RashmitShrestha/gmo/blob/04be934246b59ae3338ad292b6b36918724bcfb5/gmo/scripts/characters/character.gd#L57) which prevents hitboxes from killing Warden nearly instantaneously. I altered the layers and masks of the bodies in our game to ensure the cursor, enemies, and projectiles hit what they're supposed to hit.
 
 ## Game Logic (Jonathan, Jonathanleww on Github)
 
