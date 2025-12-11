@@ -3,6 +3,9 @@ extends CommandManagerComponent
 
 func update():
 	if null == _parent.curr_command:
+		if not is_instance_valid(_parent.target):
+			return
+			
 		if _parent.position.distance_to(_parent.target.position) > _parent.max_dist:
 			_parent.curr_command = _parent.default_command
 		else:

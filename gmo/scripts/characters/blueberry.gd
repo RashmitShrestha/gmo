@@ -18,8 +18,8 @@ func _ready():
 
 
 func _physics_process(_delta) -> void:
-	reactive_component.update()
 	super(_delta)
+	reactive_component.update()
 
 
 func _process(_delta) -> void:

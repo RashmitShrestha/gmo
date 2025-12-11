@@ -3,10 +3,8 @@ extends CommandManagerComponent
 
 
 func update() -> void:
-	SignalBus.player_died.connect(
-		func():
-			_parent.curr_command = _parent.died_command
-	)
+	if not SignalBus.player_died.is_connected(_on_player_died):
+		SignalBus.player_died.connect(_on_player_died)
 	
 	if _parent.curr_command == _parent.dash_command and _parent.damaged:
 		_parent.curr_command.force_finish()
@@ -24,3 +22,7 @@ func update() -> void:
 
 	if Command.Status.DONE == _parent.curr_command.execute(_parent):
 		_parent.curr_command = null
+
+
+func _on_player_died() -> void:
+	_parent.curr_command = _parent.died_command

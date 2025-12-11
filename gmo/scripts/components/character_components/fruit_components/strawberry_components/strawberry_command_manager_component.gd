@@ -1,8 +1,12 @@
 class_name StrawberryCommandManagerComponent
 extends CommandManagerComponent
 
+
 func update():
 	if null == _parent.curr_command:
+		if not is_instance_valid(_parent.target):
+			return
+			
 		var dist = _parent.target.position.distance_to(_parent.position)
 		
 		if dist > _parent.max_dist:

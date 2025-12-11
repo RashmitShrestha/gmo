@@ -149,12 +149,13 @@ func create_random_wave_victory_audio() -> void:
 	# Pick a random available type
 	var random_type = available_types[randi() % available_types.size()]
 	create_audio(random_type)
-
+	
 func create_element_audio(element : int) -> void:
 	var element_types = [
 		SoundEffect.SOUND_EFFECT_TYPE.FLAMEFLINGER,
 		SoundEffect.SOUND_EFFECT_TYPE.FREEZEFRAME,
 		SoundEffect.SOUND_EFFECT_TYPE.FERTILIZEDFARM,
+
 	]
 	
 	# Filter to only include types that are actually registered
@@ -168,5 +169,4 @@ func create_element_audio(element : int) -> void:
 		return
 	
 	# Pick a random available type
-	
 	create_audio(element_types[element])

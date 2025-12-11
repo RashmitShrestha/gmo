@@ -17,12 +17,16 @@ func execute(character: Cornucopia) -> Status:
 		_timer.start(3.0)
 
 	if not _timer.is_stopped():
-		if (character.position - character.peach_tree.position).length() < 700:
+		if (character.position - character.peach_tree.position).length() < 750:
 			character.velocity = _speed * (character.position - character.peach_tree.position).normalized()
 		elif (character.position - character.peach_tree.position).length() > 800:
 			character.velocity = -_speed * (character.position - character.peach_tree.position).normalized()
 		else:
 			character.velocity = Vector2.ZERO
+			_timer.queue_free()
+			_timer = null
+			
+			return Command.Status.DONE
 		return Command.Status.ACTIVE
 	else:
 		_timer.queue_free()

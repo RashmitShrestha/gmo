@@ -1,6 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://c8dtqfrkvmehl"]
+[gd_scene load_steps=14 format=3 uid="uid://coegm24e5dpo7"]
 
-[ext_resource type="Script" uid="uid://bt8g046rwex5s" path="res://how_to_play.gd" id="1_htp"]
+[ext_resource type="Script" path="res://how_to_play.gd" id="1_htp"]
 [ext_resource type="Texture2D" uid="uid://bsna14p8dk1js" path="res://assets/Main Menu/main_menu_background.png" id="2_htp"]
 [ext_resource type="FontFile" uid="uid://dxqub4bcdsgb3" path="res://assets/PixelatedEleganceRegular-ovyAA.ttf" id="3_htp"]
 [ext_resource type="Texture2D" uid="uid://ds7687q0xrhfy" path="res://assets/tutorial_photos/Untitled.png" id="4_pg7y5"]
@@ -13,17 +13,44 @@
 default_font = ExtResource("3_htp")
 default_font_size = 18
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v1860"]
+bg_color = Color(0.13623098, 0.032596413, 0.0057530054, 0.76862746)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_section"]
-bg_color = Color(0.1, 0.1, 0.15, 0.9)
+bg_color = Color(0.13665143, 0.031396583, 0.023338722, 0.9019608)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.4, 0.6, 0.4, 0.8)
+border_color = Color(0.51179034, 0.73032856, 0.5107278, 0.8)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s68b3"]
+bg_color = Color(0.66250634, 0.57630044, 0.32758826, 0.7137255)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 6.0
+expand_margin_top = 6.0
+expand_margin_right = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wuiup"]
+bg_color = Color(0.25490198, 0.09019608, 0.03137255, 0.8980392)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
 
 [node name="HowToPlay" type="Control"]
 layout_mode = 3
@@ -64,6 +91,7 @@ theme_override_constants/separation = 20
 [node name="TitlePanel" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v1860")
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer/TitlePanel"]
 layout_mode = 2
@@ -371,5 +399,9 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_s68b3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wuiup")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wuiup")
 text = "BACK TO MENU"

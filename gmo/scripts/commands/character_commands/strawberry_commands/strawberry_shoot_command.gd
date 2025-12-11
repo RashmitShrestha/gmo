@@ -33,7 +33,8 @@ func execute(character: Strawberry) -> Status:
 		character.velocity = Vector2.ZERO
 		
 		_timer.timeout.connect(func(): _shoot(character))
-	elif character.target.position.distance_to(character.position) <= character.min_dist or \
+	elif not is_instance_valid(character.target) or \
+		character.target.position.distance_to(character.position) <= character.min_dist or \
 		character.target.position.distance_to(character.position) >= character.max_dist:
 		_timer.queue_free()
 		character.is_attacking = false

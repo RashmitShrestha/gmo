@@ -9,13 +9,13 @@ extends GameCharacter
 @export var input_component: PlayerInputComponent
 @export var animation_manager_component: PlayerAnimationManagerComponent
 
-var slice_radius = 500
-var original_slice_radius : float = 500  # Store the original value
-
+var slice_radius = 300
+var original_slice_radius = 500
 @export var respawn_time: float
 @export var respawn_point: Node2D
 
 @onready var animation_tree: AnimationTree = $AnimationTree
+@onready var respawn_timer: Label = $RespawnTimer
 
 var last_facing_direction := Vector2.RIGHT
 var _invulnerability_timer: Timer
@@ -45,12 +45,12 @@ var active_abilities: Dictionary = {
 	"fertilized_farm": {"enabled": false, "params": {}}
 }
 
-var cd1: float = 5
-var cd2: float = 5
-var cd3: float = 5
-var cd4: float = 10
-var cd5: float = 7
-var cd6: float = 15
+var cd1: float
+var cd2: float
+var cd3: float
+var cd4: float
+var cd5: float
+var cd6: float
 
 var burn_crit_boost_active: bool = false
 var burn_crit_chance_bonus: float = 0.0
@@ -79,8 +79,6 @@ var shield_recharge_timer: Timer
 var death_sound_played: bool = false
 
 func _ready() -> void:
-	print("INITIAL slice_radius: ", slice_radius)
-
 	animation_tree.active = true
 	add_to_group("player")
 	
@@ -115,18 +113,18 @@ func _ready() -> void:
 				if not death_sound_played:
 					death_sound_played = true
 					AudioManager.create_random_player_death_audio()
-				await warden_death_animation()
+					await warden_death_animation()
 
-				var tree = get_tree().get_first_node_in_group("peach_tree")
-				if tree and tree.is_dead:
-					print("warden died and tree is dead")
-					SignalBus.game_over.emit()
-				else:
-					print("warden died but tree is alive")
-					SignalBus.player_died.emit()
+					var tree = get_tree().get_first_node_in_group("peach_tree")
+					if tree and tree.is_dead:
+						print("warden died and tree is dead")
+						SignalBus.player_died.emit()
+						SignalBus.game_over.emit()
+					else:
+						print("warden died but tree is alive")
+						SignalBus.player_died.emit()
 	)
 	queue_redraw()
-
 
 func _input(event):
 	input_component.update(event)
@@ -140,7 +138,16 @@ func _on_received_damage(character: GameCharacter, _damage: float) -> void:
 		hurt_animation()
 		make_invulnerable(invulnerability_duration)
 
+#func _on_health_restored(character: GameCharacter, amount: float) -> void:
+	#if character == self:
+		#print("warden heak")
+
+# Handle when any character dies
+#func _on_character_died(character: GameCharacter) -> void:
+	#if character == self:
+		#print("warden dead!")
 	
+
 func make_invulnerable(duration: float) -> void:
 	if is_instance_valid(_invulnerability_timer):
 		_invulnerability_timer.queue_free()
@@ -378,3 +385,11 @@ func check_freeze_on_hit() -> bool:
 	if not freeze_on_hit_active:
 		return false
 	return randf() < freeze_on_hit_chance
+
+
+func update_respawn_label(time_left) -> void:
+	if time_left <= 0:
+		respawn_timer.visible = false
+	else:
+		respawn_timer.text = str(ceil(time_left))
+		respawn_timer.visible = true

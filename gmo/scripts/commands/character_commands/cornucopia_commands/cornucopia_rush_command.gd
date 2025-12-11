@@ -10,15 +10,16 @@ func _init(speed: float, cornucopia: Cornucopia) -> void:
 	_speed = speed
 	SignalBus.char_damaged_char.connect(
 		func(source: GameCharacter, _target: GameCharacter):
-			if source == cornucopia:
+			if source == cornucopia and cornucopia.curr_command == cornucopia.rush_command:
 				_done = true
 	)
 
 
 func execute(character: Cornucopia) -> Status:
 	if _timer == null:
+		_done = false
 		_starting_health = character.curr_health
-		character.is_attacking = false
+		character.is_attacking = true
 		_timer = Timer.new()
 		_timer.one_shot = true
 		character.add_child(_timer)
@@ -29,6 +30,7 @@ func execute(character: Cornucopia) -> Status:
 	if _starting_health - character.curr_health >= 500 or \
 		_timer.is_stopped() or \
 		_done:
+		character.is_attacking = false
 		_done = true
 		_timer.queue_free()
 		return Command.Status.DONE

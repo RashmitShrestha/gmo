@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ds2h37wv00i2f"]
+[gd_scene load_steps=23 format=3 uid="uid://ds2h37wv00i2f"]
 
 [ext_resource type="Script" uid="uid://d2ma5d13r27x6" path="res://main_menu.gd" id="1_glbon"]
 [ext_resource type="Texture2D" uid="uid://bsna14p8dk1js" path="res://assets/Main Menu/main_menu_background.png" id="2_j5v2v"]
@@ -6,11 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://bjffvldeouo62" path="res://assets/Main Menu/gmo_logo.png" id="3_iotk1"]
 [ext_resource type="Texture2D" uid="uid://bu7vac1dmj66k" path="res://assets/Main Menu/Play_Pressed.png" id="4_nlkkf"]
 [ext_resource type="Texture2D" uid="uid://dayg7ksqx01rp" path="res://assets/Main Menu/Play_Hover.png" id="5_0o4t1"]
-[ext_resource type="Texture2D" uid="uid://f88jsdr3arv3" path="res://assets/Main Menu/Settings_Not-Pressed.png" id="5_qe12f"]
-[ext_resource type="Texture2D" uid="uid://b0alkfsthk2d6" path="res://assets/Main Menu/Settings_Pressed.png" id="6_8qtwp"]
+[ext_resource type="Texture2D" uid="uid://6rjxtkc3ca44" path="res://assets/Main Menu/Tutorial_Button.png" id="6_j5v2v"]
 [ext_resource type="Texture2D" uid="uid://bt7nl78se3vao" path="res://assets/Main Menu/Quit_Not-Pressed.png" id="7_dy7ct"]
+[ext_resource type="Texture2D" uid="uid://c1u3dxkvy1um7" path="res://assets/Main Menu/Tutorial_Button_Pressed.png" id="7_iotk1"]
 [ext_resource type="Texture2D" uid="uid://o0mh0i0rhbh7" path="res://assets/Main Menu/Quit_Pressed.png" id="8_0o4t1"]
-[ext_resource type="Texture2D" uid="uid://k3de88idqxss" path="res://assets/Main Menu/Settings_Hover.png" id="8_j5v2v"]
 [ext_resource type="Texture2D" uid="uid://320l1b0da5y8" path="res://assets/Main Menu/Quit_Hover.png" id="11_iotk1"]
 [ext_resource type="AudioStream" uid="uid://otn88j7poxqr" path="res://music/gmo_main.mp3" id="13_iotk1"]
 
@@ -137,9 +136,9 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(228, 63)
 layout_mode = 2
 shortcut = SubResource("Shortcut_w44g7")
-texture_normal = ExtResource("5_qe12f")
-texture_pressed = ExtResource("6_8qtwp")
-texture_hover = ExtResource("8_j5v2v")
+texture_normal = ExtResource("6_j5v2v")
+texture_pressed = ExtResource("7_iotk1")
+texture_hover = ExtResource("7_iotk1")
 stretch_mode = 0
 
 [node name="Quit" type="TextureButton" parent="CenterContainer/VBoxContainer"]

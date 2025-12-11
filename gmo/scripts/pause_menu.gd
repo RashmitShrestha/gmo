@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var quit_button: Button = %QuitButton
 
 func _ready() -> void:
+	add_to_group("pause_menu")
 	tutorial_button.pressed.connect(_on_tutorial_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
 
@@ -35,9 +36,8 @@ func hide_menu() -> void:
 	get_tree().paused = false
 
 func _on_tutorial_pressed() -> void:
-	SignalBus.tutorial_return_to_game = true
-	get_tree().paused = false
-	get_tree().change_scene_to_file("res://how_to_play.tscn")
+	control.visible = false
+	SignalBus.show_tutorial_overlay.emit()
 
 func _on_quit_pressed() -> void:
 

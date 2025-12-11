@@ -21,4 +21,5 @@ func execute(character: Cornucopia) -> Status:
 		return Command.Status.ACTIVE
 	else:
 		_timer.queue_free()
+		_timer = null
 		return Command.Status.DONE

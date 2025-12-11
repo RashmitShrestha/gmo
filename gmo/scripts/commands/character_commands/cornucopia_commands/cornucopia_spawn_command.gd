@@ -54,6 +54,7 @@ func _spawn(character: Cornucopia) -> void:
 
 func execute(character: Cornucopia) -> Status:
 	if _timer == null:
+		character.is_attacking = true
 		_timer = Timer.new()
 		_spawn_timer = Timer.new()
 		_timer.one_shot = true
@@ -66,10 +67,11 @@ func execute(character: Cornucopia) -> Status:
 		
 	if not _timer.is_stopped():
 		var dir: Vector2 = (character.position - character.peach_tree.position).normalized()
-		character.velocity = 2 * character.speed * dir.rotated(PI / 2)
+		character.velocity = 2.5 * character.speed * dir.rotated(PI / 2)
 		return Command.Status.ACTIVE
 	else:
 		character.velocity = Vector2.ZERO
 		_spawn_timer.queue_free()
 		_timer.queue_free()
+		character.is_attacking = false
 		return Command.Status.DONE

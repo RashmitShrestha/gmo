@@ -1,7 +1,7 @@
 class_name PlayerInputComponent
 extends InputComponent
 
-var unlimited : bool = false  # Changed from int to bool
+var unlimited : bool = false  
 
 func update(event: InputEvent) -> void:
 	_parent.direction = Vector2(
