@@ -293,7 +293,7 @@ The how to play is on the title screen. After you click the middle button it tak
 ### Arthur
   *Knockback* - Added [knockback](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/commands/character_commands/knockback_command.gd) to the enemies and Warden to add more "oomph" to the attacks, adding to game juice and feel.
 
-  *Invulnerability blinker* - Whenever damaged or respawning, a (blinking effect)[https://github.com/RashmitShrestha/gmo/blob/6db497439bc9d0d4195d60ce0a771e0a6d963408/gmo/scripts/characters/warden.gd#L169] to Warden to is played, indicating he is currently unable to be damaged, aiding usability by communicating invulnerability purely from visuals.
+  *Invulnerability blinker* - Whenever damaged or respawning, a [blinking effect](https://github.com/RashmitShrestha/gmo/blob/6db497439bc9d0d4195d60ce0a771e0a6d963408/gmo/scripts/characters/warden.gd#L169) to Warden to is played, indicating he is currently unable to be damaged, aiding usability by communicating invulnerability purely from visuals.
 
   *Health damage indicator* - After taking damage, instead of the health bar simply dropping to the new health, there's a [second health bar](https://github.com/RashmitShrestha/gmo/blob/6db497439bc9d0d4195d60ce0a771e0a6d963408/gmo/scripts/ui/health_bar.gd#L41) that falls down to the new health, reducing the jarring effect of seeing the health jump and allowing the user to see how much damage they actually took visually.
 
