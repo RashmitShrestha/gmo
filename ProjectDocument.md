@@ -37,6 +37,9 @@ ProjectDocument.md my other contribution sections was written by ai.
 Used this to figure out how to make tools: https://www.youtube.com/watch?v=s1dKNBBVJ_M
 Used this to figure out wave stuff: https://www.youtube.com/watch?v=_1bVJSglte8
 
+Arthur - :
+Command logic taken from [HW1](https://github.com/dr-jam/CommandPatternExercise/blob/master/ElkSong/scripts/commands/command.gd)
+
 # Team Member Contributions
 
 This section be repeated once for each team member. Each team member should provide their name and GitHub user information.
@@ -79,6 +82,7 @@ Add additional contributions in the Other Contributions section.
 - Producer (Rashmit)
 - Animation and Visuals (Jordan)
 - Systems Tools Engineer (Zi Zeng)
+- Physics and Movement
 
 ## Producer (Rashmit, Rashura on Github)
 
@@ -159,12 +163,24 @@ Warden has a special [BlendSpace2D](https://github.com/RashmitShrestha/gmo/commi
 
 *Signal Based Communication Architecture* - Implemented the SignalBus singleton that provides decoupled communication between game systems. Added signals for wave events, enemy tracking, player/tree death, and health changes. [SignalBus Script](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/SignalBus.gd)
 
+## Physics and Movement (Arthur, arthnguy and artngu on GitHub)
+
+### Movement
+All player and enemy movement was handled by me. I designed the [base classes](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/characters/character.gd) which all other behaviors derive from. It holds information which the characters will use to determine their behavior such as what to target or whether to move closer. I used [commands](https://github.com/RashmitShrestha/gmo/tree/main/gmo/scripts/commands) to implement all movement, managing which component to use using a [CommandManagerComponent](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/components/character_components/command_manager_component.gd) class. Regarding components themselves, I developed many different kinds of movements so no one fruit feels like a copy with just tweaked stats. To allow for more complex movement, I utilized timers heavily to determine how long a component holding some movement behavior should run for.
+
+### Physics
+Area2Ds are used extensively in this project, being the main form of communicating damage. I made a [DamageComponent](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/components/character_components/damage_component.gd) that makes adding hitboxes incredibly straightforward, merely adding it as a child and specifying the damage. To prevent Warden from dying by taking damage every game tick, I added management for an [invulnerability state](https://github.com/RashmitShrestha/gmo/blob/04be934246b59ae3338ad292b6b36918724bcfb5/gmo/scripts/characters/character.gd#L57) which prevents hitboxes from killing Warden nearly instantaneously. I altered the layers and masks of the bodies in our game to ensure the cursor, enemies, and projectiles hit what they're supposed to hit.
+
+### Enemy Movement and Behavior
+
+All enemy movement was handled by me
+
 # Sub-Roles 
 
 - Audio (Rashmit)
 - Gameplay Testing (Zi)
 - Game Feel (Jordan)
-- Others, add roles here!
+- Narrative Design (Arthur)
 
 ## Audio
 I created the audio system and created all the music.
@@ -198,6 +214,15 @@ The actual vignette shader code is from the Godot Shader website [here](https://
 
 I also introduced visual feedback in sprites as well. I drew unlocked, ready to unlock, and unlocked peaches for the skill tree menu, so the player can instantly see which nodes they can unlock by color alone.
 
+## Narrative Design (Arthur)
+
+I incorporated our narrative into the core gameplay loop (skill tree and abilities handled by others)
+*Enemy logic* In the story, the Cornucopia is the big bad and all problems come from it. Based on this, I designed all the basic fruits to be diverse so they perfectly complement each other to express their interconnected organization. As the Cornucopia is the big bad of the game and the cause of the chaos, one of its attacks is where it spawns fruits to communicate its role in the story.
+
+*Method of attack* As Warden is a chef, his method of attack to be from slashing. To heavily emphasize his slashing, I coded the damage system to revolve around the [cursor](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/cursor.gd). Damage is dealt by dragging the cursor across enemies, the damage dealt being dependent on the velocity and all other modifiers based on the peach tree.
+
+*Respawning* In the story, the peach tree is able to revive Warden as long as the peach tree is up. I incorporated [respawning](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/commands/character_commands/player_commands/player_died_command.gd) in the game, so as long as the peach tree is alive, Warden can respawn.
+
 ## Other Contributions ##
 
 ### Zi Zeng:
@@ -224,3 +249,12 @@ I also introduced visual feedback in sprites as well. I drew unlocked, ready to 
   *Pause Menu System* - Designed and implemented a complete pause menu system with multiple screens including main pause menu, settings menu, and help/tutorial screen. The pause menu allows players to quit to main menu, view controls and gameplay instructions, and resume play. Integrated pause functionality with Godot's scene tree pausing system to freeze gameplay while maintaining UI responsiveness. Added signal-based navigation between pause menu screens for clean state management. [Pause Menu Script](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/pause_menu.gd) | [Pause Menu Scene](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scenes/ui/pause_menu.tscn)
 
   *Audio Production and Recording* - Self-recorded and produced three custom audio effects for key game moments: victory sound, defeat sound, and skill purchase sound. Used audio recording and editing to create distinct, satisfying audio feedback for player actions. Integrated these audio files into the game end screen (victory/defeat) and skill tree (purchase confirmation), enhancing player feedback and game feel. The audio adds emotional weight to winning/losing and makes skill purchases feel rewarding. [Victory/Defeat Audio Integration](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scenes/ui/game_end_screen.gd#L12-L13) | [Purchase Sound Integration](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/skill_tree.gd#L101-L102) | [Audio Files](https://github.com/RashmitShrestha/gmo/tree/main/gmo/audio)
+
+### Arthur
+  *Knockback* - Added [knockback](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/commands/character_commands/knockback_command.gd) to the enemies and Warden to add more "oomph" to the attacks, adding to game juice and feel.
+
+  *Invulnerability blinker* - Whenever damaged or respawning, a (blinking effect)[https://github.com/RashmitShrestha/gmo/blob/6db497439bc9d0d4195d60ce0a771e0a6d963408/gmo/scripts/characters/warden.gd#L169] to Warden to is played, indicating he is currently unable to be damaged, aiding usability by communicating invulnerability purely from visuals.
+
+  *Health damage indicator* - After taking damage, instead of the health bar simply dropping to the new health, there's a [second health bar](https://github.com/RashmitShrestha/gmo/blob/6db497439bc9d0d4195d60ce0a771e0a6d963408/gmo/scripts/ui/health_bar.gd#L41) that falls down to the new health, reducing the jarring effect of seeing the health jump and allowing the user to see how much damage they actually took visually.
+
+  *Component system* - I added a [component system](https://github.com/RashmitShrestha/gmo/tree/main/gmo/scripts/components) to allow my team to plug in functionality quickly without creating monoliths.
