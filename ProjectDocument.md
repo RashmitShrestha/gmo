@@ -206,6 +206,8 @@ I created the Freeze Frame ability using applying it to the skill tree unlock an
 My primary contributions included the main menu, the player health bar, and custom cursor, the map design, collision physics, and defining player and camera world boundaries.
 
 ### Main Menu Screen
+<img width="1586" height="1055" alt="image" src="https://github.com/user-attachments/assets/19af5daa-8559-4282-a308-431b7c8574d3" />
+
 The main menu screen involved creating a user interface scene and implementing a custom background provided by Jordan. The buttons used a [custom asset pack](https://thelazystone.itch.io/post-apocalypse-pixel-art-asset-pack) which included defined states (pressed and non-pressed).
 
 The original buttons were 'Start,' 'Settings,' and 'Quit.' The 'Settings' button was later changed to 'How To Play,' as this seemed more useful for the player experience.
@@ -215,16 +217,24 @@ The original buttons were 'Start,' 'Settings,' and 'Quit.' The 'Settings' button
 
 I also added keyboard shortcuts by going into the input map settings and configuring new events. This allowed the P key or Enter key to activate the 'Play' button and the Q key to activate the 'Quit' function.
 
+<img width="455" height="267" alt="image" src="https://github.com/user-attachments/assets/a5768f4d-6c4d-4171-9bf0-35d8148841d8" />
+
 ### Health Bar
+<img width="401" height="189" alt="image" src="https://github.com/user-attachments/assets/5fa634c1-7b62-4f1a-ad75-33c4fb066fb5" />
+
 The player health bar was created using a [tutorial](https://www.google.com/search?q=https://youtu.be/UEJcUnq2dfU) for guidance. The visual design incorporated assets from [this asset pack](https://thelazystone.itch.io/post-apocalypse-pixel-art-asset-pack), and the implementation was achieved using two separate nodes. The bar is composed of two distinct visual assets: a border and the health indicator.
 
 ### In Game Cursor
 I implemented a custom cursor to enhance player immersion and better match the game's aesthetic. This involved editing the Project Settings and replacing the default mouse cursor with a custom asset. This feature was added later on, specifically to make sure the player's environment felt more immersive with the overall game design.
 
 ### Map Design and Implementation
+<img width="650" height="693" alt="image" src="https://github.com/user-attachments/assets/2801158b-fcde-434c-8243-f838fe8beda5" />
+
 The map was constructed using [premade assets](https://thelazystone.itch.io/post-apocalypse-pixel-art-asset-pack) sourced online. While reviewing several packs, there were discussions to find assets that could balance a pastel aesthetic (fitting the fruits) with a post-apocalyptic theme (fitting the overall game design). We finally settled on one that could achieve a balance of both.
 
 Because this was my first time working with external assets, I encountered an issue where the sprites were not in standardized size. This prevented me from using convenient tools like auto-tiling. I had to manually resize each individual sprite because the original asset designer had not adhered to standard game dev specifications.
+
+<img width="958" height="333" alt="image" src="https://github.com/user-attachments/assets/5b437fa3-aa15-46f9-90f6-65da7e239d4f" />
 
 To achieve visual depth, I created many TileMapLayers. This allowed objects to overlap and created the effect of items being placed on top of one another. For example, the background trees on both the left and right sides of the map were divided into four separate TileMapLayers. This segmentation was done specifically to allow Jordan’s visual animations on these assets.
 
@@ -234,11 +244,16 @@ Unfortunately, given the nature of the project and multiple people concurrently 
 
 ### Collisions and World Boundaries
 #### Collisions
+<img width="375" height="328" alt="image" src="https://github.com/user-attachments/assets/51a0d412-7163-43ad-b86e-21166e151e4c" />
+
 I followed documentation to manually configure collisions within the TileSet. This involved going tile by tile to define which assets had collision boundaries. I experimented with various tile combinations to ensure detailed and realistic character interaction with the environment.
 
 Initially, I attempted to create the illusion of the player moving behind buildings. This was achieved by placing the roof on a separate TileMapLayer and editing the collision properties to allow the character to pass through it, making it look like the user was beneath it. However, due to merge conflicts from many concurrent users, this visual behavior was unfortunately lost.
 
 After setting the collision shapes on the tiles, the properties of both the player character and the tileset itself (the collision layer and mask) had to be adjusted so that they could interact and collide with each other.
+
+<img width="443" height="293" alt="image" src="https://github.com/user-attachments/assets/73eac460-7804-4511-8edd-cc5a43efd337" />
+
 
 While the collision map was initially implemented on all buildings, consistent merge conflicts resulted in the right building losing its collision behavior, and time constraints prevented me from fixing this issue.
 
