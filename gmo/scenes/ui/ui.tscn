@@ -28,7 +28,6 @@ texture_progress = ExtResource("3_0dwhk")
 script = ExtResource("4_0dwhk")
 
 [node name="VignetteLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="VignetteLayer"]
 material = SubResource("ShaderMaterial_aac20")

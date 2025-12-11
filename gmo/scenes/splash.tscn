@@ -73,6 +73,7 @@ scale = Vector2(4, 4)
 texture = ExtResource("1_10vqf")
 hframes = 8
 script = ExtResource("2_4rrho")
+duration = 3.0
 area = NodePath("Area2D")
 heal_amount = 200.0
 damage_amount = 5.0

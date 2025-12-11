@@ -19,7 +19,7 @@ var skill_nodes: Dictionary = {}
 
 var current_path: String = "flame"
 
-var player_xp: int = 100000
+var player_xp: int = 0
 
 var unlocked_skills: Dictionary = {
 	"flame": [],
