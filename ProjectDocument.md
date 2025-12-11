@@ -338,6 +338,8 @@ The actual vignette shader code is from the Godot Shader website [here](https://
 
 *Cursor* The cursor [changes](https://github.com/RashmitShrestha/gmo/blob/0b78e66ce5507b6459ef47e1d31f162770678d49/gmo/scenes/cursor_manager.gd#L1) when you go into attack mode, so the player immediately knows if they are holding down the correct button to be able to slice down enemies. 
 
+*Revival Counter* Added a [revival timer](https://github.com/RashmitShrestha/gmo/blob/53264d633468289af05d3e3055ebd53f3a4e3b5e/gmo/scripts/characters/warden.gd#L389C1-L394C31) to let the player know that Warden is being revived and game isn't over. This was important because originally he only played death animation and stayed still for 5 seconds, making the player wonder if this was game over or if there was more to come.
+
 I also introduced visual feedback in sprites as well. I drew unlocked, ready to unlock, and unlocked peaches for the skill tree menu, so the player can instantly see which nodes they can unlock by color alone.
 
 ## Narrative Design (Arthur)
@@ -434,3 +436,12 @@ The functions within the AudioManager were called from [functions within various
 - A random death sound played upon player character defeat.
 - A random start sound played when a new enemy wave begins.
 - A random victory sound played when an enemy wave is successfully cleared.
+
+### Jordan
+#### Cutscenes
+I illustrated the game [cutscenes](https://github.com/RashmitShrestha/gmo/tree/main/gmo/assets/Cutscenes), helping with storytelling and narration. It gives players a better understanding of the lore and game, and while making the game feel complete and more alive.
+
+### UI Aesthetics
+I refined UI buttons and menus from their base look, making them all cohesive throughout the game and following a similar palette. I wanted the game experience as a whole, even down to the buttons, to feel thoughtfully planned and feel nice for the user. I also modified the existing "settings" button to say "tutorial" instead. I edited styleboxes and themes to give everything a cohesive finish, mainly editing colors, padding, and borders.
+These included: tutorial menu containers, peach tree buttons, and most menu screens throughout the game.
+![Peach tree UI buttons](<ProjectDocument Images/jordan-ui.png>)
