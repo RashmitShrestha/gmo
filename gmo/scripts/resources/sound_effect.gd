@@ -23,6 +23,11 @@ enum SOUND_EFFECT_TYPE {
 	WIN_VICTORY,
 	LOSE_DEFEAT,
 	
+	# Wave sounds
+	WAVE_START_1,
+	WAVE_START_2,
+	WAVE_START_3,
+	
 	# Add more sound effect types here as needed
 }
 

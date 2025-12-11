@@ -102,6 +102,10 @@ func start_wave(wave_data: WaveData) -> void:
 	_current_group_index = 0
 
 	print("wavemanager: starting wave %d - %s" % [wave_data.wave_number, wave_data.wave_name])
+	
+	# Play random wave start sound
+	AudioManager.create_random_wave_start_audio()
+	
 	SignalBus.wave_started.emit(wave_data.wave_number)
 
 	if wave_data.enemy_groups.size() > 0:
@@ -357,20 +361,17 @@ func _is_still_spawning() -> bool:
 	return wave_state == WaveState.SPAWNING or spawn_timer.time_left > 0
 
 func _count_living_enemies() -> int:
-
 	var count = 0
 	var invalid_ids = []
 	
 	for enemy_id in spawned_enemies_dict.keys():
 		var enemy = instance_from_id(enemy_id)
 		if is_instance_valid(enemy) and enemy is Fruit:
-
 			if "dead" in enemy and not enemy.dead:
 				count += 1
 			else:
 				invalid_ids.append(enemy_id)
 		else:
-
 			invalid_ids.append(enemy_id)
 
 	for id in invalid_ids:
@@ -405,7 +406,6 @@ func skip_to_wave(wave_num: int) -> void:
 	start_next_wave()
 
 func clear_all_enemies() -> void:
-
 	for enemy_id in spawned_enemies_dict.keys():
 		var enemy = instance_from_id(enemy_id)
 		if is_instance_valid(enemy):
