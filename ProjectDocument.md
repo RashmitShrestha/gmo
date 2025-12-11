@@ -1,4 +1,4 @@
-# The title of your game #
+# GMO! #
 
 ## Summary ##
 
@@ -360,7 +360,9 @@ I co-created our narrative and incorporated it into the core gameplay loop (skil
 
 ## Narrative Design (Jonathan)
 
-I came up with the narrative which influenced the game mechanics.
+I came up with the narrative which influenced the game mechanics. I designed the story and intergrated it into our game. I also was in charge of the cutscene layout.
+
+[Cutscene](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/cutscene.gd)
 
 ### How to play
 
