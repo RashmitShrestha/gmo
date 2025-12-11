@@ -1,6 +1,7 @@
 class_name StrawberryCommandManagerComponent
 extends CommandManagerComponent
 
+
 func update():
 	if null == _parent.curr_command:
 		if not is_instance_valid(_parent.target):
