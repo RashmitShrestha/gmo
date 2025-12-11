@@ -27,6 +27,8 @@ enum SOUND_EFFECT_TYPE {
 	WAVE_START_1,
 	WAVE_START_2,
 	WAVE_START_3,
+	WAVE_VICTORY_1,
+	WAVE_VICTORY_2,
 	
 	# Add more sound effect types here as needed
 }

@@ -131,6 +131,10 @@ func _complete_wave() -> void:
 		SignalBus.all_waves_completed.emit()
 	else:
 		print("wavemanager: wave %d completed!" % current_wave_number)
+		
+		# Play random wave victory sound
+		AudioManager.create_random_wave_victory_audio()
+		
 		SignalBus.wave_completed.emit(current_wave_number)
 
 		await get_tree().create_timer(5.0).timeout

@@ -128,3 +128,24 @@ func create_random_wave_start_audio() -> void:
 	# Pick a random available type
 	var random_type = available_types[randi() % available_types.size()]
 	create_audio(random_type)
+
+## Plays a random wave victory sound from the available WAVE_VICTORY_1 through WAVE_VICTORY_2 types.
+func create_random_wave_victory_audio() -> void:
+	var victory_types = [
+		SoundEffect.SOUND_EFFECT_TYPE.WAVE_VICTORY_1,
+		SoundEffect.SOUND_EFFECT_TYPE.WAVE_VICTORY_2,
+	]
+	
+	# Filter to only include types that are actually registered
+	var available_types = []
+	for type in victory_types:
+		if sound_effect_dict.has(type):
+			available_types.append(type)
+	
+	if available_types.is_empty():
+		push_error("Audio Manager: No wave victory sounds registered")
+		return
+	
+	# Pick a random available type
+	var random_type = available_types[randi() % available_types.size()]
+	create_audio(random_type)
