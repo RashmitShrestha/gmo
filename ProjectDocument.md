@@ -40,6 +40,13 @@ Used this to figure out wave stuff: https://www.youtube.com/watch?v=_1bVJSglte8
 Arthur - :
 Command logic taken from [HW1](https://github.com/dr-jam/CommandPatternExercise/blob/master/ElkSong/scripts/commands/command.gd)
 
+Claire - :
+[Asset Pack](https://thelazystone.itch.io/post-apocalypse-pixel-art-asset-pack)
+[Health Bar Tutorial](https://youtu.be/UEJcUnq2dfU)
+[Audio Manager Starter Code](https://github.com/Aarimous/AudioManager)
+[Audio Manager Tutorial](https://www.youtube.com/watch?v=Egf2jgET3nQ&t=14s)
+
+
 # Team Member Contributions
 
 This section be repeated once for each team member. Each team member should provide their name and GitHub user information.
@@ -222,7 +229,7 @@ I also added keyboard shortcuts by going into the input map settings and configu
 ### Health Bar
 <img width="401" height="189" alt="image" src="https://github.com/user-attachments/assets/5fa634c1-7b62-4f1a-ad75-33c4fb066fb5" />
 
-The player health bar was created using a [tutorial](https://www.google.com/search?q=https://youtu.be/UEJcUnq2dfU) for guidance. The visual design incorporated assets from [this asset pack](https://thelazystone.itch.io/post-apocalypse-pixel-art-asset-pack), and the implementation was achieved using two separate nodes. The bar is composed of two distinct visual assets: a border and the health indicator.
+The player health bar was created using a [tutorial](https://www.youtube.com/watch?v=UEJcUnq2dfU) for guidance. The visual design incorporated assets from [this asset pack](https://thelazystone.itch.io/post-apocalypse-pixel-art-asset-pack), and the implementation was achieved using two separate nodes. The bar is composed of two distinct visual assets: a border and the health indicator.
 
 ### In Game Cursor
 I implemented a custom cursor to enhance player immersion and better match the game's aesthetic. This involved editing the Project Settings and replacing the default mouse cursor with a custom asset. This feature was added later on, specifically to make sure the player's environment felt more immersive with the overall game design.
