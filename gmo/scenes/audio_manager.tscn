@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://boxb1sa4s51v0"]
+[gd_scene load_steps=29 format=3 uid="uid://boxb1sa4s51v0"]
 
 [ext_resource type="Script" uid="uid://c7nan2p5q8r3t" path="res://scripts/audio_manager.gd" id="1_3asnw"]
 [ext_resource type="Script" uid="uid://bq8x3k2nan4p7" path="res://scripts/resources/sound_effect.gd" id="2_m6ggh"]
@@ -19,6 +19,9 @@
 [ext_resource type="AudioStream" uid="uid://cu6ishrovfluj" path="res://audio/flameflinger.mp3" id="17_cuol6"]
 [ext_resource type="AudioStream" uid="uid://bit7kanh3e1tf" path="res://audio/freezeframe.mp3" id="18_oummu"]
 [ext_resource type="AudioStream" uid="uid://ca55y4ctp88t5" path="res://audio/fertilized_farm.mp3" id="19_hssp1"]
+[ext_resource type="AudioStream" uid="uid://c4y0aqotw2xyb" path="res://audio/fire.wav" id="20_8b11i"]
+[ext_resource type="AudioStream" uid="uid://cfn542c62m6fh" path="res://audio/frost.wav" id="21_u6qdm"]
+[ext_resource type="AudioStream" uid="uid://bslmnlc3na63u" path="res://audio/ferment.wav" id="22_u6qdm"]
 
 [sub_resource type="Resource" id="Resource_oucy0"]
 script = ExtResource("2_m6ggh")
@@ -39,6 +42,24 @@ type = 20
 sound_effect = ExtResource("19_hssp1")
 metadata/_custom_type_script = "uid://bq8x3k2nan4p7"
 
+[sub_resource type="Resource" id="Resource_f6jxr"]
+script = ExtResource("2_m6ggh")
+type = 21
+sound_effect = ExtResource("20_8b11i")
+metadata/_custom_type_script = "uid://bq8x3k2nan4p7"
+
+[sub_resource type="Resource" id="Resource_ovaav"]
+script = ExtResource("2_m6ggh")
+type = 22
+sound_effect = ExtResource("21_u6qdm")
+metadata/_custom_type_script = "uid://bq8x3k2nan4p7"
+
+[sub_resource type="Resource" id="Resource_thanh"]
+script = ExtResource("2_m6ggh")
+type = 23
+sound_effect = ExtResource("22_u6qdm")
+metadata/_custom_type_script = "uid://bq8x3k2nan4p7"
+
 [node name="AudioManager" type="Node2D"]
 script = ExtResource("1_3asnw")
-sound_effects = Array[ExtResource("2_m6ggh")]([ExtResource("3_aoitu"), ExtResource("4_02gw7"), ExtResource("5_ujhup"), ExtResource("6_064dn"), ExtResource("7_ic5jq"), ExtResource("8_if78k"), ExtResource("9_ic5jq"), ExtResource("10_if78k"), ExtResource("11_8igv3"), ExtResource("12_2y2jw"), ExtResource("13_2y5yn"), ExtResource("14_oucy0"), ExtResource("15_oucy0"), ExtResource("16_cuol6"), SubResource("Resource_oucy0"), SubResource("Resource_8b11i"), SubResource("Resource_u6qdm")])
+sound_effects = Array[ExtResource("2_m6ggh")]([ExtResource("3_aoitu"), ExtResource("4_02gw7"), ExtResource("5_ujhup"), ExtResource("6_064dn"), ExtResource("7_ic5jq"), ExtResource("8_if78k"), ExtResource("9_ic5jq"), ExtResource("10_if78k"), ExtResource("11_8igv3"), ExtResource("12_2y2jw"), ExtResource("13_2y5yn"), ExtResource("14_oucy0"), ExtResource("15_oucy0"), ExtResource("16_cuol6"), SubResource("Resource_oucy0"), SubResource("Resource_8b11i"), SubResource("Resource_u6qdm"), SubResource("Resource_f6jxr"), SubResource("Resource_ovaav"), SubResource("Resource_thanh")])

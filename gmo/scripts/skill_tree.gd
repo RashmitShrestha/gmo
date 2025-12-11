@@ -35,7 +35,7 @@ var paths: Dictionary = {
 			{"id": "1_trail", "name": "Torched and Tender", "pos": Vector2(200, 200), "xp_cost": 100, "description": "For 5 seconds, your main attack leaves a fiery trail that burns enemies. (burn lasts 2 seconds)"},
 			{"id": "1_trail_upgrade", "name": "Broiled Brutality", "pos": Vector2(500, 125), "xp_cost": 150, "description": " 'Torched and Tender' is increased to 8 seconds and has double burn damage"},
 			{"id": "1_status1", "name": "Carmelized Cruelty", "pos": Vector2(700, 150), "xp_cost": 200, "description": "Crit chance and Crit damage increased by 20% if enemy is burned"},
-			{"id": "1_ability", "name": "Flaming Finger", "pos": Vector2(375, 250), "xp_cost": 250, "description": "Flambé enemies with your blowtorch!"},
+			{"id": "1_ability", "name": "Flaming Flinger", "pos": Vector2(375, 250), "xp_cost": 250, "description": "Flambé enemies with your blowtorch!"},
 			{"id": "1_ability_upgrade", "name": "Flambéed Fury", "pos": Vector2(350, 475), "xp_cost": 300, "description": "Your blowtorch damage is increased"},
 			{"id": "1_status2", "name": "Searing Indignation", "pos": Vector2(650, 375), "xp_cost": 200, "description": "Every consecutive attack on an enemy increases CRIT DMG and CRIT chance by 5% until it reaches 100% (Slash window resets after 0.5 seconds)"}
 		],

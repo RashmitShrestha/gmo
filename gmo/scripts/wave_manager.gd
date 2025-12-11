@@ -318,11 +318,16 @@ func _apply_modifier_to_enemy(enemy: Node2D, modifier: EnemyStats.EnemyModifier)
 	match modifier:
 		EnemyStats.EnemyModifier.GRILLED:
 			tint_color = Color(1.3, 0.8, 0.6)
+			enemy.element = 1
 
 		EnemyStats.EnemyModifier.FROZEN:
 			tint_color = Color(0.7, 0.9, 1.2)
+			enemy.element = 2
+
 		EnemyStats.EnemyModifier.ROTTEN:
 			tint_color = Color(0.7, 0.8, 0.5)
+			enemy.element = 3
+
 
 	if enemy.has_node("Sprite2D"):
 		enemy.get_node("Sprite2D").modulate = tint_color

@@ -155,7 +155,12 @@ func create_element_audio(element : int) -> void:
 		SoundEffect.SOUND_EFFECT_TYPE.FLAMEFLINGER,
 		SoundEffect.SOUND_EFFECT_TYPE.FREEZEFRAME,
 		SoundEffect.SOUND_EFFECT_TYPE.FERTILIZEDFARM,
-
+	]
+	
+	var warden_element_types = [
+		SoundEffect.SOUND_EFFECT_TYPE.FIRE,
+		SoundEffect.SOUND_EFFECT_TYPE.FROST,
+		SoundEffect.SOUND_EFFECT_TYPE.FERMENT,
 	]
 	
 	# Filter to only include types that are actually registered
@@ -170,3 +175,4 @@ func create_element_audio(element : int) -> void:
 	
 	# Pick a random available type
 	create_audio(element_types[element])
+	create_audio(warden_element_types[element])
