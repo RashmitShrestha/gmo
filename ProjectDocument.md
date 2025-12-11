@@ -202,6 +202,50 @@ I created the script to show the user how much damage the user is doing to the e
 I created the Freeze Frame ability using applying it to the skill tree unlock and ability system. Freeze Frame freezes enemies in place for a certain amount of time to allow the player to easily deal damage to them.
 [Freeze Frame Script](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/commands/character_commands/player_commands/freezeframe.gd)
 
+## User Interface and World Design (Claire, clairehbear on GitHub)
+My primary contributions included the main menu, the player health bar, and custom cursor, the map design, collision physics, and defining player and camera world boundaries.
+
+### Main Menu Screen
+The main menu screen involved creating a user interface scene and implementing a custom background provided by Jordan. The buttons used a [custom asset pack](https://thelazystone.itch.io/post-apocalypse-pixel-art-asset-pack) which included defined states (pressed and non-pressed).
+
+The original buttons were 'Start,' 'Settings,' and 'Quit.' The 'Settings' button was later changed to 'How To Play,' as this seemed more useful for the player experience.
+
+- Play button: [Linked to the main game scene](https://github.com/RashmitShrestha/gmo/blob/75cb35cbc5eb6eeabc721b0be9c632e03568b432/gmo/main_menu.gd#L9) to start the game
+- Quit button: [Quits the game](https://github.com/RashmitShrestha/gmo/blob/75cb35cbc5eb6eeabc721b0be9c632e03568b432/gmo/main_menu.gd#L15) using Godot's built-in functions.
+
+I also added keyboard shortcuts by going into the input map settings and configuring new events. This allowed the P key or Enter key to activate the 'Play' button and the Q key to activate the 'Quit' function.
+
+### Health Bar
+The player health bar was created using a [tutorial](https://www.google.com/search?q=https://youtu.be/UEJcUnq2dfU) for guidance. The visual design incorporated assets from [this asset pack](https://thelazystone.itch.io/post-apocalypse-pixel-art-asset-pack), and the implementation was achieved using two separate nodes. The bar is composed of two distinct visual assets: a border and the health indicator.
+
+### In Game Cursor
+I implemented a custom cursor to enhance player immersion and better match the game's aesthetic. This involved editing the Project Settings and replacing the default mouse cursor with a custom asset. This feature was added later on, specifically to make sure the player's environment felt more immersive with the overall game design.
+
+### Map Design and Implementation
+The map was constructed using [premade assets](https://thelazystone.itch.io/post-apocalypse-pixel-art-asset-pack) sourced online. While reviewing several packs, there were discussions to find assets that could balance a pastel aesthetic (fitting the fruits) with a post-apocalyptic theme (fitting the overall game design). We finally settled on one that could achieve a balance of both.
+
+Because this was my first time working with external assets, I encountered an issue where the sprites were not in standardized size. This prevented me from using convenient tools like auto-tiling. I had to manually resize each individual sprite because the original asset designer had not adhered to standard game dev specifications.
+
+To achieve visual depth, I created many TileMapLayers. This allowed objects to overlap and created the effect of items being placed on top of one another. For example, the background trees on both the left and right sides of the map were divided into four separate TileMapLayers. This segmentation was done specifically to allow Jordan’s visual animations on these assets.
+
+Because the game is wave-based, I designed a smaller map to encourage players to focus on quickly finding remaining enemies and prioritizing the base, rather than promoting exploration. An intersection was placed in the center to naturally draw attention to the peach tree and create distinct zones that monsters could approach from.
+
+Unfortunately, given the nature of the project and multiple people concurrently working on the game, maintaining consistency was challenging; the player character and TileMapLayers frequently shifted, making it difficult to keep the map in its intended state.
+
+### Collisions and World Boundaries
+#### Collisions
+I followed documentation to manually configure collisions within the TileSet. This involved going tile by tile to define which assets had collision boundaries. I experimented with various tile combinations to ensure detailed and realistic character interaction with the environment.
+
+Initially, I attempted to create the illusion of the player moving behind buildings. This was achieved by placing the roof on a separate TileMapLayer and editing the collision properties to allow the character to pass through it, making it look like the user was beneath it. However, due to merge conflicts from many concurrent users, this visual behavior was unfortunately lost.
+
+After setting the collision shapes on the tiles, the properties of both the player character and the tileset itself (the collision layer and mask) had to be adjusted so that they could interact and collide with each other.
+
+While the collision map was initially implemented on all buildings, consistent merge conflicts resulted in the right building losing its collision behavior, and time constraints prevented me from fixing this issue.
+
+#### World Boundary
+To control the player's movement and viewing area, I created world boundaries. For the player I created four CollisionShape2D objects to create the bounds. I added “Limits” to the camera property. Initially I could still see the outside of the map, so I played around with the zoom to prevent that.
+
+
 # Sub-Roles 
 
 - Audio (Rashmit)
@@ -209,6 +253,7 @@ I created the Freeze Frame ability using applying it to the skill tree unlock an
 - Game Feel (Jordan)
 - Narrative Design (Arthur)
 - Narrative Design (Jonathan)
+- Audio Manager (Claire)
 - Others, add roles here!
 
 ## Audio
@@ -262,6 +307,26 @@ The how to play is on the title screen. After you click the middle button it tak
 
 [How to Play Script](https://github.com/RashmitShrestha/gmo/blob/main/gmo/how_to_play.gd)
 
+## Audio Manager (Claire)
+My secondary role became creating the Audio Manager due to team priorities. Since our producer, Rash, was busy with their primary role, we determined that the audio manager was a more important task overall compared to the presskit and trailer. My main responsibility in this sub-role was to take the required audio cues and integrate them into the game.
+
+### Implementation Process
+To handle audio, I created an AudioManager [class](https://github.com/RashmitShrestha/gmo/blob/39e0cf9d3af0f23ba79c83621943b86659ee1b0d/gmo/scripts/audio_manager.gd) and scene. I used an online [skeleton code](https://github.com/Aarimous/AudioManager) and [tutorial](https://www.youtube.com/watch?v=Egf2jgET3nQ&t=14s) as a base for both the AudioManager and the SoundEffect scripts.
+
+I first created dedicated sound effect resources using the raw audio files provided in [resources/sound_effects](https://github.com/RashmitShrestha/gmo/tree/main/gmo/resources/sound_effects). These sound effect resources were then loaded into the AudioManager scene/node.
+
+The AudioManager was then configured as a global autoload, meaning that any script within the project could call on it.
+
+The AudioManager uses an enum within the [SoundEffect](https://github.com/RashmitShrestha/gmo/blob/39e0cf9d3af0f23ba79c83621943b86659ee1b0d/gmo/scripts/resources/sound_effect.gd) to determine the effect type, which determines when it should be played. This is also used to allow the manager to [randomly select a specific effect](https://github.com/RashmitShrestha/gmo/blob/39e0cf9d3af0f23ba79c83621943b86659ee1b0d/gmo/scripts/audio_manager.gd#L65) from a selection when multiple sounds are provided.
+
+### Audio Events
+The functions within the AudioManager were called from [functions within various game scripts](https://github.com/RashmitShrestha/gmo/blob/39e0cf9d3af0f23ba79c83621943b86659ee1b0d/gmo/scripts/cursor.gd#L30) to trigger sound effects based on gameplay events:
+- A sword sound when damage is inflicted.
+- A random damage sound played when the player character is hit.
+- A random death sound played upon player character defeat.
+- A random start sound played when a new enemy wave begins.
+- A random victory sound played when an enemy wave is successfully cleared.
+
 
 ## Other Contributions ##
 
@@ -300,3 +365,6 @@ The how to play is on the title screen. After you click the middle button it tak
   *Component system* - I added a [component system](https://github.com/RashmitShrestha/gmo/tree/main/gmo/scripts/components) to allow my team to plug in functionality quickly without creating monoliths.
   
   *Damage system* - The DamageComponent and [GameCharacter](https://github.com/RashmitShrestha/gmo/blob/39e0cf9d3af0f23ba79c83621943b86659ee1b0d/gmo/scripts/characters/character.gd#L56) classes work with one another to store and deliver information about health
+
+### Claire
+I implemented the assets for several fruits and the player character. Because the player character and fruit assets had different resolutions, Godot's default scaling behavior made the sprites appear blurry. To fix this, I used Godot documentation and external guides to adjust the resource settings. This allowed me to appropriately scale the resources within the engine, and prevented the blurriness.
