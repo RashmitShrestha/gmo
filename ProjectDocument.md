@@ -174,6 +174,12 @@ I created the interacting component system that allows you to interact and open 
 I designed the layout of the skill tree and how it would work in game. The skill tree is the key game mechanic in the game to progress and gain skills to get stronger and defeat stronger enemies. I also wrote anad ideated all skill tree abilities and its structure for the flame, frost, and ferment abilities. I also set up the xp resource in the skill tree to be spent. Ability nodes were also designed on an "unlock-first" basis where you needed to spend xp points to get the base upgrade of a specific path before you can get the later upgrades in the skill tree.
 [Skill Tree Script](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/skill_tree.gd)
 
+
+### Ability tree ideation
+<img width="647" height="400" alt="image" src="https://github.com/user-attachments/assets/7e6ba9de-52cc-425d-a2bd-dd7c399667f7" />
+
+
+
 ### Damage Number Popup System
 
 I created the script to show the user how much damage the user is doing to the enemy. 
