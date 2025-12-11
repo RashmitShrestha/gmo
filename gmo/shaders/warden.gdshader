@@ -1,13 +1,15 @@
 shader_type canvas_item;
 
-uniform float flash_strength : hint_range(0.0, 1.0) = 0.0;
+// 0.0 is no red applied, 1.0 is strong red applied
+uniform float flash = 0.0;
 
 void fragment() {
+	// get corresponding pixel color from original
     vec4 base = texture(TEXTURE, UV);
-
-    // mix base color with red
+	
+	// get red color
     vec4 red_tint = vec4(1.0, 0.0, 0.0, 1.0);
-
-    // flash_strength controls how red the sprite gets
-    COLOR = mix(base, red_tint, flash_strength) * base.a;
+	
+	// mix the original color and teh new red color, adjust intensity
+    COLOR = mix(base, red_tint, flash) * base.a;
 }
