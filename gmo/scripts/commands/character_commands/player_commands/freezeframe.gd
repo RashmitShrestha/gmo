@@ -11,7 +11,7 @@ var player: CharacterBody2D
 # ability states
 var unlocked: bool = false
 var duration: float = 4.0
-var speed_boost: float = 1.0  # for Nitrogen Nirvana: 2.0
+var speed_boost: float = 1.0  # for Nitrogen Nirvana
 var unlimited_range: bool = false
 
 # cooldown

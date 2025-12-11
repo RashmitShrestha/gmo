@@ -62,6 +62,12 @@ func update(event: InputEvent) -> void:
 		else:
 			_parent.is_slicing = false
 			slice.clear_points()
+		
+		if _parent.curr_health <= 0: # prevents slicing
+			_parent.is_slicing = false
+			if slice:
+				slice.clear_points()
+		return
 	else:
 		_parent.is_slicing = false
 		slice.clear_points()

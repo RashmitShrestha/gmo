@@ -24,6 +24,9 @@ func _process(_delta: float) -> void:
 	elif Input.is_action_just_released("left_click"):
 		$CursorTexture.set_default()
 		monitoring = false
+	if _warden.curr_health <= 0: # prevents attacking while dead
+		$CursorTexture.set_default()
+		monitoring = false
 
 func _deal_slice_damage(enemy: Fruit) -> void:
 	# Play sword swing sound
