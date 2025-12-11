@@ -860,3 +860,10 @@ polygon = PackedVector2Array(255, -83, 257, 53, -98, 49, -98, -36)
 
 [node name="FreezeFrame" type="Node2D" parent="."]
 script = ExtResource("14_wt0ak")
+
+[node name="RespawnTimer" type="Label" parent="."]
+offset_left = -19.0
+offset_top = -66.0
+offset_right = 21.0
+offset_bottom = -43.0
+horizontal_alignment = 1

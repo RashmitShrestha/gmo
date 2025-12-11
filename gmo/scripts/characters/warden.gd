@@ -14,6 +14,7 @@ extends GameCharacter
 @export var respawn_point: Node2D
 
 @onready var animation_tree: AnimationTree = $AnimationTree
+@onready var respawn_timer: Label = $RespawnTimer
 
 var last_facing_direction := Vector2.RIGHT
 var _invulnerability_timer: Timer
@@ -383,3 +384,11 @@ func check_freeze_on_hit() -> bool:
 	if not freeze_on_hit_active:
 		return false
 	return randf() < freeze_on_hit_chance
+
+
+func update_respawn_label(time_left) -> void:
+	if time_left <= 0:
+		respawn_timer.visible = false
+	else:
+		respawn_timer.text = str(ceil(time_left))
+		respawn_timer.visible = true

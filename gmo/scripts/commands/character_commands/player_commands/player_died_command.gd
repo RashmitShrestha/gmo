@@ -25,8 +25,12 @@ func execute(character: Warden) -> Status:
 		character.add_child(_timer)
 		_timer.one_shot = true
 		_timer.start(_respawn_time)
+		
+	var time_left = _timer.time_left
+	character.update_respawn_label(time_left)
 
 	if _timer != null and _timer.is_stopped():
+		character.update_respawn_label(0)
 		var tree = character.get_tree().get_first_node_in_group("peach_tree")
 		if tree and tree.is_dead:
 			print("Tree died during respawn timer gg")
