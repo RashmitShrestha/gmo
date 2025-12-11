@@ -330,7 +330,11 @@ To handle audio, I created an AudioManager [class](https://github.com/RashmitShr
 
 I first created dedicated sound effect resources using the raw audio files provided in [resources/sound_effects](https://github.com/RashmitShrestha/gmo/tree/main/gmo/resources/sound_effects). These sound effect resources were then loaded into the AudioManager scene/node.
 
+<img width="454" height="619" alt="image" src="https://github.com/user-attachments/assets/988ba039-2154-4faa-afa5-2a3f290570f4" />
+
 The AudioManager was then configured as a global autoload, meaning that any script within the project could call on it.
+
+<img width="1164" height="212" alt="image" src="https://github.com/user-attachments/assets/e6e35e24-c1a6-4511-9fe0-49b99416612e" />
 
 The AudioManager uses an enum within the [SoundEffect](https://github.com/RashmitShrestha/gmo/blob/39e0cf9d3af0f23ba79c83621943b86659ee1b0d/gmo/scripts/resources/sound_effect.gd) to determine the effect type, which determines when it should be played. This is also used to allow the manager to [randomly select a specific effect](https://github.com/RashmitShrestha/gmo/blob/39e0cf9d3af0f23ba79c83621943b86659ee1b0d/gmo/scripts/audio_manager.gd#L65) from a selection when multiple sounds are provided.
 
