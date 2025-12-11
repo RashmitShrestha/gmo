@@ -324,6 +324,7 @@ I also introduced visual feedback in sprites as well. I drew unlocked, ready to 
 ## Narrative Design (Arthur)
 
 I co-created our narrative and incorporated it into the core gameplay loop (skill tree and abilities handled by others)
+
 *Enemy logic* - In the story, the Cornucopia is the big bad and all problems come from it. Based on this, I designed all the basic fruits to be diverse so they perfectly complement each other to express their interconnected organization. As the Cornucopia is where these fruits come from in the narrative, one of its attacks is where it spawns fruits which communicate its role in the story.
 
 *Method of attack* - As Warden is a chef, his method of attack to be from slashing. To heavily emphasize his slashing, I coded the damage system to revolve around the [cursor](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/cursor.gd). Damage is dealt by dragging the cursor across enemies, the damage dealt being dependent on the velocity and all other modifiers based on the peach tree.
