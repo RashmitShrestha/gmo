@@ -6,7 +6,7 @@ func _ready():
 	%Quit.pressed.connect(quit)
 
 func play():
-	get_tree().change_scene_to_file("res://scenes/game_area.tscn")
+	get_tree().change_scene_to_file("res://scenes/cutscene.tscn")
 
 func how_to_play():
 	SignalBus.tutorial_return_to_game = false
