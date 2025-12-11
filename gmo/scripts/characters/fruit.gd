@@ -52,7 +52,7 @@ func _physics_process(_delta: float) -> void:
 			animation_player.play("death")
 			return
 
-	if target == peach_tree and peach_tree and peach_tree.is_dead:
+	if not fertilized and target == peach_tree and peach_tree and peach_tree.is_dead:
 		target = warden
 
 	if stunned or dead:
@@ -269,10 +269,13 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 				print("Attack on cooldown: ", attack_cooldown)
 		return
 	
+	if body == peach_tree and peach_tree and peach_tree.is_dead:
+		return
+
 	if not fertilized and body == target and attack_cooldown <= 0:
 		is_attacking = true
 		attack_cooldown = attack_rate
-		
+
 		if target and target.has_method("apply_damage"):
 			target.apply_damage(attack_damage, self, element)
 

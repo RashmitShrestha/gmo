@@ -8,7 +8,7 @@ func _ready():
 
 
 func update():
-	_parent.direction = (_parent.target.position - _parent.position).normalized()
+	_parent.direction = (_parent.target.global_position - _parent.global_position).normalized()
 	
 	if _parent.get_slide_collision_count():
 		_parent.stunned = true

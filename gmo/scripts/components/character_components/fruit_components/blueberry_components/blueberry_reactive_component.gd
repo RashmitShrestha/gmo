@@ -13,8 +13,8 @@ func update():
 	# Check if target is valid before accessing it
 	if not is_instance_valid(_parent.target):
 		return
-	
-	_parent.direction = (_parent.target.position - _parent.position).normalized()
+
+	_parent.direction = (_parent.target.global_position - _parent.global_position).normalized()
 	
 	if _parent.get_slide_collision_count():
 		_parent.stunned = true
