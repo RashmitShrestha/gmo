@@ -18,7 +18,6 @@ func execute(character: Cornucopia) -> Status:
 	
 	if not _timer.is_stopped():
 		character.velocity = Vector2.ZERO
-		print(_timer.time_left)
 		return Command.Status.ACTIVE
 	else:
 		_timer.queue_free()
