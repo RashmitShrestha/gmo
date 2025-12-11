@@ -74,6 +74,8 @@ var shield_up: bool = true
 var shield_recharge_time: float = 10.0
 var shield_recharge_timer: Timer
 
+var death_sound_played: bool = false
+
 func _ready() -> void:
 	animation_tree.active = true
 	add_to_group("player")
@@ -97,11 +99,18 @@ func _ready() -> void:
 			SignalBus.player_health_changed.emit(curr_health, max_health)
 
 			if curr_health > 0.0:
+				# Reset death sound flag if health is restored
+				if death_sound_played:
+					death_sound_played = false
 				# Play random player damage sound
 				AudioManager.create_random_player_damage_audio()
 				hurt_animation()
 				make_invulnerable(invulnerability_duration)
 			else:
+				# Play random player death sound (only once)
+				if not death_sound_played:
+					death_sound_played = true
+					AudioManager.create_random_player_death_audio()
 				await warden_death_animation()
 
 				var tree = get_tree().get_first_node_in_group("peach_tree")

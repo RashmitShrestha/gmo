@@ -84,3 +84,25 @@ func create_random_player_damage_audio() -> void:
 	# Pick a random available type
 	var random_type = available_types[randi() % available_types.size()]
 	create_audio(random_type)
+
+## Plays a random player death sound from the available PLAYER_DEATH_1 through PLAYER_DEATH_3 types.
+func create_random_player_death_audio() -> void:
+	var death_types = [
+		SoundEffect.SOUND_EFFECT_TYPE.PLAYER_DEATH_1,
+		SoundEffect.SOUND_EFFECT_TYPE.PLAYER_DEATH_2,
+		SoundEffect.SOUND_EFFECT_TYPE.PLAYER_DEATH_3,
+	]
+	
+	# Filter to only include types that are actually registered
+	var available_types = []
+	for type in death_types:
+		if sound_effect_dict.has(type):
+			available_types.append(type)
+	
+	if available_types.is_empty():
+		push_error("Audio Manager: No player death sounds registered")
+		return
+	
+	# Pick a random available type
+	var random_type = available_types[randi() % available_types.size()]
+	create_audio(random_type)
