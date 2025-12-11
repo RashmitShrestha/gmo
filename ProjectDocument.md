@@ -28,7 +28,7 @@ Jordan - :
 - Vignette Shader code from imakeshaders on Godot Shaders website [here](https://godotshaders.com/shader/vignette-2/)
 - Animation Tree setup tutorial from YouTube channel [Chris' Tutorials](https://www.youtube.com/watch?v=WrMORzl3g1U)
 
-Rash - :
+Jonathan - :
 Interactable objects in godot.[Queble](https://www.youtube.com/watch?v=pQINWFKc9_k)
 
 Zi - Resource and citing:
@@ -83,6 +83,7 @@ Add additional contributions in the Other Contributions section.
 - Animation and Visuals (Jordan)
 - Systems Tools Engineer (Zi Zeng)
 - Physics and Movement
+- Game Logic (Jonathan)
 
 ## Producer (Rashmit, Rashura on Github)
 
@@ -175,12 +176,44 @@ Area2Ds are used extensively in this project, being the main form of communicati
 
 All enemy movement was handled by me
 
+## Game Logic (Jonathan, Jonathanleww on Github)
+
+### Peach Tree interaction system
+
+I created the interacting component system that allows you to interact and open up the skill tree screen. I also added an interacting component that displays "F to open skill tree" when in interactable range. 
+[Interacting component Script](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/interacting_component.gd)
+[Peach Tree Interaction](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/peach_tree.gd)
+
+### Skill Tree system
+
+I designed the layout of the skill tree and how it would work in game. The skill tree is the key game mechanic in the game to progress and gain skills to get stronger and defeat stronger enemies. I also wrote anad ideated all skill tree abilities and its structure for the flame, frost, and ferment abilities. I also set up the xp resource in the skill tree to be spent. Ability nodes were also designed on an "unlock-first" basis where you needed to spend xp points to get the base upgrade of a specific path before you can get the later upgrades in the skill tree.
+[Skill Tree Script](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/skill_tree.gd)
+
+
+### Ability tree ideation
+<img width="647" height="400" alt="image" src="https://github.com/user-attachments/assets/7e6ba9de-52cc-425d-a2bd-dd7c399667f7" />
+
+
+
+### Damage Number Popup System
+
+I created the script to show the user how much damage the user is doing to the enemy. 
+[Damage Number Script](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/ui/damage_number.gd)
+
+
+### Freeze Frame Implementation
+
+I created the Freeze Frame ability using applying it to the skill tree unlock and ability system. Freeze Frame freezes enemies in place for a certain amount of time to allow the player to easily deal damage to them.
+[Freeze Frame Script](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/commands/character_commands/player_commands/freezeframe.gd)
+
 # Sub-Roles 
 
 - Audio (Rashmit)
 - Gameplay Testing (Zi)
 - Game Feel (Jordan)
 - Narrative Design (Arthur)
+- Narrative Design (Jonathan)
+- Others, add roles here!
 
 ## Audio
 I created the audio system and created all the music.
@@ -222,6 +255,16 @@ I incorporated our narrative into the core gameplay loop (skill tree and abiliti
 *Method of attack* As Warden is a chef, his method of attack to be from slashing. To heavily emphasize his slashing, I coded the damage system to revolve around the [cursor](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/cursor.gd). Damage is dealt by dragging the cursor across enemies, the damage dealt being dependent on the velocity and all other modifiers based on the peach tree.
 
 *Respawning* In the story, the peach tree is able to revive Warden as long as the peach tree is up. I incorporated [respawning](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/commands/character_commands/player_commands/player_died_command.gd) in the game, so as long as the peach tree is alive, Warden can respawn.
+## Narrative Design (Jonathan)
+
+I came up with the narrative which influenced the game mechanics.
+
+### How to play
+
+The how to play is on the title screen. After you click the middle button it takes you to a page that explains the game's lore, mechanics, keybinds, and tips. 
+
+[How to Play Script](https://github.com/RashmitShrestha/gmo/blob/main/gmo/how_to_play.gd)
+
 
 ## Other Contributions ##
 
