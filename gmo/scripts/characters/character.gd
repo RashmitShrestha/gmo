@@ -100,7 +100,7 @@ func _process_heal_numbers(delta: float) -> void:
 
 
 func spawn_damage_number(damage: float, element: int = 0) -> void:
-	if damage < 0.5: 
+	if damage < 0.5 or curr_health < 0:
 		return
 		
 	var damage_number = DAMAGE_NUMBER.instantiate()
