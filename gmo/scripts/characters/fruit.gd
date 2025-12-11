@@ -170,6 +170,9 @@ func _on_death(animation_name: StringName):
 		_die()
 
 func _face_target() -> void:
+	if not is_instance_valid(target):
+		return
+	
 	var direction_to_warden: float = target.global_position.x - global_position.x
 	
 	if direction_to_warden < 0:

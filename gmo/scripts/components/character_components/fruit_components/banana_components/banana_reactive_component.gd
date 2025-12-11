@@ -14,7 +14,7 @@ func _ready():
 			if body == _parent.peach_tree and _parent.peach_tree and _parent.peach_tree.is_dead:
 				return
 
-			if (_parent.position - body.position).distance_squared_to(\
+			if is_instance_valid(_parent.target) and (_parent.position - body.position).distance_squared_to(\
 				_parent.position - _parent.target.position):
 				_parent.target = body
 	)
@@ -27,6 +27,9 @@ func update():
 		else:
 			_parent.target = _parent.warden
 
+	if not is_instance_valid(_parent.target):
+		return
+	
 	_parent.direction = (_parent.target.global_position - _parent.global_position).normalized()
 	
 	if _parent.get_slide_collision_count():

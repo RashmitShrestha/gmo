@@ -16,7 +16,7 @@ func _shoot(character: Pomegranate):
 	character.is_attacking = true
 	
 	for i in range(5):
-		if not is_instance_valid(character):
+		if not is_instance_valid(character) or not is_instance_valid(character.target):
 			return
 
 		var dir: Vector2 = (character.target.position - character.position).normalized()
