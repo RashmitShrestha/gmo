@@ -61,7 +61,8 @@
 [ext_resource type="Texture2D" uid="uid://32cih5hdaxe0" path="res://assets/background_assets/Car_5_Rust_Tractor_Side.png" id="44_5xjug"]
 [ext_resource type="Texture2D" uid="uid://cbe6w1ymfm8sb" path="res://assets/background_assets/Car_8_Overgrown_Dark-Green_Light-Green_Bus.png" id="45_nuv0j"]
 [ext_resource type="Texture2D" uid="uid://cu3mqu0ivxjoh" path="res://assets/background_assets/Manhole.png" id="46_mqau0"]
-[ext_resource type="PackedScene" path="res://scenes/cursor.tscn" id="69_ngom5"]
+[ext_resource type="PackedScene" uid="uid://dlvm4nhb144ev" path="res://scenes/characters/cornucopia.tscn" id="67_nuv0j"]
+[ext_resource type="PackedScene" uid="uid://dr2nk36vnu8y8" path="res://scenes/cursor.tscn" id="69_ngom5"]
 [ext_resource type="AudioStream" uid="uid://b104u4dlauv5j" path="res://audio/ambience.wav" id="70_ghy5t"]
 [ext_resource type="AudioStream" uid="uid://bjse5g2eoby6x" path="res://music/theme.mp3" id="71_nvslu"]
 [ext_resource type="PackedScene" uid="uid://ce8h5j2qwxn8c" path="res://scenes/ui/game_end_screen.tscn" id="72_endscreen"]
@@ -1449,6 +1450,9 @@ point_count = 3
 offsets = PackedFloat32Array(0.65753424, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.61960787, 0.24313726, 0.21568628, 0.54901963)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_5xjug"]
+radius = 458.18445
+
 [node name="GameArea" type="Node2D"]
 
 [node name="WaveManager" type="Node" parent="."]
@@ -1821,3 +1825,14 @@ mix_target = 2
 
 [node name="RespawnPoint" type="Node2D" parent="."]
 position = Vector2(116, 300)
+
+[node name="Cornucopia" parent="." instance=ExtResource("67_nuv0j")]
+position = Vector2(-176, 612)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(116, -458)
+collision_layer = 4
+collision_mask = 255
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_5xjug")

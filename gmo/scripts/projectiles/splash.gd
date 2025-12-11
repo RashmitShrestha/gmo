@@ -21,7 +21,9 @@ func _physics_process(_delta: float) -> void:
 	for body in area.get_overlapping_bodies():
 		if body is Warden or body is PeachTree:
 			var game_character := body as GameCharacter
-			game_character.apply_damage(damage_amount, self)
+			if is_instance_valid(game_character):
+				game_character.apply_damage(damage_amount, self)
 		else:
 			var game_character := body as GameCharacter
-			game_character.heal(heal_amount)
+			if is_instance_valid(game_character):
+				game_character.heal(heal_amount)
