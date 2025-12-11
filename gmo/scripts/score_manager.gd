@@ -70,7 +70,11 @@ func _on_enemy_died(enemy_type: String, enemy_node: Node2D, drop_type: int) -> v
 
 		print("ScoreManager: +%d points for killing %s (total: %d)" % [stats.score_value, enemy_type, total_score])
 
-		_award_xp(stats.score_value, "kill")
+		var xp_amount = stats.score_value
+		if enemy_node is Fruit:
+			xp_amount = int(stats.score_value * 0.5)
+
+		_award_xp(xp_amount, "kill")
 
 
 func _on_wave_started(wave_number: int) -> void:
