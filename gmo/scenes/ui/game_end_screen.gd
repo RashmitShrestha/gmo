@@ -20,12 +20,14 @@ func _ready() -> void:
 
 func show_screen(is_victory: bool) -> void:
 	var breakdown = ScoreManager.get_score_breakdown()
-
+		
 	if is_victory:
 		title.text = "VICTORY!"
+				#used ai for the line below
 		title.add_theme_color_override("font_color", Color(0.2, 1.0, 0.2))  # Green
 	else:
 		title.text = "GAME OVER - Wave %d" % breakdown.current_wave
+				#used ai for the line below this one as well
 		title.add_theme_color_override("font_color", Color(1.0, 0.2, 0.2))  # Red
 
 	var xp_breakdown = ScoreManager.get_xp_breakdown()
