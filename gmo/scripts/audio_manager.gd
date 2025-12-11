@@ -60,3 +60,27 @@ func create_audio(type: SoundEffect.SOUND_EFFECT_TYPE) -> void:
 			new_audio.play()
 	else:
 		push_error("Audio Manager failed to find setting for type ", type)
+
+## Plays a random player damage sound from the available PLAYER_DAMAGE_1 through PLAYER_DAMAGE_5 types.
+func create_random_player_damage_audio() -> void:
+	var damage_types = [
+		SoundEffect.SOUND_EFFECT_TYPE.PLAYER_DAMAGE_1,
+		SoundEffect.SOUND_EFFECT_TYPE.PLAYER_DAMAGE_2,
+		SoundEffect.SOUND_EFFECT_TYPE.PLAYER_DAMAGE_3,
+		SoundEffect.SOUND_EFFECT_TYPE.PLAYER_DAMAGE_4,
+		SoundEffect.SOUND_EFFECT_TYPE.PLAYER_DAMAGE_5,
+	]
+	
+	# Filter to only include types that are actually registered
+	var available_types = []
+	for type in damage_types:
+		if sound_effect_dict.has(type):
+			available_types.append(type)
+	
+	if available_types.is_empty():
+		push_error("Audio Manager: No player damage sounds registered")
+		return
+	
+	# Pick a random available type
+	var random_type = available_types[randi() % available_types.size()]
+	create_audio(random_type)

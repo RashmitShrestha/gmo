@@ -15,7 +15,7 @@ extends GameCharacter
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 
-var last_facing_direction := Vector2.RIGHT  
+var last_facing_direction := Vector2.RIGHT
 var _invulnerability_timer: Timer
 var _blink_timer: Timer
 
@@ -43,12 +43,12 @@ var active_abilities: Dictionary = {
 	"fertilized_farm": {"enabled": false, "params": {}}
 }
 
-var cd1 : float
-var cd2 : float
-var cd3 : float
-var cd4 : float
-var cd5 : float
-var cd6 : float
+var cd1: float
+var cd2: float
+var cd3: float
+var cd4: float
+var cd5: float
+var cd6: float
 
 var burn_crit_boost_active: bool = false
 var burn_crit_chance_bonus: float = 0.0
@@ -65,7 +65,7 @@ var consecutive_hit_params: Dictionary = {}
 var health_regen_active: bool = false
 var health_regen_timer: Timer
 
-var fertilized_farm_active:bool = false
+var fertilized_farm_active: bool = false
 var fertilize_farm_boost: bool = false
 var fertilize_farm_mult: float = 1.0
 
@@ -97,6 +97,8 @@ func _ready() -> void:
 			SignalBus.player_health_changed.emit(curr_health, max_health)
 
 			if curr_health > 0.0:
+				# Play random player damage sound
+				AudioManager.create_random_player_damage_audio()
 				hurt_animation()
 				make_invulnerable(invulnerability_duration)
 			else:
@@ -221,7 +223,7 @@ func _on_stat_modified(character_group: String, stat_name: String, value: float)
 func _on_ability_toggled(ability_id: String, enabled: bool, parameters: Dictionary) -> void:
 	if active_abilities.has(ability_id):
 		active_abilities[ability_id]["enabled"] = enabled
-		active_abilities[ability_id]["params"] = parameters		
+		active_abilities[ability_id]["params"] = parameters
 
 
 func _on_status_effect_applied(character_group: String, effect_name: String, parameters: Dictionary) -> void:
@@ -302,7 +304,6 @@ func apply_damage(damage: float, source: Node2D, elem: int = 0, is_dot: bool = f
 		curr_health = 0.0
 		
 
-		
 	received_damage.emit(final_damage, source)
 	
 
@@ -341,8 +342,8 @@ func calculate_slice_damage(target: GameCharacter) -> float:
 	return damage
 
 func get_crit_stats(enemy_is_burned: bool = false) -> Dictionary:
-	var base_crit_chance = 0.05  
-	var base_crit_damage = 1.5  
+	var base_crit_chance = 0.05
+	var base_crit_damage = 1.5
 	
 	var crit_chance = base_crit_chance
 	var crit_dmg = base_crit_damage
@@ -358,7 +359,6 @@ func get_crit_stats(enemy_is_burned: bool = false) -> Dictionary:
 	return {"chance": crit_chance, "damage": crit_dmg}
 
 func on_successful_hit(enemy: GameCharacter) -> void:
-	
 	if consecutive_hit_boost_active:
 		var current_time = Time.get_ticks_msec() / 1000.0
 		if current_time - last_hit_time > consecutive_hit_params.get("reset_window", 0.5):
