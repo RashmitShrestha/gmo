@@ -12,6 +12,7 @@ extends CanvasLayer
 @onready var ferment_btn: Button = $Control/PathButtons/Ferment
 
 var musicStream : AudioStreamPlayer
+var purchase_sound : AudioStreamPlayer
 var xp_label: Label
 
 var skill_nodes: Dictionary = {}
@@ -98,6 +99,8 @@ var style_purchasable: StyleBoxFlat
 
 func _ready() -> void:
 	musicStream = $Music
+	purchase_sound = $PurchaseSound
+	purchase_sound.stream = load("res://audio/buysound.wav")
 	add_to_group("skill_tree_menu")
 	control.visible = false
 	description_box.visible = false
@@ -297,22 +300,24 @@ func can_purchase_skill(skill_id: String) -> bool:
 func purchase_skill(skill_id: String) -> bool:
 	if not can_purchase_skill(skill_id):
 		return false
-	
+
 	var cost = skill_data[skill_id]["xp_cost"]
-	
+
 	# deduct XP
 	player_xp -= cost
 	xp_label.text = "XP: " + str(player_xp)
-	
+
 	# add to unlocked skills pool
 	if not unlocked_skills.has(current_path):
 		unlocked_skills[current_path] = []
 	unlocked_skills[current_path].append(skill_id)
-	
+
 	SkillSelection.apply_skill_effect(skill_id)
-	
+
+	purchase_sound.play()
+
 	_update_all_button_styles()
-	
+
 	print("Purchased skill: ", skill_id, " for ", cost, " XP")
 	return true
 
