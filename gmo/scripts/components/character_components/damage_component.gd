@@ -14,11 +14,23 @@ func _ready() -> void:
 		is_curr_dot = false
 	else:
 		is_curr_dot = true
-		
-		
+	
+	hitbox.body_entered.connect(
+		func(body: Node2D):
+			if body is PeachTree:
+				# Check if this is a valid target
+				if not _is_valid_target(body):
+					return
+				
+				if _parent is Fruit:
+					_parent.is_attacking = true
+				
+				_damage(body)
+	)
+
 func _physics_process(_delta: float) -> void:
 	for body in hitbox.get_overlapping_bodies():
-		if body is GameCharacter:
+		if body is Warden:
 			# Check if this is a valid target
 			if not _is_valid_target(body):
 				continue
