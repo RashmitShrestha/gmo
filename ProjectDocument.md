@@ -2,19 +2,38 @@
 
 ## Summary ##
 
-**A paragraph-length pitch for your game.**
+You are Warden Gramsay, a world renowed chef. One day, the Cornucorpia emerges and devastates your city. You wade through the rubble and mess of the city and stumble upon the Peach Tree. You don't know what it is or how it got here, but it invigorates you with power. Survive 10 waves and take down the Cornucopia to save your city once and for all!
 
 ## Project Resources
 
 [Web-playable version of your game.](https://itch.io/)  
 [Trailor](https://youtube.com)  
-[Press Kit](https://dopresskit.com/)  
-[Proposal: make your own copy of the linked doc.](https://docs.google.com/document/d/1qwWCpMwKJGOLQ-rRJt8G8zisCa2XHFhv6zSWars0eWM/edit?usp=sharing)  
+[Press Kit](https://clairehbear.github.io/gmo-presskit/)  
+[Proposal: make your own copy of the linked doc.](https://docs.google.com/document/d/1ip0qFgfJDuzRumxkKe9gPJQ5ggfuf74AsoXc8QGlKxs/edit?tab=t.0#heading=h.i3tv2mxf7h7z)  
 
 ## Gameplay Explanation ##
 
-**In this section, explain how the game should be played. Treat this as a manual within a game. Explaining the button mappings and the most optimal gameplay strategy is encouraged.**
+### Instructions
+WASD to move, shift to dash. F to access the peach tree's upgrades when near it. Press 1, 2, or 3 to temporarily give your slices special effects (if unlocked from the peach tree). To buy upgrades from the peach tree, you use XP which is gained from killing enemies.
 
+### Strategy
+This game has a variety of enemies, so it's best to understand how to deal with each one. Enemies have two targets: you or the peach tree. Some will target the tree and some will target you. For those that target the peach tree, just take them out as soon as possible. However, the strategy gets more interesting for when enemies attack YOU.
+
+#### Basic Enemies
+*Blueberry* - Fast, but weak. They're the easiest enemy to take out as you can just run away to make the paths of the blueberries that follow you predictable.
+
+*Strawberry* - They don't seem to do much and may be a bit hard to hit as they run away if you get close, but letting them be is a surefire way to stack bullet seeds on the screen. Take them out as quickly as possible to prevent this from happening.
+
+*Grapes* - Think of them as beefier blueberries that force you to split your attention. It's best to avoid attacking them if the area is crowded to prevent spawning a bunch of nimble single grapes speeding everywhere which can potentially keep you locked in knockback for a while.
+
+*Banana* - These are high value targets. They must be taken out as soon as possible as they have the ability to heal other fruits with projectiles that have an AOE, prolonging the fight.
+
+*Pomegranate* - Ensure you stay outside their range as their bullets can quickly crowd the screen. Luckily, they move slowly, so just watch out for where you step
+
+*Watermelon* - Watermelons deal the most damage, but they're luckily also the slowest. Like pomegranates, watch your step when fighting and you should be fine. They're less dangerous, though the cost is a lot higher if a watermelon hits you.
+
+#### Boss
+The Cornucopia has two phases: an active and passive phase. While active, the boss can choose between one of two attacks: a rush and spawn attack. When it is rushing towards you, you must deal enough damage to halt its rush. This isn't too bad, just make sure to deal with it early before it moves too quickly for you to outrun or damage sufficiently. The spawn attack is less aggressive but more problematic. It circles around its target, spawning fruits. There isn't anything you can do to stop this attack early, so just make sure you stay clear of its circling path and apply the earlier tips to deal with the enemy fruits. After doing an attack, it'll go back to its spot to recharge. This is the perfect time to attack, as you get a few seconds to slice, shoot fire, or whatever other skill you might have unlocked up to this point.
 
 **Add it here if you did work that should be factored into your grade but does not fit easily into the proscribed roles! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
 
@@ -330,6 +349,8 @@ I co-created our narrative and incorporated it into the core gameplay loop (skil
 *Method of attack* - As Warden is a chef, his method of attack to be from slashing. To heavily emphasize his slashing, I coded the damage system to revolve around the [cursor](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/cursor.gd). Damage is dealt by dragging the cursor across enemies, the damage dealt being dependent on the velocity and all other modifiers based on the peach tree.
 
 *Respawning* - In the story, the peach tree is able to revive Warden as long as the peach tree is up. I incorporated [respawning](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/commands/character_commands/player_commands/player_died_command.gd) in the game, so as long as the peach tree is alive, Warden can respawn.
+
+*Cutscene logic* - I added code to handle the introductory cutscene
 
 ## Narrative Design (Jonathan)
 
