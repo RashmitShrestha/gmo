@@ -19,11 +19,16 @@ func _physics_process(_delta: float) -> void:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("left_click"):
+		$CursorTexture.set_sword()
 		monitoring = true
 	elif Input.is_action_just_released("left_click"):
+		$CursorTexture.set_default()
 		monitoring = false
 
 func _deal_slice_damage(enemy: Fruit) -> void:
+	# Play sword swing sound
+	AudioManager.create_audio(SoundEffect.SOUND_EFFECT_TYPE.SWORD_SWING)
+	
 	var damage = SliceDamage.calculate_damage(_speed, _warden.attack_damage_multiplier)
 	
 	if _warden.consecutive_hit_boost_active and _warden.consecutive_hits > 0:
