@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://de3owvq3tdg0q"]
+[gd_scene load_steps=7 format=3 uid="uid://de3owvq3tdg0q"]
 
 [ext_resource type="Script" uid="uid://c50mjdg8ih8vd" path="res://scripts/cutscene.gd" id="1_edmg7"]
 [ext_resource type="FontFile" uid="uid://dxqub4bcdsgb3" path="res://assets/PixelatedEleganceRegular-ovyAA.ttf" id="2_a320b"]
 [ext_resource type="Texture2D" uid="uid://dhm2wjfdup3fx" path="res://assets/Cutscenes/Cutscene1.jpeg" id="3_bb0yx"]
 [ext_resource type="Texture2D" uid="uid://ddvsutqlpxxfk" path="res://assets/Cutscenes/Cutscene2.png" id="4_3ptll"]
+[ext_resource type="AudioStream" uid="uid://otn88j7poxqr" path="res://music/gmo_main.mp3" id="5_fs8wb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0sipp"]
 font = ExtResource("2_a320b")
@@ -51,3 +52,9 @@ texture = ExtResource("3_bb0yx")
 expand_mode = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_fs8wb")
+volume_db = -9.759
+autoplay = true
+mix_target = 2
