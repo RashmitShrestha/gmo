@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://boxb1sa4s51v0"]
+
+[ext_resource type="Script" uid="uid://c7nan2p5q8r3t" path="res://scripts/audio_manager.gd" id="1_3asnw"]
+[ext_resource type="Script" uid="uid://bq8x3k2nan4p7" path="res://scripts/resources/sound_effect.gd" id="2_m6ggh"]
+[ext_resource type="Resource" uid="uid://cjobm6uofk5k0" path="res://resources/sound_effects/sword_swing.tres" id="3_aoitu"]
+
+[node name="AudioManager" type="Node2D"]
+script = ExtResource("1_3asnw")
+sound_effects = Array[ExtResource("2_m6ggh")]([ExtResource("3_aoitu")])
