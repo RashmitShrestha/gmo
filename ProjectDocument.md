@@ -163,29 +163,34 @@ Warden has a special [BlendSpace2D](https://github.com/RashmitShrestha/gmo/commi
 
 ## Game Logic (Jonathan, Jonathanleww on Github)
 
-## Peach Tree interaction system
+### Peach Tree interaction system
 
 I created the interacting component system that allows you to interact and open up the skill tree screen. I also added an interacting component that displays "F to open skill tree" when in interactable range. 
 [Interacting component Script](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/interacting_component.gd)
 [Peach Tree Interaction](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/peach_tree.gd)
 
-## Skill Tree system
+### Skill Tree system
 
 I designed the layout of the skill tree and how it would work in game. The skill tree is the key game mechanic in the game to progress and gain skills to get stronger and defeat stronger enemies. I also wrote anad ideated all skill tree abilities and its structure for the flame, frost, and ferment abilities. I also set up the xp resource in the skill tree to be spent. Ability nodes were also designed on an "unlock-first" basis where you needed to spend xp points to get the base upgrade of a specific path before you can get the later upgrades in the skill tree.
 [Skill Tree Script](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/skill_tree.gd)
 
-## Damage Number Popup System
+### Damage Number Popup System
 
 I created the script to show the user how much damage the user is doing to the enemy. 
 [Damage Number Script](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/ui/damage_number.gd)
 
+
+### Freeze Frame Implementation
+
+I created the Freeze Frame ability using applying it to the skill tree unlock and ability system. Freeze Frame freezes enemies in place for a certain amount of time to allow the player to easily deal damage to them.
+[Freeze Frame Script](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/commands/character_commands/player_commands/freezeframe.gd)
 
 # Sub-Roles 
 
 - Audio (Rashmit)
 - Gameplay Testing (Zi)
 - Game Feel (Jordan)
-- Narrratie Design (Jonathan)
+- Narrative Design (Jonathan)
 - Others, add roles here!
 
 ## Audio
@@ -219,6 +224,17 @@ The actual vignette shader code is from the Godot Shader website [here](https://
 *Cursor* The cursor [changes](https://github.com/RashmitShrestha/gmo/blob/0b78e66ce5507b6459ef47e1d31f162770678d49/gmo/scenes/cursor_manager.gd#L1) when you go into attack mode, so the player immediately knows if they are holding down the correct button to be able to slice down enemies. 
 
 I also introduced visual feedback in sprites as well. I drew unlocked, ready to unlock, and unlocked peaches for the skill tree menu, so the player can instantly see which nodes they can unlock by color alone.
+
+## Narrative Design (Jonathan)
+
+I came up with the narrative which influenced the game mechanics.
+
+### How to play
+
+The how to play is on the title screen. After you click the middle button it takes you to a page that explains the game's lore, mechanics, keybinds, and tips. 
+
+[How to Play Script](https://github.com/RashmitShrestha/gmo/blob/main/gmo/how_to_play.gd)
+
 
 ## Other Contributions ##
 
