@@ -172,10 +172,6 @@ All player and enemy movement was handled by me. I designed the [base classes](h
 ### Physics
 Area2Ds are used extensively in this project, being the main form of communicating damage. I made a [DamageComponent](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/components/character_components/damage_component.gd) that makes adding hitboxes incredibly straightforward, merely adding it as a child and specifying the damage. To prevent Warden from dying by taking damage every game tick, I added management for an [invulnerability state](https://github.com/RashmitShrestha/gmo/blob/04be934246b59ae3338ad292b6b36918724bcfb5/gmo/scripts/characters/character.gd#L57) which prevents hitboxes from killing Warden nearly instantaneously. I altered the layers and masks of the bodies in our game to ensure the cursor, enemies, and projectiles hit what they're supposed to hit.
 
-### Enemy Movement and Behavior
-
-All enemy movement was handled by me
-
 ## Game Logic (Jonathan, Jonathanleww on Github)
 
 ### Peach Tree interaction system
@@ -249,12 +245,13 @@ I also introduced visual feedback in sprites as well. I drew unlocked, ready to 
 
 ## Narrative Design (Arthur)
 
-I incorporated our narrative into the core gameplay loop (skill tree and abilities handled by others)
+I co-created our narrative and incorporated it into the core gameplay loop (skill tree and abilities handled by others)
 *Enemy logic* In the story, the Cornucopia is the big bad and all problems come from it. Based on this, I designed all the basic fruits to be diverse so they perfectly complement each other to express their interconnected organization. As the Cornucopia is the big bad of the game and the cause of the chaos, one of its attacks is where it spawns fruits to communicate its role in the story.
 
 *Method of attack* As Warden is a chef, his method of attack to be from slashing. To heavily emphasize his slashing, I coded the damage system to revolve around the [cursor](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/cursor.gd). Damage is dealt by dragging the cursor across enemies, the damage dealt being dependent on the velocity and all other modifiers based on the peach tree.
 
 *Respawning* In the story, the peach tree is able to revive Warden as long as the peach tree is up. I incorporated [respawning](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/commands/character_commands/player_commands/player_died_command.gd) in the game, so as long as the peach tree is alive, Warden can respawn.
+
 ## Narrative Design (Jonathan)
 
 I came up with the narrative which influenced the game mechanics.
