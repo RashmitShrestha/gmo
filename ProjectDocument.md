@@ -187,10 +187,14 @@ In addition, this meant implementing the Audio systems into Godot and making sur
 ## Game Feel (Jordan)
 
 I focused on visual screen feedback with shaders.
-The [health bar shakes](https://github.com/RashmitShrestha/gmo/blob/e5c976f20b69b999fd87a8b62518a438c27f42dc/gmo/scripts/ui/health_bar.gd#L44C1-L62C3) when player takes damage, making damage more impactful and noticable. 
-When player health is below 20%, a [red vignette](https://github.com/RashmitShrestha/gmo/blob/e5c976f20b69b999fd87a8b62518a438c27f42dc/gmo/scripts/ui/health_bar.gd#L65C1-L72C53) is applied on screan, notifying the player that they are low health and should take more caution. 
+*Health Bar* The [health bar shakes](https://github.com/RashmitShrestha/gmo/blob/e5c976f20b69b999fd87a8b62518a438c27f42dc/gmo/scripts/ui/health_bar.gd#L44C1-L62C3) when player takes damage, making damage more impactful and noticable. 
+
+*Damage Vignette* When player health is below 20%, a [red vignette](https://github.com/RashmitShrestha/gmo/blob/e5c976f20b69b999fd87a8b62518a438c27f42dc/gmo/scripts/ui/health_bar.gd#L65C1-L72C53) is applied on screan, notifying the player that they are low health and should take more caution. 
 The actual vignette shader code is from the Godot Shader website [here](https://godotshaders.com/shader/vignette-2/). I edited its opacity and strength depending on what the health is.
-It was imperative that Warden had a quick and reactive damage indicator, so the animation player/tree was not enough. Also, I had only drawn a hurt animation for when he was idle, and I quickly realized this was not ideal because he had a bunch of different animations that he could be in when he gets hit. I used self modulate to quickly tint his original color by [red](https://github.com/RashmitShrestha/gmo/blob/e5c976f20b69b999fd87a8b62518a438c27f42dc/gmo/scripts/characters/warden.gd#L186C2-L188C42) no matter what state he was in, and he would always turn red upon impact.
+
+*Damage Shader for Warden* It was imperative that Warden had a quick and reactive damage indicator, so the animation player/tree was not enough. Also, I had only drawn a hurt animation for when he was idle, and I quickly realized this was not ideal because he had a bunch of different animations that he could be in when he gets hit. I used self modulate to quickly tint his original color by [red](https://github.com/RashmitShrestha/gmo/blob/e5c976f20b69b999fd87a8b62518a438c27f42dc/gmo/scripts/characters/warden.gd#L186C2-L188C42) no matter what state he was in, and he would always turn red upon impact.
+
+*Cursor* The cursor [changes](https://github.com/RashmitShrestha/gmo/blob/0b78e66ce5507b6459ef47e1d31f162770678d49/gmo/scenes/cursor_manager.gd#L1) when you go into attack mode, so the player immediately knows if they are holding down the correct button to be able to slice down enemies. 
 
 I also introduced visual feedback in sprites as well. I drew unlocked, ready to unlock, and unlocked peaches for the skill tree menu, so the player can instantly see which nodes they can unlock by color alone.
 
