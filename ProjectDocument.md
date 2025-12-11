@@ -1,4 +1,5 @@
 # GMO! #
+#### Genetically Modified Outbreak! ####
 
 ## Summary ##
 
@@ -16,11 +17,11 @@ You are Warden Gramsay, a world renowed chef. One day, the Cornucorpia emerges a
 ### Instructions
 WASD to move, shift to dash. 
 Pressing space brings out his knife in the form of your cursor! You must move your knife over enemies within a certain radius from you, slicing through them to victory. The amount of damage they take depends on mouse movement velocity - slice faster for more damage!
-The same thing applies to left click holding.
-F to access the peach tree's upgrades when near it. Upon unlocking, Press 1, 2, or 3 to temporarily give your slices special effects (if unlocked from the peach tree). To buy upgrades from the peach tree, you use XP which is gained from killing enemies.
+The same thing applies to left-click holding.
+F to access the peach tree's upgrades when near it. Upon unlocking, Press 1, 2, or 3 to temporarily give your slices special effects (if unlocked from the peach tree). To buy upgrades from the peach tree, you use XP which is gained from killing enemies. In addition, special elemental abilities can also be brought from the peach tree, which are activated with Q, E, or R on the keyboard. 
 
 ### Strategy
-This game has a variety of enemies, so it's best to understand how to deal with each one. Enemies have two targets: you or the peach tree. Some will target the tree and some will target you. For those that target the peach tree, just take them out as soon as possible. However, the strategy gets more interesting for when enemies attack YOU.
+This game has a variety of enemies, so it's best to understand how to deal with each one. Enemies have two targets: you or the peach tree. Some will target the tree and some will target you. For those who target the peach tree, just take them out as soon as possible. However, the strategy gets more interesting for when enemies attack YOU.
 
 #### Basic Enemies
 *Blueberry* - Fast, but weak. They're the easiest enemy to take out as you can just run away to make the paths of the blueberries that follow you predictable.
@@ -38,13 +39,36 @@ This game has a variety of enemies, so it's best to understand how to deal with 
 #### Boss
 The Cornucopia has two phases: an active and passive phase. While active, the boss can choose between one of two attacks: a rush and spawn attack. When it is rushing towards you, you must deal enough damage to halt its rush. This isn't too bad, just make sure to deal with it early before it moves too quickly for you to outrun or damage sufficiently. The spawn attack is less aggressive but more problematic. It circles around its target, spawning fruits. There isn't anything you can do to stop this attack early, so just make sure you stay clear of its circling path and apply the earlier tips to deal with the enemy fruits. After doing an attack, it'll go back to its spot to recharge. This is the perfect time to attack, as you get a few seconds to slice, shoot fire, or whatever other skill you might have unlocked up to this point.
 
+#### Element System
+
+Warden and the fruits have access to the elemental system and its interactions. Warden's elemental powers were granted by the immortal peach tree, and as such, he's able to use elemental abilities that tap into the three elements:
+- Flame
+- Frost
+- Ferment
+
+Symbolically, these represent ways in which fruits can appear, grilled, frozen, and rotten, which provides a link to reality. The elemental system supports a **different play style**. 
+
+Flame for damage-based aggressive styles, Frost for speed and movement-oriented upgrades, and Ferment for lasting longer with health and life-steal abilities. 
+
+Our game also allows you to mix and match abilities from the different paths as the player sees fit. **However, unlocking ALL abilities is impossible, which encourages players to allocate their XP wisely, into play style(s) of their choosing.**
+
+In addition, the elemental system incorporates effective and resistance typing, similar to Pokémon. Flame is strong against Ferment and weak against Frost, Frost is strong against Flame and weak against Ferment, and Ferment is strong against Frost but weak against Flame.
+
+Only fruits will have internal elements, represented by different colored particles. These interactions between Warden's prowress and random enemy elemental types provide for dynamic and strategic gameplay!
+
 **Add it here if you did work that should be factored into your grade but does not fit easily into the proscribed roles! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
 
 # External Code, Ideas, and Structure #
 
 If your project contains code that: 1) your team did not write, and 2) does not fit cleanly into a role, please document it in this section. Please include the author of the code, where to find the code, and note which scripts, folders, or other files that comprise the external contribution. Additionally, include the license for the external code that permits you to use it. You do not need to include the license for code provided by the instruction team.
 
-If you used tutorials or other intellectual guidance to create aspects of your project, include reference to that information as well.
+If you used tutorials or other intellectual guidance to create aspects of your project, include a reference to that information as well.
+
+Rashmit - :
+- Video on how to use trail with Line2d [here](https://www.youtube.com/watch?v=y8bi0_Fggn0&pp=ygUNZ29kb3QgbGluZSAyZNIHCQkpCgGHKiGM7w%3D%3D)
+- How to use Godot's particle system [here](https://youtu.be/yWIH7hHfWyU)
+- Setting up collision layers [here](https://youtu.be/YPZQM6w7rlI)
+- According to Pixabay, where I used some sounds, it's fine to use them for non-commercial and non-illegal purposes. It's fine to use it in another set of creative work without crediting the specific author as described [here](https://pixabay.com/service/license-summary/)
 
 Jordan - :
 - Vignette Shader code from imakeshaders on Godot Shaders website [here](https://godotshaders.com/shader/vignette-2/)
@@ -138,7 +162,7 @@ Even outside of the team, communication is extremely important: I spoke with oth
 
 ### Filling In - I was there when something lacked. 
 
-A large part of taking the lead is to be able to support everyone in their team, no matter their need. So I helped with a multitude of tasks during my time as the producer, which included helping design GUIs, implementing the skill tree, coding the combat and elemental system, and helping out with any other requests and tasks set by my team. I believe most of my time and effort was spent on this, as my focus on the and individual needs helped create a final piece that we can all be proud of!
+A large part of taking the lead is to be able to support everyone in their team, no matter their need. So I helped with a multitude of tasks during my time as the producer, which included helping design GUIs, implementing the skill tree, coding the combat and elemental system, and helping out with any other requests and tasks set by my team. I believe most of my time and effort was spent on this, as my focus on the individual needs helped create a final piece that we can all be proud of! All of my contributions that differ from my main and sub roles will be in the "Other Contributions" section. 
 
 ![Filling In](<ProjectDocument Images/discord_filling_in.png>)
 
@@ -241,8 +265,8 @@ I created the script to show the user how much damage the user is doing to the e
 
 ### Freeze Frame Implementation
 
-I created the Freeze Frame ability using applying it to the skill tree unlock and ability system. Freeze Frame freezes enemies in place for a certain amount of time to allow the player to easily deal damage to them.
-[Freeze Frame Script](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/commands/character_commands/player_commands/freezeframe.gd)
+I created the Freeze Frame ability using applying it to the skill tree unlock and ability system. Freeze Frame freezes enemies in place for a certain amount of time to allow the player to easily deal damage to them. My implementation of Freeze Frame eventually got used in the player input component. 
+[Freeze Frame Script](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/components/character_components/player_components/player_input_component.gd)
 
 ## User Interface and World Design (Claire, clairehbear on GitHub)
 My primary contributions included the main menu, the player health bar, and custom cursor, the map design, collision physics, and defining player and camera world boundaries.
@@ -321,7 +345,16 @@ All of the musical pieces are [here!](https://github.com/RashmitShrestha/gmo/tre
 
 Even before producing, I mapped out and sampled different types of video game music, involving a plethora of instruments from 8bit sounds to full orchestral pieces. I landed on using airy instruments like flutes and synths in order to inspire a care-free and whimsical vibe to the music. Generally, my songs are featured in **G major** or adjacent, in order to inspire a light-hearted melody, and I found it worked well the most with the other vibes. 
 
-In addition, this meant implementing the Audio systems into Godot and making sure the decibels are at a correct loudness, starting auto play and making sure there weren't any conflicts with the music from other scenes. 
+In addition, this meant implementing the Audio systems into Godot and making sure the decibels are at a correct loudness, starting auto-play play and making sure there weren't any conflicts with the music from other scenes. 
+
+Also, with Claire's support in starting up the audio manager system for specific sounds like slashing and voice lines, I added more sounds and connected them in the correct places to imbue elemental abilities with more dimensionality and an audial experience. These sounds include:
+- [Flame Flinger](https://github.com/RashmitShrestha/gmo/blob/main/gmo/audio/flameflinger.mp3)
+- [Freeze Frame](https://github.com/RashmitShrestha/gmo/blob/main/gmo/audio/freezeframe.mp3)
+- [Fertilized Farm](https://github.com/RashmitShrestha/gmo/blob/main/gmo/audio/fertilized_farm.mp3)
+
+These sounds were created through extensive sound design. I picked base sounds based on the elements such as afterburners blazing, ice crackling, and flies swarming. Then, I augmented higher and lower frequencies in order to balance the overall range of frequencies, allowing for a full auditory experience. THen I used FL Studio's effects such as parametric equalizers and compressors in order to increase the sound quality and tune out any blaring frequencies. These additions were then connected to the audio manager system and implemented into the gameplay!
+
+Finally, I voiced Warden's lines, adding a touch of human emotion. Warden is based on Gordon Ramsey, his name being reversed. As such, Warden is Scottish in heritage, so I studied the Scottish accent and recorded lines based on certain situation such as fire abilities being used and on death. These were implemented into the audio management system in [here](https://github.com/RashmitShrestha/gmo/tree/main/gmo/audio)
 
 ## Gameplay Testing (Zi Zeng)
 *Wave Progression Balancing* - Tested wave spawning behavior, enemy counts, and boss timing. Fixed critical bugs where waves wouldn't start correctly due to race conditions in enemy tracking. [Wave 5 Resource](https://github.com/RashmitShrestha/gmo/blob/main/gmo/resources/waves/wave_05.tres) | [Wave 10 Resource](https://github.com/RashmitShrestha/gmo/blob/main/gmo/resources/waves/wave_10.tres)
@@ -360,9 +393,7 @@ I co-created our narrative and incorporated it into the core gameplay loop (skil
 
 ## Narrative Design (Jonathan)
 
-I came up with the narrative which influenced the game mechanics. I designed the story and intergrated it into our game. I also was in charge of the cutscene layout.
-
-[Cutscene](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/cutscene.gd)
+I came up with the narrative which influenced the game mechanics.
 
 ### How to play
 
@@ -381,6 +412,40 @@ I created a short announcement trailer using Final Cut Pro, stitching together d
 
 
 ## Other Contributions ##
+
+### Rashmit:
+
+#### Element System
+
+Between Flame, Frost, and Ferment, I implemented the elemental system, which includes the damage types, damage over time trackers for three elements, visual particle systems, and other behind-the-scenes and visual interactions between elements. This code is used ubiquitously in the combat system, especially in relation to elemental abilities. This can be found here [here](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/element_system.gd)
+
+#### Skill to Game Interactions
+
+With Jonathon's and other team members' implementation of the skill tree being complete, I took it upon myself to link these upgrades with changes in the game, such as increasing Warden's health, allowing the player to use certain skills, decreasing enemy speed, etc. This was done using a skill selection function that uses Godot's match statement to map between unique skill IDs and signal calls, found [here](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/SignalBus.gd)
+
+With the signals being implemented, there were listening connections in various places, such as in [warden.gd](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/characters/warden.gd), where, for example, modifying the stats of Warden changes his variables that are linked to his health, damage, speed, etc, as can be seen [here](https://github.com/RashmitShrestha/gmo/blob/a89b66bd0cbdb4a734145402bf267e436e5fed43/gmo/scripts/characters/warden.gd#L215).
+
+With this, I had to make decisions between utilizing additional changes to base values or using multipliers; I ended up going with multiplier values for all of health, damage, and speed, which scale with the original values instead of arbitrarily adding numbers. 
+
+#### Slicing System
+
+Using Line2D to draw physical slices on the screen, I implemented the early version of the slicing system, in which the interactions with enemies were implemented in [Cursor.gd](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/cursor.gd), while the visual direction is located in [Slice.gd](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/commands/character_commands/player_commands/slice.gd) with the slice and trail system depending on inputs from trail presses. 
+
+#### Elemental Skills
+
+**Trails**
+
+The trails are a part of each element, and they allow the players to draw a Line2D implementation on the game area in which fruits that interact with it will be affected; flame trail causes burn damage, frost slows down enemies and damages them, while the ferment trail implements life-steal with some damage as well. This utilizes the DoT (damage over time) system in [Character.gd](https://github.com/RashmitShrestha/gmo/blob/25c46ebaab7b57649d07e5c5d4cec8744993af1c/gmo/scripts/characters/character.gd#L19)
+
+**Special Abilities**
+
+Each element has its unique special ability as well, which I implemented or added to.
+
+- Flame Flinger uses the particle system to fling red particles towards the direction of the player. This is complemented by a quadrilateral-shaped Area2D node to detect enemies that are within that. Then a [clamp()](https://github.com/RashmitShrestha/gmo/blob/25c46ebaab7b57649d07e5c5d4cec8744993af1c/gmo/scripts/commands/character_commands/player_commands/flameflinger.gd#L139) function is used to calculate the damage the enemy receives based on their position to the source of the flames. As mentioned, this Area2D changes directions and position based on the player's direction
+
+- Freeze Frame, which is based on Jonathon's implementation, stops movement from all current enemies and gives them a particle effect, while potentially changing Warden's slice radius based on the tier of upgrades. The challenge originated from scene vs code interference, as it was getting switched somewhere else in the code.
+
+- Fertilizer Farm was easily the hardest one to implement, because it involves changing up the underlying fruit behavior to target other enemies based on distance, and then destroying itself after 10 seconds. This created errors with other components implemented by other team members, but through communicative coding and fixing bugs along the way. This took multiple signals and many changes in [fruit.gd](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/characters/fruit.gd) for full implementation 
 
 ### Zi Zeng:
   *Enemy AI Targeting System* - Implemented dynamic target switching for enemy AI where fruits attack the peach tree by default but intelligently switch to the warden if the tree is destroyed. Added tree death detection that prevents enemies from attacking dead structures, fixing a gameplay exploit. This required careful integration with the signal system to respond to tree death events. [Fruit AI Logic](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/characters/fruit.gd#L40-L41) | [Tree Death System](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/peach_tree.gd#L21-L38)
@@ -407,7 +472,7 @@ I created a short announcement trailer using Final Cut Pro, stitching together d
 
   *Audio Production and Recording* - Self-recorded and produced three custom audio effects for key game moments: victory sound, defeat sound, and skill purchase sound. Used audio recording and editing to create distinct, satisfying audio feedback for player actions. Integrated these audio files into the game end screen (victory/defeat) and skill tree (purchase confirmation), enhancing player feedback and game feel. The audio adds emotional weight to winning/losing and makes skill purchases feel rewarding. [Victory/Defeat Audio Integration](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scenes/ui/game_end_screen.gd#L12-L13) | [Purchase Sound Integration](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/skill_tree.gd#L101-L102) | [Audio Files](https://github.com/RashmitShrestha/gmo/tree/main/gmo/audio)
 
-### Arthur
+### Arthur:
   *Knockback* - Added [knockback](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/commands/character_commands/knockback_command.gd) to the enemies and Warden to add more "oomph" to the attacks, adding to game juice and feel.
 
   *Invulnerability blinker* - Whenever damaged or respawning, a [blinking effect](https://github.com/RashmitShrestha/gmo/blob/6db497439bc9d0d4195d60ce0a771e0a6d963408/gmo/scripts/characters/warden.gd#L169) to Warden to is played, indicating he is currently unable to be damaged, aiding usability by communicating invulnerability purely from visuals.
@@ -418,7 +483,7 @@ I created a short announcement trailer using Final Cut Pro, stitching together d
   
   *Damage system* - The DamageComponent and [GameCharacter](https://github.com/RashmitShrestha/gmo/blob/39e0cf9d3af0f23ba79c83621943b86659ee1b0d/gmo/scripts/characters/character.gd#L56) classes work with one another to store and deliver information about health
 
-### Claire
+### Claire:
 #### Asset Scaling
 I implemented the assets for several fruits and the player character. Because the player character and fruit assets had different resolutions, Godot's default scaling behavior made the sprites appear blurry. To fix this, I used Godot documentation and external guides to adjust the resource settings. This allowed me to appropriately scale the resources within the engine, and prevented the blurriness.
 
@@ -443,7 +508,7 @@ The functions within the AudioManager were called from [functions within various
 - A random start sound played when a new enemy wave begins.
 - A random victory sound played when an enemy wave is successfully cleared.
 
-### Jordan
+### Jordan:
 #### Cutscenes
 I illustrated the game [cutscenes](https://github.com/RashmitShrestha/gmo/tree/main/gmo/assets/Cutscenes), helping with storytelling and narration. It gives players a better understanding of the lore and game, and while making the game feel complete and more alive.
 
