@@ -1,5 +1,6 @@
 # GMO! #
-#### Genetically Modified Outbreak! ####
+#### [Genetically Modified Outbreak!](https://raifune.itch.io/gmo) ####
+
 
 ## Summary ##
 
