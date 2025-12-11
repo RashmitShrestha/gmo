@@ -366,7 +366,7 @@ The how to play is on the title screen. After you click the middle button it tak
 ## Presskit and Trailer (Claire)
 Link to presskit: https://clairehbear.github.io/gmo-presskit/ 
 
-I created a basic React web app as the game’s presskit. It showcases the game trailer and several key screenshots. The presskit also includes a dedicated team section and a game synopsis to provide further context on the project goals and narrative. The site concludes with a large announcement confirming the game is live on Itch.io and includes a direct link to redirect visitors to the game page.
+I created a basic React web app as the game’s presskit. It showcases the game trailer and several key screenshots. The presskit also includes a dedicated team section and a game synopsis to provide further context on the project goals and narrative. The background image is a nod to the early map design that we created, which we ended up deviating from heavily in the end. The site concludes with a large announcement confirming the game is live on Itch.io and includes a direct link to redirect visitors to the game page.
 
 Link to trailer: https://youtu.be/CVhFLi_56sM 
 
