@@ -2,6 +2,9 @@ class_name Signals
 extends Node
 
 
+var tutorial_return_to_game: bool = false
+var show_pause_menu_on_load: bool = false
+
 # ui and logic signals
 signal player_health_changed(new_health, max_health)
 signal base_health_changed(new_health, max_health)
