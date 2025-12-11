@@ -6,7 +6,7 @@ func _ready():
 	%Quit.pressed.connect(quit)
 
 func play():
-	get_tree().change_scene_to_file("res://scenes/game_area.tscn")
+	get_tree().change_scene_to_file("res://scenes/game.tscn")
 
 func how_to_play():
 	get_tree().change_scene_to_file("res://how_to_play.tscn")

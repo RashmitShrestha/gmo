@@ -7,7 +7,6 @@ var _just_retreated: bool = false
 func update():
 	if null == _parent.curr_command:
 		if _just_attacked:
-			print("just attacked")
 			_parent.target = _parent.peach_tree
 			_parent.curr_command = _parent.retreat_command
 			_just_attacked = false
