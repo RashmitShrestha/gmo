@@ -28,7 +28,7 @@ Jordan - :
 - Vignette Shader code from imakeshaders on Godot Shaders website [here](https://godotshaders.com/shader/vignette-2/)
 - Animation Tree setup tutorial from YouTube channel [Chris' Tutorials](https://www.youtube.com/watch?v=WrMORzl3g1U)
 
-Rash - :
+Jonathan - :
 Interactable objects in godot.[Queble](https://www.youtube.com/watch?v=pQINWFKc9_k)
 
 Zi - Resource and citing:
@@ -79,6 +79,7 @@ Add additional contributions in the Other Contributions section.
 - Producer (Rashmit)
 - Animation and Visuals (Jordan)
 - Systems Tools Engineer (Zi Zeng)
+- Game Logic (Jonathan)
 
 ## Producer (Rashmit, Rashura on Github)
 
@@ -159,11 +160,32 @@ Warden has a special [BlendSpace2D](https://github.com/RashmitShrestha/gmo/commi
 
 *Signal Based Communication Architecture* - Implemented the SignalBus singleton that provides decoupled communication between game systems. Added signals for wave events, enemy tracking, player/tree death, and health changes. [SignalBus Script](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/SignalBus.gd)
 
+
+## Game Logic (Jonathan, Jonathanleww on Github)
+
+## Peach Tree interaction system
+
+I created the interacting component system that allows you to interact and open up the skill tree screen. I also added an interacting component that displays "F to open skill tree" when in interactable range. 
+[Interacting component Script](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/interacting_component.gd)
+[Peach Tree Interaction](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/peach_tree.gd)
+
+## Skill Tree system
+
+I designed the layout of the skill tree and how it would work in game. The skill tree is the key game mechanic in the game to progress and gain skills to get stronger and defeat stronger enemies. I also wrote anad ideated all skill tree abilities and its structure for the flame, frost, and ferment abilities. I also set up the xp resource in the skill tree to be spent. Ability nodes were also designed on an "unlock-first" basis where you needed to spend xp points to get the base upgrade of a specific path before you can get the later upgrades in the skill tree.
+[Skill Tree Script](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/skill_tree.gd)
+
+## Damage Number Popup System
+
+I created the script to show the user how much damage the user is doing to the enemy. 
+[Damage Number Script](https://github.com/RashmitShrestha/gmo/blob/main/gmo/scripts/ui/damage_number.gd)
+
+
 # Sub-Roles 
 
 - Audio (Rashmit)
 - Gameplay Testing (Zi)
 - Game Feel (Jordan)
+- Narrratie Design (Jonathan)
 - Others, add roles here!
 
 ## Audio
